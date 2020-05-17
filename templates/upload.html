@@ -1,0 +1,95 @@
+<!doctype html>
+<head>
+  {{ ckeditor.load() }}
+  <style>
+    #the_form {
+	width: 100%;
+	margin: 0 auto;
+    }
+    table {
+	width:100%;
+	table-layout: fixed;
+    }
+    #volunteer_select {
+	display: inline-block;
+    }
+    td * {
+	display: inline-block;
+    }
+    td {
+	text-align: center;
+	margin: 0 auto;
+    }
+    
+  </style>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+
+  <script src="js/jquery-ui.js"></script>
+  <script>
+
+  </script>
+    
+  <title>Volunteer Editor</title>
+</head>
+<body>
+  <div id="the_form">
+    
+    <form id="volunteer_select" method=GET action="/">
+      <table>
+	<tr>
+	  <td>
+	    <label for="volunteers"><h2>Select Volunteer:</h2></label>
+	    <select id="volunteers" name="key" onchange="this.form.submit()">
+	      <option value="" default>New Volunteer  </option>
+	      {% for k, v in mega_data.iteritems() %}
+	      <option value="{{ k }}" {% if request.args.get('key')==k %} selected {% endif %}>
+		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ "-"  ~ v.class }}
+	      </option>
+	      {% endfor %}
+	    </select>
+	  </td>
+	</tr>
+      </table>
+    </form>
+
+    <form method=POST action="/" enctype=multipart/form-data>
+      <table>
+	<tr>
+	  <td colspan=2><h2>Student Information</h2></td>
+	  <td colspan=2><h2>Volunteer Information</h2></td>
+	</tr>
+	<tr>
+	  <td>First Name:</td>
+	  <td><input name="student_fname" value="{{ data.student_fname }}" required></td>
+
+	  <td>First Name:</td>
+	  <td><input name="volunteer_fname" value="{{ data.volunteer_fname }}" required></td>
+	</tr>
+	<tr>
+	  <td>Last Name:</td>
+	  <td><input name="student_lname" value="{{ data.student_lname }}" required></td>
+
+	  <td>Last Name:</td>
+	  <td><input name="volunteer_lname" value="{{ data.volunteer_lname }}" required></td>
+	</tr>
+	<tr>
+	  <td>Class of:</td>
+	  <td><input name="class" value="{{ data.class }}" required></td>
+	</tr>
+	<tr>
+	  <td><h2>Editor</h2></td>
+	  <td><input id="save_document" type=submit name="submit_type" value="Save Document"/></input></td>
+	  <td><h2>Preview</h2></td>
+	  <td><button id="refresh_preview">Refresh Preview</button></td>
+	</tr>
+	<tr>
+
+	  <td colspan=2>{{ ckeditor.create(value=data.data) }}</td>
+	  {{ ckeditor.config() }} 
+	  <td colspan=2></td>
+	</tr>
+	
+      </table>
+    </form>
+  </div>
+</body>
