@@ -14,22 +14,66 @@
   <link rel="stylesheet" href="../css/owl.carousel.min.css">
   <link rel="stylesheet" href="../css/owl.theme.default.min.css">
   <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-
   <link rel="stylesheet" href="../css/jquery.fancybox.min.css">
-
   <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
-
   <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
-
   <link rel="stylesheet" href="../css/aos.css">
-
   <link rel="stylesheet" href="../css/style.css">
-
+  <style>
+    .bio {
+	display: none;
+	padding: 0.5in 1in;
+	border: 1px solid;
+    }
+    .name:hover {
+	cursor: pointer;
+	font-size: 24px;
+    }
+  </style>
+  <script>
+    $(document).ready(function(e){
+	for (i = 25; i >= 0; i--) {
+	    var letter = (i+10).toString(36);
+	    var letter2 = " " + letter.toUpperCase() + " ";
+	    if(i < 25){
+		letter2 += "|"
+	    }
+	    $('#nav_h4').after($('<a class="nav_a" href="#' + letter + '">' + letter2 + ' </a>'));
+	}
+	$.getJSON("data.json", function( data ) {
+	    var sorted = [];
+	    for(var key in data) {
+		sorted[sorted.length] = key;
+	    }
+	    sorted.sort();
+	    sorted.forEach(function(key){
+		var letter = key.charAt(0).toLowerCase();
+		if($('#' + letter).length == 0){
+		    $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
+		}
+		var bio_link = $('<h5 class="name"></h5>').text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname']);
+		bio_link.attr({
+		    name:key,
+		    id:key
+		})
+		$('#bios').append(bio_link);
+		var volunteer = $('<div class="bio"></div>');
+		volunteer.append($('<h5 class="researcher"></h5>').text("Researcher: " +
+									data[key]['student_fname'] + " " +
+									data[key]['student_lname'] + ", Class of " +
+									data[key]['class']));
+		volunteer.append(data[key]['data']);
+		bio_link.after(volunteer);
+		bio_link.on('click', function(e){
+		    volunteer.toggle();
+		});
+	    });
+	});
+    });
+  </script>
 </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
   <div class="site-wrap">
-
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -38,43 +82,29 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-
-
-
     <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
-
       <div class="container">
         <div class="row align-items-center">
-
           <div class="col-11 col-xl-2">
             <h1 class="mb-0 site-logo"><a href="../index.html" class="text-black h2 mb-0">Stuy SCW<span class="text-primary">.</span> </a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
-
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-
                 <li><a href="../index.html#about-section" class="nav-link">About</a></li>
                 <li><a href="/archive/" class="nav-link">Archive</a></li>
                 <li><a href="../index.html#contact-section" class="nav-link">Contact</a></li>
               </ul>
             </nav>
           </div>
-
-
-
       </div>
     </div>
-
     </header>
-
     <body>
       <div class="site-section" id="archive-section">
         <div class="container">
           <div class="row mb-5">
-
               <div class="row">
-
                 <div class="col-12">
                   <div class="text-left pb-1" align="justify">
                     <h4>Archive</h4>
@@ -84,46 +114,15 @@
                   <p class="lead" align="justify"></p>
                   <p>This project, begun in 2020 by Stuyvesant history teacher David Hanna and his students in a Spanish Civil War elective course, is ongoing. An initial "scraping" of the Abraham Lincoln Brigade's Archives' database by Ian Williams, Stuyvesant '20, found over 800 names with New York City references in their biographical entries. Some were born and/or raised in New York. Others had made NYC their adopted hometown before they made the decision to go to Spain. It will take years to fully research all of these names. The objective is that each year the archive will grow as new groups of Stuyvesant students research more volunteers. Ultimately, this information could be used to help create a memorial to all of the New Yorkers (from the five boroughs) who served in Spain. We would also like to move forward with a commemorative plaque honoring those volunteers who attended Stuyvesant High School, specifically, to be placed in the school.
 </p>
-                  <h4>Browse By Surname</h4>
-                  <a href="/archive/#a"> A |</a>
-                  <a href="/archive/#b"> B |</a>
-                  <a href="/archive/#c"> C |</a>
-                  <a href="/archive/#d"> D |</a>
-                  <a href="/archive/#e"> E |</a>
-                  <a href="/archive/#f"> F |</a>
-                  <a href="/archive/#g"> G |</a>
-                  <a href="/archive/#h"> H |</a>
-                  <a href="/archive/#i"> I |</a>
-                  <a href="/archive/#j"> J |</a>
-                  <a href="/archive/#k"> K |</a>
-                  <a href="/archive/#l"> L |</a>
-                  <a href="/archive/#m"> M |</a>
-                  <a href="/archive/#n"> N |</a>
-                  <a href="/archive/#o"> O |</a>
-                  <a href="/archive/#p"> P |</a>
-                  <a href="/archive/#q"> Q |</a>
-                  <a href="/archive/#r"> R |</a>
-                  <a href="/archive/#s"> S |</a>
-                  <a href="/archive/#t"> T |</a>
-                  <a href="/archive/#y"> U |</a>
-                  <a href="/archive/#v"> V |</a>
-                  <a href="/archive/#w"> W |</a>
-                  <a href="/archive/#x"> X |</a>
-                  <a href="/archive/#y"> Y |</a>
-                  <a href="/archive/#z"> Z</a>
+                  <h4 id="nav_h4">Browse By Surname</h4>
                   <p></p>
-                  <h5>Featured Biography</h5>
-                </div>
-
+		  <div id="bios">
+                  </div>
               </div>
-
             </div>
-
-
-
           </div>
         </div>
       </div>
     </body>
+</html>
 
-    </html>

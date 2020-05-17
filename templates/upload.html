@@ -14,12 +14,21 @@
     #volunteer_select {
 	display: inline-block;
     }
-    td * {
+    td > * {
 	display: inline-block;
     }
     td {
 	text-align: center;
 	margin: 0 auto;
+	position: relative;
+    }
+    #iframe_container{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	margin: 0;
+	bottom: 0;
+	right: 0;
     }
 
   </style>
@@ -28,15 +37,40 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script>
+
+
     $(document).on("submit", "#main_form", function(event) {
-        event.preventDefault(); // to prevent default page reloading
+	event.preventDefault(); // to prevent default page reloading
+	var empty_fields = false;
+	$('input[required]').each(function(){
+            if ($(this).val() == ''){
+		empty_fields = true;
+		return;
+            }
+        });
+	if(empty_fields)
+	    return false;
+	var getURL = function getUrlVars() {
+	    var vars = {};
+	    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	    });
+	    return vars;
+	}
+	CKEDITOR.instances.ckeditor.updateElement();
         var dataString = $(this).serialize(); // to get the form data
         $.ajax({
 	    type: "POST",
 	    url: "/",
-	    data: dataString
+	    data: dataString,
+	    success: function(){
+		var d = getURL();
+		if(!d['key']){
+		    var val = $(this).find('input[name=volunteer_lname]').val() + "_" + $(this).find('input[name=volunteer_fname]').val();
+		    window.location.href = window.location.href + val;
+		}
+	    }
         });
-
     });
     $(document).on("click", "#upload_changes", function(event){
 	event.preventDefault();
@@ -75,6 +109,37 @@
 	    }
 	});
     });
+    $(document).on("click", "#delete", function(event){
+	event.preventDefault();
+	var confirm_delete = confirm("Are you sure you want to delete this volunteer's information?");
+	if(confirm_delete){
+	    $.ajax({
+		type: "POST",
+		url: "/delete",
+		data: {
+		    key: $("#volunteers").val()
+		},
+		success: function(){
+		    $("#volunteers").val("");
+		    $("#volunteer_select").submit();
+		}
+	    })
+	}
+    });
+    $(document).ready(function(){
+	$('.form_data').on("propertychange change click keyup input paste", function(){
+	    $(this).val(function(){
+		return this.value.replace(/(?:^|\s)\w/g, function(match) {
+		    return match.toUpperCase();
+		});
+	    });
+	})
+    });
+    $(document).on("click", "#refresh_preview", function(event){
+	$("#main_form").submit();
+	$( '#iframe' ).attr( 'src', function ( i, val ) { return val; });
+
+    })
   </script>
 
   <title>Volunteer Editor</title>
@@ -85,17 +150,19 @@
       <table>
 	<tr>
 	  <td>
-	    <label for="volunteers"><h2>Select Volunteer:</h2></label>
+	    <label for="volunteers"><h2>Select Volunteer: </h2></label>
 	    <select id="volunteers" name="key" onchange="this.form.submit()">
 	      <option value="" default>New Volunteer  </option>
-	      {% for k, v in mega_data.iteritems() %}
+	      {% for k, v in mega_data.iteritems()|sort %}
 	      <option value="{{ k }}" {% if request.args.get('key')==k %} selected {% endif %}>
-		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ "-"  ~ v.class }}
+		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
 	      </option>
 	      {% endfor %}
 	    </select>
+	    {% if request.args.get('key') %}
+	      <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
+	    {% endif %}
 	  </td>
-
 	</tr>
       </table>
     </form>
@@ -108,21 +175,21 @@
 	</tr>
 	<tr>
 	  <td>First Name:</td>
-	  <td><input name="student_fname" value="{{ data.student_fname }}" required></td>
+	  <td><input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required></td>
 
 	  <td>First Name:</td>
-	  <td><input name="volunteer_fname" value="{{ data.volunteer_fname }}" required></td>
+	  <td><input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required></td>
 	</tr>
 	<tr>
 	  <td>Last Name:</td>
-	  <td><input name="student_lname" value="{{ data.student_lname }}" required></td>
+	  <td><input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required></td>
 
 	  <td>Last Name:</td>
-	  <td><input name="volunteer_lname" value="{{ data.volunteer_lname }}" required></td>
+	  <td><input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required></td>
 	</tr>
 	<tr>
 	  <td>Class of:</td>
-	  <td><input name="class" value="{{ data.class }}" required></td>
+	  <td><input type="number" name="class" value="{{ data.class }}" required></td>
 	</tr>
 	<tr>
 	  <td><h2>Editor</h2></td>
@@ -131,12 +198,20 @@
 	    <button id="upload_changes">Upload Changes</button>
 	  </td>
 	  <td><h2>Preview</h2></td>
-	  <td><button id="refresh_preview">Refresh Preview</button></td>
+	  <td>
+	    <button id="refresh_preview">Refresh Preview</button>
+	    <button><a target="_blank" href="http://127.0.0.1:8000/archive/#{{ request.args.get('key') }}">Preview On Full Page</a></button>
+	  </td>
 	</tr>
 	<tr>
-	  <td colspan=2>{{ ckeditor.create(value=data.data) }}</td>
+
+	  <td colspan=2><textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea></td>
 	  {{ ckeditor.config() }}
-	  <td colspan=2></td>
+	  <td colspan=2>
+	    <div id="iframe_container">
+	      <iframe id="iframe" src="http://127.0.0.1:8000/archive/#{{ request.args.get('key') }}" width="100%" height="100%"></iframe>
+	    </div>
+	  </td>
 	</tr>
       </table>
 
