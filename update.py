@@ -3,8 +3,10 @@ import subprocess
 import json
 import bisect
 import urllib
+import webbrowser
 from flask import Flask, flash, request, redirect, url_for, render_template, jsonify
 from flask_ckeditor import CKEditor, upload_success, upload_fail
+
 
 app = Flask(__name__)
 
@@ -14,7 +16,17 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 ckeditor = CKEditor(app)
-
+@app.route('/delete', methods=['POST'])
+def delete():
+    key = request.form.get('key')
+    json_data = {}
+    print key
+    with open('archive/data.json', 'r') as f:
+        json_data = json.load(f)
+    del json_data[key]
+    with open('archive/data.json', 'w') as f:
+        json.dump(json_data, f)
+    return ('', 204)
 @app.route('/upload_changes', methods=['POST'])
 def upload_changes():
     action = request.form.get('action')
@@ -70,6 +82,6 @@ def main():
         return render_template("upload.html", data=data, mega_data=json_data)
 
 if __name__ == '__main__':
-    os.system("git pull origin")
+    webbrowser.open('http://127.0.0.1:5000', new=1)
     app.run(debug=True)
-                                 
+
