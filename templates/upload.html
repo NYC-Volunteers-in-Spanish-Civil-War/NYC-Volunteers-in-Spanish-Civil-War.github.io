@@ -5,6 +5,7 @@
     #the_form {
 	width: 100%;
 	margin: 0 auto;
+	max-width: 1600px;
     }
     table {
 	width:100%;
@@ -20,21 +21,67 @@
 	text-align: center;
 	margin: 0 auto;
     }
-    
+
   </style>
   <link rel="stylesheet" href="css/jquery-ui.css">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script>
+    $(document).on("submit", "#main_form", function(event) {
+        event.preventDefault(); // to prevent default page reloading
+        var dataString = $(this).serialize(); // to get the form data
+        $.ajax({
+	    type: "POST",
+	    url: "/",
+	    data: dataString
+        });
 
+    });
+    $(document).on("click", "#upload_changes", function(event){
+	event.preventDefault();
+	$.ajax({
+	    type: "POST",
+	    url: "/upload_changes",
+	    data: {
+		action: 'changes_made'
+	    },
+	    success: function(result) {
+		$("#main_form").submit();
+		var username = prompt("Please enter your Github username:");
+		if(!username)
+		    return;
+		var password = prompt("Please enter your Github password:");
+		if(!password)
+		    return;
+		$.ajax({
+		    type: "POST",
+		    url: "/upload_changes",
+		    data: {
+			action: 'push_changes',
+			user: username,
+			pass: password
+		    },
+		    success: function(result) {
+			alert("Changes pushed successfully. The live site should update in a few minutes.")
+		    },
+		    error: function(result) {
+			alert('Username or password was incorrect');
+		    }
+		});
+	    },
+	    error: function(result) {
+		alert('No changes have been made');
+	    }
+	});
+    });
   </script>
-    
+
   <title>Volunteer Editor</title>
 </head>
 <body>
   <div id="the_form">
-    
-    <form id="volunteer_select" method=GET action="/">
+    <form id="volunteer_select" method="GET" action="/">
       <table>
 	<tr>
 	  <td>
@@ -48,11 +95,12 @@
 	      {% endfor %}
 	    </select>
 	  </td>
+
 	</tr>
       </table>
     </form>
 
-    <form method=POST action="/" enctype=multipart/form-data>
+    <form id="main_form" method="POST" action="" enctype=multipart/form-data>
       <table>
 	<tr>
 	  <td colspan=2><h2>Student Information</h2></td>
@@ -78,18 +126,20 @@
 	</tr>
 	<tr>
 	  <td><h2>Editor</h2></td>
-	  <td><input id="save_document" type=submit name="submit_type" value="Save Document"/></input></td>
+	  <td>
+	    <input type=submit name="submit_type" value="Save Document"/>
+	    <button id="upload_changes">Upload Changes</button>
+	  </td>
 	  <td><h2>Preview</h2></td>
 	  <td><button id="refresh_preview">Refresh Preview</button></td>
 	</tr>
 	<tr>
-
 	  <td colspan=2>{{ ckeditor.create(value=data.data) }}</td>
-	  {{ ckeditor.config() }} 
+	  {{ ckeditor.config() }}
 	  <td colspan=2></td>
 	</tr>
-	
       </table>
+
     </form>
   </div>
 </body>

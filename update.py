@@ -1,7 +1,9 @@
 import os
+import subprocess
 import json
 import bisect
-from flask import Flask, flash, request, redirect, url_for, render_template
+import urllib
+from flask import Flask, flash, request, redirect, url_for, render_template, jsonify
 from flask_ckeditor import CKEditor, upload_success, upload_fail
 
 app = Flask(__name__)
@@ -13,17 +15,35 @@ app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 ckeditor = CKEditor(app)
 
+@app.route('/upload_changes', methods=['POST'])
+def upload_changes():
+    action = request.form.get('action')
+    #Returns if any changes have been made locally that need to be pushed
+    if action == 'changes_made':
+        url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data.json"
+        published_json = json.loads(urllib.urlopen(url).read())
+        local_json = {}
+        with open('archive/data.json', 'r') as f:
+            local_json = json.load(f)
+        if local_json != published_json:
+            return ('', 204)
+        return ('', 404)
+    #Attempts to push changes that need to be pushed
+    elif action == 'push_changes':
+        #os.system("git add archive/data.json")
+        push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
+            request.form.get('user'),
+            request.form.get('pass'))
+        push_result = subprocess.check_output(push_command, shell=True)
+        if "Invalid username or password" in push_result:
+            return ('', 404)
+        return ('', 204)
 @app.route('/', methods=['GET', 'POST'])
 def main():
     json_data = {}
     with open('archive/data.json', 'r') as f:
         json_data = json.load(f)
     if request.method == 'POST':
-        print request.form.get('student_fname')
-        print request.form.get('student_lname')
-        print request.form.get('class')
-        print request.form.get('volunteer_fname')
-        print request.form.get('volunteer_lname')
         out_name = request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname') + ".html"
         data = {
             "student_fname": request.form.get('student_fname'),
@@ -45,11 +65,11 @@ def main():
             "volunteer_fname": "",
             "volunteer_lname": "",
             "data": ""}
-        print "fishy", request.args.get('key')
         if request.args.get('key'):
             data = json_data[request.args.get('key')]
         return render_template("upload.html", data=data, mega_data=json_data)
 
 if __name__ == '__main__':
+    os.system("git pull origin")
     app.run(debug=True)
                                  
