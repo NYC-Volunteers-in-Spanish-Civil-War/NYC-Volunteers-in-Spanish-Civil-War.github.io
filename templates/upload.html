@@ -42,6 +42,9 @@
     $(document).on("submit", "#main_form", function(event) {
 	event.preventDefault(); // to prevent default page reloading
 	var empty_fields = false;
+	$('input[type=text]').val (function () {
+	    return this.value.trim();
+	})
 	$('input[required]').each(function(){
             if ($(this).val() == ''){
 		empty_fields = true;
@@ -61,14 +64,18 @@
         var dataString = $(this).serialize(); // to get the form data
         $.ajax({
 	    type: "POST",
-	    url: "/",
+	    url: window.location.href,
 	    data: dataString,
 	    success: function(){
 		var d = getURL();
-		if(!d['key']){
-		    var val = $(this).find('input[name=volunteer_lname]').val() + "_" + $(this).find('input[name=volunteer_fname]').val();
-		    window.location.href = window.location.href + val;
+		var val = $('input[name=volunteer_lname]').val() + "_" + $('input[name=volunteer_fname]').val();
+		val = val.replace(/ /g, "+");
+		if(!d['key'] || (d['key'] != val)){
+		    window.location.href = "http://127.0.0.1:5000/?key=" + val;
 		}
+	    },
+	    error: function(e){
+		console.log(e);
 	    }
         });
     });
@@ -131,9 +138,9 @@
 	    $(this).val(function(){
 		return this.value.replace(/(?:^|\s)\w/g, function(match) {
 		    return match.toUpperCase();
-		});
+		})
 	    });
-	})
+	});
     });
     $(document).on("click", "#refresh_preview", function(event){
 	$("#main_form").submit();
@@ -154,12 +161,12 @@
 	    <select id="volunteers" name="key" onchange="this.form.submit()">
 	      <option value="" default>New Volunteer  </option>
 	      {% for k, v in mega_data.iteritems()|sort %}
-	      <option value="{{ k }}" {% if request.args.get('key')==k %} selected {% endif %}>
+	      <option value="{{ k }}" {% if key==k %} selected {% endif %}>
 		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
 	      </option>
 	      {% endfor %}
 	    </select>
-	    {% if request.args.get('key') %}
+	    {% if key %}
 	      <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
 	    {% endif %}
 	  </td>
@@ -200,7 +207,7 @@
 	  <td><h2>Preview</h2></td>
 	  <td>
 	    <button id="refresh_preview">Refresh Preview</button>
-	    <button><a target="_blank" href="http://127.0.0.1:8000/archive/#{{ request.args.get('key') }}">Preview On Full Page</a></button>
+	    <button><a target="_blank" href="http://127.0.0.1:8000/archive/#{{ key }}">Preview On Full Page</a></button>
 	  </td>
 	</tr>
 	<tr>
@@ -209,7 +216,7 @@
 	  {{ ckeditor.config() }}
 	  <td colspan=2>
 	    <div id="iframe_container">
-	      <iframe id="iframe" src="http://127.0.0.1:8000/archive/#{{ request.args.get('key') }}" width="100%" height="100%"></iframe>
+	      <iframe id="iframe" src="http://127.0.0.1:8000/archive/#{{ key }}" width="100%" height="100%"></iframe>
 	    </div>
 	  </td>
 	</tr>

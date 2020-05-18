@@ -20,7 +20,6 @@ ckeditor = CKEditor(app)
 def delete():
     key = request.form.get('key')
     json_data = {}
-    print key
     with open('archive/data.json', 'r') as f:
         json_data = json.load(f)
     del json_data[key]
@@ -65,10 +64,13 @@ def main():
             "volunteer_lname": request.form.get('volunteer_lname'),
             "data": request.form.get('ckeditor')}
         key = data['volunteer_lname'] + "_" + data['volunteer_fname']
+        print key, request.args.get('key');
+        if request.args.get('key') != key:
+            del json_data[request.args.get('key')]
         json_data[key] = data
         with open('archive/data.json', 'w') as f:
             json.dump(json_data, f)
-        return render_template("upload.html", data=json_data[key], mega_data=json_data)
+        return render_template("upload.html", data=json_data[key], mega_data=json_data, key=key)
     else:
         data = {
             "student_fname": "",
@@ -79,9 +81,9 @@ def main():
             "data": ""}
         if request.args.get('key'):
             data = json_data[request.args.get('key')]
-        return render_template("upload.html", data=data, mega_data=json_data)
+        return render_template("upload.html", data=data, mega_data=json_data, key=request.args.get('key'))
 
 if __name__ == '__main__':
-    webbrowser.open('http://127.0.0.1:5000', new=1)
+    webbrowser.open('http://127.0.0.1:5000?key=', new=1)
     app.run(debug=True)
 
