@@ -64,7 +64,6 @@ def main():
             "volunteer_lname": request.form.get('volunteer_lname'),
             "data": request.form.get('ckeditor')}
         key = data['volunteer_lname'] + "_" + data['volunteer_fname']
-        print key, request.args.get('key');
         if request.args.get('key') != key:
             del json_data[request.args.get('key')]
         json_data[key] = data
