@@ -1,6 +1,6 @@
 trap "kill 0" EXIT
 git pull origin
-python update.py &
-python -m SimpleHTTPServer 8000
+py -2.7 update.py &
+py -2.7 -m SimpleHTTPServer 8000
 
 
