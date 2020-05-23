@@ -20,14 +20,37 @@
   <link rel="stylesheet" href="../css/aos.css">
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    .bio {
-	display: none;
-	padding: 0.5in 1in;
-	border: 1px solid;
-    }
     .name:hover {
 	cursor: pointer;
 	font-size: 24px;
+    }
+    .bio {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5in .5in;
+	border: 1px solid;
+    }
+    .main_text {
+	white-space: nowrap;
+    }
+    .main_text a {
+	color: rgb(0, 0, 238);
+	text-decoration: underline;
+    }
+    .img_section {
+	border-left: 1px dotted black;
+	padding-left: .5in;
+	width: 3in;
+    }
+    .img_section * {
+	width: 3in;
+	width: 100%;
+	display: block;
+	text-align: center;
+    }
+    .img_section img:hover{
+	transform: scale(1.1);
     }
   </style>
   <script>
@@ -57,16 +80,36 @@
 		    id:key
 		})
 		$('#bios').append(bio_link);
-		var volunteer = $('<div class="bio"></div>');
-		volunteer.append($('<h5 class="researcher"></h5>').text("Researcher: " +
+		var $volunteer = $('<div class="bio"></div>');
+		var $main_text = $('<div class="main_text"></div>');
+		$main_text.append($('<h5 class="researcher"></h5>').text("Researcher: " +
 									data[key]['student_fname'] + " " +
 									data[key]['student_lname'] + ", Class of " +
 									data[key]['class']));
-		volunteer.append(data[key]['data']);
-		bio_link.after(volunteer);
+		$main_text.append('<hr>');
+		$main_text.append(data[key]['data']);
+		$volunteer.append($main_text);
+		var $img_sec = $('<div class="img_section"></div>');
+		if(data[key]['volunteer_images'].length > 0){
+		    $img_sec.append($('<h4>Volunteer Images</h4><hr>'));
+		}
+		data[key]['volunteer_images'].forEach(function(img){
+		    $img = $('<img>').attr('src', img);
+		    $img_sec.append($('<a target="blank"></a>').attr('href', img).append($img)).append('<hr>');
+		})
+		if(data[key]['school_crests'].length > 0){
+		    $img_sec.append($('<h4>School Crests</h4><hr>'));
+		}
+		data[key]['school_crests'].forEach(function(img){
+		    $img = $('<img>').attr('src', img);
+		    $img_sec.append($('<a target="blank"></a>').attr('href', img).append($img)).append('<hr>');
+		})
+		$volunteer.append($img_sec);
+		bio_link.after($volunteer);
 		bio_link.on('click', function(e){
-		    volunteer.toggle();
+		    $volunteer.toggle();
 		});
+		$volunteer.toggle();
 	    });
 	});
     });
