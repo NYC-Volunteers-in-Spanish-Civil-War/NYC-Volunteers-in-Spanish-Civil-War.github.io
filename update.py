@@ -16,6 +16,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 ckeditor = CKEditor(app)
+
 @app.route('/delete', methods=['POST'])
 def delete():
     key = request.form.get('key')
