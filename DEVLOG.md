@@ -10,7 +10,7 @@
 
 ## May 23, 2020
 - The archive page now displays images pertaining to the volunteer side by side with the text.
-
+- Updated run.sh to have better behavior
 ## May 22, 2020
 - Added two(Volunteer Images and School Crests) buttons with which to upload pictures
 - Under each button is a list of pictures, and a button to delete them
