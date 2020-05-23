@@ -26,6 +26,20 @@ def delete():
     with open('archive/data.json', 'w') as f:
         json.dump(json_data, f)
     return ('', 204)
+@app.route('/delete_image', methods=['POST'])
+def delete_image():
+    key = request.form.get('key')
+    data = request.form.get('data')
+    json_data = {}
+    with open('archive/data.json', 'r') as f:
+        json_data = json.load(f)
+    if data in json_data[key]['volunteer_images']:
+        json_data[key]['volunteer_images'].remove(data)
+    elif data in json_data[key]['school_crests']:
+        json_data[key]['school_crests'].remove(data)
+    with open('archive/data.json', 'w') as f:
+        json.dump(json_data, f)
+    return ('', 204)
 @app.route('/upload_changes', methods=['POST'])
 def upload_changes():
     action = request.form.get('action')
@@ -62,7 +76,9 @@ def main():
             "class": request.form.get('class'),
             "volunteer_fname": request.form.get('volunteer_fname'),
             "volunteer_lname": request.form.get('volunteer_lname'),
-            "data": request.form.get('ckeditor')}
+            "data": request.form.get('ckeditor'),
+            "volunteer_images": json.loads(request.form.get('volunteer_images_hidden')),
+            "school_crests": json.loads(request.form.get('school_crests_hidden'))}
         key = data['volunteer_lname'] + "_" + data['volunteer_fname']
         if request.args.get('key') != key:
             del json_data[request.args.get('key')]
@@ -77,7 +93,9 @@ def main():
             "class": "",
             "volunteer_fname": "",
             "volunteer_lname": "",
-            "data": ""}
+            "data": "",
+            "volunteer_images": "",
+            "school_crests": ""}
         if request.args.get('key'):
             data = json_data[request.args.get('key')]
         return render_template("upload.html", data=data, mega_data=json_data, key=request.args.get('key'))
