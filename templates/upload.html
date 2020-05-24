@@ -52,7 +52,6 @@
     /* Handles form sanitization and proper upload behavior*/
     $(document).on("submit", "#main_form", function(event) {
 	event.preventDefault(); // to prevent default page reloading
-
 	//Trim trailing and leading spaces
 	$('input[type=text]').val (function () {
 	    return this.value.trim();
@@ -103,6 +102,8 @@
 	    error: function(e){
 	    }
         });
+	//Set document status in select if page hasn't been reloaded (PUBLISHED -> MODIFIED)
+	$('#volunteer_select option:selected').text($('#volunteer_select option:selected').text().replace("[PUBLISHED]", "[MODIFIED]"))
     });
     //Open confirmation prompts for the git username and password, pass them to the server
     $(document).on("click", "#upload_changes", function(event){
@@ -222,7 +223,7 @@
 	      <option value="" default>New Volunteer  </option>
 	      {% for k, v in mega_data.iteritems()|sort %}
 	      <option value="{{ k }}" {% if key==k %} selected {% endif %}>
-		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
+		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class ~ "  [" ~ v.status ~ "]" }}
 	      </option>
 	      {% endfor %}
 	    </select>
