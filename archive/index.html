@@ -89,7 +89,8 @@
 		$main_text.append(data[key]['data']);
 		$volunteer.append($main_text);
 		var $img_sec = $('<div class="img_section"></div>');
-		$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
+		$img_sec.append($('<h5>Images</h5><hr>'));
+		//$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
 		data[key]['volunteer_images'].forEach(function(img){
 		    $img = $('<img>').attr('src', img.src);
 		    $img_caption = "";
@@ -98,7 +99,7 @@
 		    }
 		    $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
 		})
-		$img_sec.append($('<h5>School Crests</h5><hr>'));
+		//$img_sec.append($('<h5>School Crests</h5><hr>'));
 		data[key]['school_crests'].forEach(function(img){
 		    $img = $('<img>').attr('src', img.src);
 		    $img_caption = "";
