@@ -56,14 +56,19 @@ def upload_changes():
         return ('', 404)
     #Attempts to push changes that need to be pushed
     elif action == 'push_changes':
-        #os.system("git add archive/data.json")
+        os.system("git add archive/data.json")
+        os.system('git commit -m "Updated archive data."')
         push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
             request.form.get('user'),
             request.form.get('pass'))
-        push_result = subprocess.check_output(push_command, shell=True)
-        if "Invalid username or password" in push_result:
+        try:
+            push_result = subprocess.check_output(push_command, shell=True)
+            print push_result
+            if "Invalid username or password" in push_result:
+                return ('', 404)
+            return ('', 204)
+        except subprocess.CalledProcessError as e:
             return ('', 404)
-        return ('', 204)
 @app.route('/', methods=['GET', 'POST'])
 def main():
     json_data = {}
