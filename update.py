@@ -68,7 +68,8 @@ def upload_changes():
         for key in local_json:
             local_json[key]['status'] = 'PUBLISHED'
         with open('archive/data.json', 'w') as f:
-            json.dump(json_data, f, indent=4, sort_keys=True)
+            json.dump(local_json, f, indent=4, sort_keys=True)
+        #Push the changes to the data
         os.system("git add archive/data.json")
         os.system('git commit -m "Updated archive data."')
         push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
