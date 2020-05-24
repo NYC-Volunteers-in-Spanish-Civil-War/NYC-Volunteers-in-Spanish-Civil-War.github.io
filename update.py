@@ -25,7 +25,7 @@ def delete():
         json_data = json.load(f)
     del json_data[key]
     with open('archive/data.json', 'w') as f:
-        json.dump(json_data, f)
+        json.dump(json_data, f, indent=4, sort_keys=True)
     return ('', 204)
 @app.route('/delete_image', methods=['POST'])
 def delete_image():
@@ -39,7 +39,7 @@ def delete_image():
     elif data in json_data[key]['school_crests']:
         json_data[key]['school_crests'].remove(data)
     with open('archive/data.json', 'w') as f:
-        json.dump(json_data, f)
+        json.dump(json_data, f, indent=4, sort_keys=True)
     return ('', 204)
 @app.route('/upload_changes', methods=['POST'])
 def upload_changes():
@@ -90,7 +90,7 @@ def main():
             del json_data[request.args.get('key')]
         json_data[key] = data
         with open('archive/data.json', 'w') as f:
-            json.dump(json_data, f)
+            json.dump(json_data, f, indent=4, sort_keys=True)
         return render_template("upload.html", data=json_data[key], mega_data=json_data, key=key)
     else:
         data = {

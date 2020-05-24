@@ -16,6 +16,7 @@
 - Restructured upload form, image upload now next to editor, preview section is underneath
 - Added the ability to add captions for images
 - Added image caption display
+- The data file is now pretty printed as its saved. Format is now human readable.
 
 ## May 22, 2020
 - Added two(Volunteer Images and School Crests) buttons with which to upload pictures
