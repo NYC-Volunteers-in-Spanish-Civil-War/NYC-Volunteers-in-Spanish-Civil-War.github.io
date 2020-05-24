@@ -8,6 +8,9 @@
 
 # DEVLOG
 
+## May 24, 2020
+- Added status field to data, and a display for it. You can now easily tell if something is PUBLISHED, MODIFIED, or UNMODIFIED
+
 ## May 23, 2020
 - The archive page now displays images pertaining to the volunteer side by side with the text.
 - Updated run.sh to have better behavior

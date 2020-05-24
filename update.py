@@ -16,7 +16,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 ckeditor = CKEditor(app)
-
+def get_status(published_json, json_data, key):
+    """ Given the published data, the local data, and the key, give the . """
+    if key not in published_json.keys():
+        return "UNPUBLISHED"
+    clean = lambda data: {key:data[key] for key in data if key != "status"}
+    if clean(published_json[key]) == clean(json_data[key]):
+        return "PUBLISHED"
+    return "MODIFIED"
 @app.route('/delete', methods=['POST'])
 def delete():
     key = request.form.get('key')
@@ -44,18 +51,24 @@ def delete_image():
 @app.route('/upload_changes', methods=['POST'])
 def upload_changes():
     action = request.form.get('action')
+    local_json = None
+    with open('archive/data.json', 'r') as f:
+        local_json = json.load(f)
     #Returns if any changes have been made locally that need to be pushed
     if action == 'changes_made':
         url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data.json"
         published_json = json.loads(urllib.urlopen(url).read())
         local_json = {}
-        with open('archive/data.json', 'r') as f:
-            local_json = json.load(f)
         if local_json != published_json:
             return ('', 204)
         return ('', 404)
     #Attempts to push changes that need to be pushed
     elif action == 'push_changes':
+        #First set everything to PUBLISHED
+        for key in local_json:
+            local_json[key]['status'] = 'PUBLISHED'
+        with open('archive/data.json', 'w') as f:
+            json.dump(json_data, f, indent=4, sort_keys=True)
         os.system("git add archive/data.json")
         os.system('git commit -m "Updated archive data."')
         push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
@@ -69,13 +82,16 @@ def upload_changes():
             return ('', 204)
         except subprocess.CalledProcessError as e:
             return ('', 404)
+
 @app.route('/', methods=['GET', 'POST'])
 def main():
+    url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data.json"
+    published_json = json.loads(urllib.urlopen(url).read())
     json_data = {}
     with open('archive/data.json', 'r') as f:
         json_data = json.load(f)
     if request.method == 'POST':
-        out_name = request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname') + ".html"
+        key = request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname')
         data = {
             "student_fname": request.form.get('student_fname'),
             "student_lname": request.form.get('student_lname'),
@@ -84,8 +100,8 @@ def main():
             "volunteer_lname": request.form.get('volunteer_lname'),
             "data": request.form.get('ckeditor'),
             "volunteer_images": json.loads(request.form.get('volunteer_images_hidden')),
-            "school_crests": json.loads(request.form.get('school_crests_hidden'))}
-        key = data['volunteer_lname'] + "_" + data['volunteer_fname']
+            "school_crests": json.loads(request.form.get('school_crests_hidden')),
+            "status":get_status(published_json, json_data, key if not request.args.get('key') else request.args.get('key'))}
         if request.args.get('key') and request.args.get('key') != key:
             del json_data[request.args.get('key')]
         json_data[key] = data
@@ -101,7 +117,8 @@ def main():
             "volunteer_lname": "",
             "data": "",
             "volunteer_images": "",
-            "school_crests": ""}
+            "school_crests": "",
+            "status": "UNPUBLISHED"}
         if request.args.get('key'):
             data = json_data[request.args.get('key')]
         return render_template("upload.html", data=data, mega_data=json_data, key=request.args.get('key'))
