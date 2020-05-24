@@ -13,6 +13,9 @@
 - Updated run.sh to have better behavior
 - Minor improvements to landing page and fixed a typo
 - Better error handling for upload function
+- Restructured upload form, image upload now next to editor, preview section is underneath
+- Added the ability to add captions for images
+- Added image caption display
 
 ## May 22, 2020
 - Added two(Volunteer Images and School Crests) buttons with which to upload pictures
@@ -31,7 +34,6 @@
 - Added ability to delete volunteer information
 - Fixed form sanitation bugs. Improved from handling / page transfers.
 - Created DEVLOG
-
 
 ## May 16, 2020
 - Created basis of uploading form

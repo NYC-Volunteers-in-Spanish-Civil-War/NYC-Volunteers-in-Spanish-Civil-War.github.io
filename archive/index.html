@@ -94,15 +94,23 @@
 		    $img_sec.append($('<h4>Volunteer Images</h4><hr>'));
 		}
 		data[key]['volunteer_images'].forEach(function(img){
-		    $img = $('<img>').attr('src', img);
-		    $img_sec.append($('<a target="blank"></a>').attr('href', img).append($img)).append('<hr>');
+		    $img = $('<img>').attr('src', img.src);
+		    $img_caption = "";
+		    if(img.caption){
+			$img_caption = $('<p>(' + img.caption + ')</p>');
+		    }
+		    $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
 		})
 		if(data[key]['school_crests'].length > 0){
 		    $img_sec.append($('<h4>School Crests</h4><hr>'));
 		}
 		data[key]['school_crests'].forEach(function(img){
-		    $img = $('<img>').attr('src', img);
-		    $img_sec.append($('<a target="blank"></a>').attr('href', img).append($img)).append('<hr>');
+		    $img = $('<img>').attr('src', img.src);
+		    $img_caption = "";
+		    if(img.caption){
+			$img_caption = $('<p>(' + img.caption + ')</p>');
+		    }
+		    $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
 		})
 		$volunteer.append($img_sec);
 		bio_link.after($volunteer);
