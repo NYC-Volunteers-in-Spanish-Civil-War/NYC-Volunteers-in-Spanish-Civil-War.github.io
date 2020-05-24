@@ -24,15 +24,23 @@
     }
     #iframe_container {
 	width: 100%;
-	height: 100%;
-	position: absolute;
-	margin: 0;
-	bottom: 0;
-	right: 0;
+	height: 10in;;
     }
     .thumbnail {
-	width: 5in;
+	width: 1.5in;
 	vertical-align: middle;
+    }
+    .img_uploader_div {
+	valign: top;
+    }
+    .img_uploader_div hr {
+	display: block;
+    }
+    .img_modifier {
+	display: inline-block;
+    }
+    .img_modifier *{
+	display: block;
     }
   </style>
   <link rel="stylesheet" href="css/jquery-ui.css">
@@ -45,7 +53,7 @@
     $(document).on("submit", "#main_form", function(event) {
 	event.preventDefault(); // to prevent default page reloading
 
-	//Trim traling and leading spaces
+	//Trim trailing and leading spaces
 	$('input[type=text]').val (function () {
 	    return this.value.trim();
 	})
@@ -68,11 +76,13 @@
 	    return vars;
 	}
 	CKEDITOR.instances.ckeditor.updateElement();
-	//Converts the images into a json_encoded list of base64 images
+
+	//Converts the images into a json_encoded list of base64 images and their captions
 	$('.img_uploader').each(function(){
 	    var $el = $("#" +  $(this).attr('name'));
-	    var array = $el.find('img').map(function(){
-		return $.trim($(this).attr('src'));
+	    var array = $el.find('li').map(function(){
+		return { src: $(this).find('img').attr('src'),
+			 caption: $(this).find('input').val()};
             }).get();
 	    $("#" +  $(this).attr('name') + "_hidden").val(JSON.stringify(array));
 	});
@@ -157,10 +167,10 @@
 	    url: "/delete_image",
 	    data: {
 		key: $("#volunteers").val(),
-		data: $(this).parent().find('img').attr("src")
+		data: $(this).parent().parent().find('img').attr("src")
 	    }
 	})
-	$(this).parent().remove();
+	$(this).parent().parent().remove();
     });
     $(document).ready(function(){
 	//Change words to title case as you type in the Names.
@@ -171,7 +181,6 @@
 		})
 	    });
 	});
-
 	//Intercepts the image inputs, covnerts them to base64, adds them to this sessions images.
 	$(".img_uploader").change(function (){
 	    var $out = $('#' + $(this).attr('name'));
@@ -181,7 +190,11 @@
 		    $li = $('<li class="saved_image"></li>');
 		    $img = $('<img class="thumbnail">').attr("src", e.target.result);
 		    $li.append($img);
-		    $li.append('<button type="button" class="remove_image">Remove Image</button>');
+		    $li.append(`
+			<div class="img_modifier">
+				<input type="text" class="caption" placeholder="Caption Text">
+				<button type="button" class="remove_image">Remove Image</button>
+		        </div>`);
 		    $out.append($li)
 		});
 		FR.readAsDataURL( this.files[i] );
@@ -251,65 +264,62 @@
 	    <input type=submit name="submit_type" value="Save Document"/>
 	    <button id="upload_changes">Upload Changes</button>
 	  </td>
+	  <td colspan=2><h2>Image Upload</h2></td>
+	</tr>
+
+	<tr>
+	  <td colspan=2><textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea></td>
+	  {{ ckeditor.config() }}
+	  <td id="volunteer_images" valign="top" class="img_uploader_div">
+	    <h3>Images of Volunteer</h3>
+	    <hr>
+	    <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
+	    <hr>
+	    <br>
+	    <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
+	    {% for v in data.volunteer_images %}
+	      <li>
+		<img class="thumbnail" src="{{ v.src }}">
+		<div class="img_modifier">
+		  <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+		  <button type="button" class="remove_image">Remove Image</button>
+		</div>
+	      </li>
+	    {% endfor %}
+	  </td>
+	  <td id="school_crests" valign="top" class="img_uploader_div">
+	    <h3>School Crests</h3>
+	    <hr>
+	    <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
+	    <hr>
+	    <br>
+	    <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
+	    {% for v in data.school_crests %}
+	      <li>
+		<img class="thumbnail" src="{{ v.src }}">
+		<div class="img_modifier">
+		  <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+		  <button type="button" class="remove_image">Remove Image</button>
+		</div>
+	      </li>
+	    {% endfor %}
+	  </td>
+	</tr>
+	<tr>
 	  <td><h2>Preview</h2></td>
 	  <td>
 	    <button id="refresh_preview">Refresh Preview</button>
 	    <button><a target="_blank" href="http://127.0.0.1:8000/archive/#{{ key }}">Preview On Full Page</a></button>
 	  </td>
 	</tr>
-
 	<tr>
-
-	  <td colspan=2><textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea></td>
-	  {{ ckeditor.config() }}
-	  <td colspan=2>
+	  <td colspan=4>
 	    <div id="iframe_container">
 	      <iframe id="iframe" src="http://127.0.0.1:8000/archive/#{{ key }}" width="100%" height="100%"></iframe>
 	    </div>
 	  </td>
 	</tr>
-	<tr><td colspan=4><h2>Image Upload</h2></td></tr>
-	<tr>
-	  <td colspan=2>
-	    <h3>Images of Volunteer</h3>
-	  </td>
-	  <td colspan=2>
-	    <br>
-	    <h3>School Crests</h3>
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan=2>
-	    <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
-	    <br>
-	    <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
-	  </td>
-	  <td colspan=2>
-	    <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
-	    <br>
-	    <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
-	  </td>
-	</tr>
-	<tr>
-	  <td id="volunteer_images" colspan=2>
-	    {% for v in data.volunteer_images %}
-	      <li>
-		<img class="thumbnail" src="{{ v }}">
-		<button type="button" class="remove_image">Remove Image</button>
-	      </li>
-	    {% endfor %}
-	  </td>
-	  <td id="school_crests" colspan=2>
-	    {% for v in data.school_crests %}
-	      <li>
-		<img class="thumbnail" src="{{ v }}">
-		<button type="button" class="remove_image">Remove Image</button>
-	      </li>
-	    {% endfor %}
-	  </td>
-	</tr>
       </table>
-      <p></p>
     </form>
   </div>
 </body>
