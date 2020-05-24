@@ -1,6 +1,5 @@
 # TODO
 - [ ] Add some styling to upload form
-- [ ] Add [published], [unpublished], [local changes] to volunteer_selector dropdown
 - [ ] Improve github login dialog
 - [ ] Add seperate buttons to push volunteer data vs all data to site
 - [ ] Add search bar to archive page
