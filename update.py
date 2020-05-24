@@ -86,7 +86,7 @@ def main():
             "volunteer_images": json.loads(request.form.get('volunteer_images_hidden')),
             "school_crests": json.loads(request.form.get('school_crests_hidden'))}
         key = data['volunteer_lname'] + "_" + data['volunteer_fname']
-        if request.args.get('key') != key:
+        if request.args.get('key') and request.args.get('key') != key:
             del json_data[request.args.get('key')]
         json_data[key] = data
         with open('archive/data.json', 'w') as f:
