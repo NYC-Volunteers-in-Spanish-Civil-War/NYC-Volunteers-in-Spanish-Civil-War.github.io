@@ -32,7 +32,7 @@
 	border: 1px solid;
     }
     .main_text {
-	white-space: nowrap;
+	padding-right: .5in;
     }
     .main_text a {
 	color: rgb(0, 0, 238);
@@ -44,8 +44,7 @@
 	width: 3in;
     }
     .img_section * {
-	width: 3in;
-	width: 100%;
+	width: 2.5in;
 	display: block;
 	text-align: center;
     }
@@ -90,9 +89,7 @@
 		$main_text.append(data[key]['data']);
 		$volunteer.append($main_text);
 		var $img_sec = $('<div class="img_section"></div>');
-		if(data[key]['volunteer_images'].length > 0){
-		    $img_sec.append($('<h4>Volunteer Images</h4><hr>'));
-		}
+		$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
 		data[key]['volunteer_images'].forEach(function(img){
 		    $img = $('<img>').attr('src', img.src);
 		    $img_caption = "";
@@ -101,9 +98,7 @@
 		    }
 		    $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
 		})
-		if(data[key]['school_crests'].length > 0){
-		    $img_sec.append($('<h4>School Crests</h4><hr>'));
-		}
+		$img_sec.append($('<h5>School Crests</h5><hr>'));
 		data[key]['school_crests'].forEach(function(img){
 		    $img = $('<img>').attr('src', img.src);
 		    $img_caption = "";
