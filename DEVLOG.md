@@ -1,14 +1,16 @@
 # TODO
-- [ ] Add some styling to upload form
 - [ ] Improve github login dialog
 - [ ] Add seperate buttons to push volunteer data vs all data to site
 - [ ] Add search bar to archive page
 - [ ] Refactor data.json to be more modular, a master list linking keys to independent JSON files
+- [ ] Refactor website update page to use flexboxes in order to be mobile friendly
 
 # DEVLOG
 
 ## May 24, 2020
 - Added status field to data, and a display for it. You can now easily tell if something is PUBLISHED, MODIFIED, or UNMODIFIED
+- Improved backend styling considerably.
+- Stopped overlow and generally improved iamge uploader interface.
 
 ## May 23, 2020
 - The archive page now displays images pertaining to the volunteer side by side with the text.
