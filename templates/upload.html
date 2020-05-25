@@ -2,6 +2,16 @@
 <head>
   {{ ckeditor.load() }}
   <style>
+    body {
+	background-color: black;
+    }
+    h1 {
+	text-align: center;
+	color: white;
+    }
+    .status {
+	text-align: right;
+    }
     #the_form {
 	width: 100%;
 	margin: 0 auto;
@@ -10,6 +20,7 @@
 	padding: .5in;
 	border-radius: 200px;
 	padding-bottom: 1.1in;
+	background-color: silver;
     }
     table {
 	width:100%;
@@ -28,6 +39,11 @@
 	position: relative;
 	border-radius: 15px;
     }
+    #cke_ckeditor {
+	border-radius: 15px;
+	padding: 15px;
+	background-color: #ededed;
+    }
     #iframe_container {
 	width: 100%;
 	height: 10in;;
@@ -41,6 +57,7 @@
     }
     .img_uploader_div {
 	border: 1px solid black;
+	background-color: #ededed;
     }
     .img_uploader_div hr {
 	display: block;
@@ -56,7 +73,7 @@
     .img_modifier {
 	display: inline-block;
     }
-    .img_modifier *{
+    .img_modifier * {
 	display: block;
     }
   </style>
@@ -226,10 +243,10 @@
 	$( '#iframe' ).attr( 'src', function ( i, val ) { return val; });
     })
   </script>
-
   <title>Volunteer Editor</title>
 </head>
 <body>
+  <h1>Volunteer Editor</h1>
   <div id="the_form">
     <form id="volunteer_select" method="GET" action="/">
       <input type="hidden" value="{{ mega_data }}">
@@ -241,7 +258,8 @@
 	      <option value="" default>New Volunteer  </option>
 	      {% for k, v in mega_data.iteritems()|sort %}
 	      <option value="{{ k }}" {% if key==k %} selected {% endif %}>
-		{{v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class ~ "  [" ~ v.status ~ "]" }}
+		{{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
+		<span class="status"> [{{ v.status }}] </span>
 	      </option>
 	      {% endfor %}
 	    </select>
