@@ -7,9 +7,12 @@
 
 # DEVLOG
 
+## May 25, 2020
+- Added mobile support for archive page. Refactored biographies to use flexboxes, so images come after the text on small screens.
+
 ## May 24, 2020
 - Added status field to data, and a display for it. You can now easily tell if something is PUBLISHED, MODIFIED, or UNMODIFIED
-- Improved backend styling considerably.
+- Improved backend styling considerably. 
 - Stopped overlow in and generally improved image uploader interface.
 
 ## May 23, 2020
