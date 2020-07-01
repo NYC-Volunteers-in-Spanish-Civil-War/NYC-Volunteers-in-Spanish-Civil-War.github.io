@@ -97,9 +97,6 @@ def upload_changes():
         local_checksum = get_file_checksum(MASTER_FILE)
         url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data/master.json"
         remote_checksum = get_file_checksum(url, True)
-        print "checksums"
-        print local_checksum
-        print remote_checksum
         if local_checksum != remote_checksum:
             return ('', 204)
         return ('', 404)
@@ -142,7 +139,6 @@ def main():
             "volunteer_images": json.loads(request.form.get('volunteer_images_hidden')),
             "school_crests": json.loads(request.form.get('school_crests_hidden'))}
         redir = False
-        print new_key, key
         if key and key != new_key:
             delete_key_data(key)
             key = new_key
@@ -168,8 +164,7 @@ def main():
             "volunteer_lname": "",
             "data": "",
             "volunteer_images": "",
-            "school_crests": "",
-            "status": "UNPUBLISHED"}
+            "school_crests": ""}
         if request.args.get('key'):
             data = get_data_from_file(get_data_filename(request.args.get('key')))
         return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'))
