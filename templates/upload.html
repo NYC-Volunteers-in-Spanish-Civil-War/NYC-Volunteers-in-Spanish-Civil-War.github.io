@@ -87,9 +87,9 @@
     $(document).on("submit", "#main_form", function(event) {
 	event.preventDefault(); // to prevent default page reloading
 	//Trim trailing and leading spaces
-	$('input[type=text]').val (function () {
+	$('input[type=text]').val(function () {
 	    return this.value.trim();
-	})
+	});
 	//Make sure all fields are full
 	var empty_fields = false;
 	$('input[required]').each(function(){
@@ -107,7 +107,7 @@
 		vars[key] = value;
 	    });
 	    return vars;
-	}
+	};
 	CKEDITOR.instances.ckeditor.updateElement();
 
 	//Converts the images into a json_encoded list of base64 images and their captions
@@ -125,19 +125,17 @@
 	    type: "POST",
 	    url: window.location.href,
 	    data: dataString,
-	    success: function(){
-		var d = getURL();
-		var val = $('input[name=volunteer_lname]').val() + "_" + $('input[name=volunteer_fname]').val();
-		val = val.replace(/ /g, "+");
-		if(!d['key'] || (d['key'] != val)){
-		    window.location.href = "http://127.0.0.1:5000/?key=" + val;
-		}
+	    success: function(data, textStatus, xhr){
+		if(data.redirect)
+		    window.location = data.redirect;
 	    },
-	    error: function(e){
+	    error: function(data, textStatus, xhr){
 	    }
         });
+	
 	//Set document status in select if page hasn't been reloaded (PUBLISHED -> MODIFIED)
-	$('#volunteer_select option:selected').text($('#volunteer_select option:selected').text().replace("[PUBLISHED]", "[MODIFIED]"))
+	$('#volunteer_select option:selected').text(
+	    $('#volunteer_select option:selected').text().replace("[PUBLISHED]", "[MODIFIED]"));
     });
     //Open confirmation prompts for the git username and password, pass them to the server
     $(document).on("click", "#upload_changes", function(event){
@@ -249,14 +247,13 @@
   <h1>Volunteer Editor</h1>
   <div id="the_form">
     <form id="volunteer_select" method="GET" action="/">
-      <input type="hidden" value="{{ mega_data }}">
       <table>
 	<tr>
 	  <td>
 	    <label for="volunteers"><h2>Select Volunteer: </h2></label>
 	    <select id="volunteers" name="key" onchange="this.form.submit()">
 	      <option value="" default>New Volunteer  </option>
-	      {% for k, v in mega_data.iteritems()|sort %}
+	      {% for k, v in master_list.iteritems()|sort %}
 	      <option value="{{ k }}" {% if key==k %} selected {% endif %}>
 		{{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
 		<span class="status"> [{{ v.status }}] </span>
@@ -273,6 +270,7 @@
 
     <form id="main_form" method="POST" action="" enctype=multipart/form-data>
       <table>
+	<input type="hidden" name="key" value="{{key}}"/>
 	<tr>
 	  <td colspan=2><h2>Student Information</h2></td>
 	  <td colspan=2><h2>Volunteer Information</h2></td>
@@ -365,3 +363,4 @@
     </form>
   </div>
 </body>
+
