@@ -1,10 +1,21 @@
 # TODO
 - [ ] Improve github login dialog
 - [ ] Add seperate buttons to push volunteer data vs all data to site
-- [ ] Add search bar to archive page
-- [ ] Refactor data.json to be more modular, a master list linking keys to independent JSON files
+- [ ] Add context section: giving information about the war and its context
+- [ ] Add further information section, linking to other sites and SCW resources
+- [ ] Improve backend UI further. 
 
 # DEVLOG
+
+## July 1, 2020
+- Refactored the backend code to use the new modularized system
+- Implemented more efficient status checking using checksums
+- Refactored the volunteer information page to use the new system, just in time instead of bulk data download
+- Added original webscraping code to the repository.
+
+## June 30, 2020
+- Created a script to port the existing data over to a more modularized format
+- Added checksums to help detect changes between the local and remote branch
 
 ## May 26, 2020
 - Fixed a tag overflowing biography section on mobile. Minor improvements to site UI.
