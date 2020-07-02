@@ -2,9 +2,6 @@
 <head>
   {{ ckeditor.load() }}
   <style>
-    body {
-	background-color: black;
-    }
     h1 {
 	text-align: center;
 	color: white;
@@ -13,31 +10,8 @@
 	text-align: right;
     }
     #the_form {
-	width: 100%;
-	margin: 0 auto;
-	max-width: 1600px;
 	border: 1px solid black;
-	padding: .5in;
-	border-radius: 200px;
-	padding-bottom: 1.1in;
 	background-color: silver;
-    }
-    table {
-	width:100%;
-	table-layout: fixed;
-	border-spacing: 15px;
-    }
-    #volunteer_select {
-	display: inline-block;
-    }
-    td > * {
-	display: inline-block;
-    }
-    td {
-	text-align: center;
-	margin: 0 auto;
-	position: relative;
-	border-radius: 15px;
     }
     #cke_ckeditor {
 	border-radius: 15px;
@@ -52,7 +26,7 @@
 	border-radius:15px;
     }
     .thumbnail {
-	width: 1.4in;
+	width: 1.25in;
 	vertical-align: middle;
     }
     .img_uploader_div {
@@ -76,12 +50,19 @@
     .img_modifier * {
 	display: block;
     }
+    .img_row {
+	overflow: scroll;
+	height: 100%;
+	position: absolute;
+    }
   </style>
   <link rel="stylesheet" href="css/jquery-ui.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
+  <script src="../js/jquery-ui.js"></script>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script>
     /* Handles form sanitization and proper upload behavior*/
     $(document).on("submit", "#main_form", function(event) {
@@ -130,12 +111,8 @@
 		    window.location = data.redirect;
 	    },
 	    error: function(data, textStatus, xhr){
-	    }
+	    },
         });
-	
-	//Set document status in select if page hasn't been reloaded (PUBLISHED -> MODIFIED)
-	$('#volunteer_select option:selected').text(
-	    $('#volunteer_select option:selected').text().replace("[PUBLISHED]", "[MODIFIED]"));
     });
     //Open confirmation prompts for the git username and password, pass them to the server
     $(document).on("click", "#upload_changes", function(event){
@@ -220,7 +197,7 @@
 	    for(var i = 0; i < this.files.length; i++){
 		var FR = new FileReader();
 		FR.addEventListener("load", function(e) {
-		    $li = $('<li class="saved_image"></li>');
+		    $li = $('<li class="list-group-item px-4 saved_image"></li>');
 		    $img = $('<img class="thumbnail">').attr("src", e.target.result);
 		    $li.append($img);
 		    $li.append(`
@@ -240,16 +217,16 @@
 	$("#main_form").submit();
 	$( '#iframe' ).attr( 'src', function ( i, val ) { return val; });
     })
-  </script>
+    </script>
   <title>Volunteer Editor</title>
 </head>
-<body>
+<body class="bg-dark">
   <h1>Volunteer Editor</h1>
-  <div id="the_form">
-    <form id="volunteer_select" method="GET" action="/">
-      <table>
-	<tr>
-	  <td>
+  <div class="container-fluid p-4">
+    <div id="the_form" class="col-12 mx-auto rounded p-4">
+      <div class="row p-4 text-center">
+	<div class="col">
+	  <form id="volunteer_select" method="GET" action="/">
 	    <label for="volunteers"><h2>Select Volunteer: </h2></label>
 	    <select id="volunteers" name="key" onchange="this.form.submit()">
 	      <option value="" default>New Volunteer  </option>
@@ -261,106 +238,103 @@
 	      {% endfor %}
 	    </select>
 	    {% if key %}
-	      <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
+	    <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
 	    {% endif %}
-	  </td>
-	</tr>
-      </table>
-    </form>
+	  </form>
+	</div>
+      </div>
+      <div class="row p-4">
+	<form id="main_form" method="POST" action="" class="container-fluid" enctype=multipart/form-data>
+	  <input type="hidden" name="key" value="{{key}}"/>
+	  <div class="row p-4 text-center">
+	    <div class="col-md-6">
+	      <h2>Student Information</h2>
+	      <label>First Name:</label>
+	      <input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required>
+	      <br/>
+	      <label>Last Name:</label>
+	      <input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required>
+	      <br/>
+	      <label>Class of:</label>
+	      <input type="number" name="class" value="{{ data.class }}" required>
 
-    <form id="main_form" method="POST" action="" enctype=multipart/form-data>
-      <table>
-	<input type="hidden" name="key" value="{{key}}"/>
-	<tr>
-	  <td colspan=2><h2>Student Information</h2></td>
-	  <td colspan=2><h2>Volunteer Information</h2></td>
-	</tr>
-	<tr>
-	  <td>First Name:</td>
-	  <td><input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required></td>
-
-	  <td>First Name:</td>
-	  <td><input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required></td>
-	</tr>
-	<tr>
-	  <td>Last Name:</td>
-	  <td><input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required></td>
-
-	  <td>Last Name:</td>
-	  <td><input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required></td>
-	</tr>
-	<tr>
-	  <td>Class of:</td>
-	  <td><input type="number" name="class" value="{{ data.class }}" required></td>
-	  <td colpsan=2></td>
-	</tr>
-	<tr>
-	  <td><h2>Editor</h2></td>
-	  <td>
-	    <input type=submit name="submit_type" value="Save Document"/>
-	    <button id="upload_changes">Upload Changes</button>
-	  </td>
-	  <td colspan=2><h2>Image Upload</h2></td>
-	</tr>
-
-	<tr>
-	  <td colspan=2><textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea></td>
-	  {{ ckeditor.config() }}
-	  <td id="volunteer_images" valign="top" class="img_uploader_div">
-	    <h3>Images of Volunteer</h3>
-	    <hr>
-	    <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
-	    <hr>
-	    <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
-	    <ul>
-	      {% for v in data.volunteer_images %}
-	        <li class="saved_image">
-		  <img class="thumbnail" src="{{ v.src }}">
-		  <div class="img_modifier">
-		    <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
-		    <button type="button" class="remove_image">Remove Image</button>
-		  </div>
+	    </div>
+	    <div class="col-md-6">
+	      <h2>Volunteer Information</h2>
+	      <label>First Name:</label>
+	      <input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required>
+	      <br/>
+	      <label>Last Name:</label>
+	      <input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required>
+	    </div>
+	  </div>
+	  <div class="row p-4 text-center">
+	    <div class="col-md-6">
+	      <label><h2>Editor</h2></label>
+	      <input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
+	      <button class="btn btn-light" id="upload_changes">Upload Changes</button>
+	      <td colspan=2><textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea></td>
+	      {{ ckeditor.config() }}
+	    </div>
+	    <div class="col-md-6">
+	      <h2>Image Upload</h2>
+	      <div class="row img_row">
+		<div id="volunteer_images" class="bg-light rounded col-md-6">
+		  <h3>Images of Volunteer</h3>
 		  <hr>
-		</li>
-	      {% endfor %}
-	    </ul>
-	  </td>
-	  <td id="school_crests" valign="top" class="img_uploader_div">
-	    <h3>School Crests</h3>
-	    <hr>
-	    <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
-	    <hr>
-	    <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
-	    <ul>
-	      {% for v in data.school_crests %}
-	        <li class="saved_image">
-		  <img class="thumbnail" src="{{ v.src }}">
-		  <div class="img_modifier">
-		    <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
-		    <button type="button" class="remove_image">Remove Image</button>
-		  </div>
-		  <hr>		  
-		</li>
-	      {% endfor %}
-	    </ul>
-	  </td>
-	</tr>
-	<tr>
-	  <td><h2>Preview</h2></td>
-	  <td>
-	    <button id="refresh_preview">Refresh Preview</button>
-	    <button><a target="_blank" href="http://127.0.0.1:8000/archive/#{{ key }}">Preview On Full Page</a></button>
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan=4>
+		  <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
+		  <hr>
+		  <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
+		  <ul class="list-group list-group-flush">
+		    {% for v in data.volunteer_images %}
+	            <li class="list-group-item px-0 saved_image">
+		      <img class="thumbnail" src="{{ v.src }}">
+		      <div class="img_modifier">
+			<input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+			<button type="button" class="remove_image">Remove Image</button>
+		      </div>
+		    </li>
+		    {% endfor %}
+		  </ul>
+		</div>
+		<div id="school_crests" class="bg-light rounded col-md-6">
+		  <h3>School Crests</h3>
+		  <hr>
+		  <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
+		  <hr>
+		  <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
+		  <ul class="list-group list-group-flush">
+		    {% for v in data.school_crests %}
+	            <li class="list-group-item px-0 saved_image">
+		      <img class="thumbnail" src="{{ v.src }}">
+		      <div class="img_modifier">
+			<input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+			<button type="button" class="remove_image">Remove Image</button>
+		      </div>
+		    </li>
+		    {% endfor %}
+		  </ul>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row p-4">
+	    <div class="col-md-3">
+	      <h2>Preview</h2>
+	    </div>
+	    <div class="col-md-3">
+	    <button id="refresh_preview" class="btn btn-light">Refresh Preview</button>
+	    <a class="btn btn-light" role="button" target="_blank" href="http://127.0.0.1:8000/archive/#{{ key }}">Preview On Full Page</a>
+	    </div>
+	  </div>
+	  <div class="row p-4">
 	    <div id="iframe_container">
 	      <iframe id="iframe" src="http://127.0.0.1:8000/archive/#{{ key }}" width="100%" height="100%"></iframe>
 	    </div>
-	  </td>
-	</tr>
-      </table>
-    </form>
+	  </div>
+	</form>
+      </div>
+    </div>
   </div>
 </body>
 
