@@ -3,9 +3,11 @@
 - [ ] Add seperate buttons to push volunteer data vs all data to site
 - [ ] Add context section: giving information about the war and its context
 - [ ] Add further information section, linking to other sites and SCW resources
-- [ ] Improve backend UI further. 
 
 # DEVLOG
+
+## July 2, 2020
+- Refactored backend UI using bootstrap grid system.
 
 ## July 1, 2020
 - Refactored the backend code to use the new modularized system
