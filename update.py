@@ -31,10 +31,14 @@ def get_file_checksum(filename, url=False):
         for chunk in r.iter_content(4096):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
-def get_data_from_file(filename):
+def get_data_from_file(filename, url=False):
     """ Returns the json data in a given file. """
-    with open(filename, 'r') as f:
-        return json.load(f)
+    if not url:
+        with open(filename, 'r') as f:
+            return json.load(f)
+    else:
+        response = urllib.urlopen(url)
+        return json.loads(response.read())
 def write_data_to_file(filename, data):
     """ Writes data to a json file. """
     with open(filename, 'w+') as f:
@@ -154,7 +158,7 @@ def main():
         write_data_to_file(MASTER_FILE, master_data)
         if redir:
             return ({'redirect': '/?key=' + key}, 200)
-        return render_template("upload.html", data=data, master_list=master_data, key=key)
+        return data['status']
     else:
         data = {
             "student_fname": "",

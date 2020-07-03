@@ -27,7 +27,7 @@
 	  border-radius:15px;
       }
       .thumbnail {
-	  width: 1.25in;
+	  width: 1in;
 	  vertical-align: middle;
       }
       .img_uploader_div {
@@ -53,17 +53,14 @@
       }
       .img_row {
 	  overflow: scroll;
+	  width: 100%;
 	  height: 100%;
 	  position: absolute;
       }
     </style>
-    <link rel="stylesheet" href="css/jquery-ui.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/jquery-ui.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/bootstrap.min.css">
+    <script src="http://127.0.0.1:8000/js/bootstrap.min.js"></script>
     <script>
       /* Handles form sanitization and proper upload behavior*/
       $(document).on("submit", "#main_form", function(event) {
@@ -110,6 +107,10 @@
 	      success: function(data, textStatus, xhr){
 		  if(data.redirect)
 		      window.location = data.redirect;
+		  //Update the status text in the selecter
+		  $('#volunteer_select option:selected').text(function(index, text){
+		      return text.replace(/\[(.+?)\]/g, "[" + data + "]")
+		  });
 	      },
 	      error: function(data, textStatus, xhr){
 	      },
@@ -118,6 +119,10 @@
       //Open confirmation prompts for the git username and password, pass them to the server
       $(document).on("click", "#upload_changes", function(event){
 	  event.preventDefault();
+	  $("#main_form").submit();
+	  $('#update_modal').modal('show');
+	  $('.form-group').show();
+	  $('.alert').hide()
 	  $.ajax({
 	      type: "POST",
 	      url: "/upload_changes",
@@ -125,33 +130,30 @@
 		  action: 'changes_made'
 	      },
 	      success: function(result) {
-		  $("#main_form").submit();
-		  var username = prompt("Please enter your Github username:");
-		  if(!username)
-		      return;
-		  var password = prompt("Please enter your Github password:");
-		  if(!password)
-		      return;
-		  $.ajax({
-		      type: "POST",
-		      url: "/upload_changes",
-		      data: {
-			  action: 'push_changes',
-			  user: username,
-			  pass: password
-		      },
-		      success: function(result) {
-			  alert("Changes pushed successfully. The live site should update in a few minutes.")
-		      },
-		      error: function(result) {
-			  alert('Username or password was incorrect');
-		      }
-		  });
 	      },
 	      error: function(result) {
-		  alert('No changes have been made');
+		  $('.alert-warning').show();
+		  $('.form-group').hide();
+		  $('#update_modal .btn-primary').hide();
 	      }
 	  });
+      });
+      $(document).on("submit", "#upload_form", function(event) {
+	  var $theForm = $(this);
+	  $.ajax({
+              type: $theForm.attr('method'),
+              url: $theForm.attr('action'),
+              data: $theForm.serialize(),
+              success: function(data) {
+		  $('.alert-success').show();
+		  $('.form-group').hide();
+		  $('#update_modal .btn-primary').hide();
+              },
+	      error: function(data) {
+		  $('.alert-danger').show();
+	      },
+	  });
+	  return false;
       });
       //Passes a request to remove the current volunteer from the server. Goes back to the main page.
       $(document).on("click", "#delete", function(event){
@@ -222,7 +224,7 @@
     <title>Volunteer Editor</title>
   </head>
   <body class="bg-dark">
-    <h1>Volunteer Editor</h1>
+    <h1 class="text-light">Volunteer Editor</h1>
     <div class="container-fluid p-4">
       <div id="the_form" class="col-12 mx-auto rounded p-4">
 	<div class="row p-4 text-center">
@@ -274,7 +276,7 @@
 		<label><h2>Editor</h2></label>
 		<input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
 		<button class="btn btn-light" id="upload_changes">Upload Changes</button>
-		<td colspan=2><textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea></td>
+		<textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
 		{{ ckeditor.config() }}
 	      </div>
 	      <div class="col-md-6">
@@ -337,5 +339,48 @@
 	</div>
       </div>
     </div>
+    <div class="modal fade" id="update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Push Changes To Live Site</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+	  </div>
+	  <form id="upload_form" role="form" method="POST" action="/upload_changes">
+	    <div class="modal-body">
+	      <div class="alert alert-success" role="alert">
+		Changes pushed successfully. The live site should update in a few minutes.
+	      </div>
+	      <div class="alert alert-warning" role="alert">
+		No changes have been made that need to be pushed.
+	      </div>
+	      <div class="alert alert-danger" role="alert">
+		Username or password was incorrect.
+	      </div>
+              <input type="hidden" name="action" value="push_changes">
+              <div class="form-group">
+                <label class="control-label">Github Username</label>
+                <div>
+                  <input type="text" class="form-control input-lg" name="username" value="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Password</label>
+                <div>
+                  <input type="password" class="form-control input-lg" name="password">
+                </div>
+              </div>
+	    </div>
+	    <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+	    </div>
+	  </form>
+	</div>
+      </div>
+    </div>
   </body>
 </html>
+

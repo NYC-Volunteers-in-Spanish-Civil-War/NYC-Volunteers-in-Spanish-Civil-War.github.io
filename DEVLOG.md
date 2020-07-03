@@ -1,13 +1,13 @@
 # TODO
-- [ ] Improve github login dialog
-- [ ] Add seperate buttons to push volunteer data vs all data to site
+- [ ] Add seperate buttons to push volunteer data vs all data to site. Possible checklist in push modal/
 - [ ] Add context section: giving information about the war and its context
 - [ ] Add further information section, linking to other sites and SCW resources
-
 # DEVLOG
 
 ## July 2, 2020
 - Refactored backend UI using bootstrap grid system.
+- After saving the selector will now display the correct status instead of simply assuming it to be modified
+- Added a bootstrap login modal for pushing code to live site. Handles all cases and tweaks accordingly: no changes, wrong login information, and success. Even better, it does it in style.
 
 ## July 1, 2020
 - Refactored the backend code to use the new modularized system
