@@ -37,7 +37,7 @@ def get_data_from_file(filename, url=False):
         with open(filename, 'r') as f:
             return json.load(f)
     else:
-        response = urllib.urlopen(url)
+        response = urllib.urlopen(filename)
         return json.loads(response.read())
 def write_data_to_file(filename, data):
     """ Writes data to a json file. """
@@ -96,24 +96,55 @@ def delete_image():
 @app.route('/upload_changes', methods=['POST'])
 def upload_changes():
     action = request.form.get('action')
+    url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data/master.json"
     #Returns if any changes have been made locally that need to be pushed
     if action == 'changes_made':
         local_checksum = get_file_checksum(MASTER_FILE)
-        url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data/master.json"
+        
         remote_checksum = get_file_checksum(url, True)
         if local_checksum != remote_checksum:
-            return ('', 204)
+            local_json = get_data_from_file(MASTER_FILE)
+            remote_json = get_data_from_file(url, True);
+
+            data = {
+                "created": {key:local_json[key] for key in list(set(local_json.keys()) - set(remote_json.keys()))},
+                "deleted": {key:remote_json[key] for key in list(set(remote_json.keys()) - set(local_json.keys()))},
+                "modified": {key:local_json[key] for key in set(remote_json.keys()) & set(local_json.keys()) if remote_json[key]['checksum'] != local_json[key]['checksum']}
+            }
+            local_set = set([(key, local_json[key]['checksum']) for key in local_json.keys()])
+            return (data, 200)
         return ('', 404)
     #Attempts to push changes that need to be pushed
     elif action == 'push_changes':
+        volunteer_name = lambda d: d['volunteer_fname'] + ' ' + d['volunteer_lname']
         local_json = get_data_from_file(MASTER_FILE)
-        #First set everything to PUBLISHED
+        remote_json = get_data_from_file(url, True);
+
+        changes = json.loads(request.form.get('changes'))
+        message = ""
+        #First set everything to PUBLISHED        
         for key in local_json:
             local_json[key]['status'] = 'PUBLISHED'
+        for change in changes:
+            key, type = change['key'], change['type']
+            if type == 'deleted':
+                message += 'Deleted record for ' + volunteer_name(remote_json[key]) + '. '
+                del remote_json[key]
+            elif type == 'created':
+                message += 'Added record for ' + volunteer_name(local_json[key]) + '. '
+                remote_json[key] = local_json[key]
+            else:
+                message += 'Modifed record for ' + volunteer_name(local_json[key]) + '. '
+                remote_json[key] = local_json[key]
+                
+            os.system('git add archive/data/' + key + '.json')
+            
+        write_data_to_file(MASTER_FILE, remote_json)
+        os.system("git add archive/data/master.json")
         write_data_to_file(MASTER_FILE, local_json)
-        #Push the changes to the data
-        os.system("git add archive/data/*")
-        os.system('git commit -m "Updated archive data."')
+        
+        os.system('git commit -m "' + message + '"')
+        
         push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
             request.form.get('user'),
             request.form.get('pass'))
@@ -174,6 +205,6 @@ def main():
         return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'))
 
 if __name__ == '__main__':
-    webbrowser.open('http://127.0.0.1:5000?key=', new=1)
+    #webbrowser.open('http://127.0.0.1:5000?key=', new=1)
     app.run(debug=True)
 
