@@ -1,8 +1,13 @@
 # TODO
-- [ ] Add seperate buttons to push volunteer data vs all data to site. Possible checklist in push modal/
 - [ ] Add context section: giving information about the war and its context
 - [ ] Add further information section, linking to other sites and SCW resources
+- [ ] Add button that restores local data from remote data
+
 # DEVLOG
+
+## July 3, 2020
+- Added checkboxes to upload modal that allow the user to choose which changes to push live.
+- Improved commit message on data upload the lists the volunteers affected and how.
 
 ## July 2, 2020
 - Refactored backend UI using bootstrap grid system.
@@ -12,7 +17,7 @@
 ## July 1, 2020
 - Refactored the backend code to use the new modularized system
 - Implemented more efficient status checking using checksums
-- Refactored the volunteer information page to use the new system, just in time instead of bulk data download
+- R4efactored the volunteer information page to use the new system, just in time instead of bulk data download
 - Added original webscraping code to the repository.
 
 ## June 30, 2020
