@@ -5,6 +5,9 @@
 
 # DEVLOG
 
+## July 6, 2020
+- Added a README to the site. Gives a breakdown of the code base.
+
 ## July 3, 2020
 - Added checkboxes to upload modal that allow the user to choose which changes to push live.
 - Improved commit message on data upload the lists the volunteers affected and how.
