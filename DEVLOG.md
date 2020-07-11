@@ -1,9 +1,21 @@
 # TODO
 - [ ] Add context section: giving information about the war and its context
-- [ ] Add further information section, linking to other sites and SCW resources
+- [ ] Add further information section, linking to other sites and SCW resources. Some information would be pulled from biography sources.
 - [ ] Add button that restores local data from remote data
+- [ ] Look into adding a license.
+
+# POSSIBLE IMPROVEMENTS
+- [ ] Turn contact section into own page with a google form.
+- [ ]Separate sources section in biographies/editor.
+
 
 # DEVLOG
+
+## July 11, 2020
+- Changed header to a bootstrap navbar, now works on all screen sizes.
+- Added a standard footer to the sites pages with a copyright notice.
+- Ported site to the latest versions of bootstrap and jquery, with better integrity checking.
+- Removed junk JS files.
 
 ## July 6, 2020
 - Added a README to the site. Gives a breakdown of the code base.
