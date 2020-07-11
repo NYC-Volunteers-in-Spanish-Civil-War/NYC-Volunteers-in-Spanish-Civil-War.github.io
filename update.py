@@ -144,10 +144,9 @@ def upload_changes():
         write_data_to_file(MASTER_FILE, local_json)
         
         os.system('git commit -m "' + message + '"')
-        
         push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
-            request.form.get('user'),
-            request.form.get('pass'))
+            request.form.get('username'),
+            request.form.get('password'))
         try:
             push_result = subprocess.check_output(push_command, shell=True)
             print push_result
