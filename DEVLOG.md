@@ -1,15 +1,21 @@
 # TODO
 - [ ] Add context section: giving information about the war and its context
-- [ ] Add further information section, linking to other sites and SCW resources. Some information would be pulled from biography sources.
 - [ ] Add button that restores local data from remote data
 - [ ] Look into adding a license.
+- [ ] Refactor the archive page using bootstrap's grid system.
+- [ ] Add better metadata.
 
 # POSSIBLE IMPROVEMENTS
 - [ ] Turn contact section into own page with a google form.
-- [ ] Separate sources section in biographies/editor.
 
 
 # DEVLOG
+
+## July 12, 2020
+- Added a source section to the uploading page as well as the archive page (each biography has its own sources section).
+- Updated the archive to use these, as well as fixed broken links researchers had provided.
+- Added a source page that pulls the links from sources and presents them so people can do further research should they so choose.
+- Fixed the indentation on the html files.
 
 ## July 11, 2020
 - Changed header to a bootstrap navbar, now works on all screen sizes.
