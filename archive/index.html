@@ -1,179 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title> Spanish Civil War </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <title> Spanish Civil War </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../fonts/icomoon/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../fonts/icomoon/style.css">
 
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-    crossorigin="anonymous">
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .name:hover {
-	cursor: pointer;
-	font-size: 24px;
-    }
-    .bio {
-	display: flex;
-	flex-wrap: wrap;
-	border: 1px solid;
-	max-width: 12in;
-    }
-    .main_text {
-	max-width: 750px;
-	margin: 0 auto;
-	padding: .5in;
-	max-width: 8.35in;
-    }
-    .main_text a {
-	color: rgb(0, 0, 238);
-	text-decoration: underline;
-	word-wrap: anywhere;
-    }
-    .img_section {
-	min-width: 3.5in;
-	padding: .5in;
-	margin: 0 auto;
-    }
-    .img_section * {
-	width: 2.5in;
-	display: block;
-	text-align: center;
-    }
-    .img_section img:hover{
-	transform: scale(1.1);
-    }
-  </style>
-  <script>
-    $(document).ready(function(e){
-	for (i = 25; i >= 0; i--) {
-	    var letter = (i+10).toString(36);
-	    var letter2 = " " + letter.toUpperCase() + " ";
-	    if(i < 25){
-		letter2 += "|"
-	    }
-	    $('#nav_h4').after($('<a class="nav_a" href="#' + letter + '">' + letter2 + ' </a>'));
-	}
-	$.getJSON("data/master.json", function(data) {
-	    //Sort the keys alphabetically by volunteer's last name
-	    var sorted = [];
-	    for(var key in data) {
-		sorted[sorted.length] = key;
-	    }
-	    sorted.sort(function(a, b){return data[a]['volunteer_lname'].localeCompare(data[b]['volunteer_lname']);});
-	    //Loop through the page and populate it with the volunteer's names and their biographies
-	    sorted.forEach(function(key){
-		var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
-		if($('#' + letter).length == 0){
-		    $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
-		}
-		var bio_link = $('<h5 class="name unclicked"></h5>').text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname']);
-		bio_link.attr({
-		    name:key,
-		    id:key
-		})
-		$('#bios').append(bio_link);
-		var $volunteer = $('<div class="bio"></div>');
-		var $main_text = $('<div class="main_text"></div>');
-		
-		bio_link.after($volunteer);
-		//Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
-		bio_link.on('click', function(e){
-		    if($(this).hasClass('unclicked')){
-			$.getJSON('data/' + key + '.json', function(volunteer_data){
-			    //Add main text
-			    $main_text.append('<hr>');
-			    $main_text.append($('<h5 class="researcher"></h5>').text("Researcher: " +
-										     volunteer_data['student_fname'] + " " +
-										     volunteer_data['student_lname'] + ", Class of " +
-										     volunteer_data['class']));
-			    $main_text.append('<hr>');
-			    $main_text.append(volunteer_data['data']);
-			    $main_text.append('<hr>');
-			    //Add sources underneath
-			    $main_text.append('<h5 class="source">Sources</h5>');
-			    $main_text.append('<hr>');
-			    $main_text.append(volunteer_data['sources']);
-			    $volunteer.append($main_text);
-			    //Add images to side
-			    var $img_sec = $('<div class="img_section"></div>');
-			    $img_sec.append($('<hr>'));
-			    $img_sec.append($('<h5>Images</h5><hr>'));
-			    //$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
-			    volunteer_data['volunteer_images'].forEach(function(img){
-				$img = $('<img>').attr('src', img.src);
-				$img_caption = "";
-				if(img.caption){
-				    $img_caption = $('<p>(' + img.caption + ')</p>');
-				}
-				$img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
-			    })
-			    //$img_sec.append($('<h5>School Crests</h5><hr>'));
-			    volunteer_data['school_crests'].forEach(function(img){
-				$img = $('<img>').attr('src', img.src);
-				$img_caption = "";
-				if(img.caption){
-				    $img_caption = $('<p>(' + img.caption + ')</p>');
-				}
-				$img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
-			    })
-			    $volunteer.append($img_sec);
-			})
-		    }
-		    $volunteer.toggle();
-		    $(this).removeClass('unclicked');
-		});
-		$volunteer.toggle();
-	    });
-	});
-    });
-  </script>
-</head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  <div class="site-wrap">
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-	<div class="site-mobile-menu-close mt-3">
-	  <span class="icon-close2 js-menu-toggle"></span>
-	</div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-white px-0 py-4">
-	<a class="text-black h2 mb-0" href="/index.html">Stuy SCW</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	  <span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	  <div class="navbar-nav ml-auto">
-	    <a class="nav-item nav-link" href="/index.html#about-section">About</a>
-	    <a class="nav-item nav-link" href="/archive/">Archives</a>
-	    <a class="nav-item nav-link" href="/index.html#contact-section">Contact</a>
-	    <a class="nav-item nav-link" href="/sources.html">Sources</a>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .name:hover {
+	  cursor: pointer;
+	  font-size: 24px;
+      }
+      .bio {
+	  display: flex;
+	  flex-wrap: wrap;
+	  border: 1px solid;
+	  max-width: 12in;
+      }
+      .main_text {
+	  max-width: 750px;
+	  margin: 0 auto;
+	  padding: .5in;
+	  max-width: 8.35in;
+      }
+      .main_text a {
+	  color: rgb(0, 0, 238);
+	  text-decoration: underline;
+	  word-wrap: anywhere;
+      }
+      .img_section {
+	  min-width: 3.5in;
+	  padding: .5in;
+	  margin: 0 auto;
+      }
+      .img_section * {
+	  width: 2.5in;
+	  display: block;
+	  text-align: center;
+      }
+      .img_section img:hover{
+	  transform: scale(1.1);
+      }
+    </style>
+    <script>
+      $(document).ready(function(e){
+	  for (i = 25; i >= 0; i--) {
+	      var letter = (i+10).toString(36);
+	      var letter2 = " " + letter.toUpperCase() + " ";
+	      if(i < 25){
+		  letter2 += "|"
+	      }
+	      $('#nav_h4').after($('<a class="nav_a" href="#' + letter + '">' + letter2 + ' </a>'));
+	  }
+	  $.getJSON("data/master.json", function(data) {
+	      //Sort the keys alphabetically by volunteer's last name
+	      var sorted = [];
+	      for(var key in data) {
+		  sorted[sorted.length] = key;
+	      }
+	      sorted.sort(function(a, b){return data[a]['volunteer_lname'].localeCompare(data[b]['volunteer_lname']);});
+	      //Loop through the page and populate it with the volunteer's names and their biographies
+	      sorted.forEach(function(key){
+		  var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
+		  if($('#' + letter).length == 0){
+		      $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
+		  }
+		  var bio_link = $('<h5 class="name unclicked"></h5>').text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname']);
+		  bio_link.attr({
+		      name:key,
+		      id:key
+		  })
+		  $('#bios').append(bio_link);
+		  var $volunteer = $('<div class="bio"></div>');
+		  var $main_text = $('<div class="main_text"></div>');
+		  
+		  bio_link.after($volunteer);
+		  //Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
+		  bio_link.on('click', function(e){
+		      if($(this).hasClass('unclicked')){
+			  $.getJSON('data/' + key + '.json', function(volunteer_data){
+			      //Add main text
+			      $main_text.append('<hr>');
+			      $main_text.append($('<h5 class="researcher"></h5>').text("Researcher: " +
+										       volunteer_data['student_fname'] + " " +
+										       volunteer_data['student_lname'] + ", Class of " +
+										       volunteer_data['class']));
+			      $main_text.append('<hr>');
+			      $main_text.append(volunteer_data['data']);
+			      $main_text.append('<hr>');
+			      //Add sources underneath
+			      $main_text.append('<h5 class="source">Sources</h5>');
+			      $main_text.append('<hr>');
+			      $main_text.append(volunteer_data['sources']);
+			      $volunteer.append($main_text);
+			      //Add images to side
+			      var $img_sec = $('<div class="img_section"></div>');
+			      $img_sec.append($('<hr>'));
+			      $img_sec.append($('<h5>Images</h5><hr>'));
+			      //$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
+			      volunteer_data['volunteer_images'].forEach(function(img){
+				  $img = $('<img>').attr('src', img.src);
+				  $img_caption = "";
+				  if(img.caption){
+				      $img_caption = $('<p>(' + img.caption + ')</p>');
+				  }
+				  $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
+			      })
+			      //$img_sec.append($('<h5>School Crests</h5><hr>'));
+			      volunteer_data['school_crests'].forEach(function(img){
+				  $img = $('<img>').attr('src', img.src);
+				  $img_caption = "";
+				  if(img.caption){
+				      $img_caption = $('<p>(' + img.caption + ')</p>');
+				  }
+				  $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
+			      })
+			      $volunteer.append($img_sec);
+			  })
+		      }
+		      $volunteer.toggle();
+		      $(this).removeClass('unclicked');
+		  });
+		  $volunteer.toggle();
+	      });
+	  });
+      });
+      </script>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <div class="site-wrap">
+      <div class="site-mobile-menu site-navbar-target">
+	<div class="site-mobile-menu-header">
+	  <div class="site-mobile-menu-close mt-3">
+	    <span class="icon-close2 js-menu-toggle"></span>
 	  </div>
 	</div>
-      </nav>
-    </div>
-    <body>
-      <div class="site-section" id="archive-section">
-	<div class="container">
-	  <div class="row mb-5">
+	<div class="site-mobile-menu-body"></div>
+      </div>
+      <div class="container">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white px-0 py-4">
+	  <a class="text-black h2 mb-0" href="/index.html">Stuy SCW</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav ml-auto">
+	      <a class="nav-item nav-link" href="/index.html#about-section">About</a>
+	      <a class="nav-item nav-link" href="/archive/">Archives</a>
+	      <a class="nav-item nav-link" href="/index.html#contact-section">Contact</a>
+	      <a class="nav-item nav-link" href="/sources.html">Sources</a>
+	    </div>
+	  </div>
+	</nav>
+      </div>
+      <body>
+	<div class="site-section" id="archive-section">
+	  <div class="container">
+	    <div class="row mb-5">
 	      <div class="row">
 		<div class="col-12">
 		  <div class="text-left pb-1" align="justify">
@@ -183,17 +183,17 @@
 		<div class="col-12 mb-4">
 		  <p class="lead" align="justify"></p>
 		  <p>This project, begun in 2020 by Stuyvesant history teacher David Hanna and his
-		  students in a Spanish Civil War elective course, is ongoing. An initial "scraping"
-		  of the Abraham Lincoln Brigade's Archives' database by Theadora Williams, Stuyvesant
-		  '20, found over 800 names with New York City references in their biographical
-		  entries. Some were born and/or raised in New York. Others had made NYC their
-		  adopted hometown before they made the decision to go to Spain. It will take years
-		  to fully research all of these names. The objective is that each year the archive
-		  will grow as new groups of Stuyvesant students research more
-		  volunteers. Ultimately, this information could be used to help create a memorial
-		  to all of the New Yorkers (from the five boroughs) who served in Spain. We would
-		  also like to move forward with a commemorative plaque honoring those volunteers
-		  who attended Stuyvesant High School, specifically, to be placed in the school.
+		    students in a Spanish Civil War elective course, is ongoing. An initial "scraping"
+		    of the Abraham Lincoln Brigade's Archives' database by Theadora Williams, Stuyvesant
+		    '20, found over 800 names with New York City references in their biographical
+		    entries. Some were born and/or raised in New York. Others had made NYC their
+		    adopted hometown before they made the decision to go to Spain. It will take years
+		    to fully research all of these names. The objective is that each year the archive
+		    will grow as new groups of Stuyvesant students research more
+		    volunteers. Ultimately, this information could be used to help create a memorial
+		    to all of the New Yorkers (from the five boroughs) who served in Spain. We would
+		    also like to move forward with a commemorative plaque honoring those volunteers
+		    who attended Stuyvesant High School, specifically, to be placed in the school.
 		  </p>
 		  <p>Special thanks goes to Mr Dyrland-Weaver (Stuyvesant Computer Science
 		    department), designer Angel Ortmann-Lee Stuyvesant '20, Profesor Sebastiaan
@@ -205,15 +205,15 @@
 		  <p></p>
 		  <div id="bios">
 		  </div>
+		</div>
 	      </div>
 	    </div>
 	  </div>
 	</div>
-      </div>
-      <footer>
-	<div class="text-center p-2">
-	  © 2020 Copyright: <a href="https://scwnyc.stuy.edu">scwnyc.stuy.edu<a/>
-	</div>
-      </footer>
-    </body>
+	<footer>
+	  <div class="text-center p-2">
+	    © 2020 Copyright: <a href="https://scwnyc.stuy.edu">scwnyc.stuy.edu<a/>
+	  </div>
+	</footer>
+      </body>
 </html>
