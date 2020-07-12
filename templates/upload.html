@@ -270,7 +270,7 @@
 	      <label for="volunteers"><h2>Select Volunteer: </h2></label>
 	      <select id="volunteers" name="key" onchange="this.form.submit()">
 		<option value="" default>New Volunteer  </option>
-		{% for k, v in master_list.iteritems()|sort %}
+		{% for k, v in master_list.iteritems()|sort(attribute='1.volunteer_lname') %}
 		<option value="{{ k }}" {% if key==k %} selected {% endif %}>
 		  {{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
 		  <span class="status"> [{{ v.status }}] </span>
