@@ -96,14 +96,23 @@
 		bio_link.on('click', function(e){
 		    if($(this).hasClass('unclicked')){
 			$.getJSON('data/' + key + '.json', function(volunteer_data){
+			    //Add main text
+			    $main_text.append('<hr>');
 			    $main_text.append($('<h5 class="researcher"></h5>').text("Researcher: " +
 										     volunteer_data['student_fname'] + " " +
 										     volunteer_data['student_lname'] + ", Class of " +
 										     volunteer_data['class']));
 			    $main_text.append('<hr>');
 			    $main_text.append(volunteer_data['data']);
+			    $main_text.append('<hr>');
+			    //Add sources underneath
+			    $main_text.append('<h5 class="source">Sources</h5>');
+			    $main_text.append('<hr>');
+			    $main_text.append(volunteer_data['sources']);
 			    $volunteer.append($main_text);
+			    //Add images to side
 			    var $img_sec = $('<div class="img_section"></div>');
+			    $img_sec.append($('<hr>'));
 			    $img_sec.append($('<h5>Images</h5><hr>'));
 			    //$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
 			    volunteer_data['volunteer_images'].forEach(function(img){

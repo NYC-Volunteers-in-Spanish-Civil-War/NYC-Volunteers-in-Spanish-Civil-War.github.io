@@ -19,6 +19,11 @@
 	  padding: 15px;
 	  background-color: #ededed;
       }
+      #cke_sources {
+	  border-radius: 15px;
+	  padding: 15px;
+	  background-color: #ededed;
+      }
       #iframe_container {
 	  width: 100%;
 	  height: 10in;;
@@ -314,7 +319,10 @@
 		<input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
 		<button class="btn btn-light" id="upload_changes">Upload Changes</button>
 		<textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
-		{{ ckeditor.config() }}
+		{{ ckeditor.config(name='ckeditor', height=500) }}
+		<h2>Sources</h2>
+		<textarea name="sources" id="sources">{{ data.sources }}</textarea>
+		{{ ckeditor.config(name='sources', height=200) }}
 	      </div>
 	      <div class="col-md-6">
 		<h2>Image Upload</h2>
