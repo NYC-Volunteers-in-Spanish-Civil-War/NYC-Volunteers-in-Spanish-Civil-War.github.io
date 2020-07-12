@@ -170,6 +170,7 @@ def main():
             "volunteer_fname": request.form.get('volunteer_fname'),
             "volunteer_lname": request.form.get('volunteer_lname'),
             "data": request.form.get('ckeditor'),
+            "sources": request.form.get('sources'),
             "volunteer_images": json.loads(request.form.get('volunteer_images_hidden')),
             "school_crests": json.loads(request.form.get('school_crests_hidden'))}
         redir = False
@@ -197,6 +198,7 @@ def main():
             "volunteer_fname": "",
             "volunteer_lname": "",
             "data": "",
+            "sources": "",
             "volunteer_images": "",
             "school_crests": ""}
         if request.args.get('key'):
