@@ -35,8 +35,6 @@ Requires: Python2.7 (Will eventually be ported to Python3)
 ### Screenshots
 [![image.png](https://i.postimg.cc/7hc5Y70n/image.png)](https://postimg.cc/Lgt9xJyJ)
 
-[![image.png](https://i.postimg.cc/7hc5Y70n/image.png)](https://postimg.cc/Lgt9xJyJ)
-
 [![image.png](https://i.postimg.cc/Gm4YGYbL/image.png)](https://postimg.cc/BjGXGj8k)
 
 ## Devlog
