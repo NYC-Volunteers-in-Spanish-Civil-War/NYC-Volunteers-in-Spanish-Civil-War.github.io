@@ -14,6 +14,7 @@
 - Added google analytics tracking.
 - Added new image to readme display of backend. They now contain the sources section.
 - Changed front page brigade image to a jpeg to drastically reduce loading time.
+- Got rid of junk scss and font files.
 
 ## July 12, 2020
 - Added a source section to the uploading page as well as the archive page (each biography has its own sources section).
