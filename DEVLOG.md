@@ -12,6 +12,7 @@
 ## July 13, 2020
 - Added metadata to the site's pages: description, keywords, title, author. Also added a noindex to the backend site page.
 - Added google analytics tracking.
+- Added new image to readme display of backend. They now contain the sources section.
 
 ## July 12, 2020
 - Added a source section to the uploading page as well as the archive page (each biography has its own sources section).
