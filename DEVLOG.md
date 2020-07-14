@@ -2,13 +2,15 @@
 - [ ] Add context section: giving information about the war and its context
 - [ ] Add button that restores local data from remote data
 - [ ] Look into adding a license.
-- [ ] Add better metadata.
 
 # POSSIBLE IMPROVEMENTS
 - [ ] Turn contact section into own page with a google form.
 
 
 # DEVLOG
+
+## July 13, 2020
+- Added metadata to the site's pages: description, keywords, title, author. Also added a noindex to the backend site page.
 
 ## July 12, 2020
 - Added a source section to the uploading page as well as the archive page (each biography has its own sources section).
