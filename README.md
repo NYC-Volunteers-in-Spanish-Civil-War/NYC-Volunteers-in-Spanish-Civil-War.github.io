@@ -33,9 +33,9 @@ Requires: Python2.7 (Will eventually be ported to Python3)
 8) Assuming you have access to this repository, your changes will be live in just a few minutes!
 
 ### Screenshots
-[![image.png](https://i.postimg.cc/rF3z6HLT/image.png)](https://postimg.cc/CzCwkm1r)
+[![image.png](https://i.postimg.cc/7hc5Y70n/image.png)](https://postimg.cc/Lgt9xJyJ)
 
-[![image.png](https://i.postimg.cc/13dGjBvV/image.png)](https://postimg.cc/jDznWH0R)
+[![image.png](https://i.postimg.cc/7hc5Y70n/image.png)](https://postimg.cc/Lgt9xJyJ)
 
 [![image.png](https://i.postimg.cc/Gm4YGYbL/image.png)](https://postimg.cc/BjGXGj8k)
 
