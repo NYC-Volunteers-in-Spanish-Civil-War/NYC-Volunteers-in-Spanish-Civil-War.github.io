@@ -9,6 +9,11 @@
 
 # DEVLOG
 
+## July 14, 2020
+- Removed contact section from main page.
+- Added a contact page that uses a google form.
+- Added active setting to navbar sections. Now displays current page in case the user forgets.
+
 ## July 13, 2020
 - Added metadata to the site's pages: description, keywords, title, author. Also added a noindex to the backend site page.
 - Added google analytics tracking.
