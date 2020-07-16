@@ -132,7 +132,7 @@
 			      })
 			      //$img_sec.append($('<h5>School Crests</h5><hr>'));
 			      volunteer_data['school_crests'].forEach(function(img){
-				  $img = $('<img>').attr('src', img.src);
+				  $img = $('<img class="img-fluid">').attr('src', img.src);
 				  $img_caption = "";
 				  if(img.caption){
 				      $img_caption = $('<p>(' + img.caption + ')</p>');
@@ -146,6 +146,9 @@
 		      $(this).removeClass('unclicked');
 		  });
 		  $volunteer.toggle();
+		  //If the link is to the volunteer biography automatically open it
+		  console.log(location.hash);
+		  $(location.hash).click();
 	      });
 	  });
       });
