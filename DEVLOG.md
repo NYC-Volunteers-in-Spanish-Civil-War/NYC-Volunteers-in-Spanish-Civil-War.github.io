@@ -2,12 +2,19 @@
 - [ ] Add context section: giving information about the war and its context
 - [ ] Add button that restores local data from remote data
 - [ ] Look into adding a license.
+- [ ] Add URL option to image upload.
 - [ ] Carousel of random volunteer images with links to the associated readme.
+
+
 # POSSIBLE IMPROVEMENTS
 - [ ] Turn contact section into own page with a google form.
 
 
 # DEVLOG
+
+## July 16, 2020
+- Fixed school image sizing bug
+- Made archive page automatically open volunteer biography if the key was provided in the url.
 
 ## July 14, 2020
 - Removed contact section from main page.
