@@ -8,6 +8,7 @@
 ## July 17, 2020
 - Added a context/further reading page that gives a brief overview of the war and the volunteer brigades.
 - Removed site navigation code left over from the previous version.
+- Restructured navbar to be more intuitive. Moved contact to end and changed about to home.
 
 ## July 16, 2020
 - Fixed school image sizing bug
