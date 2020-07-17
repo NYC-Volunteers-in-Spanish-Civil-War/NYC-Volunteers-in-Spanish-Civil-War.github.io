@@ -7,6 +7,8 @@
 
 ## July 17, 2020
 - Added a context/further reading page that gives a brief overview of the war and the volunteer brigades.
+- Removed site navigation code left over from the previous version.
+
 ## July 16, 2020
 - Fixed school image sizing bug
 - Made archive page automatically open volunteer biography if the key was provided in the url.
