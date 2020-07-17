@@ -1,16 +1,12 @@
 # TODO
-- [ ] Add context section: giving information about the war and its context
 - [ ] Add button that restores local data from remote data
 - [ ] Look into adding a license.
 - [ ] Add URL option to image upload.
 
-
-# POSSIBLE IMPROVEMENTS
-- [ ] Turn contact section into own page with a google form.
-
-
 # DEVLOG
 
+## July 17, 2020
+- Added a context/further reading page that gives a brief overview of the war and the volunteer brigades.
 ## July 16, 2020
 - Fixed school image sizing bug
 - Made archive page automatically open volunteer biography if the key was provided in the url.
