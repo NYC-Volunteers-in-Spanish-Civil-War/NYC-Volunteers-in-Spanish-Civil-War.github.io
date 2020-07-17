@@ -3,7 +3,6 @@
 - [ ] Add button that restores local data from remote data
 - [ ] Look into adding a license.
 - [ ] Add URL option to image upload.
-- [ ] Carousel of random volunteer images with links to the associated readme.
 
 
 # POSSIBLE IMPROVEMENTS
@@ -15,6 +14,7 @@
 ## July 16, 2020
 - Fixed school image sizing bug
 - Made archive page automatically open volunteer biography if the key was provided in the url.
+- Added volunteer carousel on the home page. Displays images of and links to random volunteers.
 
 ## July 14, 2020
 - Removed contact section from main page.
