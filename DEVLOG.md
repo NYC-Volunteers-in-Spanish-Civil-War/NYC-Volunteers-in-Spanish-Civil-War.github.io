@@ -5,6 +5,9 @@
 
 # DEVLOG
 
+## July 18, 2020
+- Changed volunteer carousel to horizontal swiping on mobile. 
+
 ## July 17, 2020
 - Added a context/further reading page that gives a brief overview of the war and the volunteer brigades.
 - Removed site navigation code left over from the previous version.
