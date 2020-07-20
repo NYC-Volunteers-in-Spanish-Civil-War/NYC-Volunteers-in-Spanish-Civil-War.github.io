@@ -104,9 +104,6 @@
 		  bio_link.after($volunteer_container.append($volunteer));
 		  //Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
 		  bio_link.on('click', function(e){
-		      console.log(hide_hint);
-		      console.log(e);
-		      console.log(!e);
 		      if(!hide_hint && e.hasOwnProperty('originalEvent')){
 			  hide_hint = true;
 			  $('.expand-hint').remove();
@@ -159,6 +156,7 @@
 	      });
 	      //If the link is to the volunteer biography automatically open it
 	      $(location.hash).click();
+	      $(location.hash)[0].scrollIntoView()
 	  });
       });
       </script>
