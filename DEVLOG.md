@@ -5,6 +5,9 @@
 
 # DEVLOG
 
+## July 19, 2020
+- Looked at the google analytics reports, realized that newcomers are lost on the archives page. Added "click to expand" hints to the volunteer names that dissapear on first click, and are then replaced by tooltips.
+
 ## July 18, 2020
 - Changed volunteer carousel to horizontal swiping on mobile. 
 

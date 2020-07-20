@@ -66,6 +66,7 @@
       }
     </style>
     <script>
+      var hide_hint = false;
       $(document).ready(function(e){
 	  for (i = 25; i >= 0; i--) {
 	      var letter = (i+10).toString(36);
@@ -88,7 +89,9 @@
 		  if($('#' + letter).length == 0){
 		      $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
 		  }
-		  var bio_link = $('<h5 class="name unclicked"></h5>').text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname']);
+		  var bio_link = $('<h5 class="name unclicked" data-toggle="tooltip" data-placement="bottom" title="Click to expand/collapse"></h5>')
+		      .text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'])
+		      .append(' <span class="font-weight-light expand-hint">  [Click to expand/collapse]<span>');
 		  bio_link.attr({
 		      name:key,
 		      id:key
@@ -101,6 +104,13 @@
 		  bio_link.after($volunteer_container.append($volunteer));
 		  //Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
 		  bio_link.on('click', function(e){
+		      console.log(hide_hint);
+		      console.log(e);
+		      console.log(!e);
+		      if(!hide_hint && e.hasOwnProperty('originalEvent')){
+			  hide_hint = true;
+			  $('.expand-hint').remove();
+		      }
 		      if($(this).hasClass('unclicked')){
 			  $.getJSON('data/' + key + '.json', function(volunteer_data){
 			      //Add main text
