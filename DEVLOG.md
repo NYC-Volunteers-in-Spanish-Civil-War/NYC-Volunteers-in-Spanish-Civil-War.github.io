@@ -1,7 +1,12 @@
 # TODO
-- [ ] Add button that restores local data from remote data
+- [ ] Add button that restores local data from remote data.
 - [ ] Look into adding a license.
+
+
+# POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
+- [ ] Add tags to volunteer biographies.
+- [ ] Location tags, track peoples locations/events they were a part of over time.
 
 # DEVLOG
 
