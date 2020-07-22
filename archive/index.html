@@ -155,8 +155,10 @@
 		  $volunteer.toggle();
 	      });
 	      //If the link is to the volunteer biography automatically open it
-	      $(location.hash).click();
-	      $(location.hash)[0].scrollIntoView()
+	      if(location.hash){
+		  $(location.hash).click();
+		  $(location.hash)[0].scrollIntoView();
+	      }
 	  });
       });
       </script>
