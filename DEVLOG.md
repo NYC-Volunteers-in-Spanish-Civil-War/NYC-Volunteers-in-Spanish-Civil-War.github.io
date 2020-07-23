@@ -5,10 +5,12 @@
 
 # POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
-- [ ] Add tags to volunteer biographies.
-- [ ] Location tags, track peoples locations/events they were a part of over time.
 
 # DEVLOG
+
+## July 22, 2020
+- Added a tag system to the uploading page and backend. 
+- Gave all data files tag fields.
 
 ## July 20, 2020
 - Made link to volunteer biography cause the page to automatically scroll into view.

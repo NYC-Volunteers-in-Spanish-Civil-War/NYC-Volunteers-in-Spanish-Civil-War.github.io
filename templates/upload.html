@@ -115,6 +115,11 @@
               }).get();
 	      $("#" +  $(this).attr('name') + "_hidden").val(JSON.stringify(array));
 	  });
+	  //Converts the tags into serializable data
+	  var tag_array = $('.tag_text').map(function(){
+	      return $(this).text();
+	  }).toArray();
+	  $("#tags").val(JSON.stringify(tag_array));
 	  //Send the data. If need be(New volunteer/Change name), reload the page with a new key.
           var dataString = $(this).serialize(); // to get the form data
           $.ajax({
@@ -177,11 +182,8 @@
       $(document).on("submit", "#upload_form", function(event) {
 	  var $theForm = $(this);
 	  var array = $theForm.find('input:checked').map(function(){
-	      console.log($(this));
 	      return {key: $(this).val(), type:$(this).data('type')};
 	  }).get();
-	  console.log(array);
-	  console.log(JSON.stringify(array));
 	  $('#changes').val(JSON.stringify(array));
 	  $.ajax({
               type: $theForm.attr('method'),
@@ -263,6 +265,26 @@
 	  $("#main_form").submit();
 	  $( '#iframe' ).attr( 'src', function ( i, val ) { return val; });
       })
+      /* Handles adding new tags. */
+      $(document).on("click", ".add-tag", function(event){
+	  var exists = false;
+	  $('.tag-box .badge').each(function(index, tag){
+	      if($(tag).find('.tag_text').text() === $('#tag_field').val())
+		  exists = true;
+	  });
+	  if(exists)
+	      return;
+	  $tag = $('<span class="badge badge-primary mx-2"></span>').append(
+	      $('<span class="tag_text"></span>').text($('#tag_field').val()));
+	  $dismiss_button = $('<button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss"><span aria-hidden="true">&times;</span></button>');
+	  $tag.append($dismiss_button);
+	  $tag = $('<h5></h5>').append($tag);
+	  $('.tag-box').append($tag);
+      });
+      /* Handles removing tags. */
+      $(document).on("click", ".remove_tag", function(event){
+	  $(this).closest('h5').remove();
+      });
       </script>
     <title>Volunteer Editor</title>
   </head>
@@ -321,9 +343,36 @@
 		<button class="btn btn-light" id="upload_changes">Upload Changes</button>
 		<textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
 		{{ ckeditor.config(name='ckeditor', height=500) }}
+		<hr>
 		<h2>Sources</h2>
 		<textarea name="sources" id="sources">{{ data.sources }}</textarea>
 		{{ ckeditor.config(name='sources', height=200) }}
+		<hr>
+		<h2>Tags</h2>
+		<div class="input-group mb-2">
+		  <input type="hidden" name="tags" id="tags"></input>
+		  <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field">
+		  <datalist id="tag_list">
+		    {% for v in tags %}
+		    <option value="{{ v }}">{{ v }}</option>
+		    {% endfor %}
+		  </datalist>
+		  <div class="input-group-append">
+		    <button class="btn bg-light add-tag" type="button">Add</button>
+		  </div>
+		</div>
+		<div class="d-flex tag-box">
+		  {% for v in data.tags %}
+		  <h5>
+		    <span class="badge badge-primary align-middle mx-2">
+		      <span class="tag_text">{{ v }}</span>
+		      <button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss">
+			<span aria-hidden="true">&times;</span>
+		      </button>
+		    </span>
+		  </h5>
+		  {% endfor %}
+		</div>
 	      </div>
 	      <div class="col-md-6">
 		<h2>Image Upload</h2>

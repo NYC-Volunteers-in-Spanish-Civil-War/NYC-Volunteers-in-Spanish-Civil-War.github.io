@@ -160,6 +160,8 @@ def upload_changes():
 @app.route('/', methods=['GET', 'POST'])
 def main():
     master_data = get_data_from_file(MASTER_FILE)
+    tags = set([tag for key in master_data for tag in master_data[key]['tags']])
+    print tags
     if request.method == 'POST':
         new_key = get_key_hash(request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname'))
         key = request.form.get('key')
@@ -172,7 +174,8 @@ def main():
             "data": request.form.get('ckeditor'),
             "sources": request.form.get('sources'),
             "volunteer_images": json.loads(request.form.get('volunteer_images_hidden')),
-            "school_crests": json.loads(request.form.get('school_crests_hidden'))}
+            "school_crests": json.loads(request.form.get('school_crests_hidden')),
+            "tags": json.loads(request.form.get('tags'))}
         redir = False
         if key and key != new_key:
             delete_key_data(key)
@@ -200,10 +203,11 @@ def main():
             "data": "",
             "sources": "",
             "volunteer_images": "",
-            "school_crests": ""}
+            "school_crests": "",
+            "tags": ""}
         if request.args.get('key'):
             data = get_data_from_file(get_data_filename(request.args.get('key')))
-        return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'))
+        return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'), tags=tags)
 
 if __name__ == '__main__':
     #webbrowser.open('http://127.0.0.1:5000?key=', new=1)
