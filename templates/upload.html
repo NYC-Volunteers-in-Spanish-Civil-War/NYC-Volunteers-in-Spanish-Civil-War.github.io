@@ -63,6 +63,9 @@
 	  height: 100%;
 	  position: absolute;
       }
+      .tag-box h5{
+	  display: inline-block;
+      }
     </style>
     <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -274,7 +277,7 @@
 	  });
 	  if(exists)
 	      return;
-	  $tag = $('<span class="badge badge-primary mx-2"></span>').append(
+	  $tag = $('<span class="badge badge-primary align-middle mx-2"></span>').append(
 	      $('<span class="tag_text"></span>').text($('#tag_field').val()));
 	  $dismiss_button = $('<button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss"><span aria-hidden="true">&times;</span></button>');
 	  $tag.append($dismiss_button);
@@ -361,7 +364,7 @@
 		    <button class="btn bg-light add-tag" type="button">Add</button>
 		  </div>
 		</div>
-		<div class="d-flex tag-box">
+		<div class="d-flex flex-wrap tag-box">
 		  {% for v in data.tags %}
 		  <h5>
 		    <span class="badge badge-primary align-middle mx-2">
