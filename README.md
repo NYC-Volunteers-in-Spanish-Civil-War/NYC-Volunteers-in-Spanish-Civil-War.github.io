@@ -33,7 +33,8 @@ Requires: Python2.7 (Will eventually be ported to Python3)
 8) Assuming you have access to this repository, your changes will be live in just a few minutes!
 
 ### Screenshots
-[![image.png](https://i.postimg.cc/7hc5Y70n/image.png)](https://postimg.cc/Lgt9xJyJ)
+
+[![Screenshot-2020-07-25-Volunteer-Editor.png](https://i.postimg.cc/QNnvgg01/Screenshot-2020-07-25-Volunteer-Editor.png)](https://postimg.cc/4nV8scCx)
 
 [![image.png](https://i.postimg.cc/Gm4YGYbL/image.png)](https://postimg.cc/BjGXGj8k)
 
