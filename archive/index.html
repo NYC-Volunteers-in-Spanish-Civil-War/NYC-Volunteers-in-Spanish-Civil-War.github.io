@@ -89,21 +89,27 @@
 		  if($('#' + letter).length == 0){
 		      $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
 		  }
-		  var bio_link = $('<h5 class="name unclicked" data-toggle="tooltip" data-placement="bottom" title="Click to expand/collapse"></h5>')
+		  var $bio_link = $('<h5 class="name unclicked" data-toggle="tooltip" data-placement="bottom" title="Click to expand/collapse"></h5>')
 		      .text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'])
 		      .append(' <span class="font-weight-light expand-hint">  [Click to expand/collapse]<span>');
-		  bio_link.attr({
+		  $bio_link.attr({
 		      name:key,
 		      id:key
 		  })
-		  $('#bios').append(bio_link);
+		  //Add the tags for the biography
+		  $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
+		  $.each(data[key]['tags'], function(index, tag){
+		      $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2"></span>').text(tag));
+		  });
+		  $('#bios').append($bio_link);
+		  $('#bios').append($tags);
 		  var $volunteer_container = $('<div class="container"></div>');
 		  var $volunteer = $('<div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg"></div>');
 		  var $main_text = $('<div class="col-lg-8"></div>');
 		  
-		  bio_link.after($volunteer_container.append($volunteer));
+		  $('#bios').append($volunteer_container.append($volunteer));
 		  //Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
-		  bio_link.on('click', function(e){
+		  $bio_link.on('click', function(e){
 		      if(!hide_hint && e.hasOwnProperty('originalEvent')){
 			  hide_hint = true;
 			  $('.expand-hint').remove();
