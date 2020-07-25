@@ -1,12 +1,18 @@
 # TODO
 - [ ] Add button that restores local data from remote data.
 - [ ] Look into adding a license.
-
+- [ ] Stop volunteer editor page from jumping to volunteer biography in preview pane.
+- [ ] Add individual and whole site printing support.
+- [ ] Spruce up backend form inputs.
 
 # POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
 
 # DEVLOG
+
+## July 25, 2020
+- Added tags to all volunteer biographies.
+- Updated README images of backend to incorporate the new tags.
 
 ## July 22, 2020
 - Added a tag system to the uploading page and backend. 
