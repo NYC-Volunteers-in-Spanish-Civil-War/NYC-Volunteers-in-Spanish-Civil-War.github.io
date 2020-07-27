@@ -14,6 +14,8 @@
 
 ## July 27, 2020
 - Fixed map page title
+- Updated map so you can't zoom out farther than an overview of the whole map
+- Updated map configuration to be more accessible. Larger font and text-wrapping.
 
 ## July 26, 2020
 - Added a map page, displays tags as a network.
