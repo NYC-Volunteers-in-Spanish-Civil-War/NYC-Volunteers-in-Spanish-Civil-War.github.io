@@ -68,7 +68,9 @@
 		      id: key,
 		      label: volunteer_data[key]['volunteer_fname'] + " " + volunteer_data[key]['volunteer_lname'],
 		      shape: 'box',
-		      value: 1
+		      font: '18px arial black',
+		      widthConstraint: 106,
+		      mass: 3,
 		  })
 		  tag_to_volunteers[key] = [key];
 		  tags.push(...volunteer_data[key]['tags']);
@@ -110,9 +112,10 @@
 		      id: tag,
 		      label: tag,
 		      color: 'red',
-		      mass: 5,
+		      mass: 3,
 		      shape: 'box',
-		      value: 5,
+		      font: '18px arial black',
+		      widthConstraint: 160,
 		      scaling: {
 			  enabled: true
 		      }
@@ -135,7 +138,7 @@
 	      //Add links to the bottom of the page based on the currently selected tag
 	      network.once('selectNode', function(click_data) {
 		  $('.hint').remove();
-		  $('#tagged_bios').before('<h4>Related Volunteers:</h4><br/>')
+		  $('#tagged_bios').before('<h4>Related Volunteers:</h4><br/>');
 	      });
 	      network.on('selectNode', function(click_data) {
 		  //Zoom in on node and connected nodes.
@@ -147,9 +150,22 @@
 		      $('#tagged_bios').append(key_to_element[key]);
 		  });
 	      });
-	      //Remove loading gif when loaded
+	      //When network is first finished drawing
 	      network.once('afterDrawing', function(){
+		  //Remove loading bar
 		  $('#loading').remove();
+		  //Set scale/zoom limits. When you zoom out to far it resets you to the default level.
+		  network.fit();
+		  scale_max = network.getScale();
+		  scale_max_center = network.getViewPosition();
+		  network.on('zoom', function(){
+		      if(network.getScale() < scale_max){
+			  network.moveTo({
+			      position: scale_max_center,
+			      scale: scale_max
+			  })
+		      }
+		  })
 	      });
 	  });
 	  
