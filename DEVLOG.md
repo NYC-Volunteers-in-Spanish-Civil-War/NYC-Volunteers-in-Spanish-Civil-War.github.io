@@ -4,11 +4,16 @@
 - [ ] Stop volunteer editor page from jumping to volunteer biography in preview pane.
 - [ ] Add individual and whole site printing support.
 - [ ] Spruce up backend form inputs.
+- [ ] Subscribe link, we mail them when we add new features or lots of new updates to our archives
+- [ ] Site description with links at bottom of home page.
 
 # POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
 
 # DEVLOG
+
+## July 27, 2020
+- Fixed map page title
 
 ## July 26, 2020
 - Added a map page, displays tags as a network.
