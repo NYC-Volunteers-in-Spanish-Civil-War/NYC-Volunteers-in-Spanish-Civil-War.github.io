@@ -10,6 +10,9 @@
 
 # DEVLOG
 
+## July 26, 2020
+- Added a map page, displays tags as a network.
+
 ## July 25, 2020
 - Added tags to all volunteer biographies.
 - Updated README images of backend to incorporate the new tags.

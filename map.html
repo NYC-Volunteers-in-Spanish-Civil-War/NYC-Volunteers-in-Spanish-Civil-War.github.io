@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> The Spanish Civil War: NYC's Volunteers - Context</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="A page giving context for the rest of the site, a brief overview about the war and the volunteers.">
+    <meta name="keywords" content="Spanish Civil War, SCW, New York City, NYC, volunteers, context, history">
+    <meta name="author" content="Ian Williams">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91850219-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-91850219-3');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        #mynetwork {
+	    /* height: 100vh; */
+            border: 1px solid lightgray;
+        }
+	#mynetwork:hover{
+	    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+	}
+	#wrapper {
+	    position: relative;
+	}
+	#loading {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script>
+      $(document).ready(function(){
+	  $('#mynetwork').height($('#mynetwork').width());
+	  $.getJSON("/archive/data/master.json", function(volunteer_data) {
+	      var tag_to_volunteers = {};
+	      var key_to_element = {}
+	      var tags = [];
+	      var nodes = [];
+	      var edges = []
+	      for(var key in volunteer_data){
+		  //Add all volunteer names as nodes
+		  nodes.push({
+		      id: key,
+		      label: volunteer_data[key]['volunteer_fname'] + " " + volunteer_data[key]['volunteer_lname'],
+		      shape: 'box',
+		      value: 1
+		  })
+		  tag_to_volunteers[key] = [key];
+		  tags.push(...volunteer_data[key]['tags']);
+		  //Add edges from volunteer to tag
+		  volunteer_data[key]['tags'].forEach(function(tag){
+		      tags.push(tag);
+		      edges.push({
+			  from: key,
+			  to: tag
+		      });
+		      if(!tag_to_volunteers[tag])
+			  tag_to_volunteers[tag] = [];
+		      tag_to_volunteers[tag].push(key);
+		  });
+		  //Add volunteer bio element
+		  $el = $('<div class="volunteer_link" ></div>');
+		  var $bio_link = $('<h5></h5>')
+		      .text(volunteer_data[key]['volunteer_fname'] + " " + volunteer_data[key]['volunteer_lname'])
+		      .append($('<a class="btn btn-primary float-right">Read More!</a>').attr('href', '/archive/index.html#' + key));
+		  $bio_link.attr({
+		      name:key,
+		      id:key
+		  })
+		  //Add the tags for the biography
+		  $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
+		  $.each(volunteer_data[key]['tags'], function(index, tag){
+		      $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left mx-2 mb-2"></span>').text(tag));
+		  });
+		  
+		  $el.append($bio_link);
+		  $el.append($tags);
+		  
+		  key_to_element[key] = $el;
+	      }
+	      //Get tags and turn into nodes
+	      tags = [...new Set(tags)];
+	      tags.forEach(function(tag){
+		  nodes.push({
+		      id: tag,
+		      label: tag,
+		      color: 'red',
+		      mass: 5,
+		      shape: 'box',
+		      value: 5,
+		      scaling: {
+			  enabled: true
+		      }
+		  });
+	      });
+	      //Generate the network 
+	      nodes = new vis.DataSet(nodes);
+	      edges = new vis.DataSet(edges);
+	      var container = $('#mynetwork')[0];
+	      var data = {
+		  nodes: nodes,
+		  edges: edges
+	      };
+	      var options = {
+		  edges: {
+		      selectionWidth: function (width) {return width * 5;}
+		  }
+	      };
+	      var network = new vis.Network(container, data, options);
+	      //Add links to the bottom of the page based on the currently selected tag
+	      network.once('selectNode', function(click_data) {
+		  $('.hint').remove();
+		  $('#tagged_bios').before('<h4>Related Volunteers:</h4><br/>')
+	      });
+	      network.on('selectNode', function(click_data) {
+		  //Zoom in on node and connected nodes.
+		  network.fit({
+		      nodes: network.getConnectedNodes(click_data.nodes[0]).concat([click_data.nodes[0]])
+		  });
+		  $('.volunteer_link').detach();
+		  tag_to_volunteers[click_data.nodes[0]].forEach(function(key){
+		      $('#tagged_bios').append(key_to_element[key]);
+		  });
+	      });
+	      //Remove loading gif when loaded
+	      network.once('afterDrawing', function(){
+		  $('#loading').remove();
+	      });
+	  });
+	  
+      });
+      $(window).on('resize', function(){
+	  $('#mynetwork').height($('#mynetwork').width());
+      });
+    </script>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light px-0 py-4">
+	<a class="text-black h2 mb-0" href="/index.html">Stuy SCW</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	  <div class="navbar-nav ml-auto">
+	    <a class="nav-item nav-link" href="/index.html">Home</a>
+	    <a class="nav-item nav-link" href="/context.html">Context</a>
+	    <a class="nav-item nav-link" href="/archive/">Archives</a>
+	    <a class="nav-item nav-link" href="/sources.html">Sources</a>
+	    <a class="nav-item nav-link active" href="/map.html">Map</a>
+	    <a class="nav-item nav-link" href="/contact.html">Contact</a>
+	  </div>
+	</div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="col-12 mb-4">
+	<h4>The Map</h4>
+	<p>
+	  This is an attempt to help you look at overarching themes running though the Spanish Civil
+	  War. It is also a useful tool for researching the veterans of the war, if you be so
+	  inclined. It is a pretty nifty tool that connects the tags present in volunteer biographies
+	  via a network, mapping out and allowing you to get an organic view of all that
+	  happened. If you <span class="font-weight-bold">click on a <span class="py-1 px-2 rounded"
+	  style="color:black; background-color:#ff0000">tag (red)</span> or the name of
+	  a <span class="py-1 px-2 rounded" style="color:black; background-color:#97c2fc" >volunteer
+	  (blue)</span> in the graph</span>, beneath the map will pop up biographies linked to that
+	  tag or name. There is a lot to learn here, so please explore!
+	</p>
+
+	<h5 class="font-weight-bold"> Usage Instructions </h5>
+	<p class="font-weight-bold">
+	  Mobile: Pinch the canvas to zoom in and out, drag to move, and click tag to select! <br/>
+	  Computer: Hover over the canvas and scroll to zoom in and out, click and drag to move, and
+	  click tag to select!
+	</p>
+      </div>
+      
+    </div>
+    <div class="container mb-4">
+      <div id="wrapper">
+	<div id="mynetwork">
+	</div>
+	<img id="loading" src="images/loading.gif"/>
+      </div>
+    </div>
+    <div class="container">
+      <div class="hint text-center pb-1" align="justify">
+	<span class="font-weight-bold text-uppercase text-center">
+	  Click on a <span class="py-1 px-2 rounded" style="color:black; background-color:#ff0000">tag (red)</span> or the name of a <span class="py-1 px-2 rounded" style="color:black; background-color:#97c2fc">volunteer (blue)</span> in the graph and things will show up here!
+	</span>
+      </div>
+      <div id="tagged_bios"></div>
+    </div>
+    <footer>
+      <div class="text-center p-2">
+	© 2020 Copyright: <a href="https://scwnyc.stuy.edu">scwnyc.stuy.edu<a/>
+      </div>
+    </footer>
+  </body>
+</html>
