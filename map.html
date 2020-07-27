@@ -36,11 +36,10 @@
 
     <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
-        #mynetwork {
-	    /* height: 100vh; */
+        #volunteer_network {
             border: 1px solid lightgray;
         }
-	#mynetwork:hover{
+	#volunteer_network:hover{
 	    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
 	}
 	#wrapper {
@@ -56,7 +55,7 @@
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script>
       $(document).ready(function(){
-	  $('#mynetwork').height($('#mynetwork').width());
+	  $('#volunteer_network').height($('#volunteer_network').width());
 	  $.getJSON("/archive/data/master.json", function(volunteer_data) {
 	      var tag_to_volunteers = {};
 	      var key_to_element = {}
@@ -122,7 +121,7 @@
 	      //Generate the network 
 	      nodes = new vis.DataSet(nodes);
 	      edges = new vis.DataSet(edges);
-	      var container = $('#mynetwork')[0];
+	      var container = $('#volunteer_network')[0];
 	      var data = {
 		  nodes: nodes,
 		  edges: edges
@@ -156,7 +155,7 @@
 	  
       });
       $(window).on('resize', function(){
-	  $('#mynetwork').height($('#mynetwork').width());
+	  $('#volunteer_network').height($('#volunteer_network').width());
       });
     </script>
   </head>
@@ -205,7 +204,7 @@
     </div>
     <div class="container mb-4">
       <div id="wrapper">
-	<div id="mynetwork">
+	<div id="volunteer_network">
 	</div>
 	<img id="loading" src="images/loading.gif"/>
       </div>
