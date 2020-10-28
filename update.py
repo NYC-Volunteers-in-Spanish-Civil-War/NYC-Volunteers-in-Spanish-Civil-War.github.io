@@ -161,7 +161,6 @@ def upload_changes():
 def main():
     master_data = get_data_from_file(MASTER_FILE)
     tags = set([tag for key in master_data for tag in master_data[key]['tags']])
-    print tags
     if request.method == 'POST':
         new_key = get_key_hash(request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname'))
         key = request.form.get('key')
