@@ -2,9 +2,11 @@
 - [ ] Add button that restores local data from remote data.
 - [ ] Look into adding a license.
 - [ ] Stop volunteer editor page from jumping to volunteer biography in preview pane.
-- [ ] Add individual and whole site printing support.
+- [ ] Add printing support for volunteer biographies
 - [ ] Spruce up backend form inputs.
 - [ ] Subscribe link, we mail them when we add new features or lots of new updates to our archives.
+- [ ] Share site buttons everywhere
+- [ ] Share links for biographies
 
 # POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
