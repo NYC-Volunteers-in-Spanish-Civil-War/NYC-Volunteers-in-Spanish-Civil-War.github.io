@@ -233,11 +233,12 @@
 					  <a href="#" class="btn btn-primary">Read More</a>\
 				      </div>\
 				  </div>');
+			  var volunteer_name = volunteer_data['volunteer_fname'] + ' ' + volunteer_data['volunteer_lname'];
 			  var text = $(volunteer_data['data']).text();
 			  $card.find('img').attr('src', volunteer_data['volunteer_images'][0]['src']);
-			  $card.find('.card-title').text(volunteer_data['volunteer_fname'] + ' ' + volunteer_data['volunteer_lname']);
+			  $card.find('.card-title').text(volunteer_name);
 			  $card.find('p').text(text.substring(0, 200) + ' ...');
-			  $card.find('a').attr('href', '/archive/index.html#' + key);
+			  $card.find('a').attr('href', '/archive/' + volunteer_name + '.html');
 			  $cards.push($card);
 			  img_count += 1;
 		      };
