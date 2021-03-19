@@ -6,12 +6,14 @@
 - [ ] Spruce up backend form inputs.
 - [ ] Subscribe link, we mail them when we add new features or lots of new updates to our archives.
 - [ ] Share site buttons everywhere
-- [ ] Share links for biographies
 
 # POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
 
 # DEVLOG
+
+## Mar 19, 2020
+- Added static page generation for each volunteer for SEO purposes. Updated map and archive pages to direct there.
 
 ## July 27, 2020
 - Fixed map page title
