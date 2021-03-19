@@ -5,21 +5,25 @@ import bisect
 import urllib
 import requests
 import webbrowser
+import datetime
 from flask import Flask, flash, request, redirect, url_for, render_template, jsonify
 from flask_ckeditor import CKEditor, upload_success, upload_fail
 from hashlib import md5
 from flask_frozen import Freezer
+from flask_sitemap import Sitemap
 
 app = Flask(__name__)
 freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
+sitemap = Sitemap()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 
-#app.config['FREEZER_DESTINATION'] = "/"
 app.config['FREEZER_DESTINATION_IGNORE'] = ['ckeditor']
+app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
+
 ckeditor = CKEditor(app)
 
 MASTER_FILE = 'archive/data/master.json'
@@ -81,20 +85,28 @@ def update_status_and_checksum(key, key_data):
     key_data['status'] = status
 
 @freezer.register_generator
+def site_map():
+    yield '/sitemap.xml'
+@app.route('/sitemap.xml')
+def site_map():
+    master_data = get_data_from_file(MASTER_FILE)
+    for key in master_data.keys():
+        master_data[key] = get_data_from_file(get_data_filename(key))
+    date = datetime.date.today()
+    return render_template('sitemap.xml', master_data=master_data, date=date)
+
+@freezer.register_generator
 def volunteer_page():
     master_data = get_data_from_file(MASTER_FILE)
-    
     for key in master_data:
         data = get_data_from_file(get_data_filename(key))
         name = urllib.quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
         name = data['volunteer_fname'] + " " + data['volunteer_lname']
         STATIC_DATA[name] =  data
         yield{"person": name}
-        #yield "/archive/" + name + "?key=" + key
         
 @app.route('/archive/<person>.html')
 def volunteer_page(person):
-    print STATIC_DATA.keys(), person
     return render_template('volunteer.html',
                            person=person,
                            #data=STATIC_DATA[urllib.quote_plus(person.replace("+", " "))])
@@ -219,6 +231,7 @@ def main():
         os.system('rm -f archive/*+*.html')
         freezer.freeze()
         os.system('mv build/archive/* archive/')
+        os.system('mv build/sitemap.xml sitemap.xml')
 
         if redir:
             return ({'redirect': '/?key=' + key}, 200)

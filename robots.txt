@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /templates/
+Disallow: /update.py
+Sitemap: https://scwnyc.stuy.edu/sitemap.xml

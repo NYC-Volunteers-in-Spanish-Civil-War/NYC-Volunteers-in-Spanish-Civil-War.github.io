@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://scwnyc.stuy.edu/index.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://scwnyc.stuy.edu/contact.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://scwnyc.stuy.edu/context.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://scwnyc.stuy.edu/sources.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://scwnyc.stuy.edu/map.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>  
+  <url>
+    <loc>https://scwnyc.stuy.edu/archive/index.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% for key, volunteer in master_data.items() %}
+  <url>
+    <loc>https://scwnyc.stuy.edu/archive/{{ volunteer.volunteer_fname }} {{ volunteer.volunteer_lname }}.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% endfor %}
+</urlset>
