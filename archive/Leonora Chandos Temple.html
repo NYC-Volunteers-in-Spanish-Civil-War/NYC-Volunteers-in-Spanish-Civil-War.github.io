@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> The Spanish Civil War: NYC's Volunteers - Leonora Chandos Temple</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="A collection of research regarding the the brave volunteers of the Abraham Lincoln Brigade who came from NYC. ">
+    <meta name="keywords" content="Spanish Civil War, SCW, New York City, NYC, researchers, volunteers, archives, biographies, Leonora Chandos Temple">
+    <meta name="author" content="Theadora Williams">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91850219-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-91850219-3');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous">
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .name:hover {
+	  cursor: pointer;
+	  font-size: 24px;
+      }
+      .main_text {
+	  max-width: 750px;
+	  margin: 0 auto;
+	  padding: .5in;
+	  max-width: 8.35in;
+      }
+      .main_text a {
+	  color: rgb(0, 0, 238);
+	  text-decoration: underline;
+	  word-wrap: anywhere;
+      }
+      .img_section {
+	  min-width: 3.5in;
+	  padding: .5in;
+	  margin: 0 auto;
+      }
+      .img_section * {
+	  width: 2.5in;
+	  display: block;
+	  text-align: center;
+      }
+      .img_section img:hover{
+	  transform: scale(1.1);
+      }
+    </style>
+    <script>
+      var hide_hint = false;
+      $(document).ready(function(e){
+	  for (i = 25; i >= 0; i--) {
+	      var letter = (i+10).toString(36);
+	      var letter2 = " " + letter.toUpperCase() + " ";
+	      if(i < 25){
+		  letter2 += "|"
+	      }
+	      $('#nav_h4').after($('<a class="nav_a" href="#' + letter + '">' + letter2 + ' </a>'));
+	  }
+	  $.getJSON("data/master.json", function(data) {
+	      //Sort the keys alphabetically by volunteer's last name
+	      var sorted = [];
+	      for(var key in data) {
+		  sorted[sorted.length] = key;
+	      }
+	      sorted.sort(function(a, b){return data[a]['volunteer_lname'].localeCompare(data[b]['volunteer_lname']);});
+	      //Loop through the page and populate it with the volunteer's names and their biographies
+	      sorted.forEach(function(key){
+		  var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
+		  if($('#' + letter).length == 0){
+		      $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
+		  }
+		  var $bio_link = $('<h5 class="name unclicked" data-toggle="tooltip" data-placement="bottom" title="Click to expand/collapse"></h5>')
+		      .text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'])
+		      .append(' <span class="font-weight-light expand-hint">  [Click to expand/collapse]<span>');
+		  $bio_link.attr({
+		      name:key,
+		      id:key
+		  })
+		  //Add the tags for the biography
+		  $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
+		  $.each(data[key]['tags'], function(index, tag){
+		      $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2"></span>').text(tag));
+		  });
+		  $('#bios').append($bio_link);
+		  $('#bios').append($tags);
+		  var $volunteer_container = $('<div class="container"></div>');
+		  var $volunteer = $('<div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg"></div>');
+		  var $main_text = $('<div class="col-lg-8"></div>');
+		  
+		  $('#bios').append($volunteer_container.append($volunteer));
+		  //Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
+		  $bio_link.on('click', function(e){
+		      if(!hide_hint && e.hasOwnProperty('originalEvent')){
+			  hide_hint = true;
+			  $('.expand-hint').remove();
+		      }
+		      if($(this).hasClass('unclicked')){
+			  $.getJSON('data/' + key + '.json', function(volunteer_data){
+			      //Add main text
+			      $main_text.append('<hr>');
+			      $main_text.append($('<h5 class="researcher"></h5>').text("Researcher: " +
+										       volunteer_data['student_fname'] + " " +
+										       volunteer_data['student_lname']));
+			      $main_text.append('<hr>');
+			      $main_text.append(volunteer_data['data']);
+			      $main_text.append('<hr>');
+			      //Add sources underneath
+			      $main_text.append('<h5 class="source">Sources</h5>');
+			      $main_text.append('<hr>');
+			      $main_text.append(volunteer_data['sources']);
+			      $volunteer.append($main_text);
+			      //Add images to side
+			      var $img_sec = $('<div class="col-lg-3 text-center"></div>');
+			      $img_sec.append($('<hr>'));
+			      $img_sec.append($('<h5>Images</h5><hr>'));
+			      //$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
+			      volunteer_data['volunteer_images'].forEach(function(img){
+				  $img = $('<img class="img-fluid">').attr('src', img.src);
+				  $img_caption = "";
+				  if(img.caption){
+				      $img_caption = $('<p>(' + img.caption + ')</p>');
+				  }
+				  $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
+			      })
+			      //$img_sec.append($('<h5>School Crests</h5><hr>'));
+			      volunteer_data['school_crests'].forEach(function(img){
+				  $img = $('<img class="img-fluid">').attr('src', img.src);
+				  $img_caption = "";
+				  if(img.caption){
+				      $img_caption = $('<p>(' + img.caption + ')</p>');
+				  }
+				  $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
+			      })
+			      $volunteer.append($img_sec);
+			  })
+		      }
+		      $volunteer.toggle();
+		      $(this).removeClass('unclicked');
+		  });
+		  $volunteer.toggle();
+	      });
+	      //If the link is to the volunteer biography automatically open it
+	      if(location.hash){
+		  $(location.hash).click();
+		  $(location.hash)[0].scrollIntoView();
+	      }
+	  });
+      });
+      </script>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light px-0 py-4">
+	<a class="text-black h2 mb-0" href="/index.html">Stuy SCW</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	  <div class="navbar-nav ml-auto">
+	    <a class="nav-item nav-link" href="/index.html">Home</a>
+	    <a class="nav-item nav-link" href="/context.html">Context</a>
+	    <a class="nav-item nav-link active" href="/archive/">Archives</a>
+	    <a class="nav-item nav-link" href="/sources.html">Sources</a>
+	    <a class="nav-item nav-link" href="/map.html">Map</a>
+	    <a class="nav-item nav-link" href="/contact.html">Contact</a>
+	  </div>
+	</div>
+      </nav>
+    </div>
+    <div class="container">
+      <div>
+	<div class="text-left pb-1" align="justify">
+	  <h4><a href="/archive/">Archive/<a>Leonora Chandos Temple</a></h4>
+	  <h5 class="m-0 mb-4">Tags: 
+	    
+	    <span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2">Jewish</span>
+	    
+	    <span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2">Nurse</span>
+	    
+	    <span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2">Member Of Communist Party</span>
+	    
+	    <span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2">POW</span>
+	    
+	  </h5>
+	</div>
+      </div>
+      <div class="mb-4">
+	<div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg" style="">
+	  <div class="col-lg-8">
+	    <hr><h5 class="researcher">Researcher: Joanna Zeng</h5><hr>
+	    <p>Leonora Chandos Temple was a Jewish woman who volunteered to serve in the Abraham Lincoln Brigade. She was born to Edward and Helen Temple in Pasadena, California on November 29th, 1908 and she became a nurse in New York City. She was the oldest of five siblings. She was also part of the Communist Party. In the Spanish Civil War, she served with Medical Services.&nbsp;</p>
+
+<p><br />
+Temple became romantically involved with Philip Detro, who was a commanding officer (Battalion Commander) in the Abraham Lincoln Brigade. After Detro was shot by a sniper while fighting in Teruel, doctors found that he had a compound fracture in the right femur. Doctors advised him to get his leg amputated, but Detro refused. Temple nursed him until he died of gangrene in the hospital. After his passing, he left Leonora his papers and his estate. Leonora Chandos Temple was arrested and imprisoned in Spain on unspecified charges. After she was released, she left Spain aboard the British Destroyer Hotspur. She later married and had two children (a son (Jerome Temple) and a daughter). She died in New York City on December 7th, 1994.</p>
+
+	    <hr><h5 class="source">Sources</h5><hr>
+	    <p>&ldquo;Leonora Chandos Temple.&rdquo; The Abraham Lincoln Brigade Archives, <a href="http://alba-valb.org/volunteers/leonora-chandos-temple/" target="_blank">alba-valb.org/volunteers/leonora-chandos-temple/</a></p>
+
+<p>.<br />
+Simkin, John. Spartacus Educational, Spartacus Educational, <a href="http://spartacus-educational.com/TUdetroP.htm" target="_blank">spartacus-educational.com/TUdetroP.htm</a>.</p>
+
+	  </div>
+	  <div class="col-lg-3 text-center">
+	      <hr><h5>Images</h5><hr>
+	      
+	      <a target="blank" href="data:image/jpeg;base64,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">
+		  <img class="img-fluid" src="data:image/jpeg;base64,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">
+	      </a>
+	      <hr>
+	      
+	      
+	  </div>
+	</div>
+      </div>
+    </div>
+    <footer>
+      <div class="text-center p-2">
+	© 2020 Copyright: <a href="https://scwnyc.stuy.edu">scwnyc.stuy.edu<a/>
+      </div>
+    </footer>
+  </body>
+</html>
