@@ -8,17 +8,22 @@ import webbrowser
 from flask import Flask, flash, request, redirect, url_for, render_template, jsonify
 from flask_ckeditor import CKEditor, upload_success, upload_fail
 from hashlib import md5
+from flask_frozen import Freezer
 
 app = Flask(__name__)
-
+freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
+
+#app.config['FREEZER_DESTINATION'] = "/"
+app.config['FREEZER_DESTINATION_IGNORE'] = ['ckeditor']
 ckeditor = CKEditor(app)
 
 MASTER_FILE = 'archive/data/master.json'
+STATIC_DATA = {}
 def get_file_checksum(filename, url=False):
     """ Returns md5 checksum of given file or url. """
     hash_md5 = md5()
@@ -43,6 +48,7 @@ def write_data_to_file(filename, data):
     """ Writes data to a json file. """
     with open(filename, 'w+') as f:
         json.dump(data, f, indent=4, sort_keys=True)
+
 def get_key_hash(key):
     """ Returns a simple hash of the given key. """
     return md5(key).hexdigest()
@@ -73,6 +79,26 @@ def update_status_and_checksum(key, key_data):
     status = get_status(key, checksum)
     key_data['checksum'] = checksum
     key_data['status'] = status
+
+@freezer.register_generator
+def volunteer_page():
+    master_data = get_data_from_file(MASTER_FILE)
+    
+    for key in master_data:
+        data = get_data_from_file(get_data_filename(key))
+        name = urllib.quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
+        name = data['volunteer_fname'] + " " + data['volunteer_lname']
+        STATIC_DATA[name] =  data
+        yield{"person": name}
+        #yield "/archive/" + name + "?key=" + key
+        
+@app.route('/archive/<person>.html')
+def volunteer_page(person):
+    print STATIC_DATA.keys(), person
+    return render_template('volunteer.html',
+                           person=person,
+                           #data=STATIC_DATA[urllib.quote_plus(person.replace("+", " "))])
+                           data=STATIC_DATA[person])
 @app.route('/delete', methods=['POST'])
 def delete():
     key = request.form.get('key')
@@ -189,6 +215,11 @@ def main():
         update_status_and_checksum(key, data)
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
+
+        os.system('rm -f archive/*+*.html')
+        freezer.freeze()
+        os.system('mv build/archive/* archive/')
+
         if redir:
             return ({'redirect': '/?key=' + key}, 200)
         return data['status']

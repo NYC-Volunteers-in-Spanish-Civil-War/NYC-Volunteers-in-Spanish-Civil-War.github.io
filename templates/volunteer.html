@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title> The Spanish Civil War: NYC's Volunteers - Archives</title>
+    <title> The Spanish Civil War: NYC's Volunteers - {{ data.volunteer_fname }} {{ data.volunteer_lname }}</title>
     <meta charset="UTF-8">
     <meta name="description" content="A collection of research regarding the the brave volunteers of the Abraham Lincoln Brigade who came from NYC. ">
-    <meta name="keywords" content="Spanish Civil War, SCW, New York City, NYC, researchers, volunteers, archives, biographies">
+    <meta name="keywords" content="Spanish Civil War, SCW, New York City, NYC, researchers, volunteers, archives, biographies, {{ data.volunteer_fname }} {{ data.volunteer_lname }}">
     <meta name="author" content="Theadora Williams">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -36,9 +36,9 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <style>
-      .name .btn:hover {
+      .name:hover {
 	  cursor: pointer;
-	  transform: scale(1.05);
+	  font-size: 24px;
       }
       .main_text {
 	  max-width: 750px;
@@ -66,6 +66,7 @@
       }
     </style>
     <script>
+      var hide_hint = false;
       $(document).ready(function(e){
 	  for (i = 25; i >= 0; i--) {
 	      var letter = (i+10).toString(36);
@@ -88,13 +89,9 @@
 		  if($('#' + letter).length == 0){
 		      $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
 		  }
-		  var volunteer_name = data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'];
-		  var $bio_link = $('<h5 class="name"></h5>')
-		      .text(volunteer_name)
-		      .append('<button class="float-right mx-2 btn btn-primary expand-button unclicked">  Click to Expand<span>')
-		      .append($('<a><button class="float-right mx-2 btn btn-primary">Click to Visit Page</button></a>')
-			      //.attr('href', escape(escape(volunteer_name).replace(/%20/g, "+")) + '.html'));
-			      .attr('href', volunteer_name + '.html'));
+		  var $bio_link = $('<h5 class="name unclicked" data-toggle="tooltip" data-placement="bottom" title="Click to expand/collapse"></h5>')
+		      .text(data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'])
+		      .append(' <span class="font-weight-light expand-hint">  [Click to expand/collapse]<span>');
 		  $bio_link.attr({
 		      name:key,
 		      id:key
@@ -111,8 +108,12 @@
 		  var $main_text = $('<div class="col-lg-8"></div>');
 		  
 		  $('#bios').append($volunteer_container.append($volunteer));
-		  //Clicking on the volunteer name displays their biography. Just in time dowloading.
-		  $bio_link.find('.expand-button').on('click', function(e){
+		  //Clicking on the volunteer name displays their biography. Just in time dowloading, the volunteer data is downloaded as needed instead of all at once.
+		  $bio_link.on('click', function(e){
+		      if(!hide_hint && e.hasOwnProperty('originalEvent')){
+			  hide_hint = true;
+			  $('.expand-hint').remove();
+		      }
 		      if($(this).hasClass('unclicked')){
 			  $.getJSON('data/' + key + '.json', function(volunteer_data){
 			      //Add main text
@@ -155,7 +156,6 @@
 		      }
 		      $volunteer.toggle();
 		      $(this).removeClass('unclicked');
-		      
 		  });
 		  $volunteer.toggle();
 	      });
@@ -190,33 +190,34 @@
     <div class="container">
       <div>
 	<div class="text-left pb-1" align="justify">
-	  <h4>Archive</h4>
+	  <h4><a href="/archive/">Archive/<a>{{ data.volunteer_fname }} {{ data.volunteer_lname }}</a></h4>
+	  <h5 class="m-0 mb-4">Tags: 
+	    {% for tag in data.tags %}
+	    <span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2">{{ tag }}</span>
+	    {% endfor %}
+	  </h5>
 	</div>
       </div>
       <div class="mb-4">
-	<p class="lead" align="justify"></p>
-	<p>
-	  This project, begun in 2020 by Stuyvesant history teacher David Hanna and his students in
-	  a Spanish Civil War elective course, is ongoing. An initial "scraping" of the Abraham
-	  Lincoln Brigade's Archives' database by Theadora Williams found over 800 names
-	  with New York City references in their biographical entries. Some were born and/or raised
-	  in New York. Others had made the city their adopted hometown before they decided to go to
-	  Spain. It will take years to fully research all of these names. The objective is that each
-	  year the archive will grow as new groups of Stuyvesant students research more
-	  volunteers. Ultimately, this information can create a memorial to all of the New Yorkers
-	  (from the five boroughs) who served in Spain. We would also like to move forward with a
-	  commemorative plaque in the premises honoring those volunteers who attended Stuyvesant
-	  High School
-
-	</p>
-	<p>Special thanks goes to Mr Dyrland-Weaver (Stuyvesant Computer Science department),
-	  designer Angel Ortmann-Lee, Profesor Sebastiaan Faber, Oberlin College and
-	  the Abraham LIncoln Brigade Archives, Michael Koncewicz at NYU Special Collections Elmer
-	  Holmes Bobst Library, and Theadora Williams.
-	</p>
-	<h4 id="nav_h4">Browse By Surname</h4>
-	<p></p>
-	<div id="bios">
+	<div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg" style="">
+	  <div class="col-lg-8">
+	    <hr><h5 class="researcher">Researcher: {{ data.student_fname }} {{ data.student_lname }}</h5><hr>
+	    {{ data.data|safe }}
+	    <hr><h5 class="source">Sources</h5><hr>
+	    {{ data.sources|safe }}
+	  </div>
+	  <div class="col-lg-3 text-center">
+	      <hr><h5>Images</h5><hr>
+	      {% for image in data.volunteer_images|list + data.school_crests|list %}
+	      <a target="blank" href="{{ image.src }}">
+		  <img class="img-fluid" src="{{ image.src }}">
+	      </a>
+	      <hr>
+	      {% if image.caption %}
+	      <p>({{ image.caption }})</p>
+	      {% endif %}
+	      {% endfor %}
+	  </div>
 	</div>
       </div>
     </div>

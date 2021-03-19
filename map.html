@@ -87,9 +87,11 @@
 		  });
 		  //Add volunteer bio element
 		  $el = $('<div class="volunteer_link" ></div>');
+
+		  var volunteer_name = volunteer_data[key]['volunteer_fname'] + " " + volunteer_data[key]['volunteer_lname'];
 		  var $bio_link = $('<h5></h5>')
-		      .text(volunteer_data[key]['volunteer_fname'] + " " + volunteer_data[key]['volunteer_lname'])
-		      .append($('<a class="btn btn-primary float-right">Read More!</a>').attr('href', '/archive/index.html#' + key));
+		      .text(volunteer_name)
+		      .append($('<a class="btn btn-primary float-right">Read More!</a>').attr('href', '/archive/' + volunteer_name + '.html'));
 		  $bio_link.attr({
 		      name:key,
 		      id:key
