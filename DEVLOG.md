@@ -13,7 +13,7 @@
 # DEVLOG
 
 ## Mar 19, 2020
-- Added static page generation for each volunteer for SEO purposes. Updated map and archive pages to direct there.
+- Added static page generation for each volunteer for SEO purposes. Updated home, map, and archive pages to direct there.
 
 ## July 27, 2020
 - Fixed map page title
