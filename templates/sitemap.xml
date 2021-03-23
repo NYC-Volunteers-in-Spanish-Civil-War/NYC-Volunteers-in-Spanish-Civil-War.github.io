@@ -32,7 +32,7 @@
   </url>
   {% for key, volunteer in master_data.items() %}
   <url>
-    <loc>https://scwnyc.stuy.edu/archive/{{ volunteer.volunteer_fname }} {{ volunteer.volunteer_lname }}.html</loc>
+    <loc>https://scwnyc.stuy.edu/archive/{{ volunteer.volunteer_fname|replace(" ", "_") }}_{{ volunteer.volunteer_lname|replace(" ", "_") }}.html</loc>
     <lastmod>{{ date }}</lastmod>
     <changefreq>weekly</changefreq>
   </url>

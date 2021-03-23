@@ -74,7 +74,7 @@ def delete_key_data(key):
     """ Deletes a user from local memory. Returns the local master data. """
     json_data = get_data_from_file(MASTER_FILE)
     del json_data[key]
-    os.remove(get_data_filename(key))
+    #os.remove(get_data_filename(key))
     write_data_to_file(MASTER_FILE, json_data)
     return json_data
 def update_status_and_checksum(key, key_data):
@@ -100,8 +100,7 @@ def volunteer_page():
     master_data = get_data_from_file(MASTER_FILE)
     for key in master_data:
         data = get_data_from_file(get_data_filename(key))
-        name = urllib.quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
-        name = data['volunteer_fname'] + " " + data['volunteer_lname']
+        name = (data['volunteer_fname'] + "_" + data['volunteer_lname']).replace(" ", "_")
         STATIC_DATA[name] =  data
         yield{"person": name}
         
@@ -109,7 +108,6 @@ def volunteer_page():
 def volunteer_page(person):
     return render_template('volunteer.html',
                            person=person,
-                           #data=STATIC_DATA[urllib.quote_plus(person.replace("+", " "))])
                            data=STATIC_DATA[person])
 @app.route('/delete', methods=['POST'])
 def delete():
@@ -228,7 +226,7 @@ def main():
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
 
-        os.system('rm -f archive/*+*.html')
+        os.system('rm -f archive/*_*.html')
         freezer.freeze()
         os.system('mv build/archive/* archive/')
         os.system('mv build/sitemap.xml sitemap.xml')

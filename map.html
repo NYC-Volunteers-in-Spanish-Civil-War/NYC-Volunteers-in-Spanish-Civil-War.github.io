@@ -91,7 +91,7 @@
 		  var volunteer_name = volunteer_data[key]['volunteer_fname'] + " " + volunteer_data[key]['volunteer_lname'];
 		  var $bio_link = $('<h5></h5>')
 		      .text(volunteer_name)
-		      .append($('<a class="btn btn-primary float-right">Read More!</a>').attr('href', '/archive/' + volunteer_name + '.html'));
+		      .append($('<a class="btn btn-primary float-right">Read More!</a>').attr('href', '/archive/' + volunteer_name.replace(" ", "_") + '.html'));
 		  $bio_link.attr({
 		      name:key,
 		      id:key
