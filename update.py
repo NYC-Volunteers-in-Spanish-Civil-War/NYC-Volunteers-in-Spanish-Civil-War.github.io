@@ -228,7 +228,7 @@ def main():
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
 
-        os.system('rm -f archive/*+*.html')
+        os.system('rm -f "archive/* *.html"')
         freezer.freeze()
         os.system('mv build/archive/* archive/')
         os.system('mv build/sitemap.xml sitemap.xml')
