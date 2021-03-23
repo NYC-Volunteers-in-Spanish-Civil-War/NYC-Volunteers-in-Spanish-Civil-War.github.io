@@ -238,7 +238,7 @@
 			  $card.find('img').attr('src', volunteer_data['volunteer_images'][0]['src']);
 			  $card.find('.card-title').text(volunteer_name);
 			  $card.find('p').text(text.substring(0, 200) + ' ...');
-			  $card.find('a').attr('href', '/archive/' + volunteer_name.replace(" ", "_") + '.html');
+			  $card.find('a').attr('href', '/archive/' + volunteer_name + '.html');
 			  $cards.push($card);
 			  img_count += 1;
 		      };
