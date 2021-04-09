@@ -58,6 +58,7 @@
             {%- for href, caption in navbar %}
             <a class="nav-item nav-link {% if href == url %}active{% endif %}" href="{{ href }}">{{ caption }}</a>
             {%- endfor %}
+	    {% if debug %}<a class="nav-item nav-link {% if '/upload.html' == url %}active{% endif %}" href="/upload.html">Editor</a>{% endif %}
           </div>
         </div>
       </nav>
