@@ -13,7 +13,7 @@ from flask_frozen import Freezer
 from flask_sitemap import Sitemap
 
 app = Flask(__name__)
-freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
+freezer = Freezer(app, with_no_argument_rules=True, log_url_for=False)
 sitemap = Sitemap()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -21,8 +21,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 
-app.config['FREEZER_DESTINATION_IGNORE'] = ['ckeditor']
+app.config['FREEZER_DESTINATION_IGNORE'] = ['ckeditor/', 'upload.html']
 app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
+# app.config['FREEZER_DESTINATION'] = basedir
+# FREEZER_DESTINATION = basedir
 
 ckeditor = CKEditor(app)
 
@@ -84,6 +86,25 @@ def update_status_and_checksum(key, key_data):
     key_data['checksum'] = checksum
     key_data['status'] = status
 
+
+@freezer.register_generator
+def misc():
+    yield '/index.html'
+    yield '/context.html'
+    yield '/archive/index.html'
+    yield '/sources.html'
+    yield '/map.html'
+    yield '/contact.html'
+
+@app.route('/index.html')
+@app.route('/context.html')
+@app.route('/archive/index.html')
+@app.route('/sources.html')
+@app.route('/map.html')
+@app.route('/contact.html')
+def misc():
+    return render_template(request.path[1::])# + "index.html" if request.path[-1] == "/" else "")
+
 @freezer.register_generator
 def site_map():
     yield '/sitemap.xml'
@@ -107,7 +128,7 @@ def volunteer_page():
         
 @app.route('/archive/<person>.html')
 def volunteer_page(person):
-    return render_template('volunteer.html',
+    return render_template('archive/volunteer.html',
                            person=person,
                            #data=STATIC_DATA[urllib.quote_plus(person.replace("+", " "))])
                            data=STATIC_DATA[person])
@@ -195,7 +216,7 @@ def upload_changes():
             return ('', 404)
         return ('', 204)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/upload.html', methods=['GET', 'POST'])
 def main():
     master_data = get_data_from_file(MASTER_FILE)
     tags = set([tag for key in master_data for tag in master_data[key]['tags']])
@@ -228,10 +249,9 @@ def main():
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
 
-        os.system('rm -f "archive/* *.html"')
         freezer.freeze()
-        os.system('mv build/archive/* archive/')
-        os.system('mv build/sitemap.xml sitemap.xml')
+        os.system('rm -R ckeditor')
+        os.system('rm -R static')
 
         if redir:
             return ({'redirect': '/?key=' + key}, 200)
