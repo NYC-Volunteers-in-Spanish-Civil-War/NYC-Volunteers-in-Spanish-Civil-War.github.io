@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% set url = "/sources.html" %}
+{% block description %}A page that contains links to sources that can help you learn about the Spanish Civil War and the brave volunteers of the Abraham Lincoln Brigade. {% endblock %}
+{% block title %} - Sources{% endblock %}
+{% block head %}
+<style>
+  .name:hover {
+      cursor: pointer;
+      font-size: 24px;
+  }
+  .bio {
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid;
+      max-width: 12in;
+  }
+  .main_text {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: .5in;
+      max-width: 8.35in;
+  }
+  .main_text a {
+      color: rgb(0, 0, 238);
+      text-decoration: underline;
+      word-wrap: anywhere;
+  }
+  .img_section {
+      min-width: 3.5in;
+      padding: .5in;
+      margin: 0 auto;
+  }
+  .img_section * {
+      width: 2.5in;
+      display: block;
+      text-align: center;
+  }
+  .img_section img:hover{
+      transform: scale(1.1);
+  }
+</style>
+<script>
+  $(document).ready(function(e){
+      $.getJSON("archive/data/master.json", function(data) {
+	  //Get all links from the sources and then sort them
+	  var sorted = [];
+	  for(var key in data) {
+	      $(data[key]['sources']).find('a').each(function() {
+		  sorted[sorted.length] = $(this).attr('href');
+	      });
+	  }
+	  sorted.sort(function(a, b){return ((new URL(a)).hostname).localeCompare((new URL(b)).hostname)});
+	  //Add them to the DOM
+	  var last_host = null;
+	  var $last = null;
+	  sorted.forEach(function(link){
+	      var url = new URL(link);
+	      var host = url.hostname;
+	      // If this is a new hostname add the section
+	      if(host != last_host){
+		  last_host = url.hostname;
+		  $sec_head = $('<div class="row justify-content-between p-4"></div>');
+		  $sec_head.append($('<a></a>').text(url.hostname).attr('href', url.origin));
+		  $sec_head.append($('<button class="btn btn-primary" type="button" data-toggle="collapse" aria-expanded="false">More/Less</button>').attr({
+		      'aria-controls': url.hostname.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1"),
+		      'data-target': '#' + url.hostname.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1")
+		  }));
+		  $section = $('<li class="list-group-item"></li>').append($sec_head);
+		  $last_container = $('<div class="collapse"></div>').attr('id', url.hostname)
+		  $last_bod = $('<div class="card card-body"></div>');
+		  $last = $('<ul class="list-group list-group-flush"></ul>');
+		  $last_container.append($last_bod.append($last));
+		  $section.append($last_container);
+		  $('#links').append($section);
+	      }
+	      //Add the link to the last section, guaranteed correct due to earlier sorting.
+	      $last.append(
+		  $('<li class="list-group-item"></li>').append(
+		      $('<a></a>').text(url).attr('href', url)));
+	  });
+      });
+  });
+  </script>
+{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row row-fluid">
+    <div class="col-12">
+      <div class="text-left pb-1" align="justify">
+	<h4>Sources</h4>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <p class="lead" align="justify"></p>
+      <p>
+	A compiled list of links to various sources that the researchers used. This is
+	by no means an exhaustive list, but is instead generated automatically from the
+	links to sources researchers provide.
+      </p>
+      <ul id="links" class="list-group list-group-flush">
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

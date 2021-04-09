@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set url = "/contact.html" %}
+{% block description %}Want to get in touch with us? Please do! If you have any questions, suggestions, or information you'd like to provide, please don't hesitate to get in touch!{% endblock%}
+{% block title %}- Contact Us{% endblock %}
+{%- block head %}
+<style>
+  .iframe-container {
+      overflow: hidden;
+      position: relative;
+  }
+  .iframe_container iframe {
+      border: 0;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      position: absolute;
+
+  }
+</style>
+{% endblock -%}
+
+{% block body %}
+<div class="container-fluid justify-content-center mb-4">
+  <div class="iframe-container">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepVcGe5YdlCmYZ0xETcXqTix0wXvnz4YlZzTbQzWKlt-NMcg/viewform?embedded=true" class="w-100 mx-auto my-0" height="1300" scrolling="no" frameborder="0" allowfullscreen>Loading…</iframe>
+  </div>
+</div>
+{% endblock %}
+
