@@ -1,16 +1,23 @@
-# TODO
-- [ ] Add button that restores local data from remote data.
+# TODO (Vaguely Increasing Priority)
+- [ ] Spruce up backend form inputs.
 - [ ] Look into adding a license.
 - [ ] Stop volunteer editor page from jumping to volunteer biography in preview pane.
-- [ ] Add printing support for volunteer biographies
-- [ ] Spruce up backend form inputs.
 - [ ] Subscribe link, we mail them when we add new features or lots of new updates to our archives.
-- [ ] Share site buttons everywhere
-
-# POSSIBLE ADDITIONS
 - [ ] Add URL option to image upload.
+- [ ] Add social media sharing on site 
+- [ ] Add printing option to volunteer biographies
+- [ ] Shrink image on landing page, too much space not doing enough 
+- [ ] Add jjinja templating to site further
+- [ ] Search based on lunr.js
+- [ ] Make sources static / generated via template
+- [ ] Add Sovdoc Navigation (Make route that creates template based on running webscraper) 
+
 
 # DEVLOG
+
+## Apr 9, 2020
+- Updated site to generate all files from base and extended templates
+- Added requirements.txt
 
 ## Mar 19, 2020
 - Added static page generation for each volunteer for SEO purposes. Updated home, map, and archive pages to direct there.

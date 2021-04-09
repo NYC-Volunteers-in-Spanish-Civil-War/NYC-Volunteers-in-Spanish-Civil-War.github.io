@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% set url = "/archive/" %}
+{% block description %}Biography of {{ data.volunteer_fname }} {{ data.volunteer_lname }}, a volunteer in Abraham Lincoln Brigade compiled by student researchers. {% endblock %}
+{% block title %}- {{ data.volunteer_fname }} {{ data.volunteer_lname }} {% endblock %}
+{% block head %}
+<style>
+  .name:hover {
+      cursor: pointer;
+      font-size: 24px;
+  }
+  .main_text {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: .5in;
+      max-width: 8.35in;
+  }
+  .main_text a {
+      color: rgb(0, 0, 238);
+      text-decoration: underline;
+      word-wrap: anywhere;
+  }
+  .img_section {
+      min-width: 3.5in;
+      padding: .5in;
+      margin: 0 auto;
+  }
+  .img_section * {
+      width: 2.5in;
+      display: block;
+      text-align: center;
+  }
+  .img_section img:hover{
+      transform: scale(1.1);
+  }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+  <div>
+    <div class="text-left pb-1" align="justify">
+      <h4><a href="/archive/">Archive/<a>{{ data.volunteer_fname }} {{ data.volunteer_lname }}</a></h4>
+      <h5 class="m-0 mb-4">Tags: 
+        {% for tag in data.tags %}
+        <span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2">{{ tag }}</span>
+        {% endfor %}
+      </h5>
+    </div>
+  </div>
+  <div class="mb-4">
+    <div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg" style="">
+      <div class="col-lg-8">
+        <hr><h5 class="researcher">Researcher: {{ data.student_fname }} {{ data.student_lname }}</h5><hr>
+        {{ data.data|safe }}
+        <hr><h5 class="source">Sources</h5><hr>
+        {{ data.sources|safe }}
+      </div>
+      <div class="col-lg-3 text-center">
+        <hr><h5>Images</h5><hr>
+        {% for image in data.volunteer_images|list + data.school_crests|list %}
+        <a target="blank" href="{{ image.src }}">
+          <img class="img-fluid" src="{{ image.src }}">
+        </a>
+        <hr>
+        {% if image.caption %}
+        <p>({{ image.caption }})</p>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
