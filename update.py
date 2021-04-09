@@ -6,13 +6,13 @@ import urllib
 import requests
 import webbrowser
 import datetime
-from flask import Flask, flash, request, redirect, url_for, render_template, jsonify
+from flask import Flask, flash, request, redirect, url_for, render_template, jsonify, send_from_directory
 from flask_ckeditor import CKEditor, upload_success, upload_fail
 from hashlib import md5
 from flask_frozen import Freezer
 from flask_sitemap import Sitemap
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 freezer = Freezer(app, with_no_argument_rules=True, log_url_for=False)
 sitemap = Sitemap()
 
@@ -27,6 +27,10 @@ app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
 # FREEZER_DESTINATION = basedir
 
 ckeditor = CKEditor(app)
+
+@app.context_processor
+def inject_debug():
+    return dict(debug=app.debug)
 
 MASTER_FILE = 'archive/data/master.json'
 STATIC_DATA = {}
@@ -86,7 +90,14 @@ def update_status_and_checksum(key, key_data):
     key_data['checksum'] = checksum
     key_data['status'] = status
 
-
+def update_static_data():
+    """ Updates a global dictionary linking volunteer names to their data. """
+    master_data = get_data_from_file(MASTER_FILE)
+    for key in master_data:
+        data = get_data_from_file(get_data_filename(key))
+        name = urllib.quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
+        name = data['volunteer_fname'] + " " + data['volunteer_lname']
+        STATIC_DATA[name] =  data
 @freezer.register_generator
 def misc():
     yield '/index.html'
@@ -96,14 +107,29 @@ def misc():
     yield '/map.html'
     yield '/contact.html'
 
+@app.route('/')
 @app.route('/index.html')
 @app.route('/context.html')
+@app.route('/archive/')
 @app.route('/archive/index.html')
 @app.route('/sources.html')
 @app.route('/map.html')
 @app.route('/contact.html')
 def misc():
-    return render_template(request.path[1::])# + "index.html" if request.path[-1] == "/" else "")
+    return render_template(request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))
+
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('js', path)
+@app.route('/css/<path:path>')
+def send_css(path):
+    return send_from_directory('css', path)
+@app.route('/images/<path:path>')
+def send_images(path):
+    return send_from_directory('images', path)
+@app.route('/archive/data/<path:path>')
+def send_archive_data(path):
+    return send_from_directory('archive/data', path)
 
 @freezer.register_generator
 def site_map():
@@ -118,19 +144,17 @@ def site_map():
 
 @freezer.register_generator
 def volunteer_page():
-    master_data = get_data_from_file(MASTER_FILE)
-    for key in master_data:
-        data = get_data_from_file(get_data_filename(key))
-        name = urllib.quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
-        name = data['volunteer_fname'] + " " + data['volunteer_lname']
-        STATIC_DATA[name] =  data
-        yield{"person": name}
+    if not STATIC_DATA:
+        update_static_data()
+    for key in STATIC_DATA:
+        yield{"person": key}
         
 @app.route('/archive/<person>.html')
 def volunteer_page(person):
+    if not STATIC_DATA:
+        update_static_data()
     return render_template('archive/volunteer.html',
                            person=person,
-                           #data=STATIC_DATA[urllib.quote_plus(person.replace("+", " "))])
                            data=STATIC_DATA[person])
 @app.route('/delete', methods=['POST'])
 def delete():
@@ -248,7 +272,7 @@ def main():
         update_status_and_checksum(key, data)
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
-
+        update_static_data()
         freezer.freeze()
         os.system('rm -R ckeditor')
         os.system('rm -R static')
