@@ -1,487 +1,454 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="robots" content="noindex">
-    {{ ckeditor.load() }}
-    <style>
-      h1 {
-	  text-align: center;
-	  color: white;
-      }
-      .status {
-	  text-align: right;
-      }
-      #the_form {
-	  border: 1px solid black;
-	  background-color: silver;
-      }
-      #cke_ckeditor {
-	  border-radius: 15px;
-	  padding: 15px;
-	  background-color: #ededed;
-      }
-      #cke_sources {
-	  border-radius: 15px;
-	  padding: 15px;
-	  background-color: #ededed;
-      }
-      #iframe_container {
-	  width: 100%;
-	  height: 10in;;
-      }
-      #iframe {
-	  border-radius:15px;
-      }
-      .thumbnail {
-	  width: 1in;
-	  vertical-align: middle;
-      }
-      .img_uploader_div {
-	  border: 1px solid black;
-	  background-color: #ededed;
-      }
-      .img_uploader_div hr {
-	  display: block;
-      }
-      .img_uploader_div ul {
-	  padding: 0;
-	  list-style-type: none;
-	  height: 460px;
-	  margin: 0;
-	  width: 100%;
-	  overflow-y: scroll;
-      }
-      .img_modifier {
-	  display: inline-block;
-      }
-      .img_modifier * {
-	  display: block;
-      }
-      .img_row {
-	  overflow: scroll;
-	  width: 100%;
-	  height: 100%;
-	  position: absolute;
-      }
-      .tag-box h5{
-	  display: inline-block;
-      }
-    </style>
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous">
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-      crossorigin="anonymous"></script>
-    
-    <script>
-      /* Handles form sanitization and proper upload behavior*/
-      $(document).on("submit", "#main_form", function(event) {
-	  event.preventDefault(); // to prevent default page reloading
-	  //Trim trailing and leading spaces
-	  $('input[type=text]').val(function () {
-	      return this.value.trim();
-	  });
-	  //Make sure all fields are full
-	  var empty_fields = false;
-	  $('input[required]').each(function(){
-              if ($(this).val() == ''){
-		  empty_fields = true;
-		  return;
-              }
-          });
-	  if(empty_fields)
-	      return false;
-	  //A function to get local GET variables
-	  var getURL = function getUrlVars() {
-	      var vars = {};
-	      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-		  vars[key] = value;
-	      });
-	      return vars;
-	  };
-	  CKEDITOR.instances.ckeditor.updateElement();
+{% extends "base.html" %}
+{% set url = "/upload.html" %}
+{% block description %}Want to get in touch with us? Please do! If you have any questions, suggestions, or information you'd like to provide, please don't hesitate to get in touch!{% endblock%}
 
-	  //Converts the images into a json_encoded list of base64 images and their captions
-	  $('.img_uploader').each(function(){
-	      var $el = $("#" +  $(this).attr('name'));
-	      var array = $el.find('li').map(function(){
-		  return { src: $(this).find('img').attr('src'),
-			   caption: $(this).find('input').val()};
-              }).get();
-	      $("#" +  $(this).attr('name') + "_hidden").val(JSON.stringify(array));
-	  });
-	  //Converts the tags into serializable data
-	  var tag_array = $('.tag_text').map(function(){
-	      return $(this).text();
-	  }).toArray();
-	  $("#tags").val(JSON.stringify(tag_array));
-	  //Send the data. If need be(New volunteer/Change name), reload the page with a new key.
-          var dataString = $(this).serialize(); // to get the form data
+{% block title %}- Editor{% endblock %}
+{%- block head %}
+{{ ckeditor.load() }}
+<style>
+  h1 {
+      text-align: center;
+      color: white;
+  }
+  .status {
+      text-align: right;
+  }
+  #the_form {
+      border: 1px solid black;
+      background-color: silver;
+  }
+  #cke_ckeditor {
+      border-radius: 15px;
+      padding: 15px;
+      background-color: #ededed;
+  }
+  #cke_sources {
+      border-radius: 15px;
+      padding: 15px;
+      background-color: #ededed;
+  }
+  #iframe_container {
+      width: 100%;
+      height: 10in;;
+  }
+  #iframe {
+      border-radius:15px;
+  }
+  .thumbnail {
+      width: 1in;
+      vertical-align: middle;
+  }
+  .img_uploader_div {
+      border: 1px solid black;
+      background-color: #ededed;
+  }
+  .img_uploader_div hr {
+      display: block;
+  }
+  .img_uploader_div ul {
+      padding: 0;
+      list-style-type: none;
+      height: 460px;
+      margin: 0;
+      width: 100%;
+      overflow-y: scroll;
+  }
+  .img_modifier {
+      display: inline-block;
+  }
+  .img_modifier * {
+      display: block;
+  }
+  .img_row {
+      overflow: scroll;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+  }
+  .tag-box h5{
+      display: inline-block;
+  }
+</style>
+
+<script>
+  /* Handles form sanitization and proper upload behavior*/
+  $(document).on("submit", "#main_form", function(event) {
+      event.preventDefault(); // to prevent default page reloading
+      //Trim trailing and leading spaces
+      $('input[type=text]').val(function () {
+          return this.value.trim();
+      });
+      //Make sure all fields are full
+      var empty_fields = false;
+      $('input[required]').each(function(){
+          if ($(this).val() == ''){
+              empty_fields = true;
+              return;
+          }
+      });
+      if(empty_fields)
+          return false;
+      //A function to get local GET variables
+      var getURL = function getUrlVars() {
+          var vars = {};
+          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+              vars[key] = value;
+          });
+          return vars;
+      };
+      CKEDITOR.instances.ckeditor.updateElement();
+
+      //Converts the images into a json_encoded list of base64 images and their captions
+      $('.img_uploader').each(function(){
+          var $el = $("#" +  $(this).attr('name'));
+          var array = $el.find('li').map(function(){
+              return { src: $(this).find('img').attr('src'),
+                       caption: $(this).find('input').val()};
+          }).get();
+          $("#" +  $(this).attr('name') + "_hidden").val(JSON.stringify(array));
+      });
+      //Converts the tags into serializable data
+      var tag_array = $('.tag_text').map(function(){
+          return $(this).text();
+      }).toArray();
+      $("#tags").val(JSON.stringify(tag_array));
+      //Send the data. If need be(New volunteer/Change name), reload the page with a new key.
+      var dataString = $(this).serialize(); // to get the form data
+      $.ajax({
+          type: "POST",
+          url: window.location.href,
+          data: dataString,
+          success: function(data, textStatus, xhr){
+              if(data.redirect)
+                  window.location = data.redirect;
+              //Update the status text in the selecter
+              $('#volunteer_select option:selected').text(function(index, text){
+                  return text.replace(/\[(.+?)\]/g, "[" + data + "]")
+              });
+          },
+          error: function(data, textStatus, xhr){
+          },
+      });
+  });
+  /* Checks if changes have been made and opens the upload modal with the appropriate data. */
+  $(document).on("click", "#upload_changes", function(event){
+      event.preventDefault();
+      $("#main_form").submit();
+      $('#update_modal').modal('show');
+      $('#update_modal .list-group').empty();
+      $('.form-group').show();
+      $('.alert').hide()
+      $.ajax({
+          type: "POST",
+          url: "/upload_changes",
+          data: {
+              action: 'changes_made'
+          },
+          success: function(data) {
+              // Populate the modal with the changes as options to push
+              ['created', 'deleted', 'modified'].forEach(function(type){
+                  for(key in data[type]){
+                      $l = $('<div class="form-check list-group-item d-flex justify-content-between align-items-center"></div>');
+                      $l.append(
+                          $('<input class="form-check-input" type="checkbox" value="' +
+                            key + '" data-type="' + type + '" checked>'));
+                      $l.append(
+                          $('<label class="form-check-label">' +
+                            data[type][key]['volunteer_fname'] + " " +
+                            data[type][key]['volunteer_lname'] + '</label>'));
+                      $l.append(
+                          $('<span class="badge badge-primary ">' + type + '</span>')
+                      );
+                      $('#update_modal .list-group').append($l);
+                  }
+              });
+          },
+          error: function(data) {
+              $('.alert-warning').show();
+              $('.form-group').hide();
+              $('#update_modal .btn-primary').hide();
+          }
+      });
+  });
+  /* Handles the behavior of the upload modal based on the data passed back from the server */
+  $(document).on("submit", "#upload_form", function(event) {
+      var $theForm = $(this);
+      var array = $theForm.find('input:checked').map(function(){
+          return {key: $(this).val(), type:$(this).data('type')};
+      }).get();
+      $('#changes').val(JSON.stringify(array));
+      $.ajax({
+          type: $theForm.attr('method'),
+          url: $theForm.attr('action'),
+          data: $theForm.serialize(),
+          success: function(data) {
+              $('.alert-success').show();
+              $('.form-group').hide();
+              $('#update_modal .btn-primary').hide();
+          },
+          error: function(data) {
+              $('.alert-danger').show();
+          },
+      });
+      return false;
+  });
+  /* Passes a request to remove the current volunteer from the server. Goes back to the main page. */
+  $(document).on("click", "#delete", function(event){
+      event.preventDefault();
+      var confirm_delete = confirm("Are you sure you want to delete this volunteer's information?");
+      if(confirm_delete){
           $.ajax({
-	      type: "POST",
-	      url: window.location.href,
-	      data: dataString,
-	      success: function(data, textStatus, xhr){
-		  if(data.redirect)
-		      window.location = data.redirect;
-		  //Update the status text in the selecter
-		  $('#volunteer_select option:selected').text(function(index, text){
-		      return text.replace(/\[(.+?)\]/g, "[" + data + "]")
-		  });
-	      },
-	      error: function(data, textStatus, xhr){
-	      },
+              type: "POST",
+              url: "/delete",
+              data: {
+                  key: $("#volunteers").val()
+              },
+              success: function(){
+                  $("#volunteers").val("");
+                  $("#volunteer_select").submit();
+              }
+          })
+      }
+  });
+  /* Handles removing an image from the server. */
+  $(document).on("click", ".remove_image", function(){
+      $.ajax({
+          type: "POST",
+          url: "/delete_image",
+          data: {
+              key: $("#volunteers").val(),
+              data: $(this).parent().parent().find('img').attr("src")
+          }
+      })
+      $(this).parent().parent().remove();
+  });
+  $(document).ready(function(){
+      //Change words to title case as you type in the Names.
+      $('.form_data').on("propertychange change click keyup input paste", function(){
+          $(this).val(function(){
+              return this.value.replace(/(?:^|\s)\w/g, function(match) {
+                  return match.toUpperCase();
+              })
           });
       });
-      /* Checks if changes have been made and opens the upload modal with the appropriate data. */
-      $(document).on("click", "#upload_changes", function(event){
-	  event.preventDefault();
-	  $("#main_form").submit();
-	  $('#update_modal').modal('show');
-	  $('#update_modal .list-group').empty();
-	  $('.form-group').show();
-	  $('.alert').hide()
-	  $.ajax({
-	      type: "POST",
-	      url: "/upload_changes",
-	      data: {
-		  action: 'changes_made'
-	      },
-	      success: function(data) {
-		  // Populate the modal with the changes as options to push
-		  ['created', 'deleted', 'modified'].forEach(function(type){
-		      for(key in data[type]){
-			  $l = $('<div class="form-check list-group-item d-flex justify-content-between align-items-center"></div>');
-			  $l.append(
-			      $('<input class="form-check-input" type="checkbox" value="' +
-				key + '" data-type="' + type + '" checked>'));
-			  $l.append(
-			      $('<label class="form-check-label">' +
-				data[type][key]['volunteer_fname'] + " " +
-				data[type][key]['volunteer_lname'] + '</label>'));
-			  $l.append(
-			      $('<span class="badge badge-primary ">' + type + '</span>')
-			  );
-			  $('#update_modal .list-group').append($l);
-		      }
-		  });
-	      },
-	      error: function(data) {
-		  $('.alert-warning').show();
-		  $('.form-group').hide();
-		  $('#update_modal .btn-primary').hide();
-	      }
-	  });
+      //Intercepts the image inputs, covnerts them to base64, adds them to this sessions images.
+      $(".img_uploader").change(function (){
+          var $out = $('#' + $(this).attr('name'));
+          for(var i = 0; i < this.files.length; i++){
+              var FR = new FileReader();
+              FR.addEventListener("load", function(e) {
+                  $li = $('<li class="list-group-item px-4 saved_image"></li>');
+                  $img = $('<img class="thumbnail">').attr("src", e.target.result);
+                  $li.append($img);
+                  $li.append(`
+                        <div class="img_modifier">
+                                <input type="text" class="caption" placeholder="Caption Text">
+                                <button type="button" class="remove_image">Remove Image</button>
+                        </div>`);
+                  $out.find('ul').append($li);
+              });
+              FR.readAsDataURL( this.files[i] );
+          }
+          $(this).val('');
       });
-      /* Handles the behavior of the upload modal based on the data passed back from the server */
-      $(document).on("submit", "#upload_form", function(event) {
-	  var $theForm = $(this);
-	  var array = $theForm.find('input:checked').map(function(){
-	      return {key: $(this).val(), type:$(this).data('type')};
-	  }).get();
-	  $('#changes').val(JSON.stringify(array));
-	  $.ajax({
-              type: $theForm.attr('method'),
-              url: $theForm.attr('action'),
-              data: $theForm.serialize(),
-              success: function(data) {
-		  $('.alert-success').show();
-		  $('.form-group').hide();
-		  $('#update_modal .btn-primary').hide();
-              },
-	      error: function(data) {
-		  $('.alert-danger').show();
-	      },
-	  });
-	  return false;
+  });
+  /* Handles adding new tags. */
+  $(document).on("click", ".add-tag", function(event){
+      var exists = false;
+      $('.tag-box .badge').each(function(index, tag){
+          if($(tag).find('.tag_text').text() === $('#tag_field').val())
+              exists = true;
       });
-      /* Passes a request to remove the current volunteer from the server. Goes back to the main page. */
-      $(document).on("click", "#delete", function(event){
-	  event.preventDefault();
-	  var confirm_delete = confirm("Are you sure you want to delete this volunteer's information?");
-	  if(confirm_delete){
-	      $.ajax({
-		  type: "POST",
-		  url: "/delete",
-		  data: {
-		      key: $("#volunteers").val()
-		  },
-		  success: function(){
-		      $("#volunteers").val("");
-		      $("#volunteer_select").submit();
-		  }
-	      })
-	  }
-      });
-      /* Handles removing an image from the server. */
-      $(document).on("click", ".remove_image", function(){
-	  $.ajax({
-	      type: "POST",
-	      url: "/delete_image",
-	      data: {
-		  key: $("#volunteers").val(),
-		  data: $(this).parent().parent().find('img').attr("src")
-	      }
-	  })
-	  $(this).parent().parent().remove();
-      });
-      $(document).ready(function(){
-	  //Change words to title case as you type in the Names.
-	  $('.form_data').on("propertychange change click keyup input paste", function(){
-	      $(this).val(function(){
-		  return this.value.replace(/(?:^|\s)\w/g, function(match) {
-		      return match.toUpperCase();
-		  })
-	      });
-	  });
-	  //Intercepts the image inputs, covnerts them to base64, adds them to this sessions images.
-	  $(".img_uploader").change(function (){
-	      var $out = $('#' + $(this).attr('name'));
-	      for(var i = 0; i < this.files.length; i++){
-		  var FR = new FileReader();
-		  FR.addEventListener("load", function(e) {
-		      $li = $('<li class="list-group-item px-4 saved_image"></li>');
-		      $img = $('<img class="thumbnail">').attr("src", e.target.result);
-		      $li.append($img);
-		      $li.append(`
-			<div class="img_modifier">
-				<input type="text" class="caption" placeholder="Caption Text">
-				<button type="button" class="remove_image">Remove Image</button>
-		        </div>`);
-		      $out.find('ul').append($li);
-		  });
-		  FR.readAsDataURL( this.files[i] );
-	      }
-	      $(this).val('');
-	  });
-      });
-      /* Refresh the preview button. Save the local changes, reload iframe. */
-      $(document).on("click", "#refresh_preview", function(event){
-	  $("#main_form").submit();
-	  $( '#iframe' ).attr( 'src', function ( i, val ) { return val; });
-      })
-      /* Handles adding new tags. */
-      $(document).on("click", ".add-tag", function(event){
-	  var exists = false;
-	  $('.tag-box .badge').each(function(index, tag){
-	      if($(tag).find('.tag_text').text() === $('#tag_field').val())
-		  exists = true;
-	  });
-	  if(exists)
-	      return;
-	  $tag = $('<span class="badge badge-primary align-middle mx-2"></span>').append(
-	      $('<span class="tag_text"></span>').text($('#tag_field').val()));
-	  $dismiss_button = $('<button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss"><span aria-hidden="true">&times;</span></button>');
-	  $tag.append($dismiss_button);
-	  $tag = $('<h5></h5>').append($tag);
-	  $('.tag-box').append($tag);
-      });
-      /* Handles removing tags. */
-      $(document).on("click", ".remove_tag", function(event){
-	  $(this).closest('h5').remove();
-      });
-      </script>
-    <title>Volunteer Editor</title>
-  </head>
-  <body class="bg-dark">
-    <h1 class="text-light">Volunteer Editor</h1>
-    <div class="container-fluid p-4">
-      <div id="the_form" class="col-12 mx-auto rounded p-4">
-	<div class="row p-4 text-center">
-	  <div class="col">
-	    <form id="volunteer_select" method="GET" action="/upload.html">
-	      <label for="volunteers"><h2>Select Volunteer: </h2></label>
-	      <select id="volunteers" name="key" onchange="this.form.submit()">
-		<option value="" default>New Volunteer  </option>
-		{% for k, v in master_list.iteritems()|sort(attribute='1.volunteer_lname') %}
-		<option value="{{ k }}" {% if key==k %} selected {% endif %}>
-		  {{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
-		  <span class="status"> [{{ v.status }}] </span>
-		</option>
-		{% endfor %}
-	      </select>
-	      {% if key %}
-	      <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
-	      {% endif %}
-	    </form>
-	  </div>
-	</div>
-	<div class="row p-4">
-	  <form id="main_form" method="POST" action="" class="container-fluid" enctype=multipart/form-data>
-	    <input type="hidden" name="key" value="{{key}}"/>
-	    <div class="row p-4 text-center">
-	      <div class="col-md-6">
-		<h2>Student Information</h2>
-		<label>First Name:</label>
-		<input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required>
-		<br/>
-		<label>Last Name:</label>
-		<input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required>
-		<br/>
-		<label>&nbsp;&nbsp;&nbsp;&nbsp;Class of:</label>
-		<input type="number" name="class" value="{{ data.class }}" required>
+      if(exists)
+          return;
+      $tag = $('<span class="badge badge-primary align-middle mx-2"></span>').append(
+          $('<span class="tag_text"></span>').text($('#tag_field').val()));
+      $dismiss_button = $('<button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss"><span aria-hidden="true">&times;</span></button>');
+      $tag.append($dismiss_button);
+      $tag = $('<h5></h5>').append($tag);
+      $('.tag-box').append($tag);
+  });
+  /* Handles removing tags. */
+  $(document).on("click", ".remove_tag", function(event){
+      $(this).closest('h5').remove();
+  });
+  </script>
+{% endblock %}
+{% block body %}
+<div class="container-fluid p-4">
+  <div id="the_form" class="col-12 mx-auto rounded p-4">
+    <div class="row p-4 text-center">
+      <div class="col">
+        <form id="volunteer_select" method="GET" action="/upload.html">
+          <label for="volunteers"><h2>Select Volunteer: </h2></label>
+          <select id="volunteers" name="key" onchange="this.form.submit()">
+            <option value="" default>New Volunteer  </option>
+            {% for k, v in master_list.iteritems()|sort(attribute='1.volunteer_lname') %}
+            <option value="{{ k }}" {% if key==k %} selected {% endif %}>
+              {{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
+              <span class="status"> [{{ v.status }}] </span>
+            </option>
+            {% endfor %}
+          </select>
+          {% if key %}
+          <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+    <div class="row p-4">
+      <form id="main_form" method="POST" action="" class="container-fluid" enctype=multipart/form-data>
+        <input type="hidden" name="key" value="{{key}}"/>
+        <div class="row p-4 text-center">
+          <div class="col-md-6">
+            <h2>Student Information</h2>
+            <label>First Name:</label>
+            <input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required>
+            <br/>
+            <label>Last Name:</label>
+            <input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required>
+            <br/>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;Class of:</label>
+            <input type="number" name="class" value="{{ data.class }}" required>
 
-	      </div>
-	      <div class="col-md-6">
-		<h2>Volunteer Information</h2>
-		<label>First Name:</label>
-		<input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required>
-		<br/>
-		<label>Last Name:</label>
-		<input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required>
-	      </div>
-	    </div>
-	    <div class="row p-4 text-center">
-	      <div class="col-md-6">
-		<label><h2>Editor</h2></label>
-		<input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
-		<button class="btn btn-light" id="upload_changes">Upload Changes</button>
-		<textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
-		{{ ckeditor.config(name='ckeditor', height=500) }}
-		<hr>
-		<h2>Sources</h2>
-		<textarea name="sources" id="sources">{{ data.sources }}</textarea>
-		{{ ckeditor.config(name='sources', height=200) }}
-		<hr>
-		<h2>Tags</h2>
-		<div class="input-group mb-2">
-		  <input type="hidden" name="tags" id="tags"></input>
-		  <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field">
-		  <datalist id="tag_list">
-		    {% for v in tags %}
-		    <option value="{{ v }}">{{ v }}</option>
-		    {% endfor %}
-		  </datalist>
-		  <div class="input-group-append">
-		    <button class="btn bg-light add-tag" type="button">Add</button>
-		  </div>
-		</div>
-		<div class="d-flex flex-wrap tag-box">
-		  {% for v in data.tags %}
-		  <h5>
-		    <span class="badge badge-primary align-middle mx-2">
-		      <span class="tag_text">{{ v }}</span>
-		      <button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss">
-			<span aria-hidden="true">&times;</span>
-		      </button>
-		    </span>
-		  </h5>
-		  {% endfor %}
-		</div>
-	      </div>
-	      <div class="col-md-6">
-		<h2>Image Upload</h2>
-		<div class="row img_row">
-		  <div id="volunteer_images" class="bg-light rounded col-md-6">
-		    <h3>Images of Volunteer</h3>
-		    <hr>
-		    <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
-		    <hr>
-		    <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
-		    <ul class="list-group list-group-flush">
-		      {% for v in data.volunteer_images %}
-	              <li class="list-group-item px-0 saved_image">
-			<img class="thumbnail" src="{{ v.src }}">
-			<div class="img_modifier">
-			  <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
-			  <button type="button" class="remove_image">Remove Image</button>
-			</div>
-		      </li>
-		      {% endfor %}
-		    </ul>
-		  </div>
-		  <div id="school_crests" class="bg-light rounded col-md-6">
-		    <h3>School Crests</h3>
-		    <hr>
-		    <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
-		    <hr>
-		    <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
-		    <ul class="list-group list-group-flush">
-		      {% for v in data.school_crests %}
-	              <li class="list-group-item px-0 saved_image">
-			<img class="thumbnail" src="{{ v.src }}">
-			<div class="img_modifier">
-			  <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
-			  <button type="button" class="remove_image">Remove Image</button>
-			</div>
-		      </li>
-		      {% endfor %}
-		    </ul>
-		  </div>
-		</div>
-	      </div>
-	    </div>
-	    <div class="row p-4">
-	      <div class="col-md-3">
-		<h2>Preview</h2>
-	      </div>
-	      <div class="col-md-3">
-		<button id="refresh_preview" class="btn btn-light">Refresh Preview</button>
-		<a class="btn btn-light" role="button" target="_blank" href="http://127.0.0.1:8000/archive/#{{ key }}">Preview On Full Page</a>
-	      </div>
-	    </div>
-	    <div class="row p-4">
-	      <div id="iframe_container">
-		<iframe id="iframe" src="http://127.0.0.1:8000/archive/#{{ key }}" width="100%" height="100%"></iframe>
-	      </div>
-	    </div>
-	  </form>
-	</div>
-      </div>
-    </div>
-    <div class="modal fade" id="update_modal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-	<div class="modal-content">
-	  <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Push Changes To Live Site</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-	  </div>
-	  <form id="upload_form" role="form" method="POST" action="/upload_changes">
-	    <div class="modal-body">
-	      <div class="alert alert-success" role="alert">
-		Changes pushed successfully. The live site should update in a few minutes.
-	      </div>
-	      <div class="alert alert-warning" role="alert">
-		No changes have been made that need to be pushed.
-	      </div>
-	      <div class="alert alert-danger" role="alert">
-		Username or password was incorrect.
-	      </div>
-	      <div class="list-group list-group-flush">
-	      </div>
-              <input type="hidden" name="action" value="push_changes">
-	      <input type="hidden" id="changes" name="changes" value="">
-              <div class="form-group">
-                <label class="control-label">Github Username</label>
-                <div>
-                  <input type="text" class="form-control input-lg" name="username" value="">
-                </div>
+          </div>
+          <div class="col-md-6">
+            <h2>Volunteer Information</h2>
+            <label>First Name:</label>
+            <input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required>
+            <br/>
+            <label>Last Name:</label>
+            <input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required>
+          </div>
+        </div>
+        <div class="row p-4 text-center">
+          <div class="col-md-6">
+            <label><h2>Editor</h2></label>
+            <input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
+            <button class="btn btn-light" id="upload_changes">Upload Changes</button>
+            <textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
+            {{ ckeditor.config(name='ckeditor', height=500) }}
+            <hr>
+            <h2>Sources</h2>
+            <textarea name="sources" id="sources">{{ data.sources }}</textarea>
+            {{ ckeditor.config(name='sources', height=200) }}
+            <hr>
+            <h2>Tags</h2>
+            <div class="input-group mb-2">
+              <input type="hidden" name="tags" id="tags"></input>
+              <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field">
+              <datalist id="tag_list">
+                {% for v in tags %}
+                <option value="{{ v }}">{{ v }}</option>
+                {% endfor %}
+              </datalist>
+              <div class="input-group-append">
+                <button class="btn bg-light add-tag" type="button">Add</button>
               </div>
-              <div class="form-group">
-                <label class="control-label">Password</label>
-                <div>
-                  <input type="password" class="form-control input-lg" name="password">
-                </div>
+            </div>
+            <div class="d-flex flex-wrap tag-box">
+              {% for v in data.tags %}
+              <h5>
+                <span class="badge badge-primary align-middle mx-2">
+                  <span class="tag_text">{{ v }}</span>
+                  <button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </span>
+              </h5>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h2>Image Upload</h2>
+            <div class="row img_row">
+              <div id="volunteer_images" class="bg-light rounded col-md-6">
+                <h3>Images of Volunteer</h3>
+                <hr>
+                <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
+                <hr>
+                <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
+                <ul class="list-group list-group-flush">
+                  {% for v in data.volunteer_images %}
+                  <li class="list-group-item px-0 saved_image">
+                    <img class="thumbnail" src="{{ v.src }}">
+                    <div class="img_modifier">
+                      <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+                      <button type="button" class="remove_image">Remove Image</button>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
               </div>
-	    </div>
-	    <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-	    </div>
-	  </form>
-	</div>
-      </div>
+              <div id="school_crests" class="bg-light rounded col-md-6">
+                <h3>School Crests</h3>
+                <hr>
+                <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
+                <hr>
+                <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
+                <ul class="list-group list-group-flush">
+                  {% for v in data.school_crests %}
+                  <li class="list-group-item px-0 saved_image">
+                    <img class="thumbnail" src="{{ v.src }}">
+                    <div class="img_modifier">
+                      <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+                      <button type="button" class="remove_image">Remove Image</button>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+<div class="modal fade" id="update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Push Changes To Live Site</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="upload_form" role="form" method="POST" action="/upload_changes">
+        <div class="modal-body">
+          <div class="alert alert-success" role="alert">
+            Changes pushed successfully. The live site should update in a few minutes.
+          </div>
+          <div class="alert alert-warning" role="alert">
+            No changes have been made that need to be pushed.
+          </div>
+          <div class="alert alert-danger" role="alert">
+            Username or password was incorrect.
+          </div>
+          <div class="list-group list-group-flush">
+          </div>
+          <input type="hidden" name="action" value="push_changes">
+          <input type="hidden" id="changes" name="changes" value="">
+          <div class="form-group">
+            <label class="control-label">Github Username</label>
+            <div>
+              <input type="text" class="form-control input-lg" name="username" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Password</label>
+            <div>
+              <input type="password" class="form-control input-lg" name="password">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
 

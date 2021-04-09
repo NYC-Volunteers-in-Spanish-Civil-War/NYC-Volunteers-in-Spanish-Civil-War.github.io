@@ -18,6 +18,7 @@
 ## Apr 9, 2020
 - Updated site to generate all files from base and extended templates
 - Added requirements.txt
+- Made editor page a page on the site derived from the base that only shows up on a local/debuggin server
 
 ## Mar 19, 2020
 - Added static page generation for each volunteer for SEO purposes. Updated home, map, and archive pages to direct there.
