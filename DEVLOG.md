@@ -1,7 +1,6 @@
 # TODO (Vaguely Increasing Priority)
 - [ ] Spruce up backend form inputs.
 - [ ] Look into adding a license.
-- [ ] Stop volunteer editor page from jumping to volunteer biography in preview pane.
 - [ ] Subscribe link, we mail them when we add new features or lots of new updates to our archives.
 - [ ] Add URL option to image upload.
 - [ ] Add social media sharing on site 
@@ -14,6 +13,12 @@
 
 
 # DEVLOG
+
+
+## Apr 21, 2020
+- Added SovDoc Scraper that connects to the google translate API
+- Added an Interbrigades Scraper that uses the google translate API and nifty cacheing
+- Added file to process the data into a useful format
 
 ## Apr 9, 2020
 - Updated site to generate all files from base and extended templates
