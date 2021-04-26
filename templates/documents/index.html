@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% set url = "/documents/" %}
+{% block description %}Documents of the COMINTERN regarding the Spanish Civil War. {% endblock %}
+{% block title %}- Documents{% endblock %}
+{% block head %}
+
+<style>
+ .doc_image{
+     width: 1in;
+     cursor: pointer;
+ }
+ .doc_list{
+     overflow-y: auto;
+     max-height:95vh;
+ }
+ .searchable{
+     text-transform: capitalize;
+ }
+ .searchable:not(.displayed){
+     display: none;
+ }
+ h4.searchable{
+     display: inline-block;
+ }
+</style>
+<script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+{% if id and data[id].images %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.9.0/viewer.min.js" integrity="sha512-0goo56vbVLOJt9J6TMouBm2uE+iPssyO+70sdrT+J5Xbb5LsdYs31Mvj4+LntfPuV+VlK0jcvcinWQG5Hs3pOg==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.9.0/viewer.min.css" integrity="sha512-1cfqrTRQ8V1TnQsSu97+x7PoylALHKOQuwpFaa6lwe6lo5EOUmGNmX3LBq/yxUokfGaUtWkjZJGmuXqG5THgdA==" crossorigin="anonymous" />
+<script>
+ $(document).ready(function(e){
+     const gallery = new Viewer($('#images')[0]);
+ });
+ 
+</script>
+{% else %}
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script src="/js/DocumentManager.js"></script>
+<script>
+ $(document).ready(function(){
+     DocumentManager.init("{{ 'documents' if id else 'all' }}");
+ });
+</script>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+<div class="shadow container">
+    <div class="row rounded-top bg-danger text-white p-4">
+	<h3 class="p-1">
+	    <a href="/documents/index.html"> COMINTERN </a> / 
+	</h3>
+	{% block header %}
+	{% if id %}
+	{% set path = id.split("_") %}
+	{% for i in range(1, path|length + 1) %}
+	{% set code = path[0:i]|join("_") %}
+	<h3>
+	    {% if i != path|length %}<a href="/documents/{{ code }}.html">{% endif %}
+	    {{data[code].interbrigades_code}} -  {{data[code].name}} 
+	    {% if i != path|length %}</a>{% endif %}
+	    {% if i != path|length %}/{% endif %}
+	</h3>
+	{% endfor %}
+	{% endif %}
+	{% endblock %}
+    </div>
+    <div class="row rounded-bottom">
+	<div class="col-md-3 col-sm-12 bg-danger">
+	    <div class="text-white text-left pb-1" align="justify">
+		{% block sidebar %}
+		{% if id %}
+		<h4>Item Count: {{ data[id]['child_count'] }}</h4>
+		{% if data[id].dates %}
+		<h4>Dates:</h4>
+		{{ data[id].dates[0].start }} - {{ data[id].dates[0].end }}
+		{% endif %}
+		
+		{% if data[id].annotation %}
+		<h4>Annotation:</h4>
+		<p>{{ data[id].annotation }}</p>
+		{% endif %}
+
+		{% if data[id].notes %}
+		<h4>Notes:</h4>
+		<p>{{ data[id].notes }}</p>
+		{% endif %}
+
+		{% if data[id].docKind %}
+		<h4>Document Kind:</h4>
+		<p>{{ data[id].docKind }}</p>
+		{% endif %}
+		
+		{% if data[id].meta %}
+		{% for field in data[id].meta %}
+		<h4>{{ field|capitalize() }}:</h4>
+		{% for tag in data[id].meta[field] %}
+
+		<h4 style="display:inline-block">
+		    <a href="/documents/tags/{{ field }}{% if tag %}_{% endif %}{{ tag }}.html">
+			<span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ tag|capitalize }} <span class="badge badge-light">{{tags[field + '_' + tag]|length}}</span></span>
+
+		    </a>
+		</h4>
+
+		{% endfor %}
+		{% endfor %}
+		{% endif %}
+		<h4>Sources:</h4>
+		<h5><a href="http://sovdoc.rusarchives.ru/sections/organizations//cards/{{ data[id].sovdoc_id }}
+			     "> SovDoc </a></h5>
+		<h5><a href="http://interbrigades.inforost.org/nodes/{{ data[id].interbrigades_id }}?locale=en"> InterBrigades </a></h5>
+		
+
+		{% else %}
+		<h3>Welcome!</h3>
+		<p>Here, you can navigate our collection of the COMINTERN's Spanish Civil War documents. There are approximately 400,000 scanned documents here for you to explore!</p>
+		<h3>Search</h3>
+		<p>Why not give that big old search bar a try and see what you can dig up? It allows you to effortlessly search our directories by folder and metadata.</p>
+		<h3><a href="/documents/tags/index.html">Tags</a></h3>
+		<p>Here, you can navigate our documents using fields and tags related to the document's contents, period, and creators.</p>
+		<h3><a href="/documents/545.html">Directory</a></h3>
+		<p>Here, you can navigate the documents as they are hierarchically organized</p>
+		
+		{% endif %}
+		{% endblock %}
+	    </div>
+	</div>
+	<div class="col-md-9 col-sm-12 p-0 bg-white">
+	    <div class="p-4">
+		<form class="query-form input-group mb-3">
+		    <input class="query form-control" type="text" placeholder="Query" aria-label="Input Query Here">
+		    <div class="input-group-append">
+			<button class="btn btn-outline-secondary" type="submit">Search</button>
+			<select class="query-domain btn btn-outline-secondary">
+			    {% if id and data[id].children or key %}
+			    <option value="directory">Directory</option>
+			    {% endif %}
+			    <option value="all">All</option>
+			</select>
+		    </div>
+		</form>
+	    </div>
+	    {% block contents %}
+	    {% if id and data[id].images %}
+	    <div id="images" class="p-4 flex">
+		{% for imgset in data[id].images %}
+		{% for num in range(imgset[1]|int, imgset[2]|int) %}
+		<img class="doc_image" src="http://sovdoc.rusarchives.ru{{ imgset[0] }}{{ '%03d' % num }}{{ imgset[3] }}">
+		{% endfor %}
+		{% endfor %}
+	    </div>
+	    {% elif id %}
+	    <div class="list-group doc_list p-4 pt-2">
+		{% if data[id].children %}
+		{% for child in data[id].children %}
+		<a class="searchable
+			  displayed
+			  list-group-item"
+		   href="/documents/{{ child }}.html"
+		   id="{{ hash(child) }}">
+		    {{data[child].interbrigades_code}} - {{ data[child].name}}
+		    <span class="badge badge-light float-right">{{ data[child].child_count }}</span>
+		</a>
+		{% endfor %}
+		{% endif %}
+	    </div>		
+	    {% else %}
+	    <div class="flex p-4 tag_list"></div>
+	    <div class="list-group doc_list p-4 pt-2"></div>
+	    {% endif %}
+	    
+	    {% endblock %}
+	</div>
+    </div>
+</div>
+
+{% endblock %}
+

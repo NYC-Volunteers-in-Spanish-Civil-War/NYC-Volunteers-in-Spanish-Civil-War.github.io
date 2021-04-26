@@ -1,0 +1,83 @@
+{% extends "documents/index.html" %}
+{% block title %}- Documents - Tags - {{ field|capitalize() }}{% if tag %} - {{ tag|capitalize() }}{% endif %}{% endblock %}
+{% block head %}
+{{ super() }}
+<script>
+  $(document).ready(function(){
+       DocumentManager.init("{{ 'documents' if tag else 'tags' }}");
+  });
+
+</script>
+{% endblock %}
+
+{% block header %}
+
+<h3 class="p-1">
+  <a href="/documents/tags/index.html"> Tags </a> / 
+</h3>
+<h3 class="p-1">
+  <a href="/documents/tags/{{ field }}.html">{{ field|capitalize() }}</a> {% if field %}/{% endif %} 
+</h3>
+<br>
+<h3 class="p-1">{{ tag|capitalize() }}</h3>
+
+{% endblock %}
+
+{% block sidebar %}
+{% if tag %}	
+<h4>{{ field|capitalize() }}:</h4>
+
+{% for t in tags[field]|sort %}
+<h4 style="display:inline-block">
+  <a href="/documents/tags/{{ field }}_{{ t }}.html">
+    <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ t }} <span class="badge badge-light">{{tags[field + '_' + t]|length}}</span></span>
+  </a>
+</h4>
+{% endfor %}
+{% elif field %}
+<h3 class="p-2">Tags:</h3>
+<hr>
+{% for f in tags['tags']|sort %}
+<h4 style="display:inline-block">
+  <a href="/documents/tags/{{ f }}.html">
+    <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ f|capitalize }} <span class="badge badge-light">{{tags[f]|length}}</span></span>
+  </a>
+</h4>
+{% endfor %}
+{% else %}
+<h3>Welcome!</h3>
+<p>Here, you can navigate our collection of the COMINTERN's Spanish Civil War Documents. They're arranged by field and then tag here, each tag links to all documents that use it. </p>
+{% endif %}
+{% endblock %}
+
+{% block contents %}
+{% if not tag %}
+<div class="flex p-4 tag_list">
+  {% for child in tags[key]|sort %}
+  
+  {% set k = (field + '_' + child) if (field and field != 'tags') else child  %}
+  <h4 class="searchable" id="{{ hash(k) }}" style="display:inline-block">
+    <a href="/documents/tags/{{ k }}.html">
+      <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ child|capitalize }} <span class="badge badge-light">{{tags[k]|length}}</span></span>
+
+    </a>
+  </h4>
+  {% endfor %}
+
+</div>
+{% elif tag %}
+<div id="documents" class="list-group doc_list p-4 flex">
+  {% for child in tags[key]|sort %}
+  <a id="{{ hash(child) }}"
+     class="searchable
+	    displayed
+	    list-group-item"
+     href="/documents/{{ child }}.html">
+    {{child}} - {{ data[child].name }}
+    <span class="badge badge-light float-right">{{ data[child].child_count }}</span>
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
+
