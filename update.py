@@ -6,34 +6,43 @@ import urllib
 import requests
 import webbrowser
 import datetime
+import jinja2
 from flask import Flask, flash, request, redirect, url_for, render_template, jsonify, send_from_directory
 from flask_ckeditor import CKEditor, upload_success, upload_fail
 from hashlib import md5
 from flask_frozen import Freezer
-from flask_sitemap import Sitemap
+from pprint import pprint
 
 app = Flask(__name__, static_url_path='')
-freezer = Freezer(app, with_no_argument_rules=True, log_url_for=False)
-sitemap = Sitemap()
+freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 
-app.config['FREEZER_DESTINATION_IGNORE'] = ['ckeditor/', 'upload.html']
+app.config['FREEZER_ENDPOINT_IGNORE'] = ['*ckeditor*', 'ckeditor.static']
+app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*', 'env*', 'scraping*', 'templates', 'update.py', '*.json', 'images*', 'js*', 'favicon.ico', 'css*', 'robots.txt', 'CNAME', '.md*', 'run.sh']
 app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
-# app.config['FREEZER_DESTINATION'] = basedir
-# FREEZER_DESTINATION = basedir
+app.config['FREEZER_IGNORE_404_NOT_FOUND'] = True
+app.config['FREEZER_DESTINATION'] = ''
+#app.config['FREEZER_SKIP_EXISTING'] = True
 
 ckeditor = CKEditor(app)
 
+def hash(s):
+    return md5(s.encode('utf-8')).hexdigest()
+
+DEBUG = True
+
+
 @app.context_processor
 def inject_debug():
-    return dict(debug=app.debug)
+    return dict(debug=DEBUG)
 
 MASTER_FILE = 'archive/data/master.json'
 STATIC_DATA = {}
+
 def get_file_checksum(filename, url=False):
     """ Returns md5 checksum of given file or url. """
     hash_md5 = md5()
@@ -99,13 +108,9 @@ def update_static_data():
         name = data['volunteer_fname'] + " " + data['volunteer_lname']
         STATIC_DATA[name] =  data
 @freezer.register_generator
-def misc():
-    yield '/index.html'
-    yield '/context.html'
-    yield '/archive/index.html'
-    yield '/sources.html'
-    yield '/map.html'
-    yield '/contact.html'
+def misc_gen():
+    return ['/index.html', '/context.html', '/archive/index.html', '/sources.html', '/map.html', '/contact.html']
+
 
 @app.route('/')
 @app.route('/index.html')
@@ -137,17 +142,72 @@ def site_map():
 @app.route('/sitemap.xml')
 def site_map():
     master_data = get_data_from_file(MASTER_FILE)
-    for key in master_data.keys():
-        master_data[key] = get_data_from_file(get_data_filename(key))
+    documents = get_data_from_file('documents/documents.json')
+    tags = get_data_from_file('documents/meta_tags.json')
     date = datetime.date.today()
-    return render_template('sitemap.xml', master_data=master_data, date=date)
+    return render_template('sitemap.xml', master_data=master_data, documents=documents, tags=tags, date=date)
+
+
+
+@app.route('/documents/<filename>.json')
+def document_data(filename):
+    data = json.loads(open('documents/' + filename + '.json', 'r').read())
+    return data
+@freezer.register_generator
+def document_page_gen():
+    data = json.loads(open('scraping/sovdoc/documents.json', 'r').read())
+    i = 0.0
+    for d in data:
+        print("Documents: " + str(i / len(data)))
+        yield '/documents/' + d + '.html'
+        i += 1
+    yield '/documents/index.html'
+@app.route('/documents/<id>.html')
+def document_page(id):
+    print(id)
+    id = id if id != "index" else ""
+    tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
+    return render_template('documents/index.html', data=json.loads(open('scraping/sovdoc/documents.json', 'r').read()), tags=tags, id=id, hash=hash)
 
 @freezer.register_generator
-def volunteer_page():
+def document_tag_page_gen():
+    tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
+    tags['index'] = tags['tags']
+    del tags['tags']
+    for tag in tags:
+        yield urllib.quote_plus('/documents/tags/' + tag.encode('utf-8') + '.html')
+    yield '/documents/tags/index.html'
+
+@app.route('/documents/tags/<field>_<tag>.html')
+def document_tag_page(field, tag):
+    key = field + ('_' + tag) if tag else field
+    key = 'tags' if not key else key
+    tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
+    data = json.loads(open('scraping/sovdoc/documents.json', 'r').read())
+
+    return render_template('documents/tag.html', data=data, tags=tags,
+                           field=field, tag=tag, key=key,  hash=hash)
+@app.route('/documents/tags/<field>.html')
+def document_field_page(field):
+    if field == "index":
+        field = ""
+    return document_tag_page(field, "")
+
+@app.route('/trigger_build')
+def trigger_document_build():
+    global DEBUG
+    DEBUG = False
+    for i in freezer.freeze_yield():
+        print(i)
+    DEBUG = True
+    return '200', 200
+
+@freezer.register_generator
+def volunteer_page_gen():
     if not STATIC_DATA:
         update_static_data()
     for key in STATIC_DATA:
-        yield{"person": key}
+        yield "/archive/" + key + ".html"
         
 @app.route('/archive/<person>.html')
 def volunteer_page(person):
@@ -232,7 +292,7 @@ def upload_changes():
             request.form.get('password'))
         try:
             push_result = subprocess.check_output(push_command, shell=True)
-            print push_result
+            print(push_result)
             if "Invalid username or password" in push_result:
                 return ('', 404)
             return ('', 204)
@@ -273,10 +333,6 @@ def main():
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
         update_static_data()
-        freezer.freeze()
-        os.system('rm -R ckeditor')
-        os.system('rm -R static')
-
         if redir:
             return ({'redirect': '/?key=' + key}, 200)
         return data['status']

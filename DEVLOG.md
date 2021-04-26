@@ -6,14 +6,15 @@
 - [ ] Add social media sharing on site 
 - [ ] Add printing option to volunteer biographies
 - [ ] Shrink image on landing page, too much space not doing enough 
-- [ ] Add jjinja templating to site further
-- [ ] Search based on lunr.js
-- [ ] Make sources static / generated via template
-- [ ] Add Sovdoc Navigation (Make route that creates template based on running webscraper) 
-
+- [ ] Integrate searching code into own volunteer archive navigation
 
 # DEVLOG
 
+## Apr 25, 2020
+- Added templates for navigating the COMINTERN archives by tags and by hierarchical index.
+- Created a helper js class that deals with lunr.js search for the tags and the documents, both local and sitewide
+	- The datasets are cached locally so they don't have to be pulled from the server unless absolutely necessary
+- Updated local instance of flask frozen to include a blacklist. Will later make a pull request for it.
 
 ## Apr 21, 2020
 - Added SovDoc Scraper that connects to the google translate API
