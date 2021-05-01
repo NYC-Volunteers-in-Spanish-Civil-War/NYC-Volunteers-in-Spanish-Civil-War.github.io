@@ -98,8 +98,8 @@
 		{% for tag in data[id].meta[field] %}
 
 		<h4 style="display:inline-block">
-		    <a href="/documents/tags/{{ field }}{% if tag %}_{% endif %}{{ tag }}.html">
-			<span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ tag|capitalize }} <span class="badge badge-light">{{tags[field + '_' + tag]|length}}</span></span>
+		    <a href="/documents/tags/{{ field }}/{{ tag }}.html">
+			<span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ tag|capitalize }} <span class="badge badge-light">{{tags[tag]|length}}</span></span>
 
 		    </a>
 		</h4>

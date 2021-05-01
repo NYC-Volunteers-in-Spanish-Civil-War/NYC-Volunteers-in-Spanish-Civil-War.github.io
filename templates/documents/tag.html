@@ -16,7 +16,7 @@
   <a href="/documents/tags/index.html"> Tags </a> / 
 </h3>
 <h3 class="p-1">
-  <a href="/documents/tags/{{ field }}.html">{{ field|capitalize() }}</a> {% if field %}/{% endif %} 
+  <a href="/documents/tags/{{ field }}/">{{ field|capitalize() }}</a> {% if field %}/{% endif %} 
 </h3>
 <br>
 <h3 class="p-1">{{ tag|capitalize() }}</h3>
@@ -29,8 +29,8 @@
 
 {% for t in tags[field]|sort %}
 <h4 style="display:inline-block">
-  <a href="/documents/tags/{{ field }}_{{ t }}.html">
-    <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ t }} <span class="badge badge-light">{{tags[field + '_' + t]|length}}</span></span>
+  <a href="/documents/tags/{{ field }}/{{ t }}.html">
+    <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ t }} <span class="badge badge-light">{{tags[t]|length}}</span></span>
   </a>
 </h4>
 {% endfor %}
@@ -39,7 +39,7 @@
 <hr>
 {% for f in tags['tags']|sort %}
 <h4 style="display:inline-block">
-  <a href="/documents/tags/{{ f }}.html">
+  <a href="/documents/tags/{{ f }}/">
     <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ f|capitalize }} <span class="badge badge-light">{{tags[f]|length}}</span></span>
   </a>
 </h4>
@@ -54,16 +54,14 @@
 {% if not tag %}
 <div class="flex p-4 tag_list">
   {% for child in tags[key]|sort %}
-  
-  {% set k = (field + '_' + child) if (field and field != 'tags') else child  %}
+  {% set k = (field + '/' + child + '.html') if (field and field != 'tags') else child  %}
   <h4 class="searchable" id="{{ hash(k) }}" style="display:inline-block">
-    <a href="/documents/tags/{{ k }}.html">
-      <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ child|capitalize }} <span class="badge badge-light">{{tags[k]|length}}</span></span>
+    <a href="/documents/tags/{{ k }}">
+      <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ child|capitalize }} <span class="badge badge-light">{{tags[child]|length}}</span></span>
 
     </a>
   </h4>
   {% endfor %}
-
 </div>
 {% elif tag %}
 <div id="documents" class="list-group doc_list p-4 flex">
