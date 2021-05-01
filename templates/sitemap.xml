@@ -1,4 +1,5 @@
-{% set pages = [
+<?xml version="1.0" encoding="utf-8"?>
+{%- set pages = [
 'index.html',
 'contact.html',
 'context.html',
@@ -8,8 +9,6 @@
 'documents/',
 'documents/tags/'
 ] %}
-
-<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {% for path in pages %}
   <url>
@@ -20,7 +19,7 @@
   {% endfor %}
   {% for key, volunteer in master_data.items() %}
   <url>
-    <loc>https://scwnyc.stuy.edu/archive/{{ volunteer.volunteer_fname }} {{ volunteer.volunteer_lname }}.html</loc>
+    <loc>https://scwnyc.stuy.edu/archive/{{ (volunteer.volunteer_fname + ' ' + volunteer.volunteer_lname)|urlencode }}.html</loc>
     <lastmod>{{ date }}</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -40,7 +39,7 @@
   </url>
   {% for tag in tags[field] %}
   <url>
-    <loc>https://scwnyc.stuy.edu/documents/tags/{{field}}/{{tag}}.html</loc>
+    <loc>https://scwnyc.stuy.edu/documents/tags/{{field}}/{{tag|urlencode}}.html</loc>
     <lastmod>{{ date }}</lastmod>
     <changefreq>weekly</changefreq>
   </url>
