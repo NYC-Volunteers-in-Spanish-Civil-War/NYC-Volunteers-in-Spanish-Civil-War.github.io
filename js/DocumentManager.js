@@ -94,7 +94,7 @@ var DocumentManager = {
 	}
 	results.forEach(function(res){
 	    $('#' + md5(res['ref'])).toggleClass('displayed', true);
-	    me.renderContent(res['ref'])
+	    domain == 'all' && me.renderContent(res['ref']);
 	});
 	this.updatePattern();
 	
@@ -130,7 +130,7 @@ var DocumentManager = {
     },
     // Renders the content on the page (Automatically detects tags/directory results)
     renderContent: function(id){
-	if(id in this.documents)
+	if(this.documents && id in this.documents)
 	    $('.doc_list').append(this.renderDirectory(id));
 	else
 	    $('.tag_list').append(this.renderTag(id));
