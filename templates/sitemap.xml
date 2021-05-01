@@ -1,41 +1,50 @@
-{% set pages =
-['index.html',
+{% set pages = [
+'index.html',
 'contact.html',
 'context.html',
 'sources.html',
 'map.html',
-'archive/index.html',
-'documents/index.html',
-'documents/tags/index.html'] %}
+'archive/',
+'documents/',
+'documents/tags/'
+] %}
 
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    {% for path in pages %}
-    <url>
-	<loc>https://scwnyc.stuy.edu/{{path}}</loc>
-	<lastmod>{{ date }}</lastmod>
-	<changefreq>weekly</changefreq>
-    </url>
-    {% endfor %}
-    {% for key, volunteer in master_data.items() %}
-    <url>
-	<loc>https://scwnyc.stuy.edu/archive/{{ volunteer.volunteer_fname }} {{ volunteer.volunteer_lname }}.html</loc>
-	<lastmod>{{ date }}</lastmod>
-	<changefreq>weekly</changefreq>
-    </url>
-    {% endfor %}
-    {% for key, val in documents.items() %}
-    <url>
-	<loc>https://scwnyc.stuy.edu/documents/{{key}}.html</loc>
-	<lastmod>{{ date }}</lastmod>
-	<changefreq>weekly</changefreq>
-    </url>
-    {% endfor %}
-    {% for tag, val in tags.items() %}
-    <url>
-	<loc>https://scwnyc.stuy.edu/documents/tags/{{tag}}</loc>
-	<lastmod>{{ date }}</lastmod>
-	<changefreq>weekly</changefreq>
-    </url>
-    {% endfor %}
+  {% for path in pages %}
+  <url>
+    <loc>https://scwnyc.stuy.edu/{{path}}</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% endfor %}
+  {% for key, volunteer in master_data.items() %}
+  <url>
+    <loc>https://scwnyc.stuy.edu/archive/{{ volunteer.volunteer_fname }} {{ volunteer.volunteer_lname }}.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% endfor %}
+  {% for key, val in documents.items() %}
+  <url>
+    <loc>https://scwnyc.stuy.edu/documents/{{key}}.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% endfor %}
+  {% for field in tags['tags'] %}
+  <url>
+    <loc>https://scwnyc.stuy.edu/documents/tags/{{field}}/</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% for tag in tags[field] %}
+  <url>
+    <loc>https://scwnyc.stuy.edu/documents/tags/{{field}}/{{tag}}.html</loc>
+    <lastmod>{{ date }}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% endfor %}    
+  {% endfor %}
+
 </urlset>

@@ -12,6 +12,7 @@ from flask_ckeditor import CKEditor, upload_success, upload_fail
 from hashlib import md5
 from flask_frozen import Freezer
 from pprint import pprint
+from urllib.parse import quote_plus
 
 app = Flask(__name__, static_url_path='')
 freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
@@ -21,8 +22,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_HEIGHT'] = 500
 
-app.config['FREEZER_ENDPOINT_IGNORE'] = ['*ckeditor*', 'ckeditor.static']
-app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*', 'env*', 'scraping*', 'templates', 'update.py', '*.json', 'images*', 'js*', 'favicon.ico', 'css*', 'robots.txt', 'CNAME', '.md*', 'run.sh']
+app.config['FREEZER_BLACKLIST'] = ['*ckeditor*', 'ckeditor.static']
+app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*', 'env*', 'scraping*', 'templates', 'update.py', '*.json', 'images*', 'js*', 'favicon.ico', 'css*', 'robots.txt', 'CNAME', '*.md', 'run.sh', '.emacs*', 'requirements.txt']
 app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
 app.config['FREEZER_IGNORE_404_NOT_FOUND'] = True
 app.config['FREEZER_DESTINATION'] = ''
@@ -39,6 +40,8 @@ DEBUG = True
 @app.context_processor
 def inject_debug():
     return dict(debug=DEBUG)
+app.jinja_env.filters['quote_plus'] = lambda u: quote_plus(u)
+
 
 MASTER_FILE = 'archive/data/master.json'
 STATIC_DATA = {}
@@ -104,7 +107,7 @@ def update_static_data():
     master_data = get_data_from_file(MASTER_FILE)
     for key in master_data:
         data = get_data_from_file(get_data_filename(key))
-        name = urllib.quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
+        name = quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
         name = data['volunteer_fname'] + " " + data['volunteer_lname']
         STATIC_DATA[name] =  data
 @freezer.register_generator
@@ -121,6 +124,7 @@ def misc_gen():
 @app.route('/map.html')
 @app.route('/contact.html')
 def misc():
+    print((request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))) 
     return render_template(request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))
 
 @app.route('/js/<path:path>')
@@ -158,9 +162,9 @@ def document_page_gen():
     data = json.loads(open('scraping/sovdoc/documents.json', 'r').read())
     i = 0.0
     for d in data:
-        print("Documents: " + str(i / len(data)))
+        i += 1        
+        print("Sovdoc Documents: " + str(i / len(data)))
         yield '/documents/' + d + '.html'
-        i += 1
     yield '/documents/index.html'
 @app.route('/documents/<id>.html')
 def document_page(id):
@@ -171,27 +175,36 @@ def document_page(id):
 
 @freezer.register_generator
 def document_tag_page_gen():
+    queue = ['tags/']
     tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
-    tags['index'] = tags['tags']
-    del tags['tags']
-    for tag in tags:
-        yield urllib.quote_plus('/documents/tags/' + tag.encode('utf-8') + '.html')
+    clean_name = lambda name: name.replace('.html', '').strip('/').split('/')[-1]
+    i = 0.0
+    while queue and (node := queue.pop(0)):
+        i += 1
+        if '.html' not in node:
+            children = [node + child + ('.html' if any(['545' in c for c in tags[clean_name(child)]]) else '/')  for child in tags[clean_name(node)]]
+            queue += children
+        print("Sovdoc Tags: " + str(i / len(tags)))
+        yield '/documents/' + node
     yield '/documents/tags/index.html'
 
-@app.route('/documents/tags/<field>_<tag>.html')
+@app.route('/documents/tags/<field>/<tag>.html')
 def document_tag_page(field, tag):
-    key = field + ('_' + tag) if tag else field
-    key = 'tags' if not key else key
+    key = tag if tag else field if field else 'tags'
     tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
     data = json.loads(open('scraping/sovdoc/documents.json', 'r').read())
 
     return render_template('documents/tag.html', data=data, tags=tags,
                            field=field, tag=tag, key=key,  hash=hash)
-@app.route('/documents/tags/<field>.html')
+@app.route('/documents/tags/<field>/index.html')
+@app.route('/documents/tags/<field>/')
 def document_field_page(field):
-    if field == "index":
-        field = ""
     return document_tag_page(field, "")
+@app.route('/documents/tags/index.html')
+@app.route('/documents/tags/')
+def document_tags_page():
+    return document_tag_page("", "")
+
 
 @app.route('/trigger_build')
 def trigger_document_build():
