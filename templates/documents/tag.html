@@ -57,7 +57,7 @@
   {% set k = (field + '/' + child + '.html') if (field and field != 'tags') else child  %}
   <h4 class="searchable" id="{{ hash(k) }}" style="display:inline-block">
     <a href="/documents/tags/{{ k }}">
-      <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ child|capitalize }} <span class="badge badge-light">{{tags[child]|length}}</span></span>
+      <span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">{{ child|capitalize|safe }} <span class="badge badge-light">{{tags[child]|length}}</span></span>
 
     </a>
   </h4>
@@ -71,7 +71,7 @@
 	    displayed
 	    list-group-item"
      href="/documents/{{ child }}.html">
-    {{child}} - {{ data[child].name }}
+    {{child}} - {{ data[child].name|safe }}
     <span class="badge badge-light float-right">{{ data[child].child_count }}</span>
   </a>
   {% endfor %}
