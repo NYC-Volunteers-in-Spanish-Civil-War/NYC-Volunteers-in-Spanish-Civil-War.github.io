@@ -5,10 +5,15 @@
 - [ ] Add URL option to image upload.
 - [ ] Add social media sharing on site 
 - [ ] Add printing option to volunteer biographies
-- [ ] Shrink image on landing page, too much space not doing enough 
-- [ ] Integrate searching code into own volunteer archive navigation
+- [ ] Integrate searching/caching code into volunteer-archive navigation
 
 # DEVLOG
+
+## May 1, 2020
+- Improved COMINTERN document data representation
+- Finished the site templates, all files are now correctly rendered
+- Updated index so that background image takes up less space and the site directory is now immediately visible
+- Updated sitemap to include the new files
 
 ## Apr 25, 2020
 - Added templates for navigating the COMINTERN archives by tags and by hierarchical index.
