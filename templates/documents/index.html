@@ -160,7 +160,7 @@
 			  list-group-item"
 		   href="/documents/{{ child }}.html"
 		   id="{{ hash(child) }}">
-		    {{data[child].interbrigades_code}} - {{ data[child].name}}
+		    {{data[child].interbrigades_code}} - {{ data[child].name|safe }}
 		    <span class="badge badge-light float-right">{{ data[child].child_count }}</span>
 		</a>
 		{% endfor %}
