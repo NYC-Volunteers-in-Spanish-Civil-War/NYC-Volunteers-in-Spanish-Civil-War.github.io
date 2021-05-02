@@ -5,9 +5,13 @@
 - [ ] Add URL option to image upload.
 - [ ] Add social media sharing on site 
 - [ ] Add printing option to volunteer biographies
+- [ ] Look into OCR libraries for COMINTERN archives
 - [ ] Integrate searching/caching code into volunteer-archive navigation
 
+
 # DEVLOG
+## May 2, 2021
+- Added better descriptions and titles to the document and tag pages, as well as the index.
 
 ## May 1, 2020
 - Improved COMINTERN document data representation
