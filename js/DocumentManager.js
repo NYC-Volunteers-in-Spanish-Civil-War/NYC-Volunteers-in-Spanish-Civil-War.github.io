@@ -125,9 +125,9 @@ var DocumentManager = {
     // Renders a subdirectory list item
     renderDirectory: function(id){
 	var $dir = $('<a class="searchable displayed list-group-item">')
-	    .attr('href', 'documents/' + id + '.html')
+	    .attr('href', '/documents/' + id + '.html')
 	    .attr('id', md5(id))
-	    .text(this.documents[id].interbrigades_code + ' - ' + this.documents[id].name)
+	    .html(this.documents[id].interbrigades_code + ' - ' + this.documents[id].name)
 	    .append($('<span class="badge badge-light float-right">')
 		    .text(this.documents[id].child_count));
 	return $dir;
