@@ -1,5 +1,6 @@
 {% extends "documents/index.html" %}
-{% block title %}- Documents - Tags - {{ field|capitalize() }}{% if tag %} - {{ tag|capitalize() }}{% endif %}{% endblock %}
+{% block title %}- Documents - Tags {% if field %}- {{ field|capitalize() }}{% if tag %} - {{ tag|capitalize() }}{% endif %}{% endif %}{% endblock %}
+{% block description %}Here you can navigate the COMINTERN archives related to the Spanish Civil War by tag. {% if tag %} This page contains documents relating to the tag "{{ tag|capitalize() }}". {% elif field %} This page contains links to tags that deal with {{ field|capitalize() }}.{% endif %}{% endblock %}
 {% block head %}
 {{ super() }}
 <script>
