@@ -78,20 +78,20 @@ var DocumentManager = {
 	if(domain == 'all' && this.search_type != 'all'){
 	    window.location.href = '/documents/index.html?q=' + query;
 	}
+	// Build the search indices if necessary, then search for matches
 	var results = [];
 	if(this.search_type != 'tags'){
 	    this.initLunrIndexDocs();
-	    results = $.merge(results, this.lunr_index_docs.search(query));
+	    results = $.merge(results, this.lunr_index_docs.search(query).sort(function(a, b){return me.codeToList(a.ref) > me.codeToList(b.ref)}));
 	}
 	if(this.search_type != 'documents'){
 	    this.initLunrIndexMeta();
-	    results = $.merge(results, this.lunr_index_meta.search(query));
+	    results = $.merge(results, this.lunr_index_meta.search(query).sort(function(a, b){return a.ref < b.ref}));
 	}
-	$('.searchable').toggleClass('displayed', false) ;
-	if(this.search_Type == 'all'){
-	    results.sort(function(a, b){return a.ref < b.ref});
-	    
-	}
+	// Remove previously rendered items and generate new ones
+	if(this.search_type == 'all')
+	    $('.searchable.displayed').remove();
+	$('.searchable').toggleClass('displayed', false);
 	results.forEach(function(res){
 	    $('#' + md5(res['ref'])).toggleClass('displayed', true);
 	    domain == 'all' && me.renderContent(res['ref']);
@@ -107,11 +107,17 @@ var DocumentManager = {
     },
     // Renders a tag
     renderTag: function(id){
+	var me = this;
 	var $tag = $('<h4 class="searchable displayed">');
 	$tag.attr('id', md5(id));
-	var $title = $('<a href="/documents/tags/' + id + '.html">');
+	var url = this.metadata['tags'].includes(id) ?
+	    id + '/' :
+	    this.metadata['tags'].filter(function(v){
+		return me.metadata[v].includes(id);
+	    })[0] + '/' + id + '.html';
+	var $title = $('<a href="/documents/tags/' + url + '">');
 	$title.append(
-	    $('<span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">').text(id.split('_')[id.split('_').length - 1]).append(
+	    $('<span class="badge bg-light text-black shadow text-wrap text-left  mx-1 mb-2 p-2">').text(id).append(
 		$(' <span class="badge badge-light">').text(this.metadata[id].length)));
 	$tag.append($title);
 	return $tag;
@@ -134,6 +140,10 @@ var DocumentManager = {
 	    $('.doc_list').append(this.renderDirectory(id));
 	else
 	    $('.tag_list').append(this.renderTag(id));
+    },
+    // Transforms a directory code into a list of integers
+    codeToList: function(code){
+	return code.split('_').map( Number );
     }
 };
 

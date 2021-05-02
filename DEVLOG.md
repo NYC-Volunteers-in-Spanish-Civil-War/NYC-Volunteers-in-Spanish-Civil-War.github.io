@@ -13,7 +13,8 @@
 - Improved COMINTERN document data representation
 - Finished the site templates, all files are now correctly rendered
 - Updated index so that background image takes up less space and the site directory is now immediately visible
-- Updated sitemap to include the new files
+- Updated sitemap to include the new files and use unicode encoding
+- Updated sitewide document search to sort the rendered items
 
 ## Apr 25, 2020
 - Added templates for navigating the COMINTERN archives by tags and by hierarchical index.
