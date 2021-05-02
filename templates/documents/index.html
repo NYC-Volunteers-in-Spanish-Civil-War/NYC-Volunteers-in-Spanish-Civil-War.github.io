@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% set url = "/documents/" %}
-{% block description %}Documents of the COMINTERN regarding the Spanish Civil War. {% endblock %}
-{% block title %}- Documents{% endblock %}
+{% block description -%}
+Documents of the COMINTERN regarding the Spanish Civil War. 
+{%- if id -%} This is {{data[id].interbrigades_code}} -  {{data[id].name}}. 
+{%- if data[id].annotation %} Annotation: {{ data[id].annotation }}. {% endif %}
+{%- if data[id].notes %} Notes: {{ data[id].notes }}. {% endif %}
+{%- if data[id].docKind %} Document Kind: {{ data[id].docKind }}. {% endif %}
+{%- if data[id].meta %}Tags: {%- for field in data[id].meta -%}{%- for tag in data[id].meta[field] -%}
+{{ tag|capitalize }}, 
+{%- endfor -%}{%- endfor -%}{% endif %}
+{%- else -%}
+Here, you can navigate by the directory structure the documents are organized in and by the tags associated with them. Additionaly, you can search our collection of over 400,000 documents by name, tag, and other metadata. 
+{% endif %}
+{% endblock %}
+
+{% block title %}- Documents {% if id %}- {{data[id].interbrigades_code}} -  {{data[id].name}} {% endif %}{% endblock %}
 {% block head %}
 
 <style>
