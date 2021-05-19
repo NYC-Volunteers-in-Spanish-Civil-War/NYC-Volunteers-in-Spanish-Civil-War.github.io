@@ -303,8 +303,7 @@ def upload_changes():
                 message += 'Modifed record for ' + volunteer_name(local_json[key]) + '. '
                 remote_json[key] = local_json[key]
                 
-            os.system('git add archive/data/' + key + '.json')
-            
+        os.system('git add archive/')
         write_data_to_file(MASTER_FILE, remote_json)
         os.system("git add archive/data/master.json")
         write_data_to_file(MASTER_FILE, local_json)
