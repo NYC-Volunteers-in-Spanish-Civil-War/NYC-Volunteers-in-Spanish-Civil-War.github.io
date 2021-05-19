@@ -28,7 +28,7 @@ app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*', 'env*', 'scraping*', 'templ
 app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
 app.config['FREEZER_IGNORE_404_NOT_FOUND'] = True
 app.config['FREEZER_DESTINATION'] = ''
-app.config['FREEZER_SKIP_EXISTING'] = True
+#app.config['FREEZER_SKIP_EXISTING'] = True
 app.config['FREEZER_REMOVE_EXTRA_FILES'] = False
 
 ckeditor = CKEditor(app)
@@ -231,6 +231,7 @@ def volunteer_page_gen():
     for key in STATIC_DATA:
         yield "/archive/" + key + ".html"
     yield "/archive/"
+    yield "/sitemap.xml"
         
 @app.route('/archive/<person>.html')
 def volunteer_page(person):
@@ -307,7 +308,7 @@ def upload_changes():
         write_data_to_file(MASTER_FILE, remote_json)
         os.system("git add archive/data/master.json")
         write_data_to_file(MASTER_FILE, local_json)
-        
+        os.system('git add sitemap.xml')
         os.system('git commit -m "' + message + '"')
         push_command = "git push https://{}:{}@github.com/NYC-Volunteers-in-Spanish-Civil-War/NYC-Volunteers-in-Spanish-Civil-War.github.io.git".format(
             request.form.get('username'),
