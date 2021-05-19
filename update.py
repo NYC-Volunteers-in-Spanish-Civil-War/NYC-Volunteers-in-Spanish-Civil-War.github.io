@@ -16,6 +16,7 @@ from urllib.parse import quote_plus
 
 app = Flask(__name__, static_url_path='')
 freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
+volunteer_freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -27,7 +28,8 @@ app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*', 'env*', 'scraping*', 'templ
 app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
 app.config['FREEZER_IGNORE_404_NOT_FOUND'] = True
 app.config['FREEZER_DESTINATION'] = ''
-#app.config['FREEZER_SKIP_EXISTING'] = True
+app.config['FREEZER_SKIP_EXISTING'] = True
+app.config['FREEZER_REMOVE_EXTRA_FILES'] = False
 
 ckeditor = CKEditor(app)
 
@@ -64,7 +66,7 @@ def get_data_from_file(filename, url=False):
         with open(filename, 'r') as f:
             return json.load(f)
     else:
-        response = urllib.urlopen(filename)
+        response = urllib.request.urlopen(filename)
         return json.loads(response.read())
 def write_data_to_file(filename, data):
     """ Writes data to a json file. """
@@ -73,14 +75,15 @@ def write_data_to_file(filename, data):
 
 def get_key_hash(key):
     """ Returns a simple hash of the given key. """
-    return md5(key).hexdigest()
+    print(key)
+    return md5(key.encode('utf-8')).hexdigest()
 def get_data_filename(key):
     """ Returns the location of a keys data file. """
     return 'archive/data/' + key + '.json'
 def get_status(key, checksum):
     """ Given the key and the checksum, give the status. """
     url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data/master.json"
-    response = urllib.urlopen(url)
+    response = urllib.request.urlopen(url)
     published_json = json.loads(response.read())
     if key not in published_json.keys():
         return "UNPUBLISHED"
@@ -151,8 +154,6 @@ def site_map():
     date = datetime.date.today()
     return render_template('sitemap.xml', master_data=master_data, documents=documents, tags=tags, date=date)
 
-
-
 @app.route('/documents/<filename>.json')
 def document_data(filename):
     data = json.loads(open('documents/' + filename + '.json', 'r').read())
@@ -215,12 +216,21 @@ def trigger_document_build():
     DEBUG = True
     return '200', 200
 
+def trigger_archive_build():
+    global DEBUG
+    DEBUG = False
+    for i in volunteer_freezer.freeze_yield():
+        print(i)
+    DEBUG = True
+
 @freezer.register_generator
+@volunteer_freezer.register_generator
 def volunteer_page_gen():
     if not STATIC_DATA:
         update_static_data()
     for key in STATIC_DATA:
         yield "/archive/" + key + ".html"
+    yield "/archive/"
         
 @app.route('/archive/<person>.html')
 def volunteer_page(person):
@@ -305,7 +315,6 @@ def upload_changes():
             request.form.get('password'))
         try:
             push_result = subprocess.check_output(push_command, shell=True)
-            print(push_result)
             if "Invalid username or password" in push_result:
                 return ('', 404)
             return ('', 204)
@@ -320,6 +329,7 @@ def main():
     if request.method == 'POST':
         new_key = get_key_hash(request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname'))
         key = request.form.get('key')
+        key = key if key != 'None' else ''
         data = {
             "student_fname": request.form.get('student_fname'),
             "student_lname": request.form.get('student_lname'),
@@ -334,11 +344,10 @@ def main():
         redir = False
         if key and key != new_key:
             delete_key_data(key)
+        if not key or key != new_key:
             key = new_key
             redir = True
-        if not key:
-            key = new_key
-            redir = True
+
         data_file = get_data_filename(key)
         write_data_to_file(data_file, data)
         [data.pop(k) for k in ["data", "volunteer_images", "school_crests"]]
@@ -346,8 +355,9 @@ def main():
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)
         update_static_data()
+        trigger_archive_build()
         if redir:
-            return ({'redirect': '/?key=' + key}, 200)
+            return ({'redirect': 'upload.html?key=' + key}, 200)
         return data['status']
     else:
         data = {
