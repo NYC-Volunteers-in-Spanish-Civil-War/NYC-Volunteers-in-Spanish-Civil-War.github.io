@@ -6,37 +6,42 @@
 - [ ] Add social media sharing on site 
 - [ ] Add printing option to volunteer biographies
 - [ ] Look into OCR libraries for COMINTERN archives
+- [ ] Improve document/tag pages UI, add scrolling to necessary sections.
 - [ ] Integrate searching/caching code into volunteer-archive navigation
 
 
 # DEVLOG
+
+## May 19, 2021
+- Fixed bugs in editor caused by porting to Python 3
+
 ## May 2, 2021
 - Added better descriptions and titles to the document and tag pages, as well as the index.
 
-## May 1, 2020
+## May 1, 2021
 - Improved COMINTERN document data representation
 - Finished the site templates, all files are now correctly rendered
 - Updated index so that background image takes up less space and the site directory is now immediately visible
 - Updated sitemap to include the new files and use unicode encoding
 - Updated sitewide document search to sort the rendered items
 
-## Apr 25, 2020
+## Apr 25, 2021
 - Added templates for navigating the COMINTERN archives by tags and by hierarchical index.
 - Created a helper js class that deals with lunr.js search for the tags and the documents, both local and sitewide
 	- The datasets are cached locally so they don't have to be pulled from the server unless absolutely necessary
 - Updated local instance of flask frozen to include a blacklist. Will later make a pull request for it.
 
-## Apr 21, 2020
+## Apr 21, 2021
 - Added SovDoc Scraper that connects to the google translate API
 - Added an Interbrigades Scraper that uses the google translate API and nifty cacheing
 - Added file to process the data into a useful format
 
-## Apr 9, 2020
+## Apr 9, 2021
 - Updated site to generate all files from base and extended templates
 - Added requirements.txt
 - Made editor page a page on the site derived from the base that only shows up on a local/debuggin server
 
-## Mar 19, 2020
+## Mar 19, 2021
 - Added static page generation for each volunteer for SEO purposes. Updated home, map, and archive pages to direct there.
 - Added sitemap/sitemap generation and a robots.txt.
 
