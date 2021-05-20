@@ -86,9 +86,11 @@
                       $.getJSON('data/' + key + '.json', function(volunteer_data){
                           //Add main text
                           $main_text.append('<hr>');
-                          $main_text.append($('<h5 class="researcher"></h5>').text("Researcher: " +
-                                                                                   volunteer_data['student_fname'] + " " +
-                                                                                   volunteer_data['student_lname']));
+                          $main_text.append(
+			      $('<h5 class="researcher">').text("Researcher: " +
+                                                                volunteer_data['student_fname'] + " " +
+                                                                volunteer_data['student_lname'] + ", Class of " +
+								volunteer_data['class']));
                           $main_text.append('<hr>');
                           $main_text.append(volunteer_data['data']);
                           $main_text.append('<hr>');
