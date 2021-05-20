@@ -15,8 +15,10 @@ from pprint import pprint
 from urllib.parse import quote_plus
 
 app = Flask(__name__, static_url_path='')
+
 freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
 volunteer_freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
+misc_freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -113,7 +115,9 @@ def update_static_data():
         name = quote_plus(data['volunteer_fname'] + " " + data['volunteer_lname'])
         name = data['volunteer_fname'] + " " + data['volunteer_lname']
         STATIC_DATA[name] =  data
+
 @freezer.register_generator
+@misc_freezer.register_generator
 def misc_gen():
     return ['/index.html', '/context.html', '/archive/index.html', '/sources.html', '/map.html', '/contact.html']
 
@@ -207,7 +211,7 @@ def document_tags_page():
     return document_tag_page("", "")
 
 
-@app.route('/trigger_build')
+@app.route('/trigger_document_build')
 def trigger_document_build():
     global DEBUG
     DEBUG = False
@@ -216,12 +220,23 @@ def trigger_document_build():
     DEBUG = True
     return '200', 200
 
+@app.route('/trigger_archive_build')
 def trigger_archive_build():
     global DEBUG
     DEBUG = False
     for i in volunteer_freezer.freeze_yield():
         print(i)
     DEBUG = True
+    return '200', 200
+
+@app.route('/trigger_misc_build')
+def trigger_misc_build():
+    global DEBUG
+    DEBUG = False
+    for i in misc_freezer.freeze_yield():
+        print(i)
+    DEBUG = True
+    return '200', 200
 
 @freezer.register_generator
 @volunteer_freezer.register_generator
