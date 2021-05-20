@@ -314,7 +314,7 @@ def upload_changes():
             request.form.get('username'),
             request.form.get('password'))
         try:
-            push_result = subprocess.check_output(push_command, shell=True)
+            push_result = subprocess.check_output(push_command, shell=True, text=True)
             if "Invalid username or password" in push_result:
                 return ('', 404)
             return ('', 204)
