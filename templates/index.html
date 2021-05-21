@@ -68,53 +68,60 @@
   .title-background-container {
       background-image: url(images/brigade.jpg);
       background-size: cover;
-			
+      
   }
 </style>
 {% endblock %}
 
 {% block body%}
-<div class="site-section py-1 bg-secondary">
-  <div class="row row-fluid col-12">
+<div class="container p-0 col-12 bg-secondary">
+  <div class="row mx-auto w-100 row-fluid p-0 p-md-4">
     <div class="col-sm-12 col-md-6 p-0" data-aos="fade" data-stellar-background-ratio="0.5">
-      <div class="row align-items-center justify-content-center text-center height-100 text-white px-4">
-        <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
+      <div class="row align-items-center text-center height-100 text-white px-4">
+	<div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
 	  <div class="row justify-content-center my-xs-4 my-md-0 p-4">
 	    <div class="text-center p-4 title-overlay w-100">
 	      <h1> <span class="typed-words"></span>&nbsp;</h1>
 	      <p class="lead">New York's Volunteers</p>
 	    </div>
 	  </div>
-        </div>
+	</div>
       </div>
       <img src="images/brigade.jpg" class="img img-fluid p-4">
     </div>
     <div class="col-sm-12 col-md-6 p-0">
-      <h2 class="site-section-heading text-center text-white p-4">Site Directory</h2>
-      <div class="list-group list-group-flush container p-4">
-	<div class="list-group-item bg-light">
-	  <a class="h2" href="/context.html">Context</a>
-	  <div class="description">Some further information, providing some background. The page contains a brief synopsis of the war, its causes, and its effects, as well as recommended further reading.</div>
+      <div class="col-md-12 ">
+	<div class="row justify-content-center my-xs-4 my-md-0 p-4">
+	  <div class="text-center p-4 title-overlay w-100 text-white">
+	    <h1>Site Directory</h1>
+	    <p class="lead">Resources on the site</p>
+	  </div>
 	</div>
-	<div class="list-group-item bg-light">
-	  <a class="h2" href="/archive/">Archives</a>
-	  <div class="description">The soul of the site, it contains research, including images and sources, on volunteers who fought in the war. The biographies also contain tags for easy searching and classification.</div>
+      </div>
+      <div class="list-group list-group-flush container text-white col-12 p-4" id="site_directory">
+	<div class="list-group-item bg-dark">
+	  <a class="h2 p-0 pr-4" href="/context.html">Context</a>
+	  <div class="description">A brief synopsis of the war and recommended further reading. </div>
 	</div>
-	<div class="list-group-item bg-light">
-	  <a class="h2" href="/documents/">Documents</a>
-	  <div class="description">A searchable collection containing approximately 400,000 documents about the Spanish Civil War that was collated from the COMINTERN archives made public by the Russian Federation. </div>
+	<div class="list-group-item bg-dark">
+	  <a class="h2 p-0 pr-4" href="/archive/">Archives</a>
+	  <div class="description">Researched biographies of volunteers in the Brigade.</div>
 	</div>
-	<div class="list-group-item bg-light">
-	  <a class="h2" href="/sources.html">Sources</a>
-	  <div class="description">A list of useful sources used by the researchers. The list is automatically generated and is by no means exhaustive.</div>
+	<div class="list-group-item bg-dark">
+	  <a class="h2 p-0 pr-4" href="/documents/">Documents</a>
+	  <div class="description">A searchable collection of about 400,000 documents from the COMINTERN archives about the war. </div>
 	</div>
-	<div class="list-group-item bg-light">
-	  <a class="h2" href="/map.html">Map</a>
-	  <div class="description">A visual tool that allows you to view connections between volunteers, events, and other tags. The tags and names are presented as an interactive network that you can navigate, and which will link you to related biographies.</div>
+	<div class="list-group-item bg-dark">
+	  <a class="h2 p-0 pr-4" href="/sources.html">Sources</a>
+	  <div class="description">Non-exhaustive list of external sources in biographies. </div>
 	</div>
-	<div class="list-group-item bg-light">
-	  <a class="h2" href="/contact.html">Contact</a>
-	  <div class="description">Feel free to contact us! Want to report an error, provide new information, or simply say hello? Please do!</div>
+	<div class="list-group-item bg-dark">
+	  <a class="h2 p-0 pr-4" href="/map.html">Map</a>
+	  <div class="description">A visual tool for viewing connections between volunteers, events, organizations, origins, etc.</div>
+	</div>
+	<div class="list-group-item bg-dark">
+	  <a class="h2 p-0 pr-4" href="/contact.html">Contact</a>
+	  <div class="description">Want to report an error, provide new information, or generally reach out? Feel free to contact us! </div>
 	</div>
       </div>
     </div>
@@ -130,7 +137,7 @@
         <div class="row">
           <div class="col-12">
             <div class="text-left pb-1">
-              <h2 class="text-black h1 site-section-heading">About Us</h2>
+	      <h2 class="text-black h1 site-section-heading">About Us</h2>
             </div>
           </div>
           <div class="col-12 mb-4">
@@ -180,12 +187,12 @@
       for(var i = 0; i < keys.length && img_count < 5; i++){
           var key = keys[i];
           $.ajax({
-              url: '/archive/data/' + key + '.json',
-              dataType: 'json',
-              async: false,
-              success: function(volunteer_data) {
+	      url: '/archive/data/' + key + '.json',
+	      dataType: 'json',
+	      async: false,
+	      success: function(volunteer_data) {
                   if(volunteer_data['volunteer_images'].length){
-                      var $card = $('\
+		      var $card = $('\
                                   <div class="card volunteer-card p-4">\
                                       <img class="card-img-top img-fluid thumbnail" alt="Card image cap">\
                                       <div class="card-body">\
@@ -194,16 +201,16 @@
                                           <a href="#" class="btn btn-primary">Read More</a>\
                                       </div>\
                                   </div>');
-                      var volunteer_name = volunteer_data['volunteer_fname'] + ' ' + volunteer_data['volunteer_lname'];
-                      var text = $(volunteer_data['data']).text();
-                      $card.find('img').attr('src', volunteer_data['volunteer_images'][0]['src']);
-                      $card.find('.card-title').text(volunteer_name);
-                      $card.find('p').text(text.substring(0, 200) + ' ...');
-                      $card.find('a').attr('href', '/archive/' + volunteer_name + '.html');
-                      $cards.push($card);
-                      img_count += 1;
+		      var volunteer_name = volunteer_data['volunteer_fname'] + ' ' + volunteer_data['volunteer_lname'];
+		      var text = $(volunteer_data['data']).text();
+		      $card.find('img').attr('src', volunteer_data['volunteer_images'][0]['src']);
+		      $card.find('.card-title').text(volunteer_name);
+		      $card.find('p').text(text.substring(0, 200) + ' ...');
+		      $card.find('a').attr('href', '/archive/' + volunteer_name + '.html');
+		      $cards.push($card);
+		      img_count += 1;
                   };
-              }
+	      }
           });
       }
       // Add them all at once
@@ -219,14 +226,14 @@
           autoplaySpeed: 5000,
           adaptiveHeight: true,
           responsive: [
-              {
+	      {
                   breakpoint: 1024,
                   settings: {
-                      slidesToShow: 1,
-                      slidesToScroll: 1,
-                      infinite: true,
+		      slidesToShow: 1,
+		      slidesToScroll: 1,
+		      infinite: true,
                   }
-              },
+	      },
           ]
       });
   });
