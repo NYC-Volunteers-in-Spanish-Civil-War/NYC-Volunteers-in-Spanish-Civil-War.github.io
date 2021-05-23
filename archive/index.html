@@ -123,8 +123,8 @@
                               $main_text.append(
     			      $('<h5 class="researcher">').text("Researcher: " +
                                                                     volunteer_data['student_fname'] + " " +
-                                                                    volunteer_data['student_lname'] + ", Class of " +
-    								volunteer_data['class']));
+                                                                    volunteer_data['student_lname'] + ", Stuyvesant '" +
+    								volunteer_data['class'].substring(2)));
                               $main_text.append('<hr>');
                               $main_text.append(volunteer_data['data']);
                               $main_text.append('<hr>');
