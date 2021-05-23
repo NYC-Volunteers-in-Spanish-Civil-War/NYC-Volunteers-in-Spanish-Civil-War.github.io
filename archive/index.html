@@ -39,139 +39,197 @@
 
 
     <style>
-      .name .btn:hover {
-          cursor: pointer;
-          transform: scale(1.05);
-      }
-      .main_text {
-          max-width: 750px;
-          margin: 0 auto;
-          padding: .5in;
-          max-width: 8.35in;
-      }
-      .main_text a {
-          color: rgb(0, 0, 238);
-          text-decoration: underline;
-          word-wrap: anywhere;
-      }
-      .img_section {
-          min-width: 3.5in;
-          padding: .5in;
-          margin: 0 auto;
-      }
-      .img_section * {
-          width: 2.5in;
-          display: block;
-          text-align: center;
-      }
-      .img_section img:hover{
-          transform: scale(1.1);
-      }
+     .name .btn:hover {
+         cursor: pointer;
+         transform: scale(1.05);
+     }
+     .main_text {
+         max-width: 750px;
+         margin: 0 auto;
+         padding: .5in;
+         max-width: 8.35in;
+     }
+     .main_text a {
+         color: rgb(0, 0, 238);
+         text-decoration: underline;
+         word-wrap: anywhere;
+     }
+     .img_section {
+         min-width: 3.5in;
+         padding: .5in;
+         margin: 0 auto;
+     }
+     .img_section * {
+         width: 2.5in;
+         display: block;
+         text-align: center;
+     }
+     .img_section img:hover{
+         transform: scale(1.1);
+     }
+     .searchable:not(.displayed){
+         display: none;
+     }
+      .letter:not(.displayed){
+         display: none;
+     }
     </style>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
     <script>
-      $(document).ready(function(e){
-          for (i = 25; i >= 0; i--) {
-              var letter = (i+10).toString(36);
-              var letter2 = " " + letter.toUpperCase() + " ";
-              if(i < 25){
-                  letter2 += "|"
-              }
-              $('#nav_h4').after($('<a class="nav_a" href="#' + letter + '">' + letter2 + ' </a>'));
-          }
-          $.getJSON("data/master.json", function(data) {
-              //Sort the keys alphabetically by volunteer's last name
-              var sorted = [];
-              for(var key in data) {
-                  sorted[sorted.length] = key;
-              }
-              sorted.sort(function(a, b){return data[a]['volunteer_lname'].localeCompare(data[b]['volunteer_lname']);});
-              //Loop through the page and populate it with the volunteer's names and their biographies
-              sorted.forEach(function(key){
-                  var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
-                  if($('#' + letter).length == 0){
-                      $('#bios').append($('<h4 id="' + letter + '"></h4>').text(letter.toUpperCase()));
-                  }
-                  var volunteer_name = data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'];
-                  var $bio_link = $('<h5 class="name"></h5>')
-                      .text(volunteer_name)
-                      .append('<button class="float-right mx-2 btn btn-primary expand-button unclicked">  Click to Expand<span>')
-                      .append($('<a><button class="float-right mx-2 btn btn-primary">Click to Visit Page</button></a>')
-                              //.attr('href', escape(escape(volunteer_name).replace(/%20/g, "+")) + '.html'));
-                              .attr('href', volunteer_name + '.html'));
-                  $bio_link.attr({
-                      name:key,
-                      id:key
-                  })
-                  //Add the tags for the biography
-                  $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
-                  $.each(data[key]['tags'], function(index, tag){
-                      $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2"></span>').text(tag));
-                  });
-                  $('#bios').append($bio_link);
-                  $('#bios').append($tags);
-                  var $volunteer_container = $('<div class="container"></div>');
-                  var $volunteer = $('<div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg"></div>');
-                  var $main_text = $('<div class="col-lg-8"></div>');
-                  
-                  $('#bios').append($volunteer_container.append($volunteer));
-                  //Clicking on the volunteer name displays their biography. Just in time dowloading.
-                  $bio_link.find('.expand-button').on('click', function(e){
-                      if($(this).hasClass('unclicked')){
-                          $.getJSON('data/' + key + '.json', function(volunteer_data){
-                              //Add main text
-                              $main_text.append('<hr>');
-                              $main_text.append(
-    			      $('<h5 class="researcher">').text("Researcher: " +
-                                                                    volunteer_data['student_fname'] + " " +
-                                                                    volunteer_data['student_lname'] + ", Stuyvesant '" +
-    								volunteer_data['class'].substring(2)));
-                              $main_text.append('<hr>');
-                              $main_text.append(volunteer_data['data']);
-                              $main_text.append('<hr>');
-                              //Add sources underneath
-                              $main_text.append('<h5 class="source">Sources</h5>');
-                              $main_text.append('<hr>');
-                              $main_text.append(volunteer_data['sources']);
-                              $volunteer.append($main_text);
-                              //Add images to side
-                              var $img_sec = $('<div class="col-lg-3 text-center"></div>');
-                              $img_sec.append($('<hr>'));
-                              $img_sec.append($('<h5>Images</h5><hr>'));
-                              //$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
-                              volunteer_data['volunteer_images'].forEach(function(img){
-                                  $img = $('<img class="img-fluid">').attr('src', img.src);
-                                  $img_caption = "";
-                                  if(img.caption){
-                                      $img_caption = $('<p>(' + img.caption + ')</p>');
-                                  }
-                                  $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
-                              })
-                              //$img_sec.append($('<h5>School Crests</h5><hr>'));
-                              volunteer_data['school_crests'].forEach(function(img){
-                                  $img = $('<img class="img-fluid">').attr('src', img.src);
-                                  $img_caption = "";
-                                  if(img.caption){
-                                      $img_caption = $('<p>(' + img.caption + ')</p>');
-                                  }
-                                  $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
-                              })
-                              $volunteer.append($img_sec);
-                          })
-                      }
-                      $volunteer.toggle();
-                      $(this).removeClass('unclicked');
-                      
-                  });
-                  $volunteer.toggle();
-              });
-              //If the link is to the volunteer biography automatically open it
-              if(location.hash){
-                  $(location.hash).click();
-                  $(location.hash)[0].scrollIntoView();
-              }
-          });
-      });
-      </script>
+     $(document).ready(function(e){
+         var VolunteerSearchManager = {
+    	 init: function(data){
+    	     var me = this;
+    	     me.lunr_index = lunr(function () {
+    		 this.ref('key');
+    		 for(var f in data['0a527ce1a68dcb1d965998b3bf953ffb']){
+    		     this.field(f);
+    		 }
+    		 for(var key in data){
+    		     data[key]['key'] = key;
+    		     this.add(data[key]);
+    		 }
+    	     });
+    	     $(document).on("submit", ".query-form", function(event) {
+    		 event.preventDefault();
+    		 var query = $(this).find('.query').val();
+    		 me.search(query);
+    	     });
+    	 },
+    	 // Handles Searching
+    	 search: function(query){
+    	     var me = this;
+    	     if(!query){
+    		 $('.searchable').toggleClass('displayed', true);
+    		 me.showLetters();
+    		 return;
+    	     }
+    	     var results = this.lunr_index.search(query);
+    	     $('.searchable').toggleClass('displayed', false);
+    	     results.forEach(function(res){
+    		 $('#' + res['ref']).toggleClass('displayed', true);
+    	     });
+    	     me.showLetters();
+    	 },
+    	 // Shows the letters for displayed volunteers while hiding the unused ones
+    	 showLetters: function($lett){
+    	     $('.letter').toggleClass('displayed', true);
+    	     var $lett = $($('#bios').find('.letter').first());
+    	     $($('#bios').find('.letter').each(function(index, $lett){
+    		 $lett = $($lett);
+    		 if(!$lett.nextAll('.displayed').length || $lett.nextAll('.displayed').first().hasClass('letter'))
+    		     $lett.toggleClass('displayed', false);
+    	     }));
+    	 }
+    	 
+         };
+
+
+         for (i = 25; i >= 0; i--) {
+             var letter = (i+10).toString(36);
+             var letter2 = " " + letter.toUpperCase() + " ";
+             if(i < 25){
+    	     letter2 += "|"
+             }
+             $('#nav_h4').after($('<a class="nav_a" href="#' + letter + '">' + letter2 + ' </a>'));
+         }
+         $.getJSON("data/master.json", function(data) {
+             //Sort the keys alphabetically by volunteer's last name
+             var sorted = [];
+             for(var key in data) {
+    	     sorted[sorted.length] = key;
+             }
+             sorted.sort(function(a, b){return data[a]['volunteer_lname'].localeCompare(data[b]['volunteer_lname']);});
+             //Loop through the page and populate it with the volunteers names and their biographies
+             sorted.forEach(function(key){
+    	     var $container = $('<div id="'+key+'" class="searchable displayed container p-0">');
+    	     var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
+    	     if($('#' + letter).length == 0){
+                     $('#bios').append($('<h4 class="letter displayed" id="' + letter + '"></h4>').text(letter.toUpperCase()));
+    	     }
+    	     var volunteer_name = data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'];
+    	     var $bio_link = $('<h5 class="name"></h5>')
+                     .text(volunteer_name)
+                     .append('<button class="float-right mx-2 btn btn-primary expand-button unclicked">  Click to Expand<span>')
+                     .append($('<a><button class="float-right mx-2 btn btn-primary">Click to Visit Page</button></a>')
+                         .attr('href', volunteer_name + '.html'));
+    	     $bio_link.attr({
+                     name:key,
+    	     })
+    	     //Add the tags for the biography
+    	     $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
+    	     $.each(data[key]['tags'], function(index, tag){
+                     $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left  mx-2 mb-2"></span>').text(tag));
+    	     });
+    	     $container.append($bio_link);
+    	     $container.append($tags);
+    	     var $volunteer_container = $('<div class="container"></div>');
+    	     var $volunteer = $('<div class="bio row p-sm-4 p-0 my-4 justify-content-between shadow-lg"></div>');
+    	     var $main_text = $('<div class="col-lg-8"></div>');
+    	     
+    	     $container.append($volunteer_container.append($volunteer));
+    	     //Clicking on the volunteer name displays their biography. Just in time dowloading.
+    	     $('#bios').append($container);
+    	     $bio_link.find('.expand-button').on('click', function(e){
+                     if($(this).hasClass('unclicked')){
+    		     $.getJSON('data/' + key + '.json', function(volunteer_data){
+                             //Add main text
+                             $main_text.append('<hr>');
+                             $main_text.append(
+    			     $('<h5 class="researcher">').text("Researcher: " +
+                                                                   volunteer_data['student_fname'] + " " +
+                                                                   volunteer_data['student_lname'] + ", Stuyvesant '" +
+    							       volunteer_data['class'].substring(2)));
+                             $main_text.append('<hr>');
+                             $main_text.append(volunteer_data['data']);
+                             $main_text.append('<hr>');
+                             //Add sources underneath
+                             $main_text.append('<h5 class="source">Sources</h5>');
+                             $main_text.append('<hr>');
+                             $main_text.append(volunteer_data['sources']);
+                             $volunteer.append($main_text);
+                             //Add images to side
+                             var $img_sec = $('<div class="col-lg-3 text-center"></div>');
+                             $img_sec.append($('<hr>'));
+                             $img_sec.append($('<h5>Images</h5><hr>'));
+                             //$img_sec.append($('<h5>Volunteer Images</h5><hr>'));
+                             volunteer_data['volunteer_images'].forEach(function(img){
+    			     $img = $('<img class="img-fluid">').attr('src', img.src);
+    			     $img_caption = "";
+    			     if(img.caption){
+                                     $img_caption = $('<p>(' + img.caption + ')</p>');
+    			     }
+    			     $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
+                             })
+                             //$img_sec.append($('<h5>School Crests</h5><hr>'));
+                             volunteer_data['school_crests'].forEach(function(img){
+    			     $img = $('<img class="img-fluid">').attr('src', img.src);
+    			     $img_caption = "";
+    			     if(img.caption){
+                                     $img_caption = $('<p>(' + img.caption + ')</p>');
+    			     }
+    			     $img_sec.append($('<a target="blank"></a>').attr('href', img.src).append($img)).append($img_caption).append('<hr>');
+                             })
+                             $volunteer.append($img_sec);
+    		     })
+                     }
+                     $volunteer.toggle();
+                     $(this).removeClass('unclicked');
+                     
+    	     });
+    	     $volunteer.toggle();
+             });
+             //If the link is to the volunteer biography automatically open it
+             if(location.hash){
+    	     $(location.hash).click();
+    	     $(location.hash)[0].scrollIntoView();
+             }
+    	 VolunteerSearchManager.init(data);
+         });
+         
+     });
+     
+    </script>
 
 
   </head>
@@ -198,37 +256,47 @@
     </div>
 
     <div class="container">
-      <div>
-        <div class="text-left pb-1" align="justify">
-          <h4>Archive</h4>
+        <div>
+    	<div class="text-left pb-1" align="justify">
+    	    <h4>Archive</h4>
+    	</div>
         </div>
-      </div>
-      <div class="mb-4">
-        <p class="lead" align="justify"></p>
-        <p>
-          This project, begun in 2020 by Stuyvesant history teacher David Hanna and his students in
-          a Spanish Civil War elective course, is ongoing. An initial "scraping" of the Abraham
-          Lincoln Brigade's Archives' database by Theadora Williams found over 800 names
-          with New York City references in their biographical entries. Some were born and/or raised
-          in New York. Others had made the city their adopted hometown before they decided to go to
-          Spain. It will take years to fully research all of these names. The objective is that each
-          year the archive will grow as new groups of Stuyvesant students research more
-          volunteers. Ultimately, this information can create a memorial to all of the New Yorkers
-          (from the five boroughs) who served in Spain. We would also like to move forward with a
-          commemorative plaque in the premises honoring those volunteers who attended Stuyvesant
-          High School
+        <div class="mb-4">
+    	<p class="lead" align="justify"></p>
+    	<p>
+    	    This project, begun in 2020 by Stuyvesant history teacher David Hanna and his students in
+    	    a Spanish Civil War elective course, is ongoing. An initial "scraping" of the Abraham
+    	    Lincoln Brigade's Archives' database by Theadora Williams found over 800 names
+    	    with New York City references in their biographical entries. Some were born and/or raised
+    	    in New York. Others had made the city their adopted hometown before they decided to go to
+    	    Spain. It will take years to fully research all of these names. The objective is that each
+    	    year the archive will grow as new groups of Stuyvesant students research more
+    	    volunteers. Ultimately, this information can create a memorial to all of the New Yorkers
+    	    (from the five boroughs) who served in Spain. We would also like to move forward with a
+    	    commemorative plaque in the premises honoring those volunteers who attended Stuyvesant
+    	    High School
 
-        </p>
-        <p>Special thanks goes to Mr Dyrland-Weaver (Stuyvesant Computer Science department),
-          designer Angel Ortmann-Lee, Profesor Sebastiaan Faber, Oberlin College and
-          the Abraham LIncoln Brigade Archives, Michael Koncewicz at NYU Special Collections Elmer
-          Holmes Bobst Library, and Theadora Williams.
-        </p>
-        <h4 id="nav_h4">Browse By Surname</h4>
-        <p></p>
-        <div id="bios">
+    	</p>
+    	<p>Special thanks goes to Mr Dyrland-Weaver (Stuyvesant Computer Science department),
+    	    designer Angel Ortmann-Lee, Profesor Sebastiaan Faber, Oberlin College and
+    	    the Abraham LIncoln Brigade Archives, Michael Koncewicz at NYU Special Collections Elmer
+    	    Holmes Bobst Library, and Theadora Williams.
+    	</p>
+    	<div class="container">
+    	  <h4>Search Volunteer Database</h4>
+    	  <form class="query-form input-group mb-3">
+    	    <input class="query form-control" type="text" placeholder="Query" aria-label="Search Volunteer Database">
+    	    <div class="input-group-append">
+    	      <button class="btn btn-outline-secondary bg-primary text-white" type="submit">Search</button>
+    	    </div>
+    	  </form>
+
+    	  <h4 id="nav_h4">Jump to Surname</h4>
+    	  <p></p>
+    	</div>
+    	<div id="bios">
+    	</div>
         </div>
-      </div>
     </div>
 
 
