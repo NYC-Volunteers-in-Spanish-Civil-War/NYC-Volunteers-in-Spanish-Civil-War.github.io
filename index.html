@@ -182,72 +182,72 @@
         </div>
       </div>
     </div>
-      <div class="site-section" id="about-section">
-        <div class="container">
-          <div class="row mb-5">
-    	<div class="col-md-5 ml-auto mb-5 order-md-2" data-aos="fade">
-              <img src="images/flags.png" alt="Image" class="img-fluid rounded">
-    	</div>
-    	<div class="col-md-6 order-md-1" data-aos="fade">
-              <div class="row">
-                <div class="col-12">
-                  <div class="text-left pb-1">
-    		<h2 class="text-black h1 site-section-heading">About Us</h2>
-                  </div>
-                </div>
-                <div class="col-12 mb-4">
-                  <p class="lead" align="justify">During the Spanish Civil War (1936-39), almost forty thousand men and women from fifty-two countries, including 2,800 Americans, volunteered to travel to Spain and join the International Brigades to help fight fascism. The U.S. volunteers served in various units and came to be known collectively as the Abraham Lincoln Brigade. This website is dedicated to our annual project, where students dedicate a month to research a New Yorker who volunteered to fight in the Spanish Civil War.</p>
-                  <p></p>
-                  <center><p><a href="/archive/" class="btn btn-primary btn-md text-white">Read More</a></p></center>
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-5 ml-auto mb-5 order-md-2" data-aos="fade">
+            <img src="images/flags.png" alt="Image" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6 order-md-1" data-aos="fade">
+            <div class="row">
+              <div class="col-12">
+                <div class="text-left pb-1">
+    	      <h2 class="text-black h1 site-section-heading">About Us</h2>
                 </div>
               </div>
-    	</div>
+              <div class="col-12 mb-4">
+                <p class="lead" align="justify">During the Spanish Civil War (1936-39), almost forty thousand men and women from fifty-two countries, including 2,800 Americans, volunteered to travel to Spain and join the International Brigades to help fight fascism. The U.S. volunteers served in various units and came to be known collectively as the Abraham Lincoln Brigade. This website is dedicated to our annual project, where students dedicate a month to research a New Yorker who volunteered to fight in the Spanish Civil War.</p>
+                <p></p>
+                <center><p><a href="/archive/" class="btn btn-primary btn-md text-white">Read More</a></p></center>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="site-section bg-secondary">
-        <h2 class="text-white text-center h1 site-section-heading">Volunteers</h2>
-        <div class="container px-0 py-4 border-left border-right volunteer-carousel rounded"></div>
-      </div>
-      <script src="js/typed.js"></script>
-      <script>
-        // Type the header
-        var typed = new Typed('.typed-words', {
-    	strings: ["Abraham Lincoln Brigade"],
-    	typeSpeed: 80,
+    </div>
+    <div class="site-section bg-secondary">
+      <h2 class="text-white text-center h1 site-section-heading">Volunteers</h2>
+      <div class="container px-0 py-4 border-left border-right volunteer-carousel rounded"></div>
+    </div>
+    <script src="js/typed.js"></script>
+    <script>
+      // Type the header
+      var typed = new Typed('.typed-words', {
+          strings: ["Abraham Lincoln Brigade"],
+          typeSpeed: 80,
 
-    	startDelay: 1000,
-    	loop: false,
-    	showCursor: false
-        });
-      </script>
-      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-      <script>
-        // Deal with the volunteer carousel
-        $.getJSON("/archive/data/master.json", function(data) {
-    	// Randomly generate a list of volunteer keys
-    	var keys = [];
-    	for(var key in data){
-                keys[keys.length] = key;
-    	}
-    	for(var i = keys.length - 1; i > 0; i--){
-                var j = Math.floor(Math.random() * i);
-                var temp = keys[i];
-                keys[i] = keys[j];
-                keys[j] = temp;
-    	}
-    	var img_count = 0;
-    	var $cards = [];
-    	// Get the data from the first 5 biographies from the list that have an image.
-    	for(var i = 0; i < keys.length && img_count < 5; i++){
-                var key = keys[i];
-                $.ajax({
-    		url: '/archive/data/' + key + '.json',
-    		dataType: 'json',
-    		async: false,
-    		success: function(volunteer_data) {
-                        if(volunteer_data['volunteer_images'].length){
-    			var $card = $('\
+          startDelay: 1000,
+          loop: false,
+          showCursor: false
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+      // Deal with the volunteer carousel
+      $.getJSON("/archive/data/master.json", function(data) {
+          // Randomly generate a list of volunteer keys
+          var keys = [];
+          for(var key in data){
+              keys[keys.length] = key;
+          }
+          for(var i = keys.length - 1; i > 0; i--){
+              var j = Math.floor(Math.random() * i);
+              var temp = keys[i];
+              keys[i] = keys[j];
+              keys[j] = temp;
+          }
+          var img_count = 0;
+          var $cards = [];
+          // Get the data from the first 5 biographies from the list that have an image.
+          for(var i = 0; i < keys.length && img_count < 5; i++){
+              var key = keys[i];
+              $.ajax({
+    	      url: '/archive/data/' + key + '.json',
+    	      dataType: 'json',
+    	      async: false,
+    	      success: function(volunteer_data) {
+                      if(volunteer_data['volunteer_images'].length){
+    		      var $card = $('\
                                       <div class="card volunteer-card p-4">\
                                           <img class="card-img-top img-fluid thumbnail" alt="Card image cap">\
                                           <div class="card-body">\
@@ -256,44 +256,44 @@
                                               <a href="#" class="btn btn-primary">Read More</a>\
                                           </div>\
                                       </div>');
-    			var volunteer_name = volunteer_data['volunteer_fname'] + ' ' + volunteer_data['volunteer_lname'];
-    			var text = $(volunteer_data['data']).text();
-    			$card.find('img').attr('src', volunteer_data['volunteer_images'][0]['src']);
-    			$card.find('.card-title').text(volunteer_name);
-    			$card.find('p').text(text.substring(0, 200) + ' ...');
-    			$card.find('a').attr('href', '/archive/' + volunteer_name + '.html');
-    			$cards.push($card);
-    			img_count += 1;
-                        };
-    		}
-                });
-    	}
-    	// Add them all at once
-    	$('.volunteer-carousel').append($cards);
-    	// Animate the carousel
-    	$('.volunteer-carousel').slick({
-                centerMode: true,
-                centerPadding: '60px',
-                variableWidth: true,
-                infinite: true,
-                slidesToShow: 3,
-                autoplay: true,
-                autoplaySpeed: 5000,
-                adaptiveHeight: true,
-                responsive: [
-    		{
-                        breakpoint: 1024,
-                        settings: {
-    			slidesToShow: 1,
-    			slidesToScroll: 1,
-    			infinite: true,
-                        }
-    		},
-                ]
-    	});
-        });
-        </script>
-      
+    		      var volunteer_name = volunteer_data['volunteer_fname'] + ' ' + volunteer_data['volunteer_lname'];
+    		      var text = $(volunteer_data['data']).text();
+    		      $card.find('img').attr('src', volunteer_data['volunteer_images'][0]['src']);
+    		      $card.find('.card-title').text(volunteer_name);
+    		      $card.find('p').text(text.substring(0, 200) + ' ...');
+    		      $card.find('a').attr('href', '/archive/' + volunteer_name + '.html');
+    		      $cards.push($card);
+    		      img_count += 1;
+                      };
+    	      }
+              });
+          }
+          // Add them all at once
+          $('.volunteer-carousel').append($cards);
+          // Animate the carousel
+          $('.volunteer-carousel').slick({
+              centerMode: true,
+              centerPadding: '60px',
+              variableWidth: true,
+              infinite: true,
+              slidesToShow: 3,
+              autoplay: true,
+              autoplaySpeed: 5000,
+              adaptiveHeight: true,
+              responsive: [
+    	      {
+                      breakpoint: 1024,
+                      settings: {
+    		      slidesToShow: 1,
+    		      slidesToScroll: 1,
+    		      infinite: true,
+                      }
+    	      },
+              ]
+          });
+      });
+      </script>
+
     <footer>
       <div class="text-center p-2">
         © 2021 Copyright: <a href="https://scwnyc.stuy.edu">scwnyc.stuy.edu<a/>
