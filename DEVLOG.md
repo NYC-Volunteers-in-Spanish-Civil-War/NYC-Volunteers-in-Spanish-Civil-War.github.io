@@ -7,12 +7,17 @@
 - [ ] Add printing option to volunteer biographies
 - [ ] Look into OCR libraries for COMINTERN archives
 - [ ] Improve document/tag pages UI, add scrolling to necessary sections.
+- [ ] Update tag searching capabilities in volunteer page.
 - [ ] Add tag suggestions in editor based off matching existing tags against doc text. 
-- [ ] Add tag manager and descriptions of each tag
-- [ ] Integrate searching/caching code into volunteer-archive navigation
+- [ ] Add tag manager and descriptions of each tag, add way to view descriptions
+- [ ] Add better design and search functionality to volunteer picker in editor
 
 
 # DEVLOG
+
+## May 22, 2021
+- Added search functionality to volunteer page.
+- Updated document and tag pag design.
 
 ## May 21, 2021
 - More improvements to home page design.
