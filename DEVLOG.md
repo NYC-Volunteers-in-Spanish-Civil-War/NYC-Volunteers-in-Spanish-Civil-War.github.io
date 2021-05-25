@@ -10,10 +10,12 @@
 - [ ] Update tag searching capabilities in volunteer page.
 - [ ] Add tag suggestions in editor based off matching existing tags against doc text. 
 - [ ] Add tag manager and descriptions of each tag, add way to view descriptions
-- [ ] Add better design and search functionality to volunteer picker in editor
-
+- [ ] Update search function on volunteer page to search jsonfified nested children so a single world will set it off instead of the phrase for tags
 
 # DEVLOG
+
+## May 25, 2021
+- Added search to volunteer editor
 
 ## May 22, 2021
 - Added search functionality to volunteer page.
