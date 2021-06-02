@@ -9,10 +9,15 @@
 - [ ] Improve document/tag pages UI, add scrolling to necessary sections.
 - [ ] Update tag searching capabilities in volunteer page.
 - [ ] Add tag suggestions in editor based off matching existing tags against doc text. 
+- [ ] Add cite option to document/tag pages
 - [ ] Add tag manager and descriptions of each tag, add way to view descriptions
 - [ ] Update search function on volunteer page to search jsonfified nested children so a single world will set it off instead of the phrase for tags
+- [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
 
 # DEVLOG
+
+## Jun 2, 2021
+- Updated title across site
 
 ## May 25, 2021
 - Added search to volunteer editor
