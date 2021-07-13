@@ -33,6 +33,9 @@ def send_css(path):
 @routes.route('/images/<path:path>')
 def send_images(path):
     return send_from_directory('images', path)
+@routes.route('/favicon.ico')
+def send_favicon():
+    return send_from_directory('.', "favicon.ico")
 
 @freezer.register_generator
 def site_map():
