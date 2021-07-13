@@ -1,50 +1,8 @@
-import os
-import subprocess
-import json
-import bisect
-import urllib
-import requests
-import webbrowser
-import datetime
-import jinja2
-from flask import Flask, flash, request, redirect, url_for, render_template, jsonify, send_from_directory
-from flask_ckeditor import CKEditor, upload_success, upload_fail
-from hashlib import md5
-from flask_frozen import Freezer
-from pprint import pprint
-from urllib.parse import quote_plus
-
-app = Flask(__name__, static_url_path='')
-
-freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
-volunteer_freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
-misc_freezer = Freezer(app, with_no_argument_rules=False, log_url_for=False)
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-app.config['CKEDITOR_PKG_TYPE'] = 'standard'
-app.config['CKEDITOR_HEIGHT'] = 500
-
-app.config['FREEZER_BLACKLIST'] = ['*ckeditor*', 'ckeditor.static']
-app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*', 'env*', 'scraping*', 'templates', 'update.py', '*.json', 'images*', 'js*', 'favicon.ico', 'css*', 'robots.txt', 'CNAME', '*.md', 'run.sh', '.emacs*', 'requirements.txt']
-app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
-app.config['FREEZER_IGNORE_404_NOT_FOUND'] = True
-app.config['FREEZER_DESTINATION'] = ''
-#app.config['FREEZER_SKIP_EXISTING'] = True
-app.config['FREEZER_REMOVE_EXTRA_FILES'] = False
-
-ckeditor = CKEditor(app)
-
-def hash(s):
-    return md5(s.encode('utf-8')).hexdigest()
-
-DEBUG = True
-
-
-@app.context_processor
-def inject_debug():
-    return dict(debug=DEBUG)
-app.jinja_env.filters['quote_plus'] = lambda u: quote_plus(u)
+"""
+Handles the main editor for managing site content.
+"""
+from flask import render_template
+from . import *
 
 
 MASTER_FILE = 'archive/data/master.json'
@@ -116,151 +74,14 @@ def update_static_data():
         name = data['volunteer_fname'] + " " + data['volunteer_lname']
         STATIC_DATA[name] =  data
 
-@freezer.register_generator
-@misc_freezer.register_generator
-def misc_gen():
-    return ['/index.html', '/context.html', '/archive/index.html', '/sources.html', '/map.html', '/contact.html']
 
 
-@app.route('/')
-@app.route('/index.html')
-@app.route('/context.html')
-@app.route('/archive/')
-@app.route('/archive/index.html')
-@app.route('/sources.html')
-@app.route('/map.html')
-@app.route('/contact.html')
-def misc():
-    print((request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))) 
-    return render_template(request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))
-
-@app.route('/js/<path:path>')
-def send_js(path):
-    return send_from_directory('js', path)
-@app.route('/css/<path:path>')
-def send_css(path):
-    return send_from_directory('css', path)
-@app.route('/images/<path:path>')
-def send_images(path):
-    return send_from_directory('images', path)
-@app.route('/archive/data/<path:path>')
-def send_archive_data(path):
-    return send_from_directory('archive/data', path)
-
-@freezer.register_generator
-def site_map():
-    yield '/sitemap.xml'
-@app.route('/sitemap.xml')
-def site_map():
-    master_data = get_data_from_file(MASTER_FILE)
-    documents = get_data_from_file('documents/documents.json')
-    tags = get_data_from_file('documents/meta_tags.json')
-    date = datetime.date.today()
-    return render_template('sitemap.xml', master_data=master_data, documents=documents, tags=tags, date=date)
-
-@app.route('/documents/<filename>.json')
-def document_data(filename):
-    data = json.loads(open('documents/' + filename + '.json', 'r').read())
-    return data
-@freezer.register_generator
-def document_page_gen():
-    data = json.loads(open('scraping/sovdoc/documents.json', 'r').read())
-    i = 0.0
-    for d in data:
-        i += 1        
-        print("Sovdoc Documents: " + str(i / len(data)))
-        yield '/documents/' + d + '.html'
-    yield '/documents/index.html'
-@app.route('/documents/<id>.html')
-def document_page(id):
-    print(id)
-    id = id if id != "index" else ""
-    tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
-    return render_template('documents/index.html', data=json.loads(open('scraping/sovdoc/documents.json', 'r').read()), tags=tags, id=id, hash=hash)
-
-@freezer.register_generator
-def document_tag_page_gen():
-    queue = ['tags/']
-    tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
-    clean_name = lambda name: name.replace('.html', '').strip('/').split('/')[-1]
-    i = 0.0
-    while queue and (node := queue.pop(0)):
-        i += 1
-        if '.html' not in node:
-            children = [node + child + ('.html' if any(['545' in c for c in tags[clean_name(child)]]) else '/')  for child in tags[clean_name(node)]]
-            queue += children
-        print("Sovdoc Tags: " + str(i / len(tags)))
-        yield '/documents/' + node
-    yield '/documents/tags/index.html'
-
-@app.route('/documents/tags/<field>/<tag>.html')
-def document_tag_page(field, tag):
-    key = tag if tag else field if field else 'tags'
-    tags = json.loads(open('scraping/sovdoc/meta_tags.json', 'r').read())
-    data = json.loads(open('scraping/sovdoc/documents.json', 'r').read())
-
-    return render_template('documents/tag.html', data=data, tags=tags,
-                           field=field, tag=tag, key=key,  hash=hash)
-@app.route('/documents/tags/<field>/index.html')
-@app.route('/documents/tags/<field>/')
-def document_field_page(field):
-    return document_tag_page(field, "")
-@app.route('/documents/tags/index.html')
-@app.route('/documents/tags/')
-def document_tags_page():
-    return document_tag_page("", "")
-
-
-@app.route('/trigger_document_build')
-def trigger_document_build():
-    global DEBUG
-    DEBUG = False
-    for i in freezer.freeze_yield():
-        print(i)
-    DEBUG = True
-    return '200', 200
-
-@app.route('/trigger_archive_build')
-def trigger_archive_build():
-    global DEBUG
-    DEBUG = False
-    for i in volunteer_freezer.freeze_yield():
-        print(i)
-    DEBUG = True
-    return '200', 200
-
-@app.route('/trigger_misc_build')
-def trigger_misc_build():
-    global DEBUG
-    DEBUG = False
-    for i in misc_freezer.freeze_yield():
-        print(i)
-    DEBUG = True
-    return '200', 200
-
-@freezer.register_generator
-@volunteer_freezer.register_generator
-def volunteer_page_gen():
-    if not STATIC_DATA:
-        update_static_data()
-    for key in STATIC_DATA:
-        yield "/archive/" + key + ".html"
-    yield "/archive/"
-    yield "/sitemap.xml"
-        
-@app.route('/archive/<person>.html')
-def volunteer_page(person):
-    if not STATIC_DATA:
-        update_static_data()
-    return render_template('archive/volunteer.html',
-                           person=person,
-                           data=STATIC_DATA[person])
-@app.route('/delete', methods=['POST'])
+@routes.route('/delete', methods=['POST'])
 def delete():
     key = request.form.get('key')
     delete_key_data(key)
     return ('', 204)
-@app.route('/delete_image', methods=['POST'])
+@routes.route('/delete_image', methods=['POST'])
 def delete_image():
     key = request.form.get('key')
     data = request.form.get('data')
@@ -275,7 +96,7 @@ def delete_image():
     update_status_and_checksum(key, master_data[key])
     write_data_to_file(MASTER_FILE, master_data)
     return ('', 204)
-@app.route('/upload_changes', methods=['POST'])
+@routes.route('/upload_changes', methods=['POST'])
 def upload_changes():
     action = request.form.get('action')
     url = "https://nyc-volunteers-in-spanish-civil-war.github.io/archive/data/master.json"
@@ -337,10 +158,15 @@ def upload_changes():
             return ('', 404)
         return ('', 204)
 
-@app.route('/upload.html', methods=['GET', 'POST'])
-def main():
+@routes.route('/upload.html', methods=['GET', 'POST'])
+def upload():
     master_data = get_data_from_file(MASTER_FILE)
     tags = set([tag for key in master_data for tag in master_data[key]['tags']])
+    write_data_to_file("archive/data/tags.json",
+                       {t:{"description":"",
+                           "locations":[key for key in master_data if t in master_data[key]['tags']]}
+                        for t in tags})
+    tags = get_data_from_file("archive/data/tags.json")
     if request.method == 'POST':
         new_key = get_key_hash(request.form.get('volunteer_lname') + "_" + request.form.get('volunteer_fname'))
         key = request.form.get('key')
@@ -390,7 +216,4 @@ def main():
             data = get_data_from_file(get_data_filename(request.args.get('key')))
         return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'), tags=tags)
 
-if __name__ == '__main__':
-    #webbrowser.open('http://127.0.0.1:5000?key=', new=1)
-    app.run(debug=True)
 
