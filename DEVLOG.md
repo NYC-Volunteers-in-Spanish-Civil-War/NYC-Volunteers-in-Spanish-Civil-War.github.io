@@ -14,6 +14,7 @@
 - [ ] Move to using published instead of class of
 - [ ] Update search function on volunteer page to search jsonfified nested children so a single world will set it off instead of the phrase for tags
 - [ ] Detect if password valid before commiting in upload modal
+- [ ] Update volunteer searcher to navigate to a new page with the search string passed as a get request, like documents
 - [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
 
 
@@ -22,6 +23,7 @@
 ## July 13, 2021
 - Fixed bug caused by porting, Editor option is no longer saved statically.
 - Cleaned up codebase a little more
+- Updated archive page to create then cache a serialized index for searching if it doesn't exist, updated master archive json to include the biography text.
 
 ## July 12, 2021
 - Refactored codebase, split project into more files to keep it manageable
