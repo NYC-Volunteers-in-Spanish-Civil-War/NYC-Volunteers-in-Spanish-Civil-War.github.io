@@ -5,7 +5,6 @@ from flask import render_template
 from . import *
 
 
-MASTER_FILE = 'archive/data/master.json'
 STATIC_DATA = {}
 
 def get_file_checksum(filename, url=False):
@@ -20,19 +19,6 @@ def get_file_checksum(filename, url=False):
         for chunk in r.iter_content(4096):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
-def get_data_from_file(filename, url=False):
-    """ Returns the json data in a given file. """
-    if not url:
-        with open(filename, 'r') as f:
-            return json.load(f)
-    else:
-        response = urllib.request.urlopen(filename)
-        return json.loads(response.read())
-def write_data_to_file(filename, data):
-    """ Writes data to a json file. """
-    with open(filename, 'w+') as f:
-        json.dump(data, f, indent=4, sort_keys=True)
-
 def get_key_hash(key):
     """ Returns a simple hash of the given key. """
     print(key)
@@ -191,7 +177,7 @@ def upload():
 
         data_file = get_data_filename(key)
         write_data_to_file(data_file, data)
-        [data.pop(k) for k in ["data", "volunteer_images", "school_crests"]]
+        [data.pop(k) for k in ["volunteer_images", "school_crests"]]
         update_status_and_checksum(key, data)
         master_data[key] = data
         write_data_to_file(MASTER_FILE, master_data)

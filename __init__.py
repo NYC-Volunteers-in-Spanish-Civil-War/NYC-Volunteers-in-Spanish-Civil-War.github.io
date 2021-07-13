@@ -23,18 +23,15 @@ app.register_blueprint(routes)
 def hash(s):
     return md5(s.encode('utf-8')).hexdigest()
 
-DEBUG = True
-
-
 @app.context_processor
 def inject_debug():
-    return dict(debug=DEBUG)
+    return dict(debug=CONF["debug"])
+
 app.jinja_env.filters['quote_plus'] = lambda u: quote_plus(u)
 
 
 
 
 if __name__ == '__main__':
-    #webbrowser.open('http://127.0.0.1:5000?key=', new=1)
     app.run(debug=True)
 
