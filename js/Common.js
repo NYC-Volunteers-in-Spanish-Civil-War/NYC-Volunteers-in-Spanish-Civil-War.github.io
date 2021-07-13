@@ -16,4 +16,12 @@ $(function(){
 	     });
 	 }
      }
+    $.cacheData = function(name, data){
+    	localStorage.setItem(name, JSON.stringify(data));
+    }
+    $.getData = function(name){
+	
+	return JSON.parse(localStorage.getItem(name));
+    }
+
 }());
