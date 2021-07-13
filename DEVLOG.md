@@ -12,9 +12,14 @@
 - [ ] Add cite option to document/tag pages
 - [ ] Add tag manager and descriptions of each tag, add way to view descriptions
 - [ ] Update search function on volunteer page to search jsonfified nested children so a single world will set it off instead of the phrase for tags
+- [ ] Detect if password valid before commiting in upload modal
 - [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
+- [ ] Refactor backend structure to be more modularized
 
 # DEVLOG
+
+## July 13, 2021
+- Refactored codebase, split project into more files to keep it manageable
 
 ## Jun 2, 2021
 - Updated title across site
