@@ -1,7 +1,25 @@
 """
-Handles rendering simpler pages that don't require pulling data
+Handles rendering simpler pages that don't require pulling data. Some useful helper functions
 """
 from . import *
+
+MASTER_FILE = 'archive/data/master.json'
+
+
+def get_data_from_file(filename, url=False):
+    """ Returns the json data in a given file. """
+    if not url:
+        with open(filename, 'r') as f:
+            return json.load(f)
+    else:
+        response = urllib.request.urlopen(filename)
+        return json.loads(response.read())
+def write_data_to_file(filename, data):
+    """ Writes data to a json file. """
+    with open(filename, 'w+') as f:
+        json.dump(data, f, indent=4, sort_keys=True)
+
+
 
 @freezer.register_generator
 @misc_freezer.register_generator
