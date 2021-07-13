@@ -12,12 +12,14 @@ def send_archive_data(path):
 @freezer.register_generator
 @volunteer_freezer.register_generator
 def volunteer_page_gen():
+    CONF["debug"] = False
     if not STATIC_DATA:
         update_static_data()
     for key in STATIC_DATA:
         yield "/archive/" + key + ".html"
     yield "/archive/"
     yield "/sitemap.xml"
+    CONF["debug"] = True
         
 @routes.route('/archive/<person>.html')
 def volunteer_page(person):
