@@ -16,7 +16,8 @@
 - [ ] Detect if password valid before commiting in upload modal
 - [ ] Update volunteer searcher to navigate to a new page with the search string passed as a get request, like documents
 - [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
-
+- [ ] Leftpad document urls with 0s
+- [ ] Accesibility review and updates
 
 # DEVLOG
 
@@ -24,6 +25,7 @@
 - Fixed bug caused by porting, Editor option is no longer saved statically.
 - Cleaned up codebase a little more
 - Updated archive page to create then cache a serialized index for searching if it doesn't exist, updated master archive json to include the biography text.
+- Updated title across site
 
 ## July 12, 2021
 - Refactored codebase, split project into more files to keep it manageable
