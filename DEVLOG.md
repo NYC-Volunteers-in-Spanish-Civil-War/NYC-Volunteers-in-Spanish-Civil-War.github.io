@@ -17,6 +17,8 @@
 - [ ] Update volunteer searcher to navigate to a new page with the search string passed as a get request, like documents
 - [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
 - [ ] Leftpad document urls with 0s
+- [ ] Add biography count display
+- [ ] Convert sources to a bibtext or similar jsony format and integrate a plguin to work with them
 - [ ] Accesibility review and updates
 
 # DEVLOG
