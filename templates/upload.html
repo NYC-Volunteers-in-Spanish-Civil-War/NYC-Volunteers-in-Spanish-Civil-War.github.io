@@ -13,7 +13,7 @@
   .status {
       text-align: right;
   }
-  #the_form {
+  #editors_container{
       border: 1px solid black;
       background-color: silver;
   }
@@ -67,6 +67,12 @@
   }
   .tag-box h5{
       display: inline-block;
+  }
+  #tags_select: {
+  
+  }
+  #tag_select .select2 {
+      width: 50% !important;
   }
 </style>
 
@@ -275,137 +281,171 @@
   $(document).on("click", ".remove_tag", function(event){
       $(this).closest('h5').remove();
   });
+  $(document).on("submit", "#tag_select", function(event){
+      alert(123);
+      e.preventDefault();
+      event.preventDefault();
+      console.log(event);
+  });
   </script>
 {% endblock %}
 {% block body %}
 <div class="container-fluid p-4">
-  <div id="the_form" class="col-12 mx-auto rounded p-4">
-    <div class="row p-4 text-center">
-      <div class="col">
-        <form id="volunteer_select" method="GET" action="/upload.html">
-          <label for="volunteers"><h2>Select Volunteer: </h2></label>
-          <select id="volunteers" name="key" onchange="this.form.submit()" class="dropdown-menu selectpicker" data-live-search="true">
-            <option value="" data-tokens="New Volunteer" default>New Volunteer  </option>
-
-            {% for k, v in master_list.items()|sort(attribute='1.volunteer_lname') %}
-            <option value="{{ k }}" {% if key==k %} selected {% endif %}>
-              {{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
-              <span class="status"> [{{ v.status }}] </span>
-            </option>
-            {% endfor %}
-          </select>
-          {% if key %}
-          <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
-          {% endif %}
-        </form>
+  <div id="editors_container" class="rounded">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+	<a class="nav-item nav-link active" id="nav-volunteer-tab" data-toggle="tab" href="#nav-volunteer" role="tab" aria-controls="nav-volunteer" aria-selected="true">Volunteer Editor</a>
+	<a class="nav-item nav-link" id="nav-tag-tab" data-toggle="tab" href="#nav-tag" role="tab" aria-controls="nav-tag" aria-selected="false">Tag Editor</a>
       </div>
-    </div>
-    <div class="row p-4">
-      <form id="main_form" method="POST" action="" class="container-fluid" enctype=multipart/form-data>
-        <input type="hidden" name="key" value="{{key}}"/>
-        <div class="row p-4 text-center">
-          <div class="col-md-6">
-            <h2>Student Information</h2>
-            <label>First Name:</label>
-            <input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required>
-            <br/>
-            <label>Last Name:</label>
-            <input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required>
-            <br/>
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;Class of:</label>
-            <input type="number" name="class" value="{{ data.class }}" required>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div id="nav-volunteer" class="tab-pane fade show active col-12 mx-auto p-4">
+	<div class="row p-4 text-center">
+	  <div class="col">
+            <form id="volunteer_select" method="GET" action="/upload.html">
+              <label for="volunteers"><h2>Select Volunteer: </h2></label>
+              <select id="volunteers" name="key" onchange="this.form.submit()" class="dropdown-menu selectpicker" data-live-search="true">
+		<option value="" data-tokens="New Volunteer" default>New Volunteer  </option>
 
-          </div>
-          <div class="col-md-6">
-            <h2>Volunteer Information</h2>
-            <label>First Name:</label>
-            <input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required>
-            <br/>
-            <label>Last Name:</label>
-            <input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required>
-          </div>
-        </div>
-        <div class="row p-4 text-center">
-          <div class="col-md-6">
-            <label><h2>Editor</h2></label>
-            <input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
-            <button class="btn btn-light" id="upload_changes">Upload Changes</button>
-            <textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
-            {{ ckeditor.config(name='ckeditor', height=500) }}
-            <hr>
-            <h2>Sources</h2>
-            <textarea name="sources" id="sources">{{ data.sources }}</textarea>
-            {{ ckeditor.config(name='sources', height=200) }}
-            <hr>
-            <h2>Tags</h2>
-            <div class="input-group mb-2">
-              <input type="hidden" name="tags" id="tags"></input>
-              <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field">
-              <datalist id="tag_list">
-                {% for v in tags %}
-                <option value="{{ v }}">{{ v }}</option>
-                {% endfor %}
-              </datalist>
-              <div class="input-group-append">
-                <button class="btn bg-light add-tag" type="button">Add</button>
+		{% for k, v in master_list.items()|sort(attribute='1.volunteer_lname') %}
+		<option value="{{ k }}" {% if key==k %} selected {% endif %}>
+		  {{ v.volunteer_fname ~ " " ~ v.volunteer_lname ~ " --- " ~ v.student_fname ~ " " ~ v.student_lname ~ " - "  ~ v.class }}
+		  <span class="status"> [{{ v.status }}] </span>
+		</option>
+		{% endfor %}
+              </select>
+              {% if key %}
+              <input id="delete" name="delete" value="Delete Volunteer" type="submit"/>
+              {% endif %}
+            </form>
+	  </div>
+	</div>
+	<div class="row p-4">
+	  <form id="main_form" method="POST" action="" class="container-fluid" enctype=multipart/form-data>
+            <input type="hidden" name="key" value="{{key}}"/>
+            <div class="row p-4 text-center">
+              <div class="col-md-6">
+		<h2>Student Information</h2>
+		<label>First Name:</label>
+		<input class="form_data" type="text" name="student_fname" value="{{ data.student_fname }}" required>
+		<br/>
+		<label>Last Name:</label>
+		<input class="form_data" type="text" name="student_lname" value="{{ data.student_lname }}" required>
+		<br/>
+		<label>&nbsp;&nbsp;&nbsp;&nbsp;Class of:</label>
+		<input type="number" name="class" value="{{ data.class }}" required>
+
+              </div>
+              <div class="col-md-6">
+		<h2>Volunteer Information</h2>
+		<label>First Name:</label>
+		<input class="form_data" type="text" name="volunteer_fname" value="{{ data.volunteer_fname }}" required>
+		<br/>
+		<label>Last Name:</label>
+		<input class="form_data" type="text" name="volunteer_lname" value="{{ data.volunteer_lname }}" required>
               </div>
             </div>
-            <div class="d-flex flex-wrap tag-box">
-              {% for v in data.tags %}
-              <h5>
-                <span class="badge badge-primary align-middle mx-2">
-                  <span class="tag_text">{{ v }}</span>
-                  <button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </span>
-              </h5>
-              {% endfor %}
-            </div>
-          </div>
-          <div class="col-md-6">
-            <h2>Image Upload</h2>
-            <div class="row img_row">
-              <div id="volunteer_images" class="bg-light rounded col-md-6">
-                <h3>Images of Volunteer</h3>
-                <hr>
-                <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
-                <hr>
-                <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
-                <ul class="list-group list-group-flush">
-                  {% for v in data.volunteer_images %}
-                  <li class="list-group-item px-0 saved_image">
-                    <img class="thumbnail" src="{{ v.src }}">
-                    <div class="img_modifier">
-                      <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
-                      <button type="button" class="remove_image">Remove Image</button>
-                    </div>
-                  </li>
-                  {% endfor %}
-                </ul>
+            <div class="row p-4 text-center">
+              <div class="col-md-6">
+		<label><h2>Editor</h2></label>
+		<input class="btn btn-light" type=submit name="submit_type" value="Save Document"/>
+		<button class="btn btn-light" id="upload_changes">Upload Changes</button>
+		<textarea name="ckeditor" id="ckeditor">{{ data.data }}</textarea>
+		{{ ckeditor.config(name='ckeditor', height=500) }}
+		<hr>
+		<h2>Sources</h2>
+		<textarea name="sources" id="sources">{{ data.sources }}</textarea>
+		{{ ckeditor.config(name='sources', height=200) }}
+		<hr>
+		<h2>Tags</h2>
+		<div class="input-group mb-2">
+		  <input type="hidden" name="tags" id="tags"></input>
+		  <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field">
+		  <datalist id="tag_list">
+                    {% for tag in tags %}
+                    <option value="{{ v }}">{{ tag }}</option>
+                    {% endfor %}
+		  </datalist>
+		  <div class="input-group-append">
+                    <button class="btn bg-light add-tag" type="button">Add</button>
+		  </div>
+		</div>
+		<div class="d-flex flex-wrap tag-box">
+		  {% for v in data.tags %}
+		  <h5>
+                    <span class="badge badge-primary align-middle mx-2">
+                      <span class="tag_text">{{ v }}</span>
+                      <button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss">
+			<span aria-hidden="true">&times;</span>
+                      </button>
+                    </span>
+		  </h5>
+		  {% endfor %}
+		</div>
               </div>
-              <div id="school_crests" class="bg-light rounded col-md-6">
-                <h3>School Crests</h3>
-                <hr>
-                <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
-                <hr>
-                <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
-                <ul class="list-group list-group-flush">
-                  {% for v in data.school_crests %}
-                  <li class="list-group-item px-0 saved_image">
-                    <img class="thumbnail" src="{{ v.src }}">
-                    <div class="img_modifier">
-                      <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
-                      <button type="button" class="remove_image">Remove Image</button>
-                    </div>
-                  </li>
-                  {% endfor %}
-                </ul>
+              <div class="col-md-6">
+		<h2>Image Upload</h2>
+		<div class="row img_row">
+		  <div id="volunteer_images" class="bg-light rounded col-md-6">
+                    <h3>Images of Volunteer</h3>
+                    <hr>
+                    <input class="img_uploader" type="file" name="volunteer_images" id="volunteer_image_upload"  multiple>
+                    <hr>
+                    <input type="hidden" name="volunteer_images_hidden" id="volunteer_images_hidden">
+                    <ul class="list-group list-group-flush">
+                      {% for v in data.volunteer_images %}
+                      <li class="list-group-item px-0 saved_image">
+			<img class="thumbnail" src="{{ v.src }}">
+			<div class="img_modifier">
+			  <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+			  <button type="button" class="remove_image">Remove Image</button>
+			</div>
+                      </li>
+                      {% endfor %}
+                    </ul>
+		  </div>
+		  <div id="school_crests" class="bg-light rounded col-md-6">
+                    <h3>School Crests</h3>
+                    <hr>
+                    <input class="img_uploader" type="file" name="school_crests" id="school_crest_upload"  multiple>
+                    <hr>
+                    <input type="hidden" name="school_crests_hidden" id="school_crests_hidden">
+                    <ul class="list-group list-group-flush">
+                      {% for v in data.school_crests %}
+                      <li class="list-group-item px-0 saved_image">
+			<img class="thumbnail" src="{{ v.src }}">
+			<div class="img_modifier">
+			  <input type="text" class="caption" placeholder="Caption Text" value="{{ v.caption }}">
+			  <button type="button" class="remove_image">Remove Image</button>
+			</div>
+                      </li>
+                      {% endfor %}
+                    </ul>
+		  </div>
+		</div>
               </div>
             </div>
-          </div>
-        </div>
-      </form>
+	  </form>
+	</div>
+      </div>
+      <div id="nav-tag" class="tab-pane fade col-12 mx-auto p-4">
+	<div class="row p-4">
+	  <form id="tag_select" class="form-group w-100" method="GET">
+            <label for="tags_select"><h2>Select Tag: </h2></label>
+            <select id="tags_select" name="key" onchange="this.form.submit()" class="dropdown-menu selectpicker w-50" data-live-search="true">
+	      <option value="" data-tokens="New Tag" default>New Tag</option>
+	      {% for k, v in tags.items() %}
+	      <option value="{{ k }}">
+		{{ k }}
+	      </option>
+	      {% endfor %}
+            </select>
+            <input id="delete_tag" name="delete" value="Delete Tag" type="submit"/>
+          </form>
+	  <form id="tag_form" method="POST" action="/tag" class="container-fluid w-100">
+	  </form>
+	</div>
+      </div>
     </div>
   </div>
 </div>
