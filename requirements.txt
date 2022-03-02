@@ -32,7 +32,7 @@ PyHamcrest==1.10.1
 pyOpenSSL==20.0.1
 queuelib==1.5.0
 requests==2.24.0
-Scrapy==1.8.0
+Scrapy==1.8.2
 service-identity==18.1.0
 six==1.15.0
 Twisted==20.3.0
