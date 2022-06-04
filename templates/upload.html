@@ -68,11 +68,11 @@
   .tag-box h5{
       display: inline-block;
   }
-  #tags_select: {
-  
-  }
   #tag_select .select2 {
       width: 50% !important;
+  }
+  .suggested_tag_text:hover{
+      cursor:pointer;
   }
 </style>
 
@@ -261,6 +261,15 @@
           $(this).val('');
       });
   });
+  /* Given the tag text, add it to the bar*/
+  function add_tag(text){
+      $tag = $('<span class="badge badge-primary align-middle mx-2"></span>').append(
+          $('<span class="tag_text"></span>').text(text));
+      $dismiss_button = $('<button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss"><span aria-hidden="true">&times;</span></button>');
+      $tag.append($dismiss_button);
+      $tag = $('<h5></h5>').append($tag);
+      $('.tag-box').append($tag);
+  }
   /* Handles adding new tags. */
   $(document).on("click", ".add-tag", function(event){
       var exists = false;
@@ -270,16 +279,16 @@
       });
       if(exists)
           return;
-      $tag = $('<span class="badge badge-primary align-middle mx-2"></span>').append(
-          $('<span class="tag_text"></span>').text($('#tag_field').val()));
-      $dismiss_button = $('<button type="button" class="close align-middle remove_tag mx-2" aria-label="Dismiss"><span aria-hidden="true">&times;</span></button>');
-      $tag.append($dismiss_button);
-      $tag = $('<h5></h5>').append($tag);
-      $('.tag-box').append($tag);
+      add_tag($('#tag_field').val());
   });
   /* Handles removing tags. */
   $(document).on("click", ".remove_tag", function(event){
       $(this).closest('h5').remove();
+  });
+  /* Handles adding suggested_tags */
+  $(document).on("click", ".suggested_tag_text", function(event){
+      add_tag(event.target.innerText);
+      $(event.target).parent().remove();
   });
   $(document).on("submit", "#tag_select", function(event){
       alert(123);
@@ -360,10 +369,10 @@
 		<h2>Tags</h2>
 		<div class="input-group mb-2">
 		  <input type="hidden" name="tags" id="tags"></input>
-		  <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field">
+		  <input list="tag_list" value="" class="col-12 custom-select" name="tag" id="tag_field" autocomplete="off">
 		  <datalist id="tag_list">
                     {% for tag in tags %}
-                    <option value="{{ v }}">{{ tag }}</option>
+                    <option value="{{ tag }}">{{ tag }}</option>
                     {% endfor %}
 		  </datalist>
 		  <div class="input-group-append">
@@ -382,6 +391,17 @@
 		  </h5>
 		  {% endfor %}
 		</div>
+		<h3>Suggested Tags (click to add)</h3>
+		<div class="d-flex flex-wrap suggested-tag-box">
+		  {% for v in suggested_tags %}
+		  <h5>
+                    <span class="badge badge-success align-middle mx-2">
+                      <span class="suggested_tag_text">{{ v }}</span>
+                    </span>
+		  </h5>
+		  {% endfor %}
+		</div>
+		
               </div>
               <div class="col-md-6">
 		<h2>Image Upload</h2>

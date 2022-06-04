@@ -3,7 +3,8 @@ Handles the main editor for managing site content.
 """
 from flask import render_template
 from . import *
-
+import pandas as pd
+import re
 
 STATIC_DATA = {}
 
@@ -146,6 +147,7 @@ def upload_changes():
 
 @routes.route('/upload.html', methods=['GET', 'POST'])
 def upload():
+    """ Handles creating and updating biographies. """
     master_data = get_data_from_file(MASTER_FILE)
     tags = set([tag for key in master_data for tag in master_data[key]['tags']])
     write_data_to_file("archive/data/tags.json",
@@ -197,9 +199,13 @@ def upload():
             "sources": "",
             "volunteer_images": "",
             "school_crests": "",
-            "tags": ""}
+            "tags": "",
+            "suggested_tags": ""}
+        suggested_tags = []
         if request.args.get('key'):
             data = get_data_from_file(get_data_filename(request.args.get('key')))
-        return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'), tags=tags)
+            suggested_tags = [tag for tag in tags if sum([t.lower() in data['data'].lower() for t in tag.split(" ")]) > (len(tag.split(" ")) * .75)]
+            suggested_tags = sorted(list(set(suggested_tags) - set(data['tags'])))
+        return render_template("upload.html", data=data, master_list=master_data, key=request.args.get('key'), tags=tags, suggested_tags = suggested_tags)
 
 
