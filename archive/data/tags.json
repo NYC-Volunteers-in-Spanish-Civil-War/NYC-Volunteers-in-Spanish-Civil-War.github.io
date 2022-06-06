@@ -1,10 +1,4 @@
 {
-    " United Office and Professional Workers of America ": {
-        "description": "",
-        "locations": [
-            "8f8ed783a248226ca9b08ecb124a6688"
-        ]
-    },
     "15th Brigade": {
         "description": "",
         "locations": [
@@ -1744,6 +1738,12 @@
         "description": "",
         "locations": [
             "49dd784cb21b0a8514e76387176fdc19"
+        ]
+    },
+    "United Office and Professional Workers of America": {
+        "description": "",
+        "locations": [
+            "8f8ed783a248226ca9b08ecb124a6688"
         ]
     },
     "Valencia Office": {
