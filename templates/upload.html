@@ -462,6 +462,18 @@
             </select>
             <input id="delete_tag" name="delete" value="Delete Tag" type="submit"/>
           </form>
+	  {% for k, v in tags.items() %}
+	  <div class="container">
+	    <h3>{{ k }}</h3>
+	    {% for vol_key in v.locations %}
+	    <a href="/upload.html?key={{ vol_key }}">
+	      {{ master_list[vol_key].volunteer_fname ~ ' ' ~  master_list[vol_key].volunteer_lname }}
+	    </a>
+	    <br/>
+	    {% endfor %}
+	  </div>
+	  <br/>
+	  {% endfor %}
 	  <form id="tag_form" method="POST" action="/tag" class="container-fluid w-100">
 	  </form>
 	</div>
