@@ -82,7 +82,7 @@
     	      var me = this;
     	      me.lunr_index = $.getData("volunteer_data");
     	      var expiry = $.getData("volunteer_data_expiry");
-    	      if(!me.lunr_index || (expiry && expiry < (new Data()).getTime())){
+    	      if(!me.lunr_index || (expiry && expiry < (new Date()).getTime())){
     		  me.lunr_index = lunr(function () {
     		      this.ref('key');
     		      this.b(0);
