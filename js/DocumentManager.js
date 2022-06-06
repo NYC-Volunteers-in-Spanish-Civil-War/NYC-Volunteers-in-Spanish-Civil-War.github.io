@@ -23,7 +23,10 @@ var DocumentManager = {
     },
     // Caches data in local storage if not cached already, local wrapper for utility
     cacheData: function(name){
-	$.cacheFile('/documents/' + name + '.json');
+	name = '/documents/' + name + '.json';
+	var expiry = localStorage.getItem(name + "_expiry");
+	if(expiry && expiry < (new Date()).getTime())
+	    $.cacheFile(name);
     },
     // Gets the data for an item
     getData: function(name){
