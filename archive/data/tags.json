@@ -1,5 +1,5 @@
 {
-    " United Office and Professional Workers of America": {
+    " United Office and Professional Workers of America ": {
         "description": "",
         "locations": [
             "8f8ed783a248226ca9b08ecb124a6688"
@@ -88,12 +88,7 @@
     "American Student Union": {
         "description": "",
         "locations": [
-            "09a6a50b2724537df5fd377e920ebdbb"
-        ]
-    },
-    "American Students Union": {
-        "description": "",
-        "locations": [
+            "09a6a50b2724537df5fd377e920ebdbb",
             "441a75c1b7d8501f9d43307ef957271e"
         ]
     },
@@ -200,6 +195,7 @@
             "09a6a50b2724537df5fd377e920ebdbb",
             "23e203c7430cfa16f5902ad9376a1cc5",
             "3a7a85e216b5706578362b508580cb9a",
+            "6e0d57c54e800b59a30881662da6d82f",
             "73691d377c893a86c4cd79b082efe133",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
             "82a594394f3b2c47b7820ae8b1c24fab",
@@ -208,13 +204,6 @@
             "d6b35f3a5e6232105985f8dd64b27887",
             "da53947d372d248beea95e2c3ba708e9",
             "ef503cebd9999e61b33614335df81f3b"
-        ]
-    },
-    "Battle for Teruel": {
-        "description": "",
-        "locations": [
-            "039fb47acf138bec807bbff22416fbcb",
-            "6e0d57c54e800b59a30881662da6d82f"
         ]
     },
     "Battle of Belchite": {
@@ -305,12 +294,6 @@
             "5b3ebd1b4e390987ac1b3e2079fbc190"
         ]
     },
-    "Brunete": {
-        "description": "",
-        "locations": [
-            "675656ff7b4a23077abc2f3c105d717d"
-        ]
-    },
     "Brunete Offensive": {
         "description": "",
         "locations": [
@@ -320,6 +303,7 @@
             "26636cbb67f12cfc7ab1ebb845be8245",
             "3347656870a4516afe3c92c4530ebe8f",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "675656ff7b4a23077abc2f3c105d717d",
             "7044014ee13679c20e85b311c6ae22e3",
             "7213313bbc52d254105dc6200acf13fe",
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
@@ -397,26 +381,19 @@
             "8e11bc17514e1c80d9acc7aeae8b10c1"
         ]
     },
-    "City College CUNY": {
+    "City College of New York": {
         "description": "",
         "locations": [
             "09a6a50b2724537df5fd377e920ebdbb",
             "09bad55d08c1a95450da1b7f96e11034",
             "199d645d09f5dcebe3cc6c5d8a0da384",
-            "6e0d57c54e800b59a30881662da6d82f",
-            "74f9a93e45b9b3939bdb187e8032acb2",
-            "a715ee6b2bc8e833665fda963cd14bd1",
-            "d0f2c6f33a97b6d1fcace6256e387f66"
-        ]
-    },
-    "City College of New York": {
-        "description": "",
-        "locations": [
             "2ac5cd98b64f9ef6c680050b717a497b",
             "34cd2bc992b0b1d260a68ed46e610367",
             "6e0d57c54e800b59a30881662da6d82f",
+            "74f9a93e45b9b3939bdb187e8032acb2",
             "a715ee6b2bc8e833665fda963cd14bd1",
             "bd93f94afb5eff20ca167d63038837a5",
+            "d0f2c6f33a97b6d1fcace6256e387f66",
             "f67547521f4673ac6191dd1a6be27753"
         ]
     },
@@ -426,22 +403,17 @@
             "6e0d57c54e800b59a30881662da6d82f"
         ]
     },
-    "Commisar": {
-        "description": "",
-        "locations": [
-            "441a75c1b7d8501f9d43307ef957271e",
-            "737e36e2ae5c73a7d3a4e5e5baeff73d",
-            "a24f5b482093279ee4f5c4a1e0f96de6",
-            "da86e773850e61e25e1badfe214b41d5",
-            "e24a2d9be45f3b99359ed779154348d2",
-            "ecc734dfd29ff2ba8fa387de5ca038d1"
-        ]
-    },
     "Commissar": {
         "description": "",
         "locations": [
             "1d02ca152f23732e40d88ff8db6fff28",
-            "b2b3547c265099b729d16c657f6173e5"
+            "441a75c1b7d8501f9d43307ef957271e",
+            "737e36e2ae5c73a7d3a4e5e5baeff73d",
+            "a24f5b482093279ee4f5c4a1e0f96de6",
+            "b2b3547c265099b729d16c657f6173e5",
+            "da86e773850e61e25e1badfe214b41d5",
+            "e24a2d9be45f3b99359ed779154348d2",
+            "ecc734dfd29ff2ba8fa387de5ca038d1"
         ]
     },
     "Communist National Student League": {
@@ -590,19 +562,6 @@
             "3e5dbf5ceb2b8215548ce0bdc84ac3f9"
         ]
     },
-    "Estremadura": {
-        "description": "",
-        "locations": [
-            "675656ff7b4a23077abc2f3c105d717d"
-        ]
-    },
-    "Estremadura Front": {
-        "description": "",
-        "locations": [
-            "a715ee6b2bc8e833665fda963cd14bd1",
-            "e5eca71745a09e3d302fdeea06e64e07"
-        ]
-    },
     "Executed": {
         "description": "",
         "locations": [
@@ -614,20 +573,22 @@
         "description": "",
         "locations": [
             "49dd784cb21b0a8514e76387176fdc19",
-            "d3ecd1935fe91c8812059bc381055233"
-        ]
-    },
-    "FAECT": {
-        "description": "",
-        "locations": [
-            "09a6a50b2724537df5fd377e920ebdbb",
-            "da53947d372d248beea95e2c3ba708e9"
+            "a715ee6b2bc8e833665fda963cd14bd1",
+            "d3ecd1935fe91c8812059bc381055233",
+            "e5eca71745a09e3d302fdeea06e64e07"
         ]
     },
     "Farners de la Selva Hospital": {
         "description": "",
         "locations": [
             "d0f1ee1d36ae5bb3cf3dde5f85e93715"
+        ]
+    },
+    "Federation of Architects, Engineers, Chemists, and Technicians (FAECT)": {
+        "description": "",
+        "locations": [
+            "09a6a50b2724537df5fd377e920ebdbb",
+            "da53947d372d248beea95e2c3ba708e9"
         ]
     },
     "Filmmaker": {
@@ -694,12 +655,6 @@
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
             "82a594394f3b2c47b7820ae8b1c24fab",
             "8e11bc17514e1c80d9acc7aeae8b10c1"
-        ]
-    },
-    "Garibaldi Battalion": {
-        "description": "",
-        "locations": [
-            "675656ff7b4a23077abc2f3c105d717d"
         ]
     },
     "Garibaldi Brigade": {
@@ -832,7 +787,8 @@
     "International Red Relief (SRI)": {
         "description": "",
         "locations": [
-            "5b3ebd1b4e390987ac1b3e2079fbc190"
+            "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "d3ecd1935fe91c8812059bc381055233"
         ]
     },
     "International Struggle Marxist-Leninist ": {
@@ -1100,29 +1056,18 @@
             "69bd2382037ab10dac79aec3e5389e36"
         ]
     },
-    "MWIU": {
-        "description": "",
-        "locations": [
-            "e24a2d9be45f3b99359ed779154348d2"
-        ]
-    },
     "Mackenzie-Papineau Battalion": {
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "039fb47acf138bec807bbff22416fbcb",
-            "2ac5cd98b64f9ef6c680050b717a497b",
-            "34cd2bc992b0b1d260a68ed46e610367",
-            "69c4e6e2e80db9740269e04ec9bfa255",
-            "6e0d57c54e800b59a30881662da6d82f"
-        ]
-    },
-    "Mackenzie\u2013Papineau Battalion": {
-        "description": "",
-        "locations": [
             "0a527ce1a68dcb1d965998b3bf953ffb",
             "1f665d76db61fbf1c5f113f5f12a44a0",
+            "2ac5cd98b64f9ef6c680050b717a497b",
+            "34cd2bc992b0b1d260a68ed46e610367",
             "35e3744b0bb4128189be5a504860d9b1",
+            "69c4e6e2e80db9740269e04ec9bfa255",
+            "6e0d57c54e800b59a30881662da6d82f",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
             "86590f463147ca8e7466c1d812c7a02d",
             "876fcde9e23cdaabc0c6a10b9ef8ee19",
@@ -1135,6 +1080,12 @@
         "description": "",
         "locations": [
             "b2b3547c265099b729d16c657f6173e5"
+        ]
+    },
+    "Marine Workers Industrial Union (MWIU)": {
+        "description": "",
+        "locations": [
+            "e24a2d9be45f3b99359ed779154348d2"
         ]
     },
     "Marines": {
@@ -1181,17 +1132,22 @@
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "0281636670e5e7845168d07a8e15aca9",
+            "039fb47acf138bec807bbff22416fbcb",
             "05280fea0b6fa187b17b6f40243ffb28",
             "09a6a50b2724537df5fd377e920ebdbb",
             "09bad55d08c1a95450da1b7f96e11034",
             "199d645d09f5dcebe3cc6c5d8a0da384",
+            "1d02ca152f23732e40d88ff8db6fff28",
             "1d52f1ddc132170a0bafd15519dde615",
             "200f479fe94e535a5982dbd3b67ee010",
             "23e203c7430cfa16f5902ad9376a1cc5",
+            "34cd2bc992b0b1d260a68ed46e610367",
             "441a75c1b7d8501f9d43307ef957271e",
             "46718a31b4539d9387e8c1544eff5691",
             "4bbf3dada3709e2d6c1dae87d385eb7a",
             "531efda7b22e4a03c6ed102269cd1bd0",
+            "552f8efd22b2e0016fbd60588465223a",
+            "5b3ebd1b4e390987ac1b3e2079fbc190",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "7044014ee13679c20e85b311c6ae22e3",
             "727f538749c958bcf24983f9d6972e0c",
@@ -1201,9 +1157,11 @@
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
             "845694abc9709f8ef2ec49e938630357",
             "86590f463147ca8e7466c1d812c7a02d",
+            "8f8ed783a248226ca9b08ecb124a6688",
             "9d77627ba051cd8dea898b9c4d75016b",
             "a24f5b482093279ee4f5c4a1e0f96de6",
             "a2c9b80f66951befc7180b55c8d296d7",
+            "a715ee6b2bc8e833665fda963cd14bd1",
             "b2b3547c265099b729d16c657f6173e5",
             "bd93f94afb5eff20ca167d63038837a5",
             "c7f806596e2aa4984a4cc896fb6f315f",
@@ -1212,6 +1170,7 @@
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "d059b9f79fa6896db38a582d27936a91",
             "d0f1ee1d36ae5bb3cf3dde5f85e93715",
+            "d0f2c6f33a97b6d1fcace6256e387f66",
             "d33955d3225bf4b42c67964235d0daee",
             "d3ecd1935fe91c8812059bc381055233",
             "d6b35f3a5e6232105985f8dd64b27887",
@@ -1223,29 +1182,11 @@
             "fa5f046d2e214c5bdac97bff8d77d0cd"
         ]
     },
-    "Member of Communist Party": {
-        "description": "",
-        "locations": [
-            "039fb47acf138bec807bbff22416fbcb",
-            "1d02ca152f23732e40d88ff8db6fff28",
-            "34cd2bc992b0b1d260a68ed46e610367",
-            "552f8efd22b2e0016fbd60588465223a",
-            "5b3ebd1b4e390987ac1b3e2079fbc190",
-            "8f8ed783a248226ca9b08ecb124a6688",
-            "a715ee6b2bc8e833665fda963cd14bd1"
-        ]
-    },
     "Member of Socialist Party": {
         "description": "",
         "locations": [
             "277617d2a0c27528260c880612027fac",
             "973a9abcc7a54f1d197f7127316c2f0f"
-        ]
-    },
-    "Member of the Communist Party": {
-        "description": "",
-        "locations": [
-            "d0f2c6f33a97b6d1fcace6256e387f66"
         ]
     },
     "Men In Battle (1939)": {
@@ -1349,12 +1290,6 @@
         "description": "",
         "locations": [
             "b2b3547c265099b729d16c657f6173e5",
-            "d3ecd1935fe91c8812059bc381055233"
-        ]
-    },
-    "New York Workers\u2019 School": {
-        "description": "",
-        "locations": [
             "d3ecd1935fe91c8812059bc381055233"
         ]
     },
@@ -1503,13 +1438,8 @@
     "Romanian": {
         "description": "",
         "locations": [
+            "2ac5cd98b64f9ef6c680050b717a497b",
             "cbb96fd0d8c2a3524bd1592b463355e2"
-        ]
-    },
-    "Romanian American": {
-        "description": "",
-        "locations": [
-            "2ac5cd98b64f9ef6c680050b717a497b"
         ]
     },
     "Romeral": {
@@ -1601,12 +1531,6 @@
         "description": "",
         "locations": [
             "a24f5b482093279ee4f5c4a1e0f96de6"
-        ]
-    },
-    "Socorro Rojo": {
-        "description": "",
-        "locations": [
-            "0231d7c9e39c0f2eb011b015f71f2aea"
         ]
     },
     "Soldado": {
@@ -1866,15 +1790,10 @@
             "e498f419ca9dd141f0fafca586f58127"
         ]
     },
-    "Villanueva de la Canada": {
-        "description": "",
-        "locations": [
-            "5b3ebd1b4e390987ac1b3e2079fbc190"
-        ]
-    },
     "Villanueva de la Ca\u00f1ada": {
         "description": "",
         "locations": [
+            "5b3ebd1b4e390987ac1b3e2079fbc190",
             "876fcde9e23cdaabc0c6a10b9ef8ee19"
         ]
     },
@@ -1894,6 +1813,7 @@
     "WPA": {
         "description": "",
         "locations": [
+            "26636cbb67f12cfc7ab1ebb845be8245",
             "552f8efd22b2e0016fbd60588465223a",
             "a715ee6b2bc8e833665fda963cd14bd1",
             "d3ecd1935fe91c8812059bc381055233"
@@ -1909,18 +1829,6 @@
         "description": "",
         "locations": [
             "d3ecd1935fe91c8812059bc381055233"
-        ]
-    },
-    "WW2 Veteran": {
-        "description": "",
-        "locations": [
-            "7213313bbc52d254105dc6200acf13fe"
-        ]
-    },
-    "WWI": {
-        "description": "",
-        "locations": [
-            "552f8efd22b2e0016fbd60588465223a"
         ]
     },
     "WWI Veteran": {
@@ -1948,6 +1856,7 @@
             "153c396217993fc14ac3e35bc6ac6458",
             "23e203c7430cfa16f5902ad9376a1cc5",
             "277617d2a0c27528260c880612027fac",
+            "2ac5cd98b64f9ef6c680050b717a497b",
             "3347656870a4516afe3c92c4530ebe8f",
             "3a7a85e216b5706578362b508580cb9a",
             "441a75c1b7d8501f9d43307ef957271e",
@@ -1976,12 +1885,6 @@
             "fa5f046d2e214c5bdac97bff8d77d0cd"
         ]
     },
-    "WWII veteran": {
-        "description": "",
-        "locations": [
-            "2ac5cd98b64f9ef6c680050b717a497b"
-        ]
-    },
     "Washington Battalion": {
         "description": "",
         "locations": [
@@ -2007,12 +1910,6 @@
             "09a6a50b2724537df5fd377e920ebdbb"
         ]
     },
-    "YCL": {
-        "description": "",
-        "locations": [
-            "69bd2382037ab10dac79aec3e5389e36"
-        ]
-    },
     "Young Communist League": {
         "description": "",
         "locations": [
@@ -2025,6 +1922,7 @@
             "34cd2bc992b0b1d260a68ed46e610367",
             "35e3744b0bb4128189be5a504860d9b1",
             "441a75c1b7d8501f9d43307ef957271e",
+            "5b3ebd1b4e390987ac1b3e2079fbc190",
             "69bd2382037ab10dac79aec3e5389e36",
             "7213313bbc52d254105dc6200acf13fe",
             "73691d377c893a86c4cd79b082efe133",
@@ -2042,12 +1940,6 @@
             "da53947d372d248beea95e2c3ba708e9",
             "da86e773850e61e25e1badfe214b41d5",
             "f8b2f46ff3a3d5a1c51b299b53cbfcba"
-        ]
-    },
-    "Young Communists League": {
-        "description": "",
-        "locations": [
-            "5b3ebd1b4e390987ac1b3e2079fbc190"
         ]
     },
     "Yugoslavian": {

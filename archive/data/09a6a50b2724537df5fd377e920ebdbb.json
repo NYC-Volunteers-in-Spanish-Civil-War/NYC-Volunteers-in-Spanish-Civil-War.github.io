@@ -15,7 +15,6 @@
     "student_fname": "Hannah",
     "student_lname": "Scheuer",
     "tags": [
-        "FAECT",
         "Young Communist League",
         "American Student Union",
         "Harlem Youth Club",
@@ -28,7 +27,8 @@
         "Member Of Communist Party",
         "Battle For Teruel",
         "Quinto",
-        "City College CUNY"
+        "City College of New York",
+        "Federation of Architects, Engineers, Chemists, and Technicians (FAECT)"
     ],
     "volunteer_fname": "Leo",
     "volunteer_images": [
