@@ -12,8 +12,7 @@ def misc_gen():
 @routes.route('/')
 @routes.route('/index.html')
 @routes.route('/context.html')
-@routes.route('/archive/')
-@routes.route('/archive/index.html')
+@routes.route('/student_upload.html')
 @routes.route('/sources.html')
 @routes.route('/map.html')
 @routes.route('/contact.html')
@@ -21,6 +20,13 @@ def misc():
     print((request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))) 
     return render_template(request.path[1::] + ("index.html" if request.path[-1] == "/" else ""))
 
+@routes.route('/archive/')
+@routes.route('/archive/index.html')
+def archive_page():
+    path = request.path[1::] + ("index.html" if request.path[-1] == "/" else "")
+    master_data = get_data_from_file(MASTER_FILE)
+    tags = set([tag for key in master_data for tag in master_data[key]['tags']])
+    return render_template(path, tags=tags, master_list=master_data)
 
 @routes.route('/js/<path:path>')
 def send_js(path):

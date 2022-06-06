@@ -40,6 +40,9 @@
       display: none;
   }
 </style>
+
+<link href="/js/jquery-flexdatalist-2.3.0/jquery.flexdatalist.min.css" rel="stylesheet" type="text/css">
+<script src="/js/jquery-flexdatalist-2.3.0/jquery.flexdatalist.min.js"></script>
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 <script>
   $(document).ready(function(e){
@@ -67,7 +70,6 @@
 		      for(var key in data){
 			  var m = data[key];
 			  data[key]['key'] = key;
-			  console.log(data[key]);
 			  this.add(data[key]);
 		      }
 		  });
@@ -75,6 +77,10 @@
 	      }else{
 		  me.lunr_index = lunr.Index.load(me.lunr_index)
 	      }
+	      $('.query').flexdatalist({
+		  minLength: 1
+	      });
+	      $('.flexdatalist-multiple').addClass('form-control');
 	      $(document).on("submit", ".query-form", function(event) {
 		  event.preventDefault();
 		  var query = $(this).find('.query').val();
@@ -89,8 +95,7 @@
 		  me.showLetters();
 		  return;
 	      }
-	      var results = this.lunr_index.search("*" + query);
-	      console.log(results);
+	      var results = this.lunr_index.search(query + " ");
 	      $('.searchable').toggleClass('displayed', false);
 	      results.forEach(function(res){
 		  $('#' + res['ref']).toggleClass('displayed', true);
@@ -250,12 +255,32 @@
     <div class="container">
       <h4>Search Volunteer Database</h4>
       <form class="query-form input-group mb-3">
-	<input class="query form-control" type="text" placeholder="Query" aria-label="Search Volunteer Database">
+	<input type='text'
+	       placeholder='Query    '
+	       class='query'
+	       data-min-length='1'
+	       multiple='multiple'
+	       list='tag_list'
+	       aria-label="Search Volunteer Database"
+	       data-toggle-selected='true'
+	       data-value-property='value'
+	       data-values-separator='|'
+	       data-search-contain='true'
+	       >
+	<datalist id="tag_list">
+          {% for tag in tags|sort %}
+          <option value="tags:{{ tag | replace(' ', '\ ') }}">{{ tag }}</option>
+          {% endfor %}
+	  {% for k, v in master_list.items()|sort(attribute='1.volunteer_lname') %}
+	  <option value="{{ v.volunteer_fname ~ " " ~ v.volunteer_lname }}">
+	    {{ v.volunteer_fname ~ " " ~ v.volunteer_lname }}
+	  </option>
+	  {% endfor %}
+	</datalist>
 	<div class="input-group-append">
 	  <button class="btn btn-outline-secondary bg-primary text-white" type="submit">Search</button>
 	</div>
       </form>
-
       <h4 id="nav_h4">Jump to Surname</h4>
       <p></p>
     </div>
