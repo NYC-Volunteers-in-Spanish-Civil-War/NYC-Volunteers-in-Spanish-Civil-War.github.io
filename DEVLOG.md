@@ -7,12 +7,9 @@
 - [ ] Add printing option to volunteer biographies
 - [ ] Look into OCR libraries for COMINTERN archives
 - [ ] Improve document/tag pages UI, add scrolling to necessary sections.
-- [ ] Update tag searching capabilities in volunteer page.
-- [ ] Add tag suggestions in editor based off matching existing tags against doc text. 
 - [ ] Add cite option to document/tag pages
 - [ ] Add tag manager and descriptions of each tag, add way to view descriptions
 - [ ] Move to using published instead of class of
-- [ ] Update search function on volunteer page to search jsonfified nested children so a single world will set it off instead of the phrase for tags
 - [ ] Detect if password valid before commiting in upload modal
 - [ ] Update volunteer searcher to navigate to a new page with the search string passed as a get request, like documents
 - [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
@@ -22,6 +19,15 @@
 - [ ] Accesibility review and updates
 
 # DEVLOG
+
+## June 5, 2022
+- Optimized cache. Cache now has 4 hour expiry time.
+- Removed google analytics from site when running locally.
+- Added tag searching functionality to archive page. 
+- Added rudimentary tag management system to editor page.
+
+## June 4, 2022
+- Added suggested tags feature to editor page, tags similar to biography text are automatically suggested.
 
 ## July 13, 2021
 - Fixed bug caused by porting, Editor option is no longer saved statically.
