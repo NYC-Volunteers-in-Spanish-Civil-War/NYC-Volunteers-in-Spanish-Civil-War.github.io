@@ -213,6 +213,7 @@
     "Battle of Caspe": {
         "description": "",
         "locations": [
+            "036d1981a23e4206490c65be80532f09",
             "675656ff7b4a23077abc2f3c105d717d"
         ]
     },
@@ -245,6 +246,7 @@
         "description": "",
         "locations": [
             "0281636670e5e7845168d07a8e15aca9",
+            "036d1981a23e4206490c65be80532f09",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "71d863a6828536e56488a98bf9b077fc",
@@ -322,6 +324,7 @@
     "Canadian": {
         "description": "",
         "locations": [
+            "036d1981a23e4206490c65be80532f09",
             "876fcde9e23cdaabc0c6a10b9ef8ee19",
             "c7f806596e2aa4984a4cc896fb6f315f"
         ]
@@ -858,6 +861,7 @@
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "0281636670e5e7845168d07a8e15aca9",
+            "036d1981a23e4206490c65be80532f09",
             "039fb47acf138bec807bbff22416fbcb",
             "05280fea0b6fa187b17b6f40243ffb28",
             "09a6a50b2724537df5fd377e920ebdbb",
@@ -1054,6 +1058,7 @@
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
+            "036d1981a23e4206490c65be80532f09",
             "039fb47acf138bec807bbff22416fbcb",
             "0a527ce1a68dcb1d965998b3bf953ffb",
             "1f665d76db61fbf1c5f113f5f12a44a0",
@@ -1126,6 +1131,7 @@
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "0281636670e5e7845168d07a8e15aca9",
+            "036d1981a23e4206490c65be80532f09",
             "039fb47acf138bec807bbff22416fbcb",
             "05280fea0b6fa187b17b6f40243ffb28",
             "09a6a50b2724537df5fd377e920ebdbb",
