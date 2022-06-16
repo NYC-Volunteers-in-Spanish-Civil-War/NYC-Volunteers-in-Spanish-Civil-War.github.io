@@ -221,6 +221,7 @@
         "description": "",
         "locations": [
             "039fb47acf138bec807bbff22416fbcb",
+            "27b4d23079044f305d82ba0e51279d9f",
             "34cd2bc992b0b1d260a68ed46e610367"
         ]
     },
@@ -707,6 +708,12 @@
             "a2c9b80f66951befc7180b55c8d296d7"
         ]
     },
+    "Hospital Workers Union": {
+        "description": "",
+        "locations": [
+            "27b4d23079044f305d82ba0e51279d9f"
+        ]
+    },
     "Hospital de S'agar\u00f3": {
         "description": "",
         "locations": [
@@ -1141,6 +1148,7 @@
             "1d52f1ddc132170a0bafd15519dde615",
             "200f479fe94e535a5982dbd3b67ee010",
             "23e203c7430cfa16f5902ad9376a1cc5",
+            "27b4d23079044f305d82ba0e51279d9f",
             "34cd2bc992b0b1d260a68ed46e610367",
             "441a75c1b7d8501f9d43307ef957271e",
             "46718a31b4539d9387e8c1544eff5691",
@@ -1726,6 +1734,7 @@
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "199d645d09f5dcebe3cc6c5d8a0da384",
             "200f479fe94e535a5982dbd3b67ee010",
+            "27b4d23079044f305d82ba0e51279d9f",
             "3a7a85e216b5706578362b508580cb9a",
             "552f8efd22b2e0016fbd60588465223a",
             "71d863a6828536e56488a98bf9b077fc",
