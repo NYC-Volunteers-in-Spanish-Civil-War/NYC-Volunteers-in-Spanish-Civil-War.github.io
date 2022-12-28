@@ -36,7 +36,7 @@
   .searchable:not(.displayed){
       display: none;
   }
-  .letter:not(.displayed){
+  .letter:not(.displayed) *{
       display: none;
   }
 </style>
@@ -136,9 +136,11 @@
 	      var $container = $('<div id="'+key+'" class="searchable displayed container p-0">');
 	      var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
 	      if($('#' + letter).length == 0){
-		  $('#bios').append($('<hr/>'));
-		  $('#bios').append($('<h4 class="letter displayed" id="' + letter + '"></h4>').text(letter.toUpperCase()));
-		  $('#bios').append($('<hr/>'));
+		  $('#bios').append(
+		      $('<span class="letter displayed" id="' + letter + '">')
+			  .append($('<hr/>'))
+			  .append($('<h4/>').text(letter.toUpperCase()))
+			  .append($('<hr/>')));
 	      }
 	      var volunteer_name = data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'];
 	      var $bio_link = $('<h5 class="name"></h5>')
