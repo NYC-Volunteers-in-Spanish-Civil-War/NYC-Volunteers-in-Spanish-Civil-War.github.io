@@ -12,13 +12,16 @@
 - [ ] Move to using published instead of class of
 - [ ] Detect if password valid before commiting in upload modal
 - [ ] Update volunteer searcher to navigate to a new page with the search string passed as a get request, like documents
-- [ ] Change run.sh to auto-update and save pid to variable and have program turn itself off after 30 minutes of inactivity. 
 - [ ] Leftpad document urls with 0s
-- [ ] Add biography count display
-- [ ] Convert sources to a bibtext or similar jsony format and integrate a plguin to work with them
+- [ ] Convert sources to a bibtext or similar jsony format and integrate a plugin to work with them
 - [ ] Accesibility review and updates
 
 # DEVLOG
+
+## December 27, 2022
+- Added dividers to archive page to mark letter sections
+- Renamed "archives" link to "biographies" (less confusion)
+- Added ability to search by tag on biographies page, click tag listed under name to search
 
 ## June 5, 2022
 - Optimized cache. Cache now has 4 hour expiry time.
