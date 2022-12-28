@@ -17,7 +17,7 @@ def volunteer_page_gen():
         update_static_data()
     for key in STATIC_DATA:
         yield "/archive/" + key + ".html"
-    yield "/archive/"
+    yield "/archive/index.html"
     yield "/sitemap.xml"
     CONF["debug"] = True
         
