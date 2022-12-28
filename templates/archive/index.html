@@ -83,7 +83,8 @@
 	      $('.flexdatalist-multiple').addClass('form-control');
 	      $(document).on("submit", ".query-form", function(event) {
 		  event.preventDefault();
-		  var query = $(this).find('.query').val();
+		  var query = $(this).find('.query').val().replace("|", " ");
+		  console.log(query);
 		  me.search(query);
 	      });
 	  },
@@ -154,7 +155,7 @@
 	      //Add the tags for the biography
 	      $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
 	      $.each(data[key]['tags'], function(index, tag){
-		  $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left	 mx-2 mb-2"></span>').text(tag));
+		  $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left	mx-2 mb-2 tag">').text(tag));
 	      });
 	      $container.append($bio_link);
 	      $container.append($tags);
