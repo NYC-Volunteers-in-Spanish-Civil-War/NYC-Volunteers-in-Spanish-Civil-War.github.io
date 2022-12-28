@@ -39,6 +39,10 @@
   .letter:not(.displayed) *{
       display: none;
   }
+  .tag:hover{
+      transform: scale(1.1);
+      cursor:pointer;
+  }
 </style>
 
 <link href="/js/jquery-flexdatalist-2.3.0/jquery.flexdatalist.min.css" rel="stylesheet" type="text/css">
@@ -103,6 +107,12 @@
 	      });
 	      me.showLetters();
 	  },
+	  // Called whenever a tag is clicked, searches for tag
+	  searchTag: function(tag){
+	      $('.query').flexdatalist('value', "tags:" + tag.replaceAll(" ", "\\ "));
+	      this.search($('.query').val());
+	  },
+
 	  // Shows the letters for displayed volunteers while hiding the unused ones
 	  showLetters: function($lett){
 	      $('.letter').toggleClass('displayed', true);
@@ -113,7 +123,6 @@
 		      $lett.toggleClass('displayed', false);
 	      }));
 	  }
-
       };
 
 
@@ -155,7 +164,9 @@
 	      //Add the tags for the biography
 	      $tags = $('<h5 class="m-0 mb-4">Tags: </h5>');
 	      $.each(data[key]['tags'], function(index, tag){
-		  $tags.append($('<span class="badge badge-secondary shadow text-wrap text-left	mx-2 mb-2 tag">').text(tag));
+		  var $tag = $('<span class="badge badge-secondary shadow text-wrap text-left	mx-2 mb-2 tag">').text(tag);
+		  $tag.on('click', function(e){VolunteerSearchManager.searchTag(tag)});
+		  $tags.append($tag);
 	      });
 	      $container.append($bio_link);
 	      $container.append($tags);
