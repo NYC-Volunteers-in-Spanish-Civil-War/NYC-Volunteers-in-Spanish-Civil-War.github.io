@@ -136,7 +136,9 @@
 	      var $container = $('<div id="'+key+'" class="searchable displayed container p-0">');
 	      var letter = data[key]['volunteer_lname'].charAt(0).toLowerCase();
 	      if($('#' + letter).length == 0){
+		  $('#bios').append($('<hr/>'));
 		  $('#bios').append($('<h4 class="letter displayed" id="' + letter + '"></h4>').text(letter.toUpperCase()));
+		  $('#bios').append($('<hr/>'));
 	      }
 	      var volunteer_name = data[key]['volunteer_fname'] + " " + data[key]['volunteer_lname'];
 	      var $bio_link = $('<h5 class="name"></h5>')
@@ -232,23 +234,22 @@
   <div class="mb-4">
     <p class="lead" align="justify"></p>
     <p>
-      This project, begun in 2020 by Stuyvesant history teacher David Hanna and his students in
-      a Spanish Civil War elective course, is ongoing. An initial "scraping" of the Abraham
-      Lincoln Brigade's Archives' database by Theadora Williams found over 800 names
-      with New York City references in their biographical entries. Some were born and/or raised
-      in New York. Others had made the city their adopted hometown before they decided to go to
-      Spain. It will take years to fully research all of these names. The objective is that each
-      year the archive will grow as new groups of Stuyvesant students research more
-      volunteers. Ultimately, this information can create a memorial to all of the New Yorkers
-      (from the five boroughs) who served in Spain. We would also like to move forward with a
-      commemorative plaque in the premises honoring those volunteers who attended Stuyvesant
-      High School
+      This project, begun in 2020 by Stuyvesant history teacher David Hanna and his students in a
+      Spanish Civil War elective course, is ongoing. An initial "scraping" of the Abraham Lincoln
+      Brigade's Archives' database found over 800 names with references to New York City in their
+      biographical entries. Some were born and/or raised in New York. Others had made the city their
+      adopted hometown before they decided to go to Spain. It will take years to fully research all
+      of these volunteers. The objective is that each year the archive will grow as new groups of
+      Stuyvesant students research more volunteers. Ultimately, this information can create a
+      memorial to all of the New Yorkers (from the five boroughs) who served in Spain. We would also
+      like to move forward with a commemorative plaque in the premises honoring those volunteers who
+      attended Stuyvesant High School.
 
     </p>
-    <p>Special thanks goes to Mr Dyrland-Weaver (Stuyvesant Computer Science department),
-      designer Angel Ortmann-Lee, Profesor Sebastiaan Faber, Oberlin College and
-      the Abraham LIncoln Brigade Archives, Michael Koncewicz at NYU Special Collections Elmer
-      Holmes Bobst Library, and Theadora Williams.
+    <p>Special thanks goes to Mr Dyrland-Weaver (Stuyvesant Computer Science department), Angel
+      Ortmann-Lee (designer), Theadora Williams (lead developer), Professor Sebastiaan Faber
+      (Oberlin College and the Abraham Lincoln Brigade Archives), and Michael Koncewicz (NYU Special
+      Collections Elmer Holmes Bobst Library)
     </p>
     <p><b>For students uploading this year's biographies, please click <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4a5-PKAP86eOfx6sNl53l14DCZPceBCaoyfOSKq2I0zeM9g/viewform?usp=sf_link">here</a>. You will need to use your stuy.edu account to submit.</b>
     </p>
