@@ -145,6 +145,56 @@ def upload_changes():
             return ('', 404)
         return ('', 204)
 
+@routes.route('/test.html', methods=['GET', 'POST'])
+def bulk_bio_upload():
+    """ A function to bulk create volunteer biographies. """
+    master_data = get_data_from_file(MASTER_FILE)
+    df = pd.read_csv('Biography Upload Form2.csv')
+    cols = {'Your First Name (And Middle If You Want)':'student_fname',
+                              'Your Last Name':'student_lname',
+                              "Year You'll Graduate":'class',
+                              'Volunteer First Name (And Middle If Exists)':'volunteer_fname',
+                              'Volunteer Last Name':'volunteer_lname',
+                              'Biography':'data',
+                              'Sources (Chicago Style)':'sources',
+                              'Images of Volunteer':'volunteer_images',
+                              'Volunteer School Crests And Organization Logos':'school_crests',
+                              'Comma separated list of tags (see website for examples or create your own)':'tags'}
+    print(df.columns)
+    df = df.rename(columns = cols)
+    
+    print(list(cols.values()))
+    df = df[list(cols.values())]
+    data = df.to_dict('records')
+    for row in data:
+        for k in ['volunteer_lname', 'volunteer_fname']:
+            row[k] = row[k].strip()
+        for k in ['volunteer_images', 'school_crests']:
+            row[k] = row[k].split(";") if isinstance(row[k], str) else []
+            row[k] = [{'caption':i, 'src':""} for i in row[k]]
+        row['tags'] = list(set([i.strip() for i in row['tags'].split(',')]) - {''})
+        row['data'] = '<p>' + row['data'].replace('\n', '<br />') + '</p>'
+        print('\n\n\n', row['volunteer_lname'])
+        print(row['sources'])
+        row['sources'] = '<p>' + row['sources'].replace('\n', '<br />') + '</p>'
+        obj = re.findall('(\w+://.*?)\s?\.?\s?<br', row['sources'])
+        row['sources'] = re.sub(r'(\w+://.*?)(\s?\.?\s?(<br|$))', r'<a href="\g<1>">\g<1></a>\g<2>', row['sources'])
+        print(obj)
+        print(row['sources'])
+        print(row['tags'])
+
+    for row in data:
+        key = get_key_hash(row['volunteer_lname'] + "_" + row['volunteer_fname'])
+        data_file = get_data_filename(key)
+        write_data_to_file(data_file, row)
+        [row.pop(k) for k in ["volunteer_images", "school_crests"]]
+        update_status_and_checksum(key, row)
+        master_data[key] = row
+    write_data_to_file(MASTER_FILE, master_data)
+    # update_static_data()
+    # trigger_archive_build()
+    return (str(data[0]), 200)
+    
 @routes.route('/upload.html', methods=['GET', 'POST'])
 def upload():
     """ Handles creating and updating biographies. """

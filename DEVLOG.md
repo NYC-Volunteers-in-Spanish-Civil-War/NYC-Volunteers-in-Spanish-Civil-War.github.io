@@ -25,6 +25,7 @@
 - Removed google analytics from site when running locally.
 - Added tag searching functionality to archive page. 
 - Added rudimentary tag management system to editor page.
+- Added biography count to archive page
 
 ## June 4, 2022
 - Added suggested tags feature to editor page, tags similar to biography text are automatically suggested.
