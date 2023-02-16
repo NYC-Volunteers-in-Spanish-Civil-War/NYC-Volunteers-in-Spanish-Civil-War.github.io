@@ -39,6 +39,6 @@ Twisted==20.3.0
 typing==3.7.4.3
 urllib3==1.25.10
 w3lib==1.22.0
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 WTForms==2.3.1
 zope.interface==5.3.0
