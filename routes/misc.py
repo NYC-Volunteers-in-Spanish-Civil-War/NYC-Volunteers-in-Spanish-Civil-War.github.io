@@ -51,6 +51,7 @@ def site_map():
 def site_map():
     master_data = get_data_from_file(MASTER_FILE)
     documents = get_data_from_file('documents/documents.json')
+    documents = {key:documents[key] for key in documents if key.count("_") < 2}
     tags = get_data_from_file('documents/meta_tags.json')
     date = datetime.date.today()
     return render_template('sitemap.xml', master_data=master_data, documents=documents, tags=tags, date=date)
