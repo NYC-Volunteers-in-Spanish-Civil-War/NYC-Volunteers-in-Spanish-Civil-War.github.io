@@ -17,13 +17,12 @@
     <meta name="author" content="Theadora Williams">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {% if not debug %}<!-- Global site tag (gtag.js) - Google Analytics -->
+    {% if 1 %}<!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91850219-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-91850219-3');
     </script>
 {% endif %}
@@ -58,11 +57,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             {%- for href, caption in navbar %}
-            <a class="nav-item nav-link {% if href == url %}active{% endif %}" href="{{ href }}">{{ caption }}</a>
-            {%- endfor %}
-	    {% if debug %}
-	    <a class="nav-item nav-link {% if '/upload.html' == url %}active{% endif %}" href="/upload.html">Editor</a>
-	    {% endif %}
+            <a class="nav-item nav-link {% if href == url %}active{% endif %}" href="{{ href }}">{{ caption }}</a>{%- endfor %}
+	    {% if debug %}<a class="nav-item nav-link {% if '/upload.html' == url %}active{% endif %}" href="/upload.html">Editor</a>{% endif %}
           </div>
         </div>
       </nav>
