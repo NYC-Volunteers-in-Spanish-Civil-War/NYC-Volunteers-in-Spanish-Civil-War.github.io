@@ -18,6 +18,10 @@
 
 # DEVLOG
 
+## June 23, 2023
+- Fixed document searching bug - local storage storage overflowed so switched to directly loading file.
+- Renamed "archives" link to "biographies" in places where the change hadn't completed last time.
+
 ## December 27, 2022
 - Added dividers to archive page to mark letter sections
 - Renamed "archives" link to "biographies" (less confusion)
