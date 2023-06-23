@@ -1,11 +1,11 @@
 var DocumentManager = {
     init: function(search_type){
 	var me = this;
-	me.cacheData('documents');
-	me.cacheData('meta_tags');
 	me.documents = false;
 	me.metadata = false;
 	me.lunr_index_docs = false;
+	this.initLunrIndexDocs();
+	this.initLunrIndexMeta();
 	me.lunr_index_meta = false;
 	me.search_type = search_type;
 	$(document).on("submit", ".query-form", function(event) {
@@ -21,53 +21,51 @@ var DocumentManager = {
 	    this.search(query, search_type == 'all' ? 'all' : 'directory');
 	}
     },
-    // Caches data in local storage if not cached already, local wrapper for utility
-    cacheData: function(name){
-	name = '/documents/' + name + '.json';
-	var expiry = localStorage.getItem(name + "_expiry");
-	if(expiry && expiry < (new Date()).getTime())
-	    $.cacheFile(name);
-    },
-    // Gets the data for an item
-    getData: function(name){
-	return JSON.parse(localStorage.getItem('/documents/' + name + '.json'))
-    },
     // Create the lunr indexes if not yet created
     initLunrIndexDocs: function(){
 	var me = this;
-	if(!me.documents)
-	    me.documents = me.getData('documents');
-	if(!me.lunr_index_docs)
-	    me.lunr_index_docs = lunr(function () {
-		this.ref('id');
-		for(var f in me.documents['545_1_1']){
-		    if(f != 'id'){
-			this.field(f);
+	$.getJSON('/documents/documents.json',function(data){
+	    me.documents = data;
+	    // generate lunr index for faster searching
+	    if(!me.lunr_index_docs){
+		me.lunr_index_docs = lunr(function () {
+		    this.ref('id');
+		    // Get the various fields in the data
+		    for(var f in me.documents['545_1_1']){
+			if(f != 'id'){
+			    this.field(f);
+			}
 		    }
-		}
-		for(var doc in me.documents){
-		    this.add(me.documents[doc]);
-		}
-	    });
+		    // Add all the rows in the data to the new index
+		    for(var doc in me.documents){
+			this.add(me.documents[doc]);
+		    }
+		});
+	    };
+	});
     },
     initLunrIndexMeta: function(){
 	var me = this;
-	if(!me.metadata)
-	    me.metadata = me.getData('meta_tags');
-	if(!me.lunr_index_meta)
-	    me.lunr_index_meta = lunr(function() {
-		this.ref('id');
-		this.field('id');
-		this.field('children')
-		this.field('tags')
-
-		for(var tag in me.metadata){
-		    this.add({
-			'id': tag,
-			'children': me.metadata[tag]
-		    });
-		}
-	    });
+	$.getJSON('/documents/meta_tags.json',function(data){
+	    me.metadata = data;
+	    // generate lunr index for faster searching
+	    if(!me.lunr_index_meta){
+		me.lunr_index_meta = lunr(function() {
+		    // Get the various fields in the data
+		    this.ref('id');
+		    this.field('id');
+		    this.field('children')
+		    this.field('tags')
+		    // Add all the rows in the data to the new index
+		    for(var tag in me.metadata){
+			this.add({
+			    'id': tag,
+			    'children': me.metadata[tag]
+			});
+		    }
+		});
+	    };
+	});
     },
     // Handles Searching
     search: function(query, domain){
@@ -84,12 +82,14 @@ var DocumentManager = {
 	// Build the search indices if necessary, then search for matches
 	var results = [];
 	if(this.search_type != 'tags'){
-	    this.initLunrIndexDocs();
-	    results = $.merge(results, this.lunr_index_docs.search(query).sort(function(a, b){return me.codeToList(a.ref) > me.codeToList(b.ref)}));
+	    results = $.merge(
+		results,
+		this.lunr_index_docs.search(query).sort(function(a, b){return me.codeToList(a.ref) > me.codeToList(b.ref)}));
 	}
 	if(this.search_type != 'documents'){
-	    this.initLunrIndexMeta();
-	    results = $.merge(results, this.lunr_index_meta.search(query).sort(function(a, b){return a.ref < b.ref}));
+	    results = $.merge(
+		results,
+		this.lunr_index_meta.search(query).sort(function(a, b){return a.ref < b.ref}));
 	}
 	// Remove previously rendered items and generate new ones
 	if(this.search_type == 'all')
@@ -100,7 +100,6 @@ var DocumentManager = {
 	    domain == 'all' && me.renderContent(res['ref']);
 	});
 	this.updatePattern();
-	
     },
     // Updates the alternating colors on list views of items
     updatePattern: function(){
