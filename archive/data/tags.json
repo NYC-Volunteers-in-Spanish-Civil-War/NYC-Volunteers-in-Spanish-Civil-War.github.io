@@ -1,12 +1,39 @@
 {
+    " Julio Antonio Mella Club": {
+        "description": "",
+        "locations": [
+            "2b0a8531a8e993242a350a670505d2d9"
+        ]
+    },
+    "15th Army Corps": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
+        ]
+    },
     "15th Brigade": {
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "1d02ca152f23732e40d88ff8db6fff28",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "552f8efd22b2e0016fbd60588465223a",
             "69bd2382037ab10dac79aec3e5389e36",
-            "6e0d57c54e800b59a30881662da6d82f"
+            "6e0d57c54e800b59a30881662da6d82f",
+            "9bd936cec89dbc02332114251ed894ed",
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
+    "1st Regiment de Tren 2nd Squadron": {
+        "description": "",
+        "locations": [
+            "fcdba70ae414d6b4310c851e963ec033"
+        ]
+    },
+    "35th International Division": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
         ]
     },
     "60th Brigade: Anti-Tank Battery": {
@@ -21,6 +48,31 @@
             "d059b9f79fa6896db38a582d27936a91"
         ]
     },
+    "86th Brigade": {
+        "description": "",
+        "locations": [
+            "bae418e874a44cc4ed305282de705bfc"
+        ]
+    },
+    "ALBA": {
+        "description": "",
+        "locations": [
+            "58a65f3adbf009815d306ab5a2f7acb4"
+        ]
+    },
+    "Actor": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7",
+            "bae418e874a44cc4ed305282de705bfc"
+        ]
+    },
+    "Administrator": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
     "African American": {
         "description": "",
         "locations": [
@@ -33,9 +85,14 @@
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
             "1d02ca152f23732e40d88ff8db6fff28",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
+            "5003cc8518fcf608e31daad1984f5147",
             "69bd2382037ab10dac79aec3e5389e36",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
             "71d863a6828536e56488a98bf9b077fc",
+            "9359a1897513a7368036ce1ad0e0209b",
             "d0f2c6f33a97b6d1fcace6256e387f66",
             "d3ecd1935fe91c8812059bc381055233",
             "da86e773850e61e25e1badfe214b41d5"
@@ -47,10 +104,23 @@
             "73691d377c893a86c4cd79b082efe133"
         ]
     },
+    "Alcorisa": {
+        "description": "",
+        "locations": [
+            "d919e760f88875d8135ae7f502d220af"
+        ]
+    },
+    "Algerian": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f"
+        ]
+    },
     "Ambulance Driver": {
         "description": "",
         "locations": [
             "05280fea0b6fa187b17b6f40243ffb28",
+            "2514f68d020ce647692c49afecaabc76",
             "d3ecd1935fe91c8812059bc381055233"
         ]
     },
@@ -58,6 +128,30 @@
         "description": "",
         "locations": [
             "09bad55d08c1a95450da1b7f96e11034"
+        ]
+    },
+    "American Federation of Government Employees": {
+        "description": "",
+        "locations": [
+            "5003cc8518fcf608e31daad1984f5147"
+        ]
+    },
+    "American Federation of Labor": {
+        "description": "",
+        "locations": [
+            "5003cc8518fcf608e31daad1984f5147"
+        ]
+    },
+    "American Federation of Workers": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
+    "American Importer": {
+        "description": "",
+        "locations": [
+            "05dfb5a4bbf0792913bb8737d4dcefef"
         ]
     },
     "American Joint Distribution Committee": {
@@ -71,12 +165,26 @@
         "locations": [
             "05280fea0b6fa187b17b6f40243ffb28",
             "09bad55d08c1a95450da1b7f96e11034",
+            "2514f68d020ce647692c49afecaabc76",
             "2709cdea517075fefc51cc4ddc93a620",
+            "36b439a51549c03437d9ca484fd741c2",
             "531efda7b22e4a03c6ed102269cd1bd0",
+            "57e0859d62722aa118ed1e6af8fbb3bc",
             "82a594394f3b2c47b7820ae8b1c24fab",
             "89a78642fac97429ded13d80509c5d44",
             "973a9abcc7a54f1d197f7127316c2f0f",
-            "d33955d3225bf4b42c67964235d0daee"
+            "a99443f3cb7780658f3d4788198a988e",
+            "bc6ddc154b766e1aec8e2a59d095b296",
+            "c786ca189f99003eca413217bef181f7",
+            "d33955d3225bf4b42c67964235d0daee",
+            "d919e760f88875d8135ae7f502d220af",
+            "e5a4383603d60be7bc6879968614c965"
+        ]
+    },
+    "American Seamen's Friend Society Sailors' Home and Institute": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
         ]
     },
     "American Student Union": {
@@ -102,6 +210,8 @@
         "description": "",
         "locations": [
             "0281636670e5e7845168d07a8e15aca9",
+            "2b0a8531a8e993242a350a670505d2d9",
+            "51df6751c22b163c9db019a6a8869402",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "77a4b5fcc25267213a8c1e979f89bc18",
             "cbb96fd0d8c2a3524bd1592b463355e2",
@@ -114,10 +224,13 @@
         "locations": [
             "05280fea0b6fa187b17b6f40243ffb28",
             "200f479fe94e535a5982dbd3b67ee010",
+            "2514f68d020ce647692c49afecaabc76",
             "277617d2a0c27528260c880612027fac",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "441a75c1b7d8501f9d43307ef957271e",
             "46718a31b4539d9387e8c1544eff5691",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "6e0d57c54e800b59a30881662da6d82f",
             "73691d377c893a86c4cd79b082efe133",
             "82a594394f3b2c47b7820ae8b1c24fab",
@@ -129,6 +242,7 @@
         "description": "",
         "locations": [
             "153c396217993fc14ac3e35bc6ac6458",
+            "3d51d67c348178b823b6068f829e0d32",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "6e0d57c54e800b59a30881662da6d82f",
             "71d863a6828536e56488a98bf9b077fc",
@@ -145,6 +259,9 @@
     "Artillery": {
         "description": "",
         "locations": [
+            "15f4663a1b909cff0cadd60b33b3950b",
+            "5003cc8518fcf608e31daad1984f5147",
+            "9359a1897513a7368036ce1ad0e0209b",
             "a715ee6b2bc8e833665fda963cd14bd1",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47"
         ]
@@ -157,16 +274,43 @@
             "b85cf069968b401be83a45877ef534d9"
         ]
     },
+    "Assassinated": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
+        ]
+    },
+    "Astonia": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
+        ]
+    },
     "Austrian": {
         "description": "",
         "locations": [
-            "0281636670e5e7845168d07a8e15aca9"
+            "0281636670e5e7845168d07a8e15aca9",
+            "69ca9cbcc983e43861824fc60a7f5fd7"
         ]
     },
     "Author": {
         "description": "",
         "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc",
             "727f538749c958bcf24983f9d6972e0c"
+        ]
+    },
+    "Auto Mechanic": {
+        "description": "",
+        "locations": [
+            "3d51d67c348178b823b6068f829e0d32",
+            "fcdba70ae414d6b4310c851e963ec033"
+        ]
+    },
+    "Auto Parks Brigade": {
+        "description": "",
+        "locations": [
+            "9bd936cec89dbc02332114251ed894ed"
         ]
     },
     "Bacteriologist": {
@@ -175,10 +319,17 @@
             "1d02ca152f23732e40d88ff8db6fff28"
         ]
     },
+    "Barcelona": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
+        ]
+    },
     "Battalion Secretary": {
         "description": "",
         "locations": [
-            "1d02ca152f23732e40d88ff8db6fff28"
+            "1d02ca152f23732e40d88ff8db6fff28",
+            "51df6751c22b163c9db019a6a8869402"
         ]
     },
     "Battle For Teruel": {
@@ -189,6 +340,8 @@
             "09a6a50b2724537df5fd377e920ebdbb",
             "23e203c7430cfa16f5902ad9376a1cc5",
             "3a7a85e216b5706578362b508580cb9a",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
+            "51df6751c22b163c9db019a6a8869402",
             "6e0d57c54e800b59a30881662da6d82f",
             "73691d377c893a86c4cd79b082efe133",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
@@ -200,14 +353,53 @@
             "ef503cebd9999e61b33614335df81f3b"
         ]
     },
+    "Battle Of Gandesa": {
+        "description": "",
+        "locations": [
+            "442890dc5222e4d37af84f009af8faa1"
+        ]
+    },
+    "Battle for Teruel": {
+        "description": "",
+        "locations": [
+            "2514f68d020ce647692c49afecaabc76",
+            "442890dc5222e4d37af84f009af8faa1",
+            "5003cc8518fcf608e31daad1984f5147",
+            "c786ca189f99003eca413217bef181f7",
+            "d919e760f88875d8135ae7f502d220af"
+        ]
+    },
+    "Battle of Aragon": {
+        "description": "",
+        "locations": [
+            "a99443f3cb7780658f3d4788198a988e"
+        ]
+    },
     "Battle of Belchite": {
         "description": "",
         "locations": [
             "0281636670e5e7845168d07a8e15aca9",
             "05280fea0b6fa187b17b6f40243ffb28",
+            "0e249d806c365d3f937c8c33a7e31e25",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "74f9a93e45b9b3939bdb187e8032acb2",
+            "8ac91f774094602000b6f737eaed1644",
+            "8ffc00c5070411c0a7e478820d495f6d",
+            "bc3db34448ed8e785041cf2c775afcee",
             "ef503cebd9999e61b33614335df81f3b"
+        ]
+    },
+    "Battle of Brunete": {
+        "description": "",
+        "locations": [
+            "0c0e065d25bcc0348d629de0ce372735",
+            "1c305d9fe7ab25fd3702d66b2ba11ccc",
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "36b439a51549c03437d9ca484fd741c2",
+            "5e7f6bb1c57b22bc4f85c9a64aefdead",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
+            "a99443f3cb7780658f3d4788198a988e",
+            "fcdba70ae414d6b4310c851e963ec033"
         ]
     },
     "Battle of Caspe": {
@@ -217,12 +409,23 @@
             "675656ff7b4a23077abc2f3c105d717d"
         ]
     },
+    "Battle of Ebro": {
+        "description": "",
+        "locations": [
+            "1078adcec5d08dfe06478733ea998b33",
+            "81018609a6481532defc311c1ba61841",
+            "bc29bfc8ce416dc1f8496eec22596538",
+            "fcdba70ae414d6b4310c851e963ec033"
+        ]
+    },
     "Battle of Gandesa": {
         "description": "",
         "locations": [
             "039fb47acf138bec807bbff22416fbcb",
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
             "27b4d23079044f305d82ba0e51279d9f",
-            "34cd2bc992b0b1d260a68ed46e610367"
+            "34cd2bc992b0b1d260a68ed46e610367",
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "Battle of Huesca": {
@@ -231,10 +434,36 @@
             "e5eca71745a09e3d302fdeea06e64e07"
         ]
     },
+    "Battle of Jarama": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841",
+            "bc3db34448ed8e785041cf2c775afcee",
+            "fcdba70ae414d6b4310c851e963ec033"
+        ]
+    },
+    "Battle of Jarama River": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
+        ]
+    },
+    "Battle of Jaramba": {
+        "description": "",
+        "locations": [
+            "9bd936cec89dbc02332114251ed894ed"
+        ]
+    },
     "Battle of Qinto Lochita": {
         "description": "",
         "locations": [
             "74f9a93e45b9b3939bdb187e8032acb2"
+        ]
+    },
+    "Battle of the Elbro": {
+        "description": "",
+        "locations": [
+            "c6ea92623a92cf835ec3a78ee187da49"
         ]
     },
     "Belarusian": {
@@ -248,16 +477,75 @@
         "locations": [
             "0281636670e5e7845168d07a8e15aca9",
             "036d1981a23e4206490c65be80532f09",
+            "2b0a8531a8e993242a350a670505d2d9",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "71d863a6828536e56488a98bf9b077fc",
             "77a4b5fcc25267213a8c1e979f89bc18",
             "82a594394f3b2c47b7820ae8b1c24fab",
+            "8484977088dfb092fa735452deeea978",
+            "8ac91f774094602000b6f737eaed1644",
+            "8ffc00c5070411c0a7e478820d495f6d",
+            "9359a1897513a7368036ce1ad0e0209b",
             "9bf66df2cdad8d38f6110333b4365148",
             "9d77627ba051cd8dea898b9c4d75016b",
             "b2b3547c265099b729d16c657f6173e5",
+            "bd21359dfa6c2479322cd318648045b1",
             "cda519e86dc133392555701568d529e3",
             "e24a2d9be45f3b99359ed779154348d2"
+        ]
+    },
+    "Bellevue Hospital": {
+        "description": "",
+        "locations": [
+            "d919e760f88875d8135ae7f502d220af"
+        ]
+    },
+    "Benicassim": {
+        "description": "",
+        "locations": [
+            "0e249d806c365d3f937c8c33a7e31e25",
+            "57e0859d62722aa118ed1e6af8fbb3bc"
+        ]
+    },
+    "Benissa Hospital": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1",
+            "8ffc00c5070411c0a7e478820d495f6d"
+        ]
+    },
+    "Beth Israel School of Nursing": {
+        "description": "",
+        "locations": [
+            "d919e760f88875d8135ae7f502d220af"
+        ]
+    },
+    "Black": {
+        "description": "",
+        "locations": [
+            "3d51d67c348178b823b6068f829e0d32",
+            "5e7f6bb1c57b22bc4f85c9a64aefdead"
+        ]
+    },
+    "Book Keepers, Stenographers and Accountants Union": {
+        "description": "",
+        "locations": [
+            "44dcb1a6178066fb2a21cc1a1de872f5"
+        ]
+    },
+    "Borough Park Brooklyn": {
+        "description": "",
+        "locations": [
+            "05dfb5a4bbf0792913bb8737d4dcefef"
+        ]
+    },
+    "Botwin Company": {
+        "description": "",
+        "locations": [
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4"
         ]
     },
     "Boy Scouts of America": {
@@ -270,6 +558,43 @@
         "description": "",
         "locations": [
             "845694abc9709f8ef2ec49e938630357"
+        ]
+    },
+    "Brigade of Service Sanitaire": {
+        "description": "",
+        "locations": [
+            "f993b8b5375d1a2563d287ad5c2e1b76"
+        ]
+    },
+    "British Battilion": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
+        ]
+    },
+    "Bronx": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f",
+            "8ffc00c5070411c0a7e478820d495f6d",
+            "a99443f3cb7780658f3d4788198a988e"
+        ]
+    },
+    "Brooklyn": {
+        "description": "",
+        "locations": [
+            "31a363f606cdad8a761d5efcf060707f",
+            "36b439a51549c03437d9ca484fd741c2",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
+            "8484977088dfb092fa735452deeea978",
+            "e5a4383603d60be7bc6879968614c965",
+            "fcdba70ae414d6b4310c851e963ec033"
+        ]
+    },
+    "Brooklyn College": {
+        "description": "",
+        "locations": [
+            "d2f49b349f643b372569ab43d0a0c363"
         ]
     },
     "Brooklyn Daily Eagle": {
@@ -291,24 +616,39 @@
             "5b3ebd1b4e390987ac1b3e2079fbc190"
         ]
     },
+    "Brunete": {
+        "description": "",
+        "locations": [
+            "3d51d67c348178b823b6068f829e0d32"
+        ]
+    },
     "Brunete Offensive": {
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "153c396217993fc14ac3e35bc6ac6458",
+            "1c305d9fe7ab25fd3702d66b2ba11ccc",
             "200f479fe94e535a5982dbd3b67ee010",
             "26636cbb67f12cfc7ab1ebb845be8245",
+            "2e282465c00619686e281d4f58c303b9",
+            "31a363f606cdad8a761d5efcf060707f",
             "3347656870a4516afe3c92c4530ebe8f",
+            "5003cc8518fcf608e31daad1984f5147",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "675656ff7b4a23077abc2f3c105d717d",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
             "7044014ee13679c20e85b311c6ae22e3",
             "7213313bbc52d254105dc6200acf13fe",
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
+            "81018609a6481532defc311c1ba61841",
             "876fcde9e23cdaabc0c6a10b9ef8ee19",
+            "9359a1897513a7368036ce1ad0e0209b",
+            "9bd936cec89dbc02332114251ed894ed",
             "9bf66df2cdad8d38f6110333b4365148",
             "9d77627ba051cd8dea898b9c4d75016b",
             "b2b3547c265099b729d16c657f6173e5",
             "b7f165d41d994c30bed63286334ae879",
+            "bd21359dfa6c2479322cd318648045b1",
             "bd93f94afb5eff20ca167d63038837a5",
             "c47311ef2dbf8e639474f7a955e0e4fd",
             "c7f806596e2aa4984a4cc896fb6f315f",
@@ -322,6 +662,18 @@
             "b2b3547c265099b729d16c657f6173e5"
         ]
     },
+    "CP USA": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
+    "Cafeteria Workers Union": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
     "Canadian": {
         "description": "",
         "locations": [
@@ -330,10 +682,22 @@
             "c7f806596e2aa4984a4cc896fb6f315f"
         ]
     },
+    "Captain": {
+        "description": "",
+        "locations": [
+            "bc6ddc154b766e1aec8e2a59d095b296"
+        ]
+    },
     "Captain-Adjudant": {
         "description": "",
         "locations": [
             "d0f2c6f33a97b6d1fcace6256e387f66"
+        ]
+    },
+    "Carpenter": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
         ]
     },
     "Cartas desde Elora (2019)": {
@@ -348,6 +712,18 @@
             "c47311ef2dbf8e639474f7a955e0e4fd"
         ]
     },
+    "Castillo de Fells": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
+        ]
+    },
+    "Catalonia": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
+        ]
+    },
     "Catalonia Offensive": {
         "description": "",
         "locations": [
@@ -355,10 +731,22 @@
             "ef503cebd9999e61b33614335df81f3b"
         ]
     },
+    "Centuria Antonio Guitaras": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
     "Centuria Guiteras": {
         "description": "",
         "locations": [
             "153c396217993fc14ac3e35bc6ac6458"
+        ]
+    },
+    "Champlain": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
         ]
     },
     "Chemical Warfare": {
@@ -384,15 +772,29 @@
         "locations": [
             "09a6a50b2724537df5fd377e920ebdbb",
             "09bad55d08c1a95450da1b7f96e11034",
+            "0f20ae6c88db09952843101a789f6bdd",
             "199d645d09f5dcebe3cc6c5d8a0da384",
             "2ac5cd98b64f9ef6c680050b717a497b",
             "34cd2bc992b0b1d260a68ed46e610367",
             "6e0d57c54e800b59a30881662da6d82f",
             "74f9a93e45b9b3939bdb187e8032acb2",
+            "8484977088dfb092fa735452deeea978",
             "a715ee6b2bc8e833665fda963cd14bd1",
             "bd93f94afb5eff20ca167d63038837a5",
             "d0f2c6f33a97b6d1fcace6256e387f66",
             "f67547521f4673ac6191dd1a6be27753"
+        ]
+    },
+    "City of Barcelona": {
+        "description": "",
+        "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc"
+        ]
+    },
+    "Clerk": {
+        "description": "",
+        "locations": [
+            "44dcb1a6178066fb2a21cc1a1de872f5"
         ]
     },
     "College Teachers Union": {
@@ -401,17 +803,36 @@
             "6e0d57c54e800b59a30881662da6d82f"
         ]
     },
+    "Columbia University": {
+        "description": "",
+        "locations": [
+            "1078adcec5d08dfe06478733ea998b33"
+        ]
+    },
+    "Commander Pedro Mateo Merino": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
+        ]
+    },
     "Commissar": {
         "description": "",
         "locations": [
             "1d02ca152f23732e40d88ff8db6fff28",
             "441a75c1b7d8501f9d43307ef957271e",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
+            "8484977088dfb092fa735452deeea978",
             "a24f5b482093279ee4f5c4a1e0f96de6",
             "b2b3547c265099b729d16c657f6173e5",
             "da86e773850e61e25e1badfe214b41d5",
             "e24a2d9be45f3b99359ed779154348d2",
             "ecc734dfd29ff2ba8fa387de5ca038d1"
+        ]
+    },
+    "Communist": {
+        "description": "",
+        "locations": [
+            "29a1c0c74681e793d84fea0cb7195096"
         ]
     },
     "Communist National Student League": {
@@ -422,16 +843,40 @@
             "5b3ebd1b4e390987ac1b3e2079fbc190"
         ]
     },
+    "Communist Party": {
+        "description": "",
+        "locations": [
+            "0c0e065d25bcc0348d629de0ce372735",
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "d919e760f88875d8135ae7f502d220af",
+            "f869b5dd85ca507cffcc58f9a209e04e"
+        ]
+    },
+    "Communist Party USA": {
+        "description": "",
+        "locations": [
+            "29a1c0c74681e793d84fea0cb7195096"
+        ]
+    },
+    "Communists": {
+        "description": "",
+        "locations": [
+            "f869b5dd85ca507cffcc58f9a209e04e"
+        ]
+    },
     "Company Commander": {
         "description": "",
         "locations": [
-            "0a527ce1a68dcb1d965998b3bf953ffb"
+            "0a527ce1a68dcb1d965998b3bf953ffb",
+            "5c25356dc0304e8205d3bbeb3457b48f"
         ]
     },
     "Congress of Industrial Organizations": {
         "description": "",
         "locations": [
             "8f8ed783a248226ca9b08ecb124a6688",
+            "d2f49b349f643b372569ab43d0a0c363",
             "d3ecd1935fe91c8812059bc381055233"
         ]
     },
@@ -439,6 +884,12 @@
         "description": "",
         "locations": [
             "f67547521f4673ac6191dd1a6be27753"
+        ]
+    },
+    "Cordoba": {
+        "description": "",
+        "locations": [
+            "d919e760f88875d8135ae7f502d220af"
         ]
     },
     "Cordoba Front": {
@@ -457,6 +908,12 @@
             "6e0d57c54e800b59a30881662da6d82f"
         ]
     },
+    "Criminal": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
     "Croatian": {
         "description": "",
         "locations": [
@@ -466,7 +923,8 @@
     "Cuban": {
         "description": "",
         "locations": [
-            "153c396217993fc14ac3e35bc6ac6458"
+            "153c396217993fc14ac3e35bc6ac6458",
+            "bc3db34448ed8e785041cf2c775afcee"
         ]
     },
     "Cuevas Labradas": {
@@ -490,14 +948,33 @@
     "Deserter": {
         "description": "",
         "locations": [
-            "7213313bbc52d254105dc6200acf13fe"
+            "1fbd34ad040eb1b658a42f500743ae2a",
+            "29a1c0c74681e793d84fea0cb7195096",
+            "2e282465c00619686e281d4f58c303b9",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
+            "7213313bbc52d254105dc6200acf13fe",
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
+    "Deserters": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
+        ]
+    },
+    "Died in Spain": {
+        "description": "",
+        "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc",
+            "29a1c0c74681e793d84fea0cb7195096"
         ]
     },
     "Doctor": {
         "description": "",
         "locations": [
             "09bad55d08c1a95450da1b7f96e11034",
-            "2ac5cd98b64f9ef6c680050b717a497b"
+            "2ac5cd98b64f9ef6c680050b717a497b",
+            "bc6ddc154b766e1aec8e2a59d095b296"
         ]
     },
     "Dombrowski Battalion": {
@@ -506,31 +983,83 @@
             "49dd784cb21b0a8514e76387176fdc19"
         ]
     },
+    "Driver": {
+        "description": "",
+        "locations": [
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
+            "9bd936cec89dbc02332114251ed894ed",
+            "a99443f3cb7780658f3d4788198a988e"
+        ]
+    },
+    "Ebro": {
+        "description": "",
+        "locations": [
+            "2e282465c00619686e281d4f58c303b9",
+            "5c25356dc0304e8205d3bbeb3457b48f"
+        ]
+    },
+    "Ebro Army": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
+        ]
+    },
+    "Ebro Offense": {
+        "description": "",
+        "locations": [
+            "44dcb1a6178066fb2a21cc1a1de872f5"
+        ]
+    },
     "Ebro Offensive": {
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
+            "05dfb5a4bbf0792913bb8737d4dcefef",
             "09a6a50b2724537df5fd377e920ebdbb",
+            "0c0e065d25bcc0348d629de0ce372735",
+            "0f20ae6c88db09952843101a789f6bdd",
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
+            "15f4663a1b909cff0cadd60b33b3950b",
             "277617d2a0c27528260c880612027fac",
+            "2b0a8531a8e993242a350a670505d2d9",
             "34cd2bc992b0b1d260a68ed46e610367",
             "3a7a85e216b5706578362b508580cb9a",
+            "3d51d67c348178b823b6068f829e0d32",
             "441a75c1b7d8501f9d43307ef957271e",
             "552f8efd22b2e0016fbd60588465223a",
             "675656ff7b4a23077abc2f3c105d717d",
             "7652ebce37e78cf0d10bf35cc385d040",
             "77a4b5fcc25267213a8c1e979f89bc18",
             "7a6170d55c16102acac2b1a38a9fd0b9",
+            "81018609a6481532defc311c1ba61841",
             "8f8ed783a248226ca9b08ecb124a6688",
+            "8ffc00c5070411c0a7e478820d495f6d",
+            "9359a1897513a7368036ce1ad0e0209b",
             "a2c9b80f66951befc7180b55c8d296d7",
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4",
+            "bc29bfc8ce416dc1f8496eec22596538",
             "c47311ef2dbf8e639474f7a955e0e4fd",
             "c5dd7432a5c41ba5ca65010931b4b719",
             "cbb96fd0d8c2a3524bd1592b463355e2",
             "d0f1ee1d36ae5bb3cf3dde5f85e93715",
+            "d2f49b349f643b372569ab43d0a0c363",
             "d3ecd1935fe91c8812059bc381055233",
             "da53947d372d248beea95e2c3ba708e9",
             "ef503cebd9999e61b33614335df81f3b",
             "f67547521f4673ac6191dd1a6be27753",
             "fa5f046d2e214c5bdac97bff8d77d0cd"
+        ]
+    },
+    "Ebro offensive": {
+        "description": "",
+        "locations": [
+            "442890dc5222e4d37af84f009af8faa1"
+        ]
+    },
+    "Edward K. Barsky": {
+        "description": "",
+        "locations": [
+            "d919e760f88875d8135ae7f502d220af"
         ]
     },
     "El Muleton": {
@@ -539,10 +1068,17 @@
             "737e36e2ae5c73a7d3a4e5e5baeff73d"
         ]
     },
+    "Elmsford": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
+        ]
+    },
     "Engineer": {
         "description": "",
         "locations": [
             "2ac5cd98b64f9ef6c680050b717a497b",
+            "9bd936cec89dbc02332114251ed894ed",
             "d0f2c6f33a97b6d1fcace6256e387f66",
             "ecc734dfd29ff2ba8fa387de5ca038d1"
         ]
@@ -553,17 +1089,34 @@
             "b7f165d41d994c30bed63286334ae879"
         ]
     },
+    "Ernest Hemingway": {
+        "description": "",
+        "locations": [
+            "d919e760f88875d8135ae7f502d220af"
+        ]
+    },
     "Estado Mayor": {
         "description": "",
         "locations": [
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
             "1d02ca152f23732e40d88ff8db6fff28",
-            "3e5dbf5ceb2b8215548ce0bdc84ac3f9"
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "3e5dbf5ceb2b8215548ce0bdc84ac3f9",
+            "96ded0a3a5f863e812f24244565f0ad4"
+        ]
+    },
+    "Ex-Servicemen's League": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
         ]
     },
     "Executed": {
         "description": "",
         "locations": [
+            "1fbd34ad040eb1b658a42f500743ae2a",
             "46718a31b4539d9387e8c1544eff5691",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
             "6e0d57c54e800b59a30881662da6d82f"
         ]
     },
@@ -572,8 +1125,15 @@
         "locations": [
             "49dd784cb21b0a8514e76387176fdc19",
             "a715ee6b2bc8e833665fda963cd14bd1",
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4",
             "d3ecd1935fe91c8812059bc381055233",
             "e5eca71745a09e3d302fdeea06e64e07"
+        ]
+    },
+    "FTP-MOI": {
+        "description": "",
+        "locations": [
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4"
         ]
     },
     "Farners de la Selva Hospital": {
@@ -589,6 +1149,18 @@
             "da53947d372d248beea95e2c3ba708e9"
         ]
     },
+    "Female": {
+        "description": "",
+        "locations": [
+            "36b439a51549c03437d9ca484fd741c2"
+        ]
+    },
+    "Figueres": {
+        "description": "",
+        "locations": [
+            "0f90b6ba967825dbc17c2e97a6a8a6df"
+        ]
+    },
     "Filmmaker": {
         "description": "",
         "locations": [
@@ -599,7 +1171,39 @@
     "Finnish": {
         "description": "",
         "locations": [
-            "23e203c7430cfa16f5902ad9376a1cc5"
+            "23e203c7430cfa16f5902ad9376a1cc5",
+            "31a363f606cdad8a761d5efcf060707f",
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
+    "Finnish Socialist Workers\u2019 Republic": {
+        "description": "",
+        "locations": [
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
+    "Fireman": {
+        "description": "",
+        "locations": [
+            "2b0a8531a8e993242a350a670505d2d9"
+        ]
+    },
+    "First Aid Man": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
+    "First-Generation Immigrant": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
+    "Florida": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
         ]
     },
     "For Whom The Bell Tolls": {
@@ -631,12 +1235,17 @@
     "Fuentes de Ebro": {
         "description": "",
         "locations": [
+            "05dfb5a4bbf0792913bb8737d4dcefef",
+            "0e249d806c365d3f937c8c33a7e31e25",
             "35e3744b0bb4128189be5a504860d9b1",
+            "442890dc5222e4d37af84f009af8faa1",
+            "51df6751c22b163c9db019a6a8869402",
             "552f8efd22b2e0016fbd60588465223a",
             "675656ff7b4a23077abc2f3c105d717d",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
             "74f9a93e45b9b3939bdb187e8032acb2",
-            "9bf66df2cdad8d38f6110333b4365148"
+            "9bf66df2cdad8d38f6110333b4365148",
+            "bd21359dfa6c2479322cd318648045b1"
         ]
     },
     "Fur Workers Industrial Union": {
@@ -650,6 +1259,7 @@
         "locations": [
             "34cd2bc992b0b1d260a68ed46e610367",
             "441a75c1b7d8501f9d43307ef957271e",
+            "5c25356dc0304e8205d3bbeb3457b48f",
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
             "82a594394f3b2c47b7820ae8b1c24fab",
             "8e11bc17514e1c80d9acc7aeae8b10c1"
@@ -660,16 +1270,57 @@
         "locations": [
             "277617d2a0c27528260c880612027fac",
             "49dd784cb21b0a8514e76387176fdc19",
-            "675656ff7b4a23077abc2f3c105d717d"
+            "675656ff7b4a23077abc2f3c105d717d",
+            "aab507f7832bd4e6ae477983e55cbad2"
         ]
     },
     "George Washington Battalion": {
         "description": "",
         "locations": [
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "bd21359dfa6c2479322cd318648045b1",
             "bd93f94afb5eff20ca167d63038837a5",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "d33955d3225bf4b42c67964235d0daee"
+        ]
+    },
+    "German": {
+        "description": "",
+        "locations": [
+            "1c305d9fe7ab25fd3702d66b2ba11ccc"
+        ]
+    },
+    "Great Retreat": {
+        "description": "",
+        "locations": [
+            "bd21359dfa6c2479322cd318648045b1"
+        ]
+    },
+    "Great Retreats": {
+        "description": "",
+        "locations": [
+            "9bd936cec89dbc02332114251ed894ed"
+        ]
+    },
+    "Greek": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
+            "9359a1897513a7368036ce1ad0e0209b",
+            "96ded0a3a5f863e812f24244565f0ad4"
+        ]
+    },
+    "Greek Worker\u2019s Education Club": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
+        ]
+    },
+    "Greenpoint Hospital": {
+        "description": "",
+        "locations": [
+            "e5a4383603d60be7bc6879968614c965"
         ]
     },
     "Guadalajara": {
@@ -678,16 +1329,34 @@
             "1d02ca152f23732e40d88ff8db6fff28"
         ]
     },
+    "Guerrilla": {
+        "description": "",
+        "locations": [
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
     "Harlem Youth Club": {
         "description": "",
         "locations": [
             "09a6a50b2724537df5fd377e920ebdbb"
         ]
     },
+    "Harvard University": {
+        "description": "",
+        "locations": [
+            "1078adcec5d08dfe06478733ea998b33"
+        ]
+    },
     "Heart of Spain (1937)": {
         "description": "",
         "locations": [
             "531efda7b22e4a03c6ed102269cd1bd0"
+        ]
+    },
+    "Hebrew Orphan Asylum": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f"
         ]
     },
     "Hegra": {
@@ -706,6 +1375,12 @@
         "description": "",
         "locations": [
             "a2c9b80f66951befc7180b55c8d296d7"
+        ]
+    },
+    "Hospital": {
+        "description": "",
+        "locations": [
+            "9bd936cec89dbc02332114251ed894ed"
         ]
     },
     "Hospital Workers Union": {
@@ -742,25 +1417,48 @@
     "IWW": {
         "description": "",
         "locations": [
+            "8484977088dfb092fa735452deeea978",
             "e24a2d9be45f3b99359ed779154348d2"
         ]
     },
     "Ile de France": {
         "description": "",
         "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2",
             "b85cf069968b401be83a45877ef534d9"
+        ]
+    },
+    "Ill de France.": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
         ]
     },
     "Immigrant": {
         "description": "",
         "locations": [
             "0a527ce1a68dcb1d965998b3bf953ffb",
+            "1c305d9fe7ab25fd3702d66b2ba11ccc",
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "2b0a8531a8e993242a350a670505d2d9",
             "34cd2bc992b0b1d260a68ed46e610367",
+            "5e7f6bb1c57b22bc4f85c9a64aefdead",
             "6e0d57c54e800b59a30881662da6d82f",
             "845694abc9709f8ef2ec49e938630357",
+            "9359a1897513a7368036ce1ad0e0209b",
+            "96ded0a3a5f863e812f24244565f0ad4",
+            "aab507f7832bd4e6ae477983e55cbad2",
             "b2b3547c265099b729d16c657f6173e5",
+            "c6ea92623a92cf835ec3a78ee187da49",
             "cbb96fd0d8c2a3524bd1592b463355e2",
             "d33955d3225bf4b42c67964235d0daee"
+        ]
+    },
+    "Injured": {
+        "description": "",
+        "locations": [
+            "2514f68d020ce647692c49afecaabc76",
+            "c6ea92623a92cf835ec3a78ee187da49"
         ]
     },
     "Instructor": {
@@ -769,10 +1467,41 @@
             "2ac5cd98b64f9ef6c680050b717a497b"
         ]
     },
+    "Intendencia": {
+        "description": "",
+        "locations": [
+            "bd21359dfa6c2479322cd318648045b1"
+        ]
+    },
+    "Interbrigade (International Brigade)": {
+        "description": "",
+        "locations": [
+            "f869b5dd85ca507cffcc58f9a209e04e"
+        ]
+    },
+    "Internal Volunteers of Liberty": {
+        "description": "",
+        "locations": [
+            "c786ca189f99003eca413217bef181f7"
+        ]
+    },
+    "International Brigade": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
     "International Fur and Leather Workers Union": {
         "description": "",
         "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "cbb96fd0d8c2a3524bd1592b463355e2"
+        ]
+    },
+    "International Health Service": {
+        "description": "",
+        "locations": [
+            "36b439a51549c03437d9ca484fd741c2"
         ]
     },
     "International Labor Defense": {
@@ -786,6 +1515,20 @@
         "locations": [
             "7a6170d55c16102acac2b1a38a9fd0b9",
             "a24f5b482093279ee4f5c4a1e0f96de6"
+        ]
+    },
+    "International Ladies' Garment Workers' Union (ILGWU)": {
+        "description": "",
+        "locations": [
+            "05dfb5a4bbf0792913bb8737d4dcefef",
+            "f869b5dd85ca507cffcc58f9a209e04e"
+        ]
+    },
+    "International Longshoremen's Association": {
+        "description": "",
+        "locations": [
+            "15f4663a1b909cff0cadd60b33b3950b",
+            "2e282465c00619686e281d4f58c303b9"
         ]
     },
     "International Red Relief (SRI)": {
@@ -804,13 +1547,17 @@
     "International Workers Order": {
         "description": "",
         "locations": [
+            "29a1c0c74681e793d84fea0cb7195096",
+            "2b0a8531a8e993242a350a670505d2d9",
             "845694abc9709f8ef2ec49e938630357",
+            "aab507f7832bd4e6ae477983e55cbad2",
             "da86e773850e61e25e1badfe214b41d5"
         ]
     },
     "Interpreter": {
         "description": "",
         "locations": [
+            "2b0a8531a8e993242a350a670505d2d9",
             "c47311ef2dbf8e639474f7a955e0e4fd"
         ]
     },
@@ -823,16 +1570,28 @@
     "Irish": {
         "description": "",
         "locations": [
+            "44dcb1a6178066fb2a21cc1a1de872f5",
+            "8ac91f774094602000b6f737eaed1644",
             "c7f806596e2aa4984a4cc896fb6f315f",
-            "e24a2d9be45f3b99359ed779154348d2"
+            "e24a2d9be45f3b99359ed779154348d2",
+            "f993b8b5375d1a2563d287ad5c2e1b76"
+        ]
+    },
+    "Irish American": {
+        "description": "",
+        "locations": [
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "Italian": {
         "description": "",
         "locations": [
             "277617d2a0c27528260c880612027fac",
+            "2e282465c00619686e281d4f58c303b9",
             "675656ff7b4a23077abc2f3c105d717d",
-            "845694abc9709f8ef2ec49e938630357"
+            "845694abc9709f8ef2ec49e938630357",
+            "9bd936cec89dbc02332114251ed894ed",
+            "aab507f7832bd4e6ae477983e55cbad2"
         ]
     },
     "James Monroe High School": {
@@ -841,16 +1600,28 @@
             "34cd2bc992b0b1d260a68ed46e610367"
         ]
     },
+    "Jan Komensky Hospital": {
+        "description": "",
+        "locations": [
+            "57e0859d62722aa118ed1e6af8fbb3bc"
+        ]
+    },
     "Jarama": {
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "153c396217993fc14ac3e35bc6ac6458",
             "1d02ca152f23732e40d88ff8db6fff28",
+            "2e282465c00619686e281d4f58c303b9",
+            "31a363f606cdad8a761d5efcf060707f",
             "3e5dbf5ceb2b8215548ce0bdc84ac3f9",
+            "44dcb1a6178066fb2a21cc1a1de872f5",
+            "5003cc8518fcf608e31daad1984f5147",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "7044014ee13679c20e85b311c6ae22e3",
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
+            "9359a1897513a7368036ce1ad0e0209b",
             "9d77627ba051cd8dea898b9c4d75016b",
             "b7f165d41d994c30bed63286334ae879",
             "cbb96fd0d8c2a3524bd1592b463355e2",
@@ -871,22 +1642,38 @@
             "036d1981a23e4206490c65be80532f09",
             "039fb47acf138bec807bbff22416fbcb",
             "05280fea0b6fa187b17b6f40243ffb28",
+            "05dfb5a4bbf0792913bb8737d4dcefef",
             "09a6a50b2724537df5fd377e920ebdbb",
+            "0e249d806c365d3f937c8c33a7e31e25",
+            "0f20ae6c88db09952843101a789f6bdd",
+            "15f4663a1b909cff0cadd60b33b3950b",
             "199d645d09f5dcebe3cc6c5d8a0da384",
             "1d02ca152f23732e40d88ff8db6fff28",
             "1d52f1ddc132170a0bafd15519dde615",
+            "1fbd34ad040eb1b658a42f500743ae2a",
             "200f479fe94e535a5982dbd3b67ee010",
+            "2514f68d020ce647692c49afecaabc76",
             "26636cbb67f12cfc7ab1ebb845be8245",
             "2709cdea517075fefc51cc4ddc93a620",
+            "29a1c0c74681e793d84fea0cb7195096",
             "34cd2bc992b0b1d260a68ed46e610367",
             "35e3744b0bb4128189be5a504860d9b1",
+            "36b439a51549c03437d9ca484fd741c2",
             "3b8adccb0263b4ef1d3611cb43eb3f83",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "3e5dbf5ceb2b8215548ce0bdc84ac3f9",
             "441a75c1b7d8501f9d43307ef957271e",
+            "442890dc5222e4d37af84f009af8faa1",
             "49dd784cb21b0a8514e76387176fdc19",
+            "5003cc8518fcf608e31daad1984f5147",
+            "51df6751c22b163c9db019a6a8869402",
+            "57e0859d62722aa118ed1e6af8fbb3bc",
+            "58a65f3adbf009815d306ab5a2f7acb4",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "5c25356dc0304e8205d3bbeb3457b48f",
             "69bd2382037ab10dac79aec3e5389e36",
             "69c4e6e2e80db9740269e04ec9bfa255",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
             "6bd193b2e31fd2c249ab91e23ef8587d",
             "6e0d57c54e800b59a30881662da6d82f",
             "7044014ee13679c20e85b311c6ae22e3",
@@ -899,8 +1686,10 @@
             "7a6170d55c16102acac2b1a38a9fd0b9",
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
             "82a594394f3b2c47b7820ae8b1c24fab",
+            "8484977088dfb092fa735452deeea978",
             "89a78642fac97429ded13d80509c5d44",
             "8ec2279e1471892705d7749d7e270945",
+            "8ffc00c5070411c0a7e478820d495f6d",
             "92f68a71be4b170ec51ee286107f85f1",
             "973a9abcc7a54f1d197f7127316c2f0f",
             "9988f213aab2a7c8b8fed25ce020748a",
@@ -909,17 +1698,24 @@
             "a24f5b482093279ee4f5c4a1e0f96de6",
             "a715ee6b2bc8e833665fda963cd14bd1",
             "a90ed23cf7628cecf26fb9f66133e601",
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4",
+            "bc29bfc8ce416dc1f8496eec22596538",
+            "bc6ddc154b766e1aec8e2a59d095b296",
             "bd93f94afb5eff20ca167d63038837a5",
+            "c786ca189f99003eca413217bef181f7",
             "c899875d2dd23dfa02c3090d5751dac4",
             "cbb96fd0d8c2a3524bd1592b463355e2",
             "cda519e86dc133392555701568d529e3",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "d0f1ee1d36ae5bb3cf3dde5f85e93715",
             "d0f2c6f33a97b6d1fcace6256e387f66",
+            "d2f49b349f643b372569ab43d0a0c363",
             "d33955d3225bf4b42c67964235d0daee",
             "d3ecd1935fe91c8812059bc381055233",
+            "d919e760f88875d8135ae7f502d220af",
             "da53947d372d248beea95e2c3ba708e9",
             "e498f419ca9dd141f0fafca586f58127",
+            "e5a4383603d60be7bc6879968614c965",
             "ecc734dfd29ff2ba8fa387de5ca038d1",
             "f67547521f4673ac6191dd1a6be27753",
             "f8b2f46ff3a3d5a1c51b299b53cbfcba"
@@ -941,6 +1737,7 @@
     "Journalist": {
         "description": "",
         "locations": [
+            "5003cc8518fcf608e31daad1984f5147",
             "552f8efd22b2e0016fbd60588465223a",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "a24f5b482093279ee4f5c4a1e0f96de6"
@@ -950,6 +1747,12 @@
         "description": "",
         "locations": [
             "153c396217993fc14ac3e35bc6ac6458"
+        ]
+    },
+    "Julio A. Mella Club": {
+        "description": "",
+        "locations": [
+            "2b0a8531a8e993242a350a670505d2d9"
         ]
     },
     "KGB": {
@@ -962,10 +1765,16 @@
         "description": "",
         "locations": [
             "0281636670e5e7845168d07a8e15aca9",
+            "05dfb5a4bbf0792913bb8737d4dcefef",
+            "15f4663a1b909cff0cadd60b33b3950b",
             "26636cbb67f12cfc7ab1ebb845be8245",
             "35e3744b0bb4128189be5a504860d9b1",
+            "5c25356dc0304e8205d3bbeb3457b48f",
+            "5e7f6bb1c57b22bc4f85c9a64aefdead",
             "69c4e6e2e80db9740269e04ec9bfa255",
+            "81018609a6481532defc311c1ba61841",
             "86590f463147ca8e7466c1d812c7a02d",
+            "9bd936cec89dbc02332114251ed894ed",
             "cda519e86dc133392555701568d529e3",
             "f67547521f4673ac6191dd1a6be27753"
         ]
@@ -987,6 +1796,12 @@
         "description": "",
         "locations": [
             "69bd2382037ab10dac79aec3e5389e36"
+        ]
+    },
+    "Killed in Action": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f"
         ]
     },
     "LGBT": {
@@ -1036,29 +1851,79 @@
         "description": "",
         "locations": [
             "675656ff7b4a23077abc2f3c105d717d",
+            "aab507f7832bd4e6ae477983e55cbad2",
             "c47311ef2dbf8e639474f7a955e0e4fd"
+        ]
+    },
+    "Lincoln Battalion": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
+        ]
+    },
+    "Lincoln Brigade": {
+        "description": "",
+        "locations": [
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "Lincoln-Washington Battalion": {
         "description": "",
         "locations": [
             "09a6a50b2724537df5fd377e920ebdbb",
+            "0e249d806c365d3f937c8c33a7e31e25",
             "26636cbb67f12cfc7ab1ebb845be8245",
+            "5c25356dc0304e8205d3bbeb3457b48f",
+            "81018609a6481532defc311c1ba61841",
             "86590f463147ca8e7466c1d812c7a02d",
             "8f8ed783a248226ca9b08ecb124a6688"
+        ]
+    },
+    "Lincoln-Washington Brigade": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
+        ]
+    },
+    "List of Volunteers": {
+        "description": "",
+        "locations": [
+            "f869b5dd85ca507cffcc58f9a209e04e"
         ]
     },
     "Lithuanian": {
         "description": "",
         "locations": [
             "9bf66df2cdad8d38f6110333b4365148",
-            "f3e79d001e56e901e73ac0a555b660d6"
+            "f3e79d001e56e901e73ac0a555b660d6",
+            "fcdba70ae414d6b4310c851e963ec033"
         ]
     },
     "Longshoreman": {
         "description": "",
         "locations": [
+            "15f4663a1b909cff0cadd60b33b3950b",
+            "2e282465c00619686e281d4f58c303b9",
             "69bd2382037ab10dac79aec3e5389e36"
+        ]
+    },
+    "MV Brittanic": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
+    "Machine Gun Battalion": {
+        "description": "",
+        "locations": [
+            "8484977088dfb092fa735452deeea978"
+        ]
+    },
+    "Machine Gun Company": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1",
+            "9359a1897513a7368036ce1ad0e0209b"
         ]
     },
     "Mackenzie-Papineau Battalion": {
@@ -1068,10 +1933,12 @@
             "036d1981a23e4206490c65be80532f09",
             "039fb47acf138bec807bbff22416fbcb",
             "0a527ce1a68dcb1d965998b3bf953ffb",
+            "1078adcec5d08dfe06478733ea998b33",
             "1f665d76db61fbf1c5f113f5f12a44a0",
             "2ac5cd98b64f9ef6c680050b717a497b",
             "34cd2bc992b0b1d260a68ed46e610367",
             "35e3744b0bb4128189be5a504860d9b1",
+            "51df6751c22b163c9db019a6a8869402",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "6e0d57c54e800b59a30881662da6d82f",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
@@ -1082,10 +1949,47 @@
             "da53947d372d248beea95e2c3ba708e9"
         ]
     },
+    "Mackenzie-Papineau battalion": {
+        "description": "",
+        "locations": [
+            "0e249d806c365d3f937c8c33a7e31e25",
+            "442890dc5222e4d37af84f009af8faa1"
+        ]
+    },
+    "Madrid": {
+        "description": "",
+        "locations": [
+            "c786ca189f99003eca413217bef181f7"
+        ]
+    },
+    "Madrid Hospital": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
     "Manhattan Project": {
         "description": "",
         "locations": [
             "b2b3547c265099b729d16c657f6173e5"
+        ]
+    },
+    "Manuel Tag\u00fce\u00f1a": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
+        ]
+    },
+    "Marine": {
+        "description": "",
+        "locations": [
+            "f993b8b5375d1a2563d287ad5c2e1b76"
+        ]
+    },
+    "Marine Corps": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
         ]
     },
     "Marine Workers Industrial Union (MWIU)": {
@@ -1107,24 +2011,59 @@
             "737e36e2ae5c73a7d3a4e5e5baeff73d"
         ]
     },
+    "Massanet": {
+        "description": "",
+        "locations": [
+            "0f90b6ba967825dbc17c2e97a6a8a6df"
+        ]
+    },
     "Mataro Hospital": {
         "description": "",
         "locations": [
+            "bc6ddc154b766e1aec8e2a59d095b296",
             "d059b9f79fa6896db38a582d27936a91"
+        ]
+    },
+    "Mechanic": {
+        "description": "",
+        "locations": [
+            "9bd936cec89dbc02332114251ed894ed"
+        ]
+    },
+    "Mechanist": {
+        "description": "",
+        "locations": [
+            "1c305d9fe7ab25fd3702d66b2ba11ccc"
+        ]
+    },
+    "Mediana": {
+        "description": "",
+        "locations": [
+            "0e249d806c365d3f937c8c33a7e31e25"
         ]
     },
     "Medic": {
         "description": "",
         "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2",
             "2ac5cd98b64f9ef6c680050b717a497b",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "727f538749c958bcf24983f9d6972e0c",
-            "9bf66df2cdad8d38f6110333b4365148"
+            "96ded0a3a5f863e812f24244565f0ad4",
+            "9bf66df2cdad8d38f6110333b4365148",
+            "bc6ddc154b766e1aec8e2a59d095b296"
         ]
     },
     "Medical Committee for Human Rights": {
         "description": "",
         "locations": [
             "09bad55d08c1a95450da1b7f96e11034"
+        ]
+    },
+    "Medicine": {
+        "description": "",
+        "locations": [
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "Meid\u00e4n Poikamme Espanjassa (1939)": {
@@ -1144,18 +2083,27 @@
             "09a6a50b2724537df5fd377e920ebdbb",
             "09bad55d08c1a95450da1b7f96e11034",
             "199d645d09f5dcebe3cc6c5d8a0da384",
+            "1c305d9fe7ab25fd3702d66b2ba11ccc",
             "1d02ca152f23732e40d88ff8db6fff28",
             "1d52f1ddc132170a0bafd15519dde615",
             "200f479fe94e535a5982dbd3b67ee010",
             "23e203c7430cfa16f5902ad9376a1cc5",
             "27b4d23079044f305d82ba0e51279d9f",
+            "31a363f606cdad8a761d5efcf060707f",
             "34cd2bc992b0b1d260a68ed46e610367",
+            "36b439a51549c03437d9ca484fd741c2",
+            "3d51d67c348178b823b6068f829e0d32",
             "441a75c1b7d8501f9d43307ef957271e",
+            "442890dc5222e4d37af84f009af8faa1",
             "46718a31b4539d9387e8c1544eff5691",
             "4bbf3dada3709e2d6c1dae87d385eb7a",
+            "5003cc8518fcf608e31daad1984f5147",
+            "51df6751c22b163c9db019a6a8869402",
             "531efda7b22e4a03c6ed102269cd1bd0",
             "552f8efd22b2e0016fbd60588465223a",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "5c25356dc0304e8205d3bbeb3457b48f",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "7044014ee13679c20e85b311c6ae22e3",
             "727f538749c958bcf24983f9d6972e0c",
@@ -1164,6 +2112,7 @@
             "77a4b5fcc25267213a8c1e979f89bc18",
             "80a3c2f864d37beda7f5d8e2f0cdaaf9",
             "845694abc9709f8ef2ec49e938630357",
+            "8484977088dfb092fa735452deeea978",
             "86590f463147ca8e7466c1d812c7a02d",
             "8f8ed783a248226ca9b08ecb124a6688",
             "9d77627ba051cd8dea898b9c4d75016b",
@@ -1171,6 +2120,7 @@
             "a2c9b80f66951befc7180b55c8d296d7",
             "a715ee6b2bc8e833665fda963cd14bd1",
             "b2b3547c265099b729d16c657f6173e5",
+            "bae418e874a44cc4ed305282de705bfc",
             "bd93f94afb5eff20ca167d63038837a5",
             "c7f806596e2aa4984a4cc896fb6f315f",
             "cbb96fd0d8c2a3524bd1592b463355e2",
@@ -1179,6 +2129,7 @@
             "d059b9f79fa6896db38a582d27936a91",
             "d0f1ee1d36ae5bb3cf3dde5f85e93715",
             "d0f2c6f33a97b6d1fcace6256e387f66",
+            "d2f49b349f643b372569ab43d0a0c363",
             "d33955d3225bf4b42c67964235d0daee",
             "d3ecd1935fe91c8812059bc381055233",
             "d6b35f3a5e6232105985f8dd64b27887",
@@ -1188,6 +2139,24 @@
             "ecc734dfd29ff2ba8fa387de5ca038d1",
             "f67547521f4673ac6191dd1a6be27753",
             "fa5f046d2e214c5bdac97bff8d77d0cd"
+        ]
+    },
+    "Member of Communist Party": {
+        "description": "",
+        "locations": [
+            "05dfb5a4bbf0792913bb8737d4dcefef",
+            "0e249d806c365d3f937c8c33a7e31e25",
+            "0f20ae6c88db09952843101a789f6bdd",
+            "15f4663a1b909cff0cadd60b33b3950b",
+            "2514f68d020ce647692c49afecaabc76",
+            "2b0a8531a8e993242a350a670505d2d9",
+            "2e282465c00619686e281d4f58c303b9",
+            "442890dc5222e4d37af84f009af8faa1",
+            "44dcb1a6178066fb2a21cc1a1de872f5",
+            "9359a1897513a7368036ce1ad0e0209b",
+            "bc29bfc8ce416dc1f8496eec22596538",
+            "c786ca189f99003eca413217bef181f7",
+            "e5a4383603d60be7bc6879968614c965"
         ]
     },
     "Member of Socialist Party": {
@@ -1206,14 +2175,33 @@
     "Merchant Marine": {
         "description": "",
         "locations": [
+            "0f20ae6c88db09952843101a789f6bdd",
             "b85cf069968b401be83a45877ef534d9",
             "d6b35f3a5e6232105985f8dd64b27887"
+        ]
+    },
+    "Mercia Hospital": {
+        "description": "",
+        "locations": [
+            "0e249d806c365d3f937c8c33a7e31e25"
+        ]
+    },
+    "Mess Sergeant": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
         ]
     },
     "Metal Worker": {
         "description": "",
         "locations": [
             "675656ff7b4a23077abc2f3c105d717d"
+        ]
+    },
+    "Moe Fishman": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
         ]
     },
     "Morning Freiheit": {
@@ -1226,12 +2214,14 @@
         "description": "",
         "locations": [
             "26636cbb67f12cfc7ab1ebb845be8245",
+            "81018609a6481532defc311c1ba61841",
             "8ec2279e1471892705d7749d7e270945"
         ]
     },
     "Mt. Sinai Training School for Nurses": {
         "description": "",
         "locations": [
+            "36b439a51549c03437d9ca484fd741c2",
             "d33955d3225bf4b42c67964235d0daee"
         ]
     },
@@ -1239,8 +2229,16 @@
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
+            "bc6ddc154b766e1aec8e2a59d095b296",
             "c899875d2dd23dfa02c3090d5751dac4",
             "d059b9f79fa6896db38a582d27936a91"
+        ]
+    },
+    "Musician": {
+        "description": "",
+        "locations": [
+            "43771f37c370a5f84e3a8333e96f07f6",
+            "bae418e874a44cc4ed305282de705bfc"
         ]
     },
     "NAACP": {
@@ -1265,7 +2263,11 @@
     "National Guard": {
         "description": "",
         "locations": [
-            "a715ee6b2bc8e833665fda963cd14bd1"
+            "15f4663a1b909cff0cadd60b33b3950b",
+            "2b0a8531a8e993242a350a670505d2d9",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
+            "a715ee6b2bc8e833665fda963cd14bd1",
+            "d2f49b349f643b372569ab43d0a0c363"
         ]
     },
     "National Lawyers Guild": {
@@ -1279,7 +2281,15 @@
         "locations": [
             "039fb47acf138bec807bbff22416fbcb",
             "71d863a6828536e56488a98bf9b077fc",
+            "8484977088dfb092fa735452deeea978",
             "ef503cebd9999e61b33614335df81f3b"
+        ]
+    },
+    "New Jersey": {
+        "description": "",
+        "locations": [
+            "1078adcec5d08dfe06478733ea998b33",
+            "81018609a6481532defc311c1ba61841"
         ]
     },
     "New School": {
@@ -1288,10 +2298,23 @@
             "69c4e6e2e80db9740269e04ec9bfa255"
         ]
     },
+    "New York Guard": {
+        "description": "",
+        "locations": [
+            "d2f49b349f643b372569ab43d0a0c363"
+        ]
+    },
     "New York University": {
         "description": "",
         "locations": [
-            "5b3ebd1b4e390987ac1b3e2079fbc190"
+            "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "8ffc00c5070411c0a7e478820d495f6d"
+        ]
+    },
+    "New York Volunteers": {
+        "description": "",
+        "locations": [
+            "5e7f6bb1c57b22bc4f85c9a64aefdead"
         ]
     },
     "New York Workers School": {
@@ -1307,6 +2330,18 @@
             "d059b9f79fa6896db38a582d27936a91"
         ]
     },
+    "Normandie": {
+        "description": "",
+        "locations": [
+            "f869b5dd85ca507cffcc58f9a209e04e"
+        ]
+    },
+    "North American Committee to Aid Spanish Democracy": {
+        "description": "",
+        "locations": [
+            "57e0859d62722aa118ed1e6af8fbb3bc"
+        ]
+    },
     "Novelist": {
         "description": "",
         "locations": [
@@ -1316,19 +2351,25 @@
     "Nurse": {
         "description": "",
         "locations": [
+            "0e249d806c365d3f937c8c33a7e31e25",
             "1d52f1ddc132170a0bafd15519dde615",
             "2709cdea517075fefc51cc4ddc93a620",
+            "36b439a51549c03437d9ca484fd741c2",
             "3b8adccb0263b4ef1d3611cb43eb3f83",
             "531efda7b22e4a03c6ed102269cd1bd0",
+            "57e0859d62722aa118ed1e6af8fbb3bc",
             "6bd193b2e31fd2c249ab91e23ef8587d",
             "7a6170d55c16102acac2b1a38a9fd0b9",
             "89a78642fac97429ded13d80509c5d44",
             "92f68a71be4b170ec51ee286107f85f1",
             "973a9abcc7a54f1d197f7127316c2f0f",
             "a90ed23cf7628cecf26fb9f66133e601",
+            "c786ca189f99003eca413217bef181f7",
             "c899875d2dd23dfa02c3090d5751dac4",
             "d059b9f79fa6896db38a582d27936a91",
             "d33955d3225bf4b42c67964235d0daee",
+            "d919e760f88875d8135ae7f502d220af",
+            "e5a4383603d60be7bc6879968614c965",
             "f3e79d001e56e901e73ac0a555b660d6"
         ]
     },
@@ -1336,6 +2377,24 @@
         "description": "",
         "locations": [
             "7a6170d55c16102acac2b1a38a9fd0b9"
+        ]
+    },
+    "Office Workers Union": {
+        "description": "",
+        "locations": [
+            "2514f68d020ce647692c49afecaabc76"
+        ]
+    },
+    "Ohioan": {
+        "description": "",
+        "locations": [
+            "3d51d67c348178b823b6068f829e0d32"
+        ]
+    },
+    "Oliver Law": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
         ]
     },
     "Olympic Athlete": {
@@ -1350,7 +2409,10 @@
             "039fb47acf138bec807bbff22416fbcb",
             "1d52f1ddc132170a0bafd15519dde615",
             "531efda7b22e4a03c6ed102269cd1bd0",
-            "b85cf069968b401be83a45877ef534d9"
+            "9bd936cec89dbc02332114251ed894ed",
+            "aab507f7832bd4e6ae477983e55cbad2",
+            "b85cf069968b401be83a45877ef534d9",
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "Pacifist": {
@@ -1359,10 +2421,29 @@
             "2ac5cd98b64f9ef6c680050b717a497b"
         ]
     },
+    "Painter": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "bc29bfc8ce416dc1f8496eec22596538"
+        ]
+    },
     "Paperworkers Union": {
         "description": "",
         "locations": [
             "3a7a85e216b5706578362b508580cb9a"
+        ]
+    },
+    "Pasadena High School": {
+        "description": "",
+        "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc"
+        ]
+    },
+    "Passport": {
+        "description": "",
+        "locations": [
+            "f869b5dd85ca507cffcc58f9a209e04e"
         ]
     },
     "People\u2019s Olympiad": {
@@ -1377,6 +2458,18 @@
             "d0f2c6f33a97b6d1fcace6256e387f66"
         ]
     },
+    "Pina": {
+        "description": "",
+        "locations": [
+            "9359a1897513a7368036ce1ad0e0209b"
+        ]
+    },
+    "Plaza Mayor": {
+        "description": "",
+        "locations": [
+            "d2f49b349f643b372569ab43d0a0c363"
+        ]
+    },
     "Polish": {
         "description": "",
         "locations": [
@@ -1384,14 +2477,23 @@
             "3347656870a4516afe3c92c4530ebe8f",
             "35e3744b0bb4128189be5a504860d9b1",
             "441a75c1b7d8501f9d43307ef957271e",
+            "442890dc5222e4d37af84f009af8faa1",
             "4bbf3dada3709e2d6c1dae87d385eb7a",
-            "9d77627ba051cd8dea898b9c4d75016b"
+            "57e0859d62722aa118ed1e6af8fbb3bc",
+            "9d77627ba051cd8dea898b9c4d75016b",
+            "e5a4383603d60be7bc6879968614c965"
         ]
     },
     "Political Suspect": {
         "description": "",
         "locations": [
             "552f8efd22b2e0016fbd60588465223a"
+        ]
+    },
+    "Printer": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
         ]
     },
     "Propoganda sound truck": {
@@ -1410,7 +2512,16 @@
         "description": "",
         "locations": [
             "0a527ce1a68dcb1d965998b3bf953ffb",
-            "1f665d76db61fbf1c5f113f5f12a44a0"
+            "1f665d76db61fbf1c5f113f5f12a44a0",
+            "2b0a8531a8e993242a350a670505d2d9",
+            "5e7f6bb1c57b22bc4f85c9a64aefdead"
+        ]
+    },
+    "Queen Mary": {
+        "description": "",
+        "locations": [
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4",
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "Quinto": {
@@ -1418,7 +2529,14 @@
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "09a6a50b2724537df5fd377e920ebdbb",
+            "0e249d806c365d3f937c8c33a7e31e25",
+            "2b0a8531a8e993242a350a670505d2d9",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "8484977088dfb092fa735452deeea978",
+            "8ac91f774094602000b6f737eaed1644",
+            "8ffc00c5070411c0a7e478820d495f6d",
+            "9359a1897513a7368036ce1ad0e0209b",
             "9bf66df2cdad8d38f6110333b4365148",
             "b2b3547c265099b729d16c657f6173e5"
         ]
@@ -1436,18 +2554,57 @@
             "23e203c7430cfa16f5902ad9376a1cc5"
         ]
     },
+    "Rank Cabo": {
+        "description": "",
+        "locations": [
+            "2b0a8531a8e993242a350a670505d2d9",
+            "96ded0a3a5f863e812f24244565f0ad4"
+        ]
+    },
+    "Red Guard": {
+        "description": "",
+        "locations": [
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
+    "Repatriated": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
     "Republican Medical Service": {
         "description": "",
         "locations": [
             "2ac5cd98b64f9ef6c680050b717a497b",
+            "96ded0a3a5f863e812f24244565f0ad4",
             "d33955d3225bf4b42c67964235d0daee"
+        ]
+    },
+    "Retreats": {
+        "description": "",
+        "locations": [
+            "8484977088dfb092fa735452deeea978"
+        ]
+    },
+    "Retreats in Gandesa": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
+    "Rochester High School": {
+        "description": "",
+        "locations": [
+            "43771f37c370a5f84e3a8333e96f07f6"
         ]
     },
     "Romanian": {
         "description": "",
         "locations": [
             "2ac5cd98b64f9ef6c680050b717a497b",
-            "cbb96fd0d8c2a3524bd1592b463355e2"
+            "cbb96fd0d8c2a3524bd1592b463355e2",
+            "fcdba70ae414d6b4310c851e963ec033"
         ]
     },
     "Romeral": {
@@ -1465,18 +2622,31 @@
     "Russian": {
         "description": "",
         "locations": [
+            "0c0e065d25bcc0348d629de0ce372735",
             "34cd2bc992b0b1d260a68ed46e610367",
+            "36b439a51549c03437d9ca484fd741c2",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "69bd2382037ab10dac79aec3e5389e36",
+            "69ca9cbcc983e43861824fc60a7f5fd7",
             "6bd193b2e31fd2c249ab91e23ef8587d",
             "6e0d57c54e800b59a30881662da6d82f",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
             "7a6170d55c16102acac2b1a38a9fd0b9",
             "89a78642fac97429ded13d80509c5d44",
             "92f68a71be4b170ec51ee286107f85f1",
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4",
+            "bae418e874a44cc4ed305282de705bfc",
+            "bd21359dfa6c2479322cd318648045b1",
+            "c786ca189f99003eca413217bef181f7",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "d33955d3225bf4b42c67964235d0daee",
             "f67547521f4673ac6191dd1a6be27753"
+        ]
+    },
+    "SIM": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
         ]
     },
     "SS Georgic": {
@@ -1489,6 +2659,8 @@
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
+            "1c305d9fe7ab25fd3702d66b2ba11ccc",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "69bd2382037ab10dac79aec3e5389e36"
         ]
     },
@@ -1498,10 +2670,76 @@
             "cbb96fd0d8c2a3524bd1592b463355e2"
         ]
     },
+    "SS President Roosevelt": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
+        ]
+    },
+    "SS Washington": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
+    "Sailor": {
+        "description": "",
+        "locations": [
+            "8484977088dfb092fa735452deeea978"
+        ]
+    },
+    "Sailors' Union of the Pacific": {
+        "description": "",
+        "locations": [
+            "8484977088dfb092fa735452deeea978"
+        ]
+    },
+    "Salesman": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f"
+        ]
+    },
+    "Sanidad": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
+        ]
+    },
+    "Sanitary": {
+        "description": "",
+        "locations": [
+            "67d7ca8b0e1b53709b87000f28bdccf1"
+        ]
+    },
+    "Sargento": {
+        "description": "",
+        "locations": [
+            "9359a1897513a7368036ce1ad0e0209b"
+        ]
+    },
+    "Scottish": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
+        ]
+    },
+    "Seaman": {
+        "description": "",
+        "locations": [
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
     "Seaman's Union": {
         "description": "",
         "locations": [
             "46718a31b4539d9387e8c1544eff5691"
+        ]
+    },
+    "Second Battalion": {
+        "description": "",
+        "locations": [
+            "8ffc00c5070411c0a7e478820d495f6d"
         ]
     },
     "Secretary": {
@@ -1510,10 +2748,29 @@
             "876fcde9e23cdaabc0c6a10b9ef8ee19"
         ]
     },
+    "Section Chief": {
+        "description": "",
+        "locations": [
+            "9359a1897513a7368036ce1ad0e0209b"
+        ]
+    },
     "Seeing Red (1983)": {
         "description": "",
         "locations": [
             "e24a2d9be45f3b99359ed779154348d2"
+        ]
+    },
+    "Segura de los Ba\u00f1os": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
+        ]
+    },
+    "Sergeant": {
+        "description": "",
+        "locations": [
+            "51df6751c22b163c9db019a6a8869402",
+            "67d7ca8b0e1b53709b87000f28bdccf1"
         ]
     },
     "Service Sanitaire": {
@@ -1523,10 +2780,28 @@
             "da86e773850e61e25e1badfe214b41d5"
         ]
     },
+    "Shell-Shocked": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
+        ]
+    },
+    "Siblings": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f"
+        ]
+    },
     "Sierra Pandols": {
         "description": "",
         "locations": [
             "09a6a50b2724537df5fd377e920ebdbb"
+        ]
+    },
+    "Sierra de Cavalls": {
+        "description": "",
+        "locations": [
+            "81018609a6481532defc311c1ba61841"
         ]
     },
     "Slovakian": {
@@ -1541,10 +2816,22 @@
             "a24f5b482093279ee4f5c4a1e0f96de6"
         ]
     },
+    "Socialist Party": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
     "Soldado": {
         "description": "",
         "locations": [
             "b85cf069968b401be83a45877ef534d9"
+        ]
+    },
+    "Spanish CP": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
         ]
     },
     "Spanish Communist Party": {
@@ -1566,9 +2853,16 @@
             "c47311ef2dbf8e639474f7a955e0e4fd"
         ]
     },
+    "Spartacus Club": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2"
+        ]
+    },
     "Student": {
         "description": "",
         "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7",
             "c47311ef2dbf8e639474f7a955e0e4fd"
         ]
     },
@@ -1576,6 +2870,18 @@
         "description": "",
         "locations": [
             "73691d377c893a86c4cd79b082efe133"
+        ]
+    },
+    "Survivor": {
+        "description": "",
+        "locations": [
+            "a99443f3cb7780658f3d4788198a988e"
+        ]
+    },
+    "Tailor": {
+        "description": "",
+        "locations": [
+            "31a363f606cdad8a761d5efcf060707f"
         ]
     },
     "Taranc\u00f3n": {
@@ -1590,11 +2896,32 @@
             "1f665d76db61fbf1c5f113f5f12a44a0"
         ]
     },
+    "Tarazona": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7",
+            "8ffc00c5070411c0a7e478820d495f6d",
+            "96ded0a3a5f863e812f24244565f0ad4"
+        ]
+    },
+    "Tarazona Service Sanitary": {
+        "description": "",
+        "locations": [
+            "96ded0a3a5f863e812f24244565f0ad4"
+        ]
+    },
+    "Tarragona Camp": {
+        "description": "",
+        "locations": [
+            "c6ea92623a92cf835ec3a78ee187da49"
+        ]
+    },
     "Teacher": {
         "description": "",
         "locations": [
             "69c4e6e2e80db9740269e04ec9bfa255",
-            "6e0d57c54e800b59a30881662da6d82f"
+            "6e0d57c54e800b59a30881662da6d82f",
+            "d2f49b349f643b372569ab43d0a0c363"
         ]
     },
     "Technical Sergeant": {
@@ -1606,7 +2933,10 @@
     "Teruel": {
         "description": "",
         "locations": [
+            "5003cc8518fcf608e31daad1984f5147",
             "77a4b5fcc25267213a8c1e979f89bc18",
+            "81018609a6481532defc311c1ba61841",
+            "bd21359dfa6c2479322cd318648045b1",
             "d3ecd1935fe91c8812059bc381055233"
         ]
     },
@@ -1619,7 +2949,10 @@
     "The Daily Worker": {
         "description": "",
         "locations": [
-            "7a6170d55c16102acac2b1a38a9fd0b9"
+            "2514f68d020ce647692c49afecaabc76",
+            "271e43af07d941d98e2b2b05c9dc9ecc",
+            "7a6170d55c16102acac2b1a38a9fd0b9",
+            "d919e760f88875d8135ae7f502d220af"
         ]
     },
     "The Good Fight (1984)": {
@@ -1632,7 +2965,14 @@
     "The Great Retreats": {
         "description": "",
         "locations": [
-            "039fb47acf138bec807bbff22416fbcb"
+            "039fb47acf138bec807bbff22416fbcb",
+            "2514f68d020ce647692c49afecaabc76"
+        ]
+    },
+    "The Milton White Files": {
+        "description": "",
+        "locations": [
+            "bae418e874a44cc4ed305282de705bfc"
         ]
     },
     "The Retreats": {
@@ -1650,6 +2990,7 @@
     "Third Company": {
         "description": "",
         "locations": [
+            "d2f49b349f643b372569ab43d0a0c363",
             "f67547521f4673ac6191dd1a6be27753"
         ]
     },
@@ -1701,6 +3042,8 @@
     "US Navy": {
         "description": "",
         "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc",
+            "2e282465c00619686e281d4f58c303b9",
             "552f8efd22b2e0016fbd60588465223a"
         ]
     },
@@ -1735,11 +3078,13 @@
             "199d645d09f5dcebe3cc6c5d8a0da384",
             "200f479fe94e535a5982dbd3b67ee010",
             "27b4d23079044f305d82ba0e51279d9f",
+            "2e282465c00619686e281d4f58c303b9",
             "3a7a85e216b5706578362b508580cb9a",
             "552f8efd22b2e0016fbd60588465223a",
             "71d863a6828536e56488a98bf9b077fc",
             "9d77627ba051cd8dea898b9c4d75016b",
             "b2b3547c265099b729d16c657f6173e5",
+            "bae418e874a44cc4ed305282de705bfc",
             "cbb96fd0d8c2a3524bd1592b463355e2"
         ]
     },
@@ -1752,13 +3097,44 @@
     "United Electrical Workers Union": {
         "description": "",
         "locations": [
-            "49dd784cb21b0a8514e76387176fdc19"
+            "49dd784cb21b0a8514e76387176fdc19",
+            "d2f49b349f643b372569ab43d0a0c363"
+        ]
+    },
+    "United Electrical, Radio and Machine Workers of America": {
+        "description": "",
+        "locations": [
+            "bae418e874a44cc4ed305282de705bfc"
         ]
     },
     "United Office and Professional Workers of America": {
         "description": "",
         "locations": [
             "8f8ed783a248226ca9b08ecb124a6688"
+        ]
+    },
+    "United Professionals": {
+        "description": "",
+        "locations": [
+            "36b439a51549c03437d9ca484fd741c2"
+        ]
+    },
+    "University Hospital in Murica": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
+    "University of Rochester": {
+        "description": "",
+        "locations": [
+            "43771f37c370a5f84e3a8333e96f07f6"
+        ]
+    },
+    "Valencia": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
         ]
     },
     "Valencia Office": {
@@ -1771,13 +3147,17 @@
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
+            "1078adcec5d08dfe06478733ea998b33",
             "200f479fe94e535a5982dbd3b67ee010",
             "23e203c7430cfa16f5902ad9376a1cc5",
+            "2e282465c00619686e281d4f58c303b9",
             "3347656870a4516afe3c92c4530ebe8f",
+            "5003cc8518fcf608e31daad1984f5147",
             "727f538749c958bcf24983f9d6972e0c",
             "74f9a93e45b9b3939bdb187e8032acb2",
             "77a4b5fcc25267213a8c1e979f89bc18",
             "7a6170d55c16102acac2b1a38a9fd0b9",
+            "9359a1897513a7368036ce1ad0e0209b",
             "9988f213aab2a7c8b8fed25ce020748a",
             "9bf66df2cdad8d38f6110333b4365148",
             "9d77627ba051cd8dea898b9c4d75016b",
@@ -1785,7 +3165,9 @@
             "b7f165d41d994c30bed63286334ae879",
             "d059b9f79fa6896db38a582d27936a91",
             "d6b35f3a5e6232105985f8dd64b27887",
-            "f8b2f46ff3a3d5a1c51b299b53cbfcba"
+            "d919e760f88875d8135ae7f502d220af",
+            "f8b2f46ff3a3d5a1c51b299b53cbfcba",
+            "fcdba70ae414d6b4310c851e963ec033"
         ]
     },
     "Victoire de la Vie (1937)": {
@@ -1794,21 +3176,36 @@
             "531efda7b22e4a03c6ed102269cd1bd0"
         ]
     },
+    "Vilella Alta": {
+        "description": "",
+        "locations": [
+            "8484977088dfb092fa735452deeea978"
+        ]
+    },
     "Villa Paz": {
         "description": "",
         "locations": [
             "05280fea0b6fa187b17b6f40243ffb28",
             "2ac5cd98b64f9ef6c680050b717a497b",
+            "57e0859d62722aa118ed1e6af8fbb3bc",
             "82a594394f3b2c47b7820ae8b1c24fab",
             "89a78642fac97429ded13d80509c5d44",
             "92f68a71be4b170ec51ee286107f85f1",
+            "d919e760f88875d8135ae7f502d220af",
             "e498f419ca9dd141f0fafca586f58127"
+        ]
+    },
+    "Villanueva de la Canada": {
+        "description": "",
+        "locations": [
+            "5003cc8518fcf608e31daad1984f5147"
         ]
     },
     "Villanueva de la Ca\u00f1ada": {
         "description": "",
         "locations": [
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "81018609a6481532defc311c1ba61841",
             "876fcde9e23cdaabc0c6a10b9ef8ee19"
         ]
     },
@@ -1819,10 +3216,28 @@
             "f3e79d001e56e901e73ac0a555b660d6"
         ]
     },
+    "Villanueva del Pardillo": {
+        "description": "",
+        "locations": [
+            "9359a1897513a7368036ce1ad0e0209b"
+        ]
+    },
+    "Virginia": {
+        "description": "",
+        "locations": [
+            "5c25356dc0304e8205d3bbeb3457b48f"
+        ]
+    },
     "Voice of Spain": {
         "description": "",
         "locations": [
             "b7f165d41d994c30bed63286334ae879"
+        ]
+    },
+    "WIA": {
+        "description": "",
+        "locations": [
+            "a99443f3cb7780658f3d4788198a988e"
         ]
     },
     "WPA": {
@@ -1849,6 +3264,7 @@
     "WWI Veteran": {
         "description": "",
         "locations": [
+            "3d51d67c348178b823b6068f829e0d32",
             "b85cf069968b401be83a45877ef534d9",
             "c899875d2dd23dfa02c3090d5751dac4",
             "cbb96fd0d8c2a3524bd1592b463355e2"
@@ -1857,7 +3273,11 @@
     "WWII": {
         "description": "",
         "locations": [
+            "0c0e065d25bcc0348d629de0ce372735",
+            "0e249d806c365d3f937c8c33a7e31e25",
+            "0f20ae6c88db09952843101a789f6bdd",
             "69bd2382037ab10dac79aec3e5389e36",
+            "b8834b1b3a3d0d4a2c6fcf700488b1b4",
             "d3ecd1935fe91c8812059bc381055233"
         ]
     },
@@ -1867,43 +3287,83 @@
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "039fb47acf138bec807bbff22416fbcb",
             "09a6a50b2724537df5fd377e920ebdbb",
+            "1078adcec5d08dfe06478733ea998b33",
             "10ef7f585ae3cdbc49d063988a82d566",
             "153c396217993fc14ac3e35bc6ac6458",
             "23e203c7430cfa16f5902ad9376a1cc5",
             "277617d2a0c27528260c880612027fac",
             "2ac5cd98b64f9ef6c680050b717a497b",
+            "2e282465c00619686e281d4f58c303b9",
             "3347656870a4516afe3c92c4530ebe8f",
+            "36b439a51549c03437d9ca484fd741c2",
             "3a7a85e216b5706578362b508580cb9a",
+            "3d51d67c348178b823b6068f829e0d32",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "441a75c1b7d8501f9d43307ef957271e",
+            "44dcb1a6178066fb2a21cc1a1de872f5",
+            "51df6751c22b163c9db019a6a8869402",
             "531efda7b22e4a03c6ed102269cd1bd0",
+            "58a65f3adbf009815d306ab5a2f7acb4",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "67d7ca8b0e1b53709b87000f28bdccf1",
             "7044014ee13679c20e85b311c6ae22e3",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
             "845694abc9709f8ef2ec49e938630357",
+            "8484977088dfb092fa735452deeea978",
             "89a78642fac97429ded13d80509c5d44",
             "8ec2279e1471892705d7749d7e270945",
+            "9359a1897513a7368036ce1ad0e0209b",
             "9988f213aab2a7c8b8fed25ce020748a",
             "9bf66df2cdad8d38f6110333b4365148",
             "9d77627ba051cd8dea898b9c4d75016b",
             "a24f5b482093279ee4f5c4a1e0f96de6",
             "a90ed23cf7628cecf26fb9f66133e601",
             "b7f165d41d994c30bed63286334ae879",
+            "bae418e874a44cc4ed305282de705bfc",
+            "bc29bfc8ce416dc1f8496eec22596538",
+            "bc6ddc154b766e1aec8e2a59d095b296",
+            "bd21359dfa6c2479322cd318648045b1",
             "c47311ef2dbf8e639474f7a955e0e4fd",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "d0f1ee1d36ae5bb3cf3dde5f85e93715",
             "d0f2c6f33a97b6d1fcace6256e387f66",
             "d6b35f3a5e6232105985f8dd64b27887",
+            "d919e760f88875d8135ae7f502d220af",
             "da86e773850e61e25e1badfe214b41d5",
             "e5eca71745a09e3d302fdeea06e64e07",
             "ecc734dfd29ff2ba8fa387de5ca038d1",
             "f8b2f46ff3a3d5a1c51b299b53cbfcba",
-            "fa5f046d2e214c5bdac97bff8d77d0cd"
+            "fa5f046d2e214c5bdac97bff8d77d0cd",
+            "fcdba70ae414d6b4310c851e963ec033"
+        ]
+    },
+    "War is Beautiful: An American Ambulance Driver in the Spanish Civil War": {
+        "description": "",
+        "locations": [
+            "2514f68d020ce647692c49afecaabc76"
         ]
     },
     "Washington Battalion": {
         "description": "",
         "locations": [
-            "3347656870a4516afe3c92c4530ebe8f"
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "3347656870a4516afe3c92c4530ebe8f",
+            "5003cc8518fcf608e31daad1984f5147",
+            "9359a1897513a7368036ce1ad0e0209b"
+        ]
+    },
+    "West Village": {
+        "description": "",
+        "locations": [
+            "8ac91f774094602000b6f737eaed1644"
+        ]
+    },
+    "Work Progress Administration": {
+        "description": "",
+        "locations": [
+            "26917b0893f9b742f8fb5506fcc793b2",
+            "43771f37c370a5f84e3a8333e96f07f6",
+            "8ffc00c5070411c0a7e478820d495f6d"
         ]
     },
     "Workers Alliance of America": {
@@ -1916,7 +3376,21 @@
     "Writer": {
         "description": "",
         "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc",
             "b7f165d41d994c30bed63286334ae879"
+        ]
+    },
+    "Writer's Union": {
+        "description": "",
+        "locations": [
+            "271e43af07d941d98e2b2b05c9dc9ecc"
+        ]
+    },
+    "XV Brigade": {
+        "description": "",
+        "locations": [
+            "58a65f3adbf009815d306ab5a2f7acb4",
+            "f993b8b5375d1a2563d287ad5c2e1b76"
         ]
     },
     "XV Brigade Scouts": {
@@ -1925,28 +3399,55 @@
             "09a6a50b2724537df5fd377e920ebdbb"
         ]
     },
+    "XV International Brigade": {
+        "description": "",
+        "locations": [
+            "0f90b6ba967825dbc17c2e97a6a8a6df",
+            "5c25356dc0304e8205d3bbeb3457b48f"
+        ]
+    },
+    "YCL": {
+        "description": "",
+        "locations": [
+            "69ca9cbcc983e43861824fc60a7f5fd7"
+        ]
+    },
+    "Yale": {
+        "description": "",
+        "locations": [
+            "2514f68d020ce647692c49afecaabc76"
+        ]
+    },
     "Young Communist League": {
         "description": "",
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "05280fea0b6fa187b17b6f40243ffb28",
             "09a6a50b2724537df5fd377e920ebdbb",
+            "0c0e065d25bcc0348d629de0ce372735",
             "10ef7f585ae3cdbc49d063988a82d566",
+            "15f4663a1b909cff0cadd60b33b3950b",
             "199d645d09f5dcebe3cc6c5d8a0da384",
             "26636cbb67f12cfc7ab1ebb845be8245",
+            "29a1c0c74681e793d84fea0cb7195096",
             "34cd2bc992b0b1d260a68ed46e610367",
             "35e3744b0bb4128189be5a504860d9b1",
+            "3d957e4e5ff231694ae9fba7c2e69cbd",
             "441a75c1b7d8501f9d43307ef957271e",
+            "442890dc5222e4d37af84f009af8faa1",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "5e7f6bb1c57b22bc4f85c9a64aefdead",
             "69bd2382037ab10dac79aec3e5389e36",
             "7213313bbc52d254105dc6200acf13fe",
             "73691d377c893a86c4cd79b082efe133",
             "74f9a93e45b9b3939bdb187e8032acb2",
+            "8ffc00c5070411c0a7e478820d495f6d",
             "9988f213aab2a7c8b8fed25ce020748a",
             "9bf66df2cdad8d38f6110333b4365148",
             "9d77627ba051cd8dea898b9c4d75016b",
             "a24f5b482093279ee4f5c4a1e0f96de6",
             "a715ee6b2bc8e833665fda963cd14bd1",
+            "a99443f3cb7780658f3d4788198a988e",
             "b2b3547c265099b729d16c657f6173e5",
             "bd93f94afb5eff20ca167d63038837a5",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
@@ -1954,7 +3455,8 @@
             "d3ecd1935fe91c8812059bc381055233",
             "da53947d372d248beea95e2c3ba708e9",
             "da86e773850e61e25e1badfe214b41d5",
-            "f8b2f46ff3a3d5a1c51b299b53cbfcba"
+            "f8b2f46ff3a3d5a1c51b299b53cbfcba",
+            "fcdba70ae414d6b4310c851e963ec033"
         ]
     },
     "Yugoslavian": {
@@ -1966,8 +3468,22 @@
     "Zaragoza": {
         "description": "",
         "locations": [
+            "1078adcec5d08dfe06478733ea998b33",
             "277617d2a0c27528260c880612027fac",
+            "442890dc5222e4d37af84f009af8faa1",
             "49dd784cb21b0a8514e76387176fdc19"
+        ]
+    },
+    "bilingual": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
+        ]
+    },
+    "wounded": {
+        "description": "",
+        "locations": [
+            "bc3db34448ed8e785041cf2c775afcee"
         ]
     }
 }
