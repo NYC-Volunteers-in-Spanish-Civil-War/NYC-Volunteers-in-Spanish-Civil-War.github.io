@@ -633,6 +633,7 @@
             "2e282465c00619686e281d4f58c303b9",
             "31a363f606cdad8a761d5efcf060707f",
             "3347656870a4516afe3c92c4530ebe8f",
+            "3a6cd8a5c23a16aafa3c005d4127c59d",
             "5003cc8518fcf608e31daad1984f5147",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "675656ff7b4a23077abc2f3c105d717d",
@@ -806,7 +807,8 @@
     "Columbia University": {
         "description": "",
         "locations": [
-            "1078adcec5d08dfe06478733ea998b33"
+            "1078adcec5d08dfe06478733ea998b33",
+            "3a6cd8a5c23a16aafa3c005d4127c59d"
         ]
     },
     "Commander Pedro Mateo Merino": {
@@ -953,6 +955,7 @@
             "2e282465c00619686e281d4f58c303b9",
             "3d957e4e5ff231694ae9fba7c2e69cbd",
             "7213313bbc52d254105dc6200acf13fe",
+            "c64ee4c91ee11af7ca0570e468603ac8",
             "c6ea92623a92cf835ec3a78ee187da49"
         ]
     },
@@ -1173,6 +1176,7 @@
         "locations": [
             "23e203c7430cfa16f5902ad9376a1cc5",
             "31a363f606cdad8a761d5efcf060707f",
+            "3a6cd8a5c23a16aafa3c005d4127c59d",
             "c6ea92623a92cf835ec3a78ee187da49"
         ]
     },
@@ -1702,6 +1706,7 @@
             "bc29bfc8ce416dc1f8496eec22596538",
             "bc6ddc154b766e1aec8e2a59d095b296",
             "bd93f94afb5eff20ca167d63038837a5",
+            "c64ee4c91ee11af7ca0570e468603ac8",
             "c786ca189f99003eca413217bef181f7",
             "c899875d2dd23dfa02c3090d5751dac4",
             "cbb96fd0d8c2a3524bd1592b463355e2",
@@ -1922,6 +1927,7 @@
     "Machine Gun Company": {
         "description": "",
         "locations": [
+            "3a6cd8a5c23a16aafa3c005d4127c59d",
             "67d7ca8b0e1b53709b87000f28bdccf1",
             "9359a1897513a7368036ce1ad0e0209b"
         ]
@@ -2092,6 +2098,7 @@
             "31a363f606cdad8a761d5efcf060707f",
             "34cd2bc992b0b1d260a68ed46e610367",
             "36b439a51549c03437d9ca484fd741c2",
+            "3a6cd8a5c23a16aafa3c005d4127c59d",
             "3d51d67c348178b823b6068f829e0d32",
             "441a75c1b7d8501f9d43307ef957271e",
             "442890dc5222e4d37af84f009af8faa1",
@@ -2155,6 +2162,7 @@
             "44dcb1a6178066fb2a21cc1a1de872f5",
             "9359a1897513a7368036ce1ad0e0209b",
             "bc29bfc8ce416dc1f8496eec22596538",
+            "c64ee4c91ee11af7ca0570e468603ac8",
             "c786ca189f99003eca413217bef181f7",
             "e5a4383603d60be7bc6879968614c965"
         ]
@@ -2307,6 +2315,7 @@
     "New York University": {
         "description": "",
         "locations": [
+            "3a6cd8a5c23a16aafa3c005d4127c59d",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
             "8ffc00c5070411c0a7e478820d495f6d"
         ]
@@ -2901,7 +2910,8 @@
         "locations": [
             "69ca9cbcc983e43861824fc60a7f5fd7",
             "8ffc00c5070411c0a7e478820d495f6d",
-            "96ded0a3a5f863e812f24244565f0ad4"
+            "96ded0a3a5f863e812f24244565f0ad4",
+            "c64ee4c91ee11af7ca0570e468603ac8"
         ]
     },
     "Tarazona Service Sanitary": {
@@ -2921,6 +2931,7 @@
         "locations": [
             "69c4e6e2e80db9740269e04ec9bfa255",
             "6e0d57c54e800b59a30881662da6d82f",
+            "c64ee4c91ee11af7ca0570e468603ac8",
             "d2f49b349f643b372569ab43d0a0c363"
         ]
     },
@@ -3152,6 +3163,7 @@
             "23e203c7430cfa16f5902ad9376a1cc5",
             "2e282465c00619686e281d4f58c303b9",
             "3347656870a4516afe3c92c4530ebe8f",
+            "3a6cd8a5c23a16aafa3c005d4127c59d",
             "5003cc8518fcf608e31daad1984f5147",
             "727f538749c958bcf24983f9d6972e0c",
             "74f9a93e45b9b3939bdb187e8032acb2",
@@ -3323,6 +3335,7 @@
             "bc6ddc154b766e1aec8e2a59d095b296",
             "bd21359dfa6c2479322cd318648045b1",
             "c47311ef2dbf8e639474f7a955e0e4fd",
+            "c64ee4c91ee11af7ca0570e468603ac8",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "d0f1ee1d36ae5bb3cf3dde5f85e93715",
             "d0f2c6f33a97b6d1fcace6256e387f66",
@@ -3349,6 +3362,12 @@
             "3347656870a4516afe3c92c4530ebe8f",
             "5003cc8518fcf608e31daad1984f5147",
             "9359a1897513a7368036ce1ad0e0209b"
+        ]
+    },
+    "Washington-Lincoln Battalion": {
+        "description": "",
+        "locations": [
+            "3a6cd8a5c23a16aafa3c005d4127c59d"
         ]
     },
     "West Village": {
