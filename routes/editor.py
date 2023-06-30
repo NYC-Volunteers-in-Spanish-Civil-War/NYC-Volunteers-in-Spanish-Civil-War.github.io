@@ -6,6 +6,8 @@ from . import *
 import pandas as pd
 import re
 
+from os.path import exists
+
 STATIC_DATA = {}
 
 def get_file_checksum(filename, url=False):
@@ -39,11 +41,13 @@ def get_status(key, checksum):
         return "PUBLISHED"
     return "MODIFIED"
 def delete_key_data(key):
-    """ Deletes a user from local memory. Returns the local master data. """
+    """ Deletes a biography from local memory. Returns the local master data. """
     json_data = get_data_from_file(MASTER_FILE)
     del json_data[key]
     os.remove(get_data_filename(key))
     write_data_to_file(MASTER_FILE, json_data)
+    data_file = get_data_filename(key)
+    os.remove(data_file)
     return json_data
 def update_status_and_checksum(key, key_data):
     """ Updates the status and checksum of a given key. """
@@ -145,11 +149,13 @@ def upload_changes():
             return ('', 404)
         return ('', 204)
 
-@routes.route('/test.html', methods=['GET', 'POST'])
+@routes.route('/bulk_bio_upload.html', methods=['GET', 'POST'])
 def bulk_bio_upload():
     """ A function to bulk create volunteer biographies. """
     master_data = get_data_from_file(MASTER_FILE)
-    df = pd.read_csv('Biography Upload Form2.csv')
+    df = pd.read_csv('Biographies-2023.csv')
+    # Some students were too lazy to add tags so handle the unexpected lack of data
+    df = df.fillna('')
     cols = {'Your First Name (And Middle If You Want)':'student_fname',
                               'Your Last Name':'student_lname',
                               "Year You'll Graduate":'class',
@@ -162,8 +168,7 @@ def bulk_bio_upload():
                               'Comma separated list of tags (see website for examples or create your own)':'tags'}
     print(df.columns)
     df = df.rename(columns = cols)
-    
-    print(list(cols.values()))
+    #print(list(cols.values()))
     df = df[list(cols.values())]
     data = df.to_dict('records')
     for row in data:
@@ -172,16 +177,17 @@ def bulk_bio_upload():
         for k in ['volunteer_images', 'school_crests']:
             row[k] = row[k].split(";") if isinstance(row[k], str) else []
             row[k] = [{'caption':i, 'src':""} for i in row[k]]
-        row['tags'] = list(set([i.strip() for i in row['tags'].split(',')]) - {''})
+        print("-----------------------", row['volunteer_lname'])
+        print("tags are", row['tags'])
+        row['tags'] = list(set([i.strip() for i in row['tags'].split(',')]) - {''}) if row['tags'] else []
+        print(row['data'])
         row['data'] = '<p>' + row['data'].replace('\n', '<br />') + '</p>'
         print('\n\n\n', row['volunteer_lname'])
         print(row['sources'])
         row['sources'] = '<p>' + row['sources'].replace('\n', '<br />') + '</p>'
         obj = re.findall('(\w+://.*?)\s?\.?\s?<br', row['sources'])
         row['sources'] = re.sub(r'(\w+://.*?)(\s?\.?\s?(<br|$))', r'<a href="\g<1>">\g<1></a>\g<2>', row['sources'])
-        print(obj)
-        print(row['sources'])
-        print(row['tags'])
+        row["year_published"] = 2023
 
     for row in data:
         key = get_key_hash(row['volunteer_lname'] + "_" + row['volunteer_fname'])
