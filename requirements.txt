@@ -6,7 +6,7 @@ cffi==1.14.5
 chardet==3.0.4
 click==7.1.2
 constantly==15.1.0
-cryptography==3.3.2
+cryptography==41.0.4
 cssselect==1.1.0
 enum34==1.1.10
 Flask==1.1.1
