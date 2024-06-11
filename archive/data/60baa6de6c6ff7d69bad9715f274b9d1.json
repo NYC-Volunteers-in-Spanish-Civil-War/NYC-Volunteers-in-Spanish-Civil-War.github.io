@@ -1,13 +1,8 @@
 {
-    "class": 2025,
-    "data": "<p>Issac Kuperman was born circa 1902. Prior to his involvement in the Spanish Civil War, he joined the CPUSA (Communist Party of the United States of America), demonstrating his far left beliefs. While part of the CPUSA, he was exposed to the strong support by many communists for the Spanish Republic. Kuperman\u2019s radical left beliefs were most likely influenced by his Jewish heritage, as a disproportionately high number of Spanish Civil War volunteers were Jewish. Right before he left to fight in the Spanish Civil War, Kuperman lived at 350 20th Street in Brooklyn. This is in the Sunset Park neighborhood. In the time that he lived there, Sunset Park was a diverse neighborhood that was on the rise, filled with a mix of tenements and brownstones. The main ethnic groups were Scandinavian, Irish, and Italian. Kuperman received his passport (#365778) on February 5, 1937, just five days before departing the US.<br /><br />On February 10, 1937, Kuperman sailed on the Washington to get to France, from where he traveled on foot to Spain. This trip made local news in Brooklyn, as Kuperman traveled alongside another volunteer, Louis Ginsburg, who was apprehended when the ship docked in Le Havre, France. This was due to his wife reporting him to the authorities for the reason that he abandoned her. After arriving in Spain, Kuperman was sent to fight at the Front of Cordoba. He was believed to have served in the 86th Brigade, 20th Battalion. The Front of Cordoba was the scene of constant fighting between the Rebels and the Republic troops. During most of the war, control of the area switched back-and-forth between the two sides. Only two months after arriving in Spain, in April 1937, Kuperman was killed in action at the Front of Cordoba, at the age of 35. </p>",
-    "school_crests": [
-        {
-            "caption": "https://drive.google.com/open?id=11LI4xUQeY3x0TOgZozZ3S-8JZQTy1Ylv",
-            "src": ""
-        }
-    ],
-    "sources": "<p>\"Ginsberg, Louis.\" The Abraham Lincoln Brigade Archives, 9 August 2022. <a href=\"https://alba-valb.org/volunteers/louis-ginsburg/\">https://alba-valb.org/volunteers/louis-ginsburg/</a>.<br /><br />\u201cJews in the Spanish Civil War.\u201d Jewish Virtual Library. <a href=\"https://www.jewishvirtuallibrary.org/jews-who-served-in-the-international-brigade-in-the-spanish-civil-war\">https://www.jewishvirtuallibrary.org/jews-who-served-in-the-international-brigade-in-the-spanish-civil-war</a>. <br /><br />\u201cKuperman, Isaac.\u201d SIDBRINT. <a href=\"https://sidbrint.ub.edu/ca/content/kuperman-isaac\">https://sidbrint.ub.edu/ca/content/kuperman-isaac</a>. <br /><br />\u201cKuperman, Isaac.\u201d The Abraham Lincoln Brigade Archives, 22 September 2022. <a href=\"https://alba-valb.org/volunteers/isaac-kuperman/\">https://alba-valb.org/volunteers/isaac-kuperman/</a>. <br /><br />\u201cLoyalists\u2019 Strong Defence on Cordova Front.\u201d The Argus, 9 April 1937. <a href=\"https://trove.nla.gov.au/newspaper/article/11055468\">https://trove.nla.gov.au/newspaper/article/11055468</a>. <br /></p>",
+    "class": "2025",
+    "data": "<p>Issac Kuperman was born circa 1902. Prior to his involvement in the Spanish Civil War, he joined the CPUSA (Communist Party of the United States of America), demonstrating his far left beliefs. While part of the CPUSA, he was exposed to the strong support by many communists for the Spanish Republic. Kuperman&rsquo;s radical left beliefs were most likely influenced by his Jewish heritage, as a disproportionately high number of Spanish Civil War volunteers were Jewish. Right before he left to fight in the Spanish Civil War, Kuperman lived at 350 20th Street in Brooklyn. This is in the Sunset Park neighborhood. In the time that he lived there, Sunset Park was a diverse neighborhood that was on the rise, filled with a mix of tenements and brownstones. The main ethnic groups were Scandinavian, Irish, and Italian. Kuperman received his passport (#365778) on February 5, 1937, just five days before departing the US.<br />\r\n<br />\r\nOn February 10, 1937, Kuperman sailed on the Washington to get to France, from where he traveled on foot to Spain. This trip made local news in Brooklyn, as Kuperman traveled alongside another volunteer, Louis Ginsburg, who was apprehended when the ship docked in Le Havre, France. This was due to his wife reporting him to the authorities for the reason that he abandoned her. After arriving in Spain, Kuperman was sent to fight at the Front of Cordoba. He was believed to have served in the 86th Brigade, 20th Battalion. The Front of Cordoba was the scene of constant fighting between the Rebels and the Republic troops. During most of the war, control of the area switched back-and-forth between the two sides. Only two months after arriving in Spain, in April 1937, Kuperman was killed in action at the Front of Cordoba, at the age of 35.</p>\r\n",
+    "school_crests": [],
+    "sources": "<p>&quot;Ginsberg, Louis.&quot; The Abraham Lincoln Brigade Archives, 9 August 2022. <a href=\"https://alba-valb.org/volunteers/louis-ginsburg/\">https://alba-valb.org/volunteers/louis-ginsburg/</a>.<br />\r\n<br />\r\n&ldquo;Jews in the Spanish Civil War.&rdquo; Jewish Virtual Library. <a href=\"https://www.jewishvirtuallibrary.org/jews-who-served-in-the-international-brigade-in-the-spanish-civil-war\">https://www.jewishvirtuallibrary.org/jews-who-served-in-the-international-brigade-in-the-spanish-civil-war</a>.<br />\r\n<br />\r\n&ldquo;Kuperman, Isaac.&rdquo; SIDBRINT. <a href=\"https://sidbrint.ub.edu/ca/content/kuperman-isaac\">https://sidbrint.ub.edu/ca/content/kuperman-isaac</a>.<br />\r\n<br />\r\n&ldquo;Kuperman, Isaac.&rdquo; The Abraham Lincoln Brigade Archives, 22 September 2022. <a href=\"https://alba-valb.org/volunteers/isaac-kuperman/\">https://alba-valb.org/volunteers/isaac-kuperman/</a>.<br />\r\n<br />\r\n&ldquo;Loyalists&rsquo; Strong Defence on Cordova Front.&rdquo; The Argus, 9 April 1937. <a href=\"https://trove.nla.gov.au/newspaper/article/11055468\">https://trove.nla.gov.au/newspaper/article/11055468</a>.</p>\r\n",
     "student_fname": "Charlotte",
     "student_lname": "Sternbach",
     "tags": [
@@ -18,12 +13,6 @@
         "Brooklyn"
     ],
     "volunteer_fname": "Issac",
-    "volunteer_images": [
-        {
-            "caption": "",
-            "src": ""
-        }
-    ],
-    "volunteer_lname": "Kuperman",
-    "year_published": 2024
+    "volunteer_images": [],
+    "volunteer_lname": "Kuperman"
 }
