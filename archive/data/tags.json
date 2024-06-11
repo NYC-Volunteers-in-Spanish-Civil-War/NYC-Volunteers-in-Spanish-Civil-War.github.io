@@ -2781,6 +2781,7 @@
     "Nurse": {
         "description": "",
         "locations": [
+            "077fe22876fbc4dfde9b650063aca4f6",
             "0e249d806c365d3f937c8c33a7e31e25",
             "1d52f1ddc132170a0bafd15519dde615",
             "2709cdea517075fefc51cc4ddc93a620",
@@ -4187,12 +4188,6 @@
         "description": "",
         "locations": [
             "f45a4f52437b3b3b75c213ef563c7a34"
-        ]
-    },
-    "nurse": {
-        "description": "",
-        "locations": [
-            "077fe22876fbc4dfde9b650063aca4f6"
         ]
     },
     "rheumatic Fever": {
