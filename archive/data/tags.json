@@ -72,6 +72,7 @@
     "86th Brigade": {
         "description": "",
         "locations": [
+            "73dd1b8f2abd66575a1663c349fbb226",
             "bae418e874a44cc4ed305282de705bfc",
             "f9aea96cc44bebf6281ba6330fa3f19b"
         ]
@@ -100,6 +101,7 @@
         "locations": [
             "531efda7b22e4a03c6ed102269cd1bd0",
             "552f8efd22b2e0016fbd60588465223a",
+            "632f85f0fcb2dc3a37660e03e10462e6",
             "fa5f046d2e214c5bdac97bff8d77d0cd"
         ]
     },
@@ -320,11 +322,18 @@
     "Artist": {
         "description": "",
         "locations": [
+            "632f85f0fcb2dc3a37660e03e10462e6",
             "86590f463147ca8e7466c1d812c7a02d",
             "8f8ed783a248226ca9b08ecb124a6688",
             "a7cff41ba82331a1e4aee4dcbdfbde55",
             "b85cf069968b401be83a45877ef534d9",
             "c3fe5e4fca22e3a71cedb205d06c81fb"
+        ]
+    },
+    "Artist's Union": {
+        "description": "",
+        "locations": [
+            "632f85f0fcb2dc3a37660e03e10462e6"
         ]
     },
     "Assassinated": {
@@ -576,6 +585,7 @@
             "67d7ca8b0e1b53709b87000f28bdccf1",
             "69c4e6e2e80db9740269e04ec9bfa255",
             "71d863a6828536e56488a98bf9b077fc",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "77a4b5fcc25267213a8c1e979f89bc18",
             "82a594394f3b2c47b7820ae8b1c24fab",
             "8484977088dfb092fa735452deeea978",
@@ -684,6 +694,7 @@
             "60baa6de6c6ff7d69bad9715f274b9d1",
             "69ca9cbcc983e43861824fc60a7f5fd7",
             "6d9db1c28905c97648dc92a48ef424a4",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "8484977088dfb092fa735452deeea978",
             "a7cff41ba82331a1e4aee4dcbdfbde55",
             "ce7826a7a3527374a03e946488be0f5e",
@@ -736,6 +747,7 @@
             "3a6cd8a5c23a16aafa3c005d4127c59d",
             "5003cc8518fcf608e31daad1984f5147",
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "632f85f0fcb2dc3a37660e03e10462e6",
             "675656ff7b4a23077abc2f3c105d717d",
             "69ca9cbcc983e43861824fc60a7f5fd7",
             "6d9db1c28905c97648dc92a48ef424a4",
@@ -752,6 +764,7 @@
             "b25e6bb3df0a43482bb61ccee5fc1ce7",
             "b2b3547c265099b729d16c657f6173e5",
             "b7f165d41d994c30bed63286334ae879",
+            "bb246c0b87dc14f616928b6a0c83546a",
             "bd21359dfa6c2479322cd318648045b1",
             "bd93f94afb5eff20ca167d63038837a5",
             "c47311ef2dbf8e639474f7a955e0e4fd",
@@ -1223,6 +1236,7 @@
             "552f8efd22b2e0016fbd60588465223a",
             "675656ff7b4a23077abc2f3c105d717d",
             "6aba945ce02bbc0cdc109052b7498bca",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "7652ebce37e78cf0d10bf35cc385d040",
             "77a4b5fcc25267213a8c1e979f89bc18",
             "7a6170d55c16102acac2b1a38a9fd0b9",
@@ -1517,6 +1531,7 @@
         "description": "",
         "locations": [
             "5b3ebd1b4e390987ac1b3e2079fbc190",
+            "632f85f0fcb2dc3a37660e03e10462e6",
             "9b78cce02632c4a1a47798638dda8f27",
             "bd21359dfa6c2479322cd318648045b1",
             "bd93f94afb5eff20ca167d63038837a5",
@@ -1567,6 +1582,12 @@
         "description": "",
         "locations": [
             "e5a4383603d60be7bc6879968614c965"
+        ]
+    },
+    "Greenwich Village": {
+        "description": "",
+        "locations": [
+            "632f85f0fcb2dc3a37660e03e10462e6"
         ]
     },
     "Guadalajara": {
@@ -1687,6 +1708,7 @@
         "locations": [
             "26917b0893f9b742f8fb5506fcc793b2",
             "6d9db1c28905c97648dc92a48ef424a4",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "a7cff41ba82331a1e4aee4dcbdfbde55",
             "b85cf069968b401be83a45877ef534d9"
         ]
@@ -1909,6 +1931,7 @@
             "9359a1897513a7368036ce1ad0e0209b",
             "9d77627ba051cd8dea898b9c4d75016b",
             "b7f165d41d994c30bed63286334ae879",
+            "bb246c0b87dc14f616928b6a0c83546a",
             "ca6eb71131701bead1a08ee003968bda",
             "cbb96fd0d8c2a3524bd1592b463355e2",
             "d0f2c6f33a97b6d1fcace6256e387f66"
@@ -1971,6 +1994,7 @@
             "7213313bbc52d254105dc6200acf13fe",
             "73691d377c893a86c4cd79b082efe133",
             "737e36e2ae5c73a7d3a4e5e5baeff73d",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "74f9a93e45b9b3939bdb187e8032acb2",
             "7652ebce37e78cf0d10bf35cc385d040",
             "77a4b5fcc25267213a8c1e979f89bc18",
@@ -1993,6 +2017,7 @@
             "a7cff41ba82331a1e4aee4dcbdfbde55",
             "a90ed23cf7628cecf26fb9f66133e601",
             "b8834b1b3a3d0d4a2c6fcf700488b1b4",
+            "bb246c0b87dc14f616928b6a0c83546a",
             "bc29bfc8ce416dc1f8496eec22596538",
             "bc6ddc154b766e1aec8e2a59d095b296",
             "bd93f94afb5eff20ca167d63038837a5",
@@ -2076,7 +2101,9 @@
             "5c25356dc0304e8205d3bbeb3457b48f",
             "5e7f6bb1c57b22bc4f85c9a64aefdead",
             "60baa6de6c6ff7d69bad9715f274b9d1",
+            "632f85f0fcb2dc3a37660e03e10462e6",
             "69c4e6e2e80db9740269e04ec9bfa255",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "81018609a6481532defc311c1ba61841",
             "86590f463147ca8e7466c1d812c7a02d",
             "9b78cce02632c4a1a47798638dda8f27",
@@ -2500,11 +2527,13 @@
             "60baa6de6c6ff7d69bad9715f274b9d1",
             "6aba945ce02bbc0cdc109052b7498bca",
             "6d9db1c28905c97648dc92a48ef424a4",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "85292f6aec75c628d1a295be19ddcf11",
             "9359a1897513a7368036ce1ad0e0209b",
             "94eea5bbff9cae6fc5cf483d3b9cea0f",
             "a7cff41ba82331a1e4aee4dcbdfbde55",
             "b25e6bb3df0a43482bb61ccee5fc1ce7",
+            "bb246c0b87dc14f616928b6a0c83546a",
             "bc29bfc8ce416dc1f8496eec22596538",
             "c3fe5e4fca22e3a71cedb205d06c81fb",
             "c4eca9853982dc076b6b6ca8d955b96a",
@@ -2841,6 +2870,7 @@
         "description": "",
         "locations": [
             "3927767f3bb5f83c5705974a00c9f131",
+            "73dd1b8f2abd66575a1663c349fbb226",
             "f869b5dd85ca507cffcc58f9a209e04e"
         ]
     },
@@ -3059,6 +3089,7 @@
             "92f68a71be4b170ec51ee286107f85f1",
             "b8834b1b3a3d0d4a2c6fcf700488b1b4",
             "bae418e874a44cc4ed305282de705bfc",
+            "bb246c0b87dc14f616928b6a0c83546a",
             "bd21359dfa6c2479322cd318648045b1",
             "c786ca189f99003eca413217bef181f7",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
@@ -3859,6 +3890,7 @@
             "b25e6bb3df0a43482bb61ccee5fc1ce7",
             "b7f165d41d994c30bed63286334ae879",
             "bae418e874a44cc4ed305282de705bfc",
+            "bb246c0b87dc14f616928b6a0c83546a",
             "bc29bfc8ce416dc1f8496eec22596538",
             "bc6ddc154b766e1aec8e2a59d095b296",
             "bd21359dfa6c2479322cd318648045b1",
@@ -3954,6 +3986,12 @@
             "271e43af07d941d98e2b2b05c9dc9ecc"
         ]
     },
+    "XV BDE": {
+        "description": "",
+        "locations": [
+            "73dd1b8f2abd66575a1663c349fbb226"
+        ]
+    },
     "XV Brigade": {
         "description": "",
         "locations": [
@@ -3967,6 +4005,7 @@
     "XV Brigade Auto Park Albacete": {
         "description": "",
         "locations": [
+            "73dd1b8f2abd66575a1663c349fbb226",
             "bddfdc9d01459a46712a37948f7257da"
         ]
     },
