@@ -9,7 +9,7 @@ constantly==15.1.0
 cryptography==3.3.2
 cssselect==1.1.0
 enum34==1.1.10
-Flask==1.1.1
+Flask==2.2.5
 Flask-CKEditor==0.4.4.1
 Flask-Sitemap==0.3.0
 Frozen-Flask==0.15
