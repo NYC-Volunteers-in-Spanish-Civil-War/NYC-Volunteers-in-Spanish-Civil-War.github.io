@@ -353,6 +353,12 @@
             "ef503cebd9999e61b33614335df81f3b"
         ]
     },
+    "Aragon front": {
+        "description": "",
+        "locations": [
+            "3331d028bbe64a1e5fe1df44948b23a7"
+        ]
+    },
     "Armorer": {
         "description": "",
         "locations": [
@@ -626,6 +632,7 @@
     "Battle of Quinto": {
         "description": "",
         "locations": [
+            "cd4fb3fca66b526bc6863043086818c0",
             "dd7222bc3498f9742b1c8feb29d90dfd"
         ]
     },
@@ -1143,7 +1150,9 @@
     "Communist": {
         "description": "",
         "locations": [
+            "080e1a86e6f89ffc2704fc8fe5c26091",
             "29a1c0c74681e793d84fea0cb7195096",
+            "3331d028bbe64a1e5fe1df44948b23a7",
             "468bb932dd2f05c9e4cc4221e37fe4f8",
             "470b033d724e5c36a65dc7b7dea49bee",
             "4d04fd533ffe1342915cce1f88d90961",
@@ -1333,6 +1342,7 @@
     "Deserter": {
         "description": "",
         "locations": [
+            "080e1a86e6f89ffc2704fc8fe5c26091",
             "1fbd34ad040eb1b658a42f500743ae2a",
             "29a1c0c74681e793d84fea0cb7195096",
             "2e282465c00619686e281d4f58c303b9",
@@ -1400,7 +1410,8 @@
             "37bfc7778f82fd73ba9ea656a1b33f2c",
             "9bd936cec89dbc02332114251ed894ed",
             "a99443f3cb7780658f3d4788198a988e",
-            "bddfdc9d01459a46712a37948f7257da"
+            "bddfdc9d01459a46712a37948f7257da",
+            "cd4fb3fca66b526bc6863043086818c0"
         ]
     },
     "Ebro": {
@@ -2257,6 +2268,7 @@
             "039fb47acf138bec807bbff22416fbcb",
             "05280fea0b6fa187b17b6f40243ffb28",
             "05dfb5a4bbf0792913bb8737d4dcefef",
+            "080e1a86e6f89ffc2704fc8fe5c26091",
             "09a6a50b2724537df5fd377e920ebdbb",
             "0d5bc639699ed9ee4dd62f9be1753d46",
             "0e249d806c365d3f937c8c33a7e31e25",
@@ -2273,6 +2285,7 @@
             "2709cdea517075fefc51cc4ddc93a620",
             "29a1c0c74681e793d84fea0cb7195096",
             "2ecd5e34aefa3b29e9d097ad1f2326e8",
+            "3331d028bbe64a1e5fe1df44948b23a7",
             "33568043529af4667f45971031e8b363",
             "34cd2bc992b0b1d260a68ed46e610367",
             "35e3744b0bb4128189be5a504860d9b1",
@@ -2351,6 +2364,7 @@
             "ca6eb71131701bead1a08ee003968bda",
             "cbb96fd0d8c2a3524bd1592b463355e2",
             "cc7db852a2968c5aa9dd3f91b0b265f1",
+            "cd4fb3fca66b526bc6863043086818c0",
             "cda519e86dc133392555701568d529e3",
             "cde8d50c4fdf50ef0bfee3a2b31b5e47",
             "ce7826a7a3527374a03e946488be0f5e",
@@ -2938,6 +2952,7 @@
         "description": "",
         "locations": [
             "b4dec2f61840d9fd79b1f2d3525b48e1",
+            "cd4fb3fca66b526bc6863043086818c0",
             "ddc214fdb5f78808d5c956dc86ea65be"
         ]
     },
@@ -3239,6 +3254,12 @@
             "aed4f75d899083f3cd24614083e92ecc"
         ]
     },
+    "POUM": {
+        "description": "",
+        "locations": [
+            "3331d028bbe64a1e5fe1df44948b23a7"
+        ]
+    },
     "POW": {
         "description": "",
         "locations": [
@@ -3359,6 +3380,7 @@
     "Political Suspect": {
         "description": "",
         "locations": [
+            "080e1a86e6f89ffc2704fc8fe5c26091",
             "552f8efd22b2e0016fbd60588465223a"
         ]
     },
@@ -3855,6 +3877,7 @@
     "Survivor": {
         "description": "",
         "locations": [
+            "3331d028bbe64a1e5fe1df44948b23a7",
             "a99443f3cb7780658f3d4788198a988e"
         ]
     },
@@ -4400,6 +4423,7 @@
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "039fb47acf138bec807bbff22416fbcb",
+            "080e1a86e6f89ffc2704fc8fe5c26091",
             "09a6a50b2724537df5fd377e920ebdbb",
             "1078adcec5d08dfe06478733ea998b33",
             "153c396217993fc14ac3e35bc6ac6458",
@@ -4626,6 +4650,7 @@
         "locations": [
             "0231d7c9e39c0f2eb011b015f71f2aea",
             "05280fea0b6fa187b17b6f40243ffb28",
+            "080e1a86e6f89ffc2704fc8fe5c26091",
             "09a6a50b2724537df5fd377e920ebdbb",
             "0c0e065d25bcc0348d629de0ce372735",
             "157b1d70ca446aa0cfdb4e6bcf96c350",
@@ -4706,6 +4731,12 @@
         "description": "",
         "locations": [
             "94eea5bbff9cae6fc5cf483d3b9cea0f"
+        ]
+    },
+    "Zaragoza Offensive": {
+        "description": "",
+        "locations": [
+            "cd4fb3fca66b526bc6863043086818c0"
         ]
     },
     "bilingual": {
